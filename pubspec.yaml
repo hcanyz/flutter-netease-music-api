@@ -1,0 +1,30 @@
+name: netease_music_api
+description: Netease cloud music api for flutter ,reference https://github.com/Binaryify/NeteaseCloudMusicApi.
+version: 0.0.1
+author: hcanyz
+homepage: https://github.com/hcanyz/flutter-netease-music-api
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # http
+  dio: 3.0.9
+
+  # encrypt
+  encrypt: ^4.0.0
+  pointycastle: ^1.0.2
+
+  # x json
+  json_annotation: ^3.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # x json
+  build_runner: ^1.8.1
+  json_serializable: ^3.2.5
