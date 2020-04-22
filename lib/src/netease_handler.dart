@@ -10,7 +10,7 @@ import 'encrypt_ext.dart';
 
 void neteaseInterceptor(RequestOptions option) {
   //TODO 区分调用
-  _handleLinux(option);
+  _handleLinuxForward(option);
   _handleWebApi(option);
 }
 
@@ -18,7 +18,7 @@ const _BASE62 =
     'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 const String _presetKeyLinuxForward = 'rFgB&h#%2?^eDg:Q';
 
-void _handleLinux(RequestOptions option) {
+void _handleLinuxForward(RequestOptions option) {
   option.contentType = 'application/x-www-form-urlencoded';
 
   var oldUriStr = option.uri.toString();
@@ -30,15 +30,15 @@ void _handleLinux(RequestOptions option) {
       .toString();
 
   var newData = {
-    "method": option.method,
-    "url": oldUriStr.replaceAll(RegExp('\\w*api'), 'api'),
-    "params": option.data
+    'method': option.method,
+    'url': oldUriStr.replaceAll(RegExp('\\w*api'), 'api'),
+    'params': option.data
   };
   final key = Key.fromUtf8(_presetKeyLinuxForward);
   final encrypter = Encrypter(AES(key, mode: AESMode.ecb));
   final encrypted = encrypter.encrypt(jsonEncode(newData));
 
-  option.data = "eparams=${Uri.encodeQueryComponent(encrypted.base16)}";
+  option.data = 'eparams=${Uri.encodeQueryComponent(encrypted.base16)}';
 }
 
 const _presetKeyWebApi = '0CoJUm6Qyw8W8jud';
