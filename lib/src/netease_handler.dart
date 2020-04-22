@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
 
@@ -11,7 +12,7 @@ import 'encrypt_ext.dart';
 void neteaseInterceptor(RequestOptions option) {
   //TODO 区分调用
   _handleLinuxForward(option);
-  _handleWebApi(option);
+  //_handleWebApi(option);
 }
 
 const _BASE62 =
@@ -78,4 +79,15 @@ void _handleWebApi(RequestOptions option) {
   //5. 组合结果
   option.data =
       'params=${Uri.encodeQueryComponent(encryptedBody.base64)}&encSecKey=${Uri.encodeQueryComponent(encrypted3.base16)}';
+}
+
+const String TAG = 'NeteaseMusicApi';
+const String HOST = 'https://music.163.com';
+
+Options joinOptions({hookRequestDate = true}) => Options(
+    contentType: ContentType.json.value,
+    extra: {"hookRequestDate": hookRequestDate});
+
+Uri joinUri(String path) {
+  return Uri.parse('$HOST$path');
 }

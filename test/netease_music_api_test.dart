@@ -3,7 +3,9 @@ import 'package:netease_music_api/netease_music_api.dart';
 
 void main() {
   test('test', () async {
-    final test = Test();
-    await test.test();
+    var api = NeteaseMusicApi();
+    await api.homeBannerList();
+    await api.categoryPlayList(PLAYLIST_CATEGORY[0]["id"], 0);
+    await api.highqualityPlayList(0);
   });
 }

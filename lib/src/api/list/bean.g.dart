@@ -8,7 +8,7 @@ part of 'bean.dart';
 
 PlayListItem _$PlayListItemFromJson(Map<String, dynamic> json) {
   return PlayListItem()
-    ..id = _dynamicToString(json['id'])
+    ..id = dynamicToString(json['id'])
     ..name = json['name'] as String
     ..description = json['description'] as String
     ..coverImgUrl = json['coverImgUrl'] as String
@@ -54,81 +54,6 @@ Map<String, dynamic> _$PlayListItemToJson(PlayListItem instance) =>
       'subscribers': instance.subscribers,
     };
 
-NeteaseUserInfo _$NeteaseUserInfoFromJson(Map<String, dynamic> json) {
-  return NeteaseUserInfo()
-    ..userId = _dynamicToString(json['userId'])
-    ..nickname = json['nickname'] as String
-    ..avatarUrl = json['avatarUrl'] as String
-    ..signature = json['signature'] as String
-    ..city = json['city'] as int
-    ..province = json['province'] as int
-    ..backgroundUrl = json['backgroundUrl'] as String
-    ..expertTags =
-        (json['expertTags'] as List)?.map((e) => e as String)?.toList();
-}
-
-Map<String, dynamic> _$NeteaseUserInfoToJson(NeteaseUserInfo instance) =>
-    <String, dynamic>{
-      'userId': instance.userId,
-      'nickname': instance.nickname,
-      'avatarUrl': instance.avatarUrl,
-      'signature': instance.signature,
-      'city': instance.city,
-      'province': instance.province,
-      'backgroundUrl': instance.backgroundUrl,
-      'expertTags': instance.expertTags,
-    };
-
-PlayListCreator _$PlayListCreatorFromJson(Map<String, dynamic> json) {
-  return PlayListCreator()
-    ..userId = _dynamicToString(json['userId'])
-    ..nickname = json['nickname'] as String
-    ..avatarUrl = json['avatarUrl'] as String
-    ..signature = json['signature'] as String
-    ..city = json['city'] as int
-    ..province = json['province'] as int
-    ..backgroundUrl = json['backgroundUrl'] as String
-    ..expertTags =
-        (json['expertTags'] as List)?.map((e) => e as String)?.toList();
-}
-
-Map<String, dynamic> _$PlayListCreatorToJson(PlayListCreator instance) =>
-    <String, dynamic>{
-      'userId': instance.userId,
-      'nickname': instance.nickname,
-      'avatarUrl': instance.avatarUrl,
-      'signature': instance.signature,
-      'city': instance.city,
-      'province': instance.province,
-      'backgroundUrl': instance.backgroundUrl,
-      'expertTags': instance.expertTags,
-    };
-
-PlayListSubscriber _$PlayListSubscriberFromJson(Map<String, dynamic> json) {
-  return PlayListSubscriber()
-    ..userId = _dynamicToString(json['userId'])
-    ..nickname = json['nickname'] as String
-    ..avatarUrl = json['avatarUrl'] as String
-    ..signature = json['signature'] as String
-    ..city = json['city'] as int
-    ..province = json['province'] as int
-    ..backgroundUrl = json['backgroundUrl'] as String
-    ..expertTags =
-        (json['expertTags'] as List)?.map((e) => e as String)?.toList();
-}
-
-Map<String, dynamic> _$PlayListSubscriberToJson(PlayListSubscriber instance) =>
-    <String, dynamic>{
-      'userId': instance.userId,
-      'nickname': instance.nickname,
-      'avatarUrl': instance.avatarUrl,
-      'signature': instance.signature,
-      'city': instance.city,
-      'province': instance.province,
-      'backgroundUrl': instance.backgroundUrl,
-      'expertTags': instance.expertTags,
-    };
-
 HighqualityPlayListWrap _$HighqualityPlayListWrapFromJson(
     Map<String, dynamic> json) {
   return HighqualityPlayListWrap()
@@ -159,13 +84,4 @@ Map<String, dynamic> _$CategoryPlayListWrapToJson(
     <String, dynamic>{
       'code': instance.code,
       'playlist': instance.playlist,
-    };
-
-ServerStatusBean _$ServerStatusBeanFromJson(Map<String, dynamic> json) {
-  return ServerStatusBean()..code = json['code'] as int;
-}
-
-Map<String, dynamic> _$ServerStatusBeanToJson(ServerStatusBean instance) =>
-    <String, dynamic>{
-      'code': instance.code,
     };
