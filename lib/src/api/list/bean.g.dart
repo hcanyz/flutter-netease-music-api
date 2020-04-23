@@ -58,6 +58,8 @@ HighqualityPlayListWrap _$HighqualityPlayListWrapFromJson(
     Map<String, dynamic> json) {
   return HighqualityPlayListWrap()
     ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
     ..playlists = (json['playlists'] as List)
         ?.map((e) =>
             e == null ? null : PlayListItem.fromJson(e as Map<String, dynamic>))
@@ -68,12 +70,16 @@ Map<String, dynamic> _$HighqualityPlayListWrapToJson(
         HighqualityPlayListWrap instance) =>
     <String, dynamic>{
       'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
       'playlists': instance.playlists,
     };
 
 CategoryPlayListWrap _$CategoryPlayListWrapFromJson(Map<String, dynamic> json) {
   return CategoryPlayListWrap()
     ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
     ..playlist = json['playlist'] == null
         ? null
         : PlayListItem.fromJson(json['playlist'] as Map<String, dynamic>);
@@ -83,5 +89,7 @@ Map<String, dynamic> _$CategoryPlayListWrapToJson(
         CategoryPlayListWrap instance) =>
     <String, dynamic>{
       'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
       'playlist': instance.playlist,
     };

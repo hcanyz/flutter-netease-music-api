@@ -26,7 +26,7 @@ void neteaseInterceptor(RequestOptions option) {
         cookies +=
             '${Uri.encodeComponent(key)}=${Uri.encodeComponent(value)}; ';
       });
-      option.headers['Cookie'] = option.headers['Cookie'] ?? '' + cookies;
+      option.headers['Cookie'] = option.headers['Cookie'] ?? '' + ';' + cookies;
 
       switch (option.extra['encryptType']) {
         case EncryptType.LinuxForward:

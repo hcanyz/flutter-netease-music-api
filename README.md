@@ -16,6 +16,8 @@ Netease cloud music api for flutter ,reference https://github.com/Binaryify/Nete
 | code | desc         |
 |------|--------------|
 | 400  | 请求参数异常 |
+| 301  | 需要登录     |
+| 501  | 账号不存在   |
 
 
 如果你想知道更多如何使用这个库，可以参考我的另外一个项目。https://github.com/hcanyz/flutter-zmusic
