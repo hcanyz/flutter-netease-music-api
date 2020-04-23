@@ -17,22 +17,33 @@ void neteaseInterceptor(RequestOptions option) {
       debugPrint('$TAG   interceptor before: ${option.uri}   ${option.data}');
 
       option.contentType = 'application/x-www-form-urlencoded';
-      option.headers['Referer'] = HOST;
+      option.headers[HttpHeaders.refererHeader] = HOST;
       //option.headers['X-Real-IP'] = '118.88.88.88';
-      option.headers['User-Agent'] =
+      option.headers[HttpHeaders.userAgentHeader] =
           _chooseUserAgent(option.extra['userAgent']);
       String cookies = '';
       option.extra['cookies'].forEach((key, value) {
         cookies +=
             '${Uri.encodeComponent(key)}=${Uri.encodeComponent(value)}; ';
       });
-      option.headers['Cookie'] = option.headers['Cookie'] ?? '' + ';' + cookies;
+      option.headers[HttpHeaders.cookieHeader] =
+          option.headers[HttpHeaders.cookieHeader] ?? '' + ';' + cookies;
 
       switch (option.extra['encryptType']) {
         case EncryptType.LinuxForward:
           _handleLinuxForward(option);
           break;
         case EncryptType.WeApi:
+          //weApi方式请求body里面需要带上csrfToken字段，这个是登录请求set-cookie返回的
+          String csrfToken = '';
+          try {
+            csrfToken = RegExp(r'_csrf=([^(;|$)]+)')
+                .firstMatch(option.headers[HttpHeaders.cookieHeader] ?? '')
+                .group(1);
+          } catch (e) {}
+          if (csrfToken.isNotEmpty) {
+            option.data['csrfToken'] = csrfToken;
+          }
           _handleWeApi(option);
           break;
         case EncryptType.EApi:
