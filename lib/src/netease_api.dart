@@ -11,13 +11,7 @@ class NeteaseMusicApi with ApiPlayList {
   NeteaseMusicApi._internal() {
     Https.dio.interceptors
         .add(InterceptorsWrapper(onRequest: (RequestOptions option) async {
-      if (option.method == 'POST' &&
-          HOST.contains(option.uri.host) &&
-          option.extra["hookRequestDate"] == true) {
-        debugPrint('$TAG   interceptor before: ${option.uri}   ${option.data}');
-        neteaseInterceptor(option);
-        debugPrint('$TAG   interceptor after: ${option.uri}   ${option.data}');
-      }
+      neteaseInterceptor(option);
     }));
   }
 

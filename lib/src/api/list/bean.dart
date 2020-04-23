@@ -35,6 +35,11 @@ class PlayListItem {
 
   PlayListItem();
 
+  @override
+  String toString() {
+    return 'PlayListItem{id: $id, name: $name}';
+  }
+
   factory PlayListItem.fromJson(Map<String, dynamic> json) =>
       _$PlayListItemFromJson(json);
 
@@ -46,6 +51,11 @@ class HighqualityPlayListWrap extends ServerStatusBean {
   List<PlayListItem> playlists;
 
   HighqualityPlayListWrap();
+
+  @override
+  String toString() {
+    return 'HighqualityPlayListWrap{playlists: $playlists}';
+  }
 
   factory HighqualityPlayListWrap.fromJson(Map<String, dynamic> json) =>
       _$HighqualityPlayListWrapFromJson(json);
@@ -98,6 +108,11 @@ class CategoryPlayListWrap extends ServerStatusBean {
   PlayListItem playlist;
 
   CategoryPlayListWrap();
+
+  @override
+  String toString() {
+    return 'CategoryPlayListWrap{playlist: $playlist}';
+  }
 
   factory CategoryPlayListWrap.fromJson(Map<String, dynamic> json) =>
       _$CategoryPlayListWrapFromJson(json);
