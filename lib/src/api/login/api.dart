@@ -12,6 +12,9 @@ import 'package:pointycastle/digests/md5.dart';
 import 'bean.dart';
 
 mixin ApiLogin {
+  /// 手机号码登录
+  /// [password] hex(md5(password))
+  /// countryCode 国家码 TODO 整理取值范围
   Future<NeteaseAccountInfoWrap> loginCellPhone(String phone, String password,
       {String countryCode = ''}) {
     var params = {
@@ -30,6 +33,9 @@ mixin ApiLogin {
     });
   }
 
+  /// 邮箱登录
+  /// [password] hex(md5(password))
+  /// countryCode 国家码 TODO 整理取值范围
   Future<NeteaseAccountInfoWrap> loginEmail(String phone, String password,
       {String countryCode = ''}) {
     var params = {
@@ -47,6 +53,8 @@ mixin ApiLogin {
     });
   }
 
+  /// 获取当前登录状态
+  /// [ServerStatusBean] code [RetCode]
   Future<ServerStatusBean> loginStatus() {
     return Https.dio.get(HOST).then((Response value) {
       var s = NeteaseAccountInfoWrap();
@@ -64,12 +72,42 @@ mixin ApiLogin {
     });
   }
 
+  /// 刷新token
+  /// [ServerStatusBean] code [RetCode]
   Future<ServerStatusBean> loginRefresh() {
     return Https.dio
         .postUri(joinUri('/weapi/login/token/refresh'),
             data: {}, options: joinOptions(userAgent: UserAgent.Pc))
         .then((Response value) {
       return ServerStatusBean.fromJson(value.data);
+    });
+  }
+
+  /// 发送手机验证码
+  /// [ctcode] 国家区号,默认86即中国
+  Future<ServerStatusBean> captchaSend(String phone, {String ctcode = '86'}) {
+    return Https.dio
+        .postUri(joinUri('/weapi/sms/captcha/sent'),
+            data: {'ctcode': ctcode, 'cellphone': phone},
+            options: joinOptions(userAgent: UserAgent.Pc))
+        .then((Response value) {
+      //Response content-type: [text/plain;charset=UTF-8]
+      return ServerStatusBean.fromJson(jsonDecode(value.data));
+    });
+  }
+
+  /// 检验手机验证码
+  /// [ctcode] 国家区号,默认86即中国
+  /// [captcha] 获取到的验证码
+  Future<ServerStatusBean> captchaVerify(String phone, String captcha,
+      {String ctcode = '86'}) {
+    return Https.dio
+        .postUri(joinUri('/weapi/sms/captcha/verify'),
+            data: {'ctcode': ctcode, 'cellphone': phone, 'captcha': captcha},
+            options: joinOptions(userAgent: UserAgent.Pc))
+        .then((Response value) {
+      //Response content-type: [text/plain;charset=UTF-8]
+      return ServerStatusBean.fromJson(jsonDecode(value.data));
     });
   }
 }

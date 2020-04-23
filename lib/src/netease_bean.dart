@@ -8,6 +8,9 @@ const int RET_CODE_NEED_LOGIN = 301;
 const int RET_CODE_ILLEGAL_ARGUMENT = 400;
 const int RET_CODE_ACCOUNT_NOT_FOUND = 501;
 
+const int RET_CODE_CAPTCHA_VERIFY_FAIL = 503;
+const int RET_CODE_CAPTCHA_VERIFY_FREQUENTLY = 405;
+
 enum RetCode { Ok, NeedLogin, IllegalArgument, UnKnow }
 
 RetCode valueOfCode(int code) {

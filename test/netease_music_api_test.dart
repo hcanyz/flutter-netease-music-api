@@ -38,6 +38,16 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test send captcha', () async {
+    var result = await api.captchaSend(login_phone);
+    expect(result.code, anyOf(RET_CODE_OK, RET_CODE_CAPTCHA_VERIFY_FREQUENTLY));
+  });
+
+  test('test verify captcha', () async {
+    var result = await api.captchaVerify(login_phone, '7721');
+    expect(result.code, anyOf(RET_CODE_OK, RET_CODE_CAPTCHA_VERIFY_FAIL));
+  });
+
   test('test homeBannerList', () async {
     await api.homeBannerList();
   });
