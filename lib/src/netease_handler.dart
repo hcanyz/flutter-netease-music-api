@@ -12,16 +12,23 @@ import 'encrypt_ext.dart';
 void neteaseInterceptor(RequestOptions option) {
   if (option.method == 'POST' &&
       HOST.contains(option.uri.host) &&
-      option.extra["hookRequestDate"]) {
-    if (option.extra["hookRequestDate"]) {
+      option.extra['hookRequestDate']) {
+    if (option.extra['hookRequestDate']) {
       debugPrint('$TAG   interceptor before: ${option.uri}   ${option.data}');
 
       option.contentType = 'application/x-www-form-urlencoded';
       option.headers['Referer'] = HOST;
+      //option.headers['X-Real-IP'] = '118.88.88.88';
       option.headers['User-Agent'] =
           _chooseUserAgent(option.extra['userAgent']);
+      String cookies = '';
+      option.extra['cookies'].forEach((key, value) {
+        cookies +=
+            '${Uri.encodeComponent(key)}=${Uri.encodeComponent(value)}; ';
+      });
+      option.headers['Cookie'] = option.headers['Cookie'] ?? '' + cookies;
 
-      switch (option.extra["encryptType"]) {
+      switch (option.extra['encryptType']) {
         case EncryptType.LinuxForward:
           _handleLinuxForward(option);
           break;
@@ -32,7 +39,6 @@ void neteaseInterceptor(RequestOptions option) {
           _handleEApi(option);
           break;
       }
-      debugPrint('$TAG   interceptor after: ${option.uri}   ${option.data}');
     }
   }
 }
@@ -78,7 +84,6 @@ void _handleWeApi(RequestOptions option) {
   final iv = IV.fromUtf8(_ivWeApi);
   final encrypter = Encrypter(AES(key, mode: AESMode.cbc));
   final encrypted = encrypter.encrypt(body, iv: iv);
-  debugPrint(encrypted.bytes.toString());
 
   //2. 生成一个16位密钥A
   Uint8List randomKeyBytes = Uint8List.fromList(List.generate(16, (int index) {
@@ -144,11 +149,13 @@ String _chooseUserAgent(UserAgent agent) {
 Options joinOptions(
         {hookRequestDate = true,
         EncryptType encryptType = EncryptType.WeApi,
-        UserAgent userAgent = UserAgent.Random}) =>
+        UserAgent userAgent = UserAgent.Random,
+        Map<String, String> cookies = const {}}) =>
     Options(contentType: ContentType.json.value, extra: {
       'hookRequestDate': hookRequestDate,
       'encryptType': encryptType,
-      'userAgent': userAgent
+      'userAgent': userAgent,
+      'cookies': cookies
     });
 
 Uri joinUri(String path) {

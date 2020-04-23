@@ -1,3 +1,6 @@
+# private
+test/private_config.dart
+
 # Miscellaneous
 *.class
 *.log

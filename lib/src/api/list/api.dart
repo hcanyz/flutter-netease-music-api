@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:netease_music_api/src/dio_ext.dart';
 import 'package:netease_music_api/src/netease_handler.dart';
 
@@ -15,9 +14,7 @@ mixin ApiPlayList {
         .postUri(joinUri('/weapi/playlist/highquality/list'),
             data: params, options: joinOptions())
         .then((Response value) {
-      var result = HighqualityPlayListWrap.fromJson(jsonDecode(value.data));
-      debugPrint('$TAG   highqualityList response $result');
-      return result;
+      return HighqualityPlayListWrap.fromJson(jsonDecode(value.data));
     });
   }
 
@@ -28,9 +25,7 @@ mixin ApiPlayList {
         .postUri(joinUri('/weapi/v3/playlist/detail'),
             data: params, options: joinOptions())
         .then((Response value) {
-      var result = CategoryPlayListWrap.fromJson(jsonDecode(value.data));
-      debugPrint('$TAG   categoryPlayList response $result');
-      return result;
+      return CategoryPlayListWrap.fromJson(jsonDecode(value.data));
     });
   }
 
