@@ -71,6 +71,8 @@ NeteaseAccountInfoWrap _$NeteaseAccountInfoWrapFromJson(
     ..code = json['code'] as int
     ..message = json['message'] as String
     ..msg = json['msg'] as String
+    ..more = json['more'] as bool
+    ..count = json['count'] as int
     ..loginType = json['loginType'] as int
     ..account = json['account'] == null
         ? null
@@ -87,6 +89,8 @@ Map<String, dynamic> _$NeteaseAccountInfoWrapToJson(
       'code': instance.code,
       'message': instance.message,
       'msg': instance.msg,
+      'more': instance.more,
+      'count': instance.count,
       'loginType': instance.loginType,
       'account': instance.account,
       'profile': instance.profile,

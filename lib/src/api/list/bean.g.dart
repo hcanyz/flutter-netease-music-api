@@ -61,6 +61,8 @@ MultiPlayListWrap _$MultiPlayListWrapFromJson(Map<String, dynamic> json) {
     ..code = json['code'] as int
     ..message = json['message'] as String
     ..msg = json['msg'] as String
+    ..more = json['more'] as bool
+    ..count = json['count'] as int
     ..playlists = (json['playlists'] as List)
         ?.map((e) =>
             e == null ? null : PlayListItem.fromJson(e as Map<String, dynamic>))
@@ -72,6 +74,8 @@ Map<String, dynamic> _$MultiPlayListWrapToJson(MultiPlayListWrap instance) =>
       'code': instance.code,
       'message': instance.message,
       'msg': instance.msg,
+      'more': instance.more,
+      'count': instance.count,
       'playlists': instance.playlists,
     };
 
@@ -80,6 +84,8 @@ MultiPlayListWrap2 _$MultiPlayListWrap2FromJson(Map<String, dynamic> json) {
     ..code = json['code'] as int
     ..message = json['message'] as String
     ..msg = json['msg'] as String
+    ..more = json['more'] as bool
+    ..count = json['count'] as int
     ..playlist = (json['playlist'] as List)
         ?.map((e) =>
             e == null ? null : PlayListItem.fromJson(e as Map<String, dynamic>))
@@ -91,6 +97,8 @@ Map<String, dynamic> _$MultiPlayListWrap2ToJson(MultiPlayListWrap2 instance) =>
       'code': instance.code,
       'message': instance.message,
       'msg': instance.msg,
+      'more': instance.more,
+      'count': instance.count,
       'playlist': instance.playlist,
     };
 
@@ -99,6 +107,8 @@ SinglePlayListWrap _$SinglePlayListWrapFromJson(Map<String, dynamic> json) {
     ..code = json['code'] as int
     ..message = json['message'] as String
     ..msg = json['msg'] as String
+    ..more = json['more'] as bool
+    ..count = json['count'] as int
     ..playlist = json['playlist'] == null
         ? null
         : PlayListItem.fromJson(json['playlist'] as Map<String, dynamic>);
@@ -109,5 +119,7 @@ Map<String, dynamic> _$SinglePlayListWrapToJson(SinglePlayListWrap instance) =>
       'code': instance.code,
       'message': instance.message,
       'msg': instance.msg,
+      'more': instance.more,
+      'count': instance.count,
       'playlist': instance.playlist,
     };

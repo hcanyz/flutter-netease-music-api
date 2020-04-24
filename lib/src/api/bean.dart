@@ -9,6 +9,9 @@ class ServerStatusBean {
   String message;
   String msg;
 
+  bool more;
+  int count;
+
   RetCode get codeEnum {
     return valueOfCode(code);
   }

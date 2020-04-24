@@ -139,12 +139,19 @@ void main() {
       return;
     }
 
-    var result2 = await api.updateUserPlayListInfo(id,
-        name: '偶尔会发笑_${Random().nextInt(10)}',
-        desc: '偶尔会发笑_${Random().nextInt(10)}',
-        tags: ['孤独']);
+    var result2 = await api.updateUserPlayListInfo(
+        id,
+        '偶尔会发笑_${Random().nextInt(10)}',
+        '偶尔会发笑_${Random().nextInt(10)}',
+        ['孤独']);
 
     expect(result2.code, anyOf(RET_CODE_OK, RET_CODE_ILLEGAL_ARGUMENT));
+  });
+
+  test('test user dj list', () async {
+    var result = await api.userDjList(
+        NeteaseMusicApi?.accountInfo?.account?.id ?? '3375937', 0);
+    expect(result.code, RET_CODE_OK);
   });
 
   test('test homeBannerList', () async {

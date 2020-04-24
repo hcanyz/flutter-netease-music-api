@@ -40,6 +40,8 @@ NeteaseUserDetail _$NeteaseUserDetailFromJson(Map<String, dynamic> json) {
     ..code = json['code'] as int
     ..message = json['message'] as String
     ..msg = json['msg'] as String
+    ..more = json['more'] as bool
+    ..count = json['count'] as int
     ..createTime = json['createTime'] as int
     ..createDays = json['createDays'] as int
     ..profile = json['profile'] == null
@@ -53,6 +55,8 @@ Map<String, dynamic> _$NeteaseUserDetailToJson(NeteaseUserDetail instance) =>
       'code': instance.code,
       'message': instance.message,
       'msg': instance.msg,
+      'more': instance.more,
+      'count': instance.count,
       'createTime': instance.createTime,
       'createDays': instance.createDays,
       'profile': instance.profile,
@@ -63,6 +67,8 @@ NeteaseUserSubcount _$NeteaseUserSubcountFromJson(Map<String, dynamic> json) {
     ..code = json['code'] as int
     ..message = json['message'] as String
     ..msg = json['msg'] as String
+    ..more = json['more'] as bool
+    ..count = json['count'] as int
     ..programCount = json['programCount'] as int
     ..djRadioCount = json['djRadioCount'] as int
     ..mvCount = json['mvCount'] as int
@@ -79,6 +85,8 @@ Map<String, dynamic> _$NeteaseUserSubcountToJson(
       'code': instance.code,
       'message': instance.message,
       'msg': instance.msg,
+      'more': instance.more,
+      'count': instance.count,
       'programCount': instance.programCount,
       'djRadioCount': instance.djRadioCount,
       'mvCount': instance.mvCount,

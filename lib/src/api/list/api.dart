@@ -24,8 +24,8 @@ mixin ApiPlayList {
   /// [name] 歌单名字
   /// [desc] 歌单描述
   /// [tags] 歌单tag ,多个用 `;` 隔开,只能用官方规定标签
-  Future<ServerStatusBean> updateUserPlayListInfo(String id,
-      {String name, String desc, List<String> tags}) {
+  Future<ServerStatusBean> updateUserPlayListInfo(
+      String id, String name, String desc, List<String> tags) {
     var params = {
       '/api/playlist/update/name': '{"id": "$id", "name": "$name"}',
       '/api/playlist/desc/update': '{"id": "$id", "desc": "$desc"}',
@@ -35,6 +35,49 @@ mixin ApiPlayList {
     return Https.dio
         .postUri(joinUri('/weapi/batch'),
             data: params, options: joinOptions(cookies: {'os': 'pc'}))
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
+  }
+
+  /// 更新用户歌单描述
+  /// !需要登录
+  /// [desc] 歌单描述
+  Future<ServerStatusBean> updateUserPlayListDesc(String id, String desc) {
+    var params = {'id': id, 'desc': desc};
+    //TODO eapi   url: '/api/playlist/desc/update'
+    return Https.dio
+        .postUri(joinUri('/eapi/playlist/desc/update'),
+            data: params, options: joinOptions(encryptType: EncryptType.EApi))
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
+  }
+
+  /// 更新用户歌单描述
+  /// !需要登录
+  /// [name] 歌单名字
+  Future<ServerStatusBean> updateUserPlayListName(String id, String name) {
+    var params = {'id': id, 'name': name};
+    //TODO eapi    url: '/api/playlist/update/name'
+    return Https.dio
+        .postUri(joinUri('/eapi/playlist/update/name'),
+            data: params, options: joinOptions(encryptType: EncryptType.EApi))
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
+  }
+
+  /// 更新用户歌单描述
+  /// !需要登录
+  /// [tags] 歌单标签
+  Future<ServerStatusBean> updateUserPlayListTags(
+      String id, List<String> tags) {
+    var params = {'id': id, 'tags': tags?.join(',') ?? ''};
+    //TODO eapi    url: '/api/playlist/tags/update'
+    return Https.dio
+        .postUri(joinUri('/eapi/playlist/tags/update'),
+            data: params, options: joinOptions(encryptType: EncryptType.EApi))
         .then((Response value) {
       return ServerStatusBean.fromJson(value.data);
     });
