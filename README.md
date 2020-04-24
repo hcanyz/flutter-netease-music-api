@@ -20,7 +20,6 @@ Netease cloud music api for flutter ,reference https://github.com/Binaryify/Nete
 | 301  | 需要登录               |
 | 400  | 请求参数异常           |
 | 501  | 账号不存在             |
-
 | 503  | 验证码错误             |
 | 405  | 发送验证码间隔过短     |
 
