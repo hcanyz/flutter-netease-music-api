@@ -5,7 +5,7 @@ import 'package:netease_music_api/src/api/user/bean.dart';
 part 'bean.g.dart';
 
 @JsonSerializable()
-class PlayListItem {
+class PlayItem {
   @JsonKey(fromJson: dynamicToString)
   String id;
 
@@ -38,22 +38,22 @@ class PlayListItem {
 
   List<PlayListSubscriber> subscribers;
 
-  PlayListItem();
+  PlayItem();
 
   @override
   String toString() {
-    return 'PlayListItem{id: $id, name: $name}';
+    return 'PlayItem{id: $id, name: $name}';
   }
 
-  factory PlayListItem.fromJson(Map<String, dynamic> json) =>
-      _$PlayListItemFromJson(json);
+  factory PlayItem.fromJson(Map<String, dynamic> json) =>
+      _$PlayItemFromJson(json);
 
-  Map<String, dynamic> toJson() => _$PlayListItemToJson(this);
+  Map<String, dynamic> toJson() => _$PlayItemToJson(this);
 }
 
 @JsonSerializable()
 class MultiPlayListWrap extends ServerStatusBean {
-  List<PlayListItem> playlists;
+  List<PlayItem> playlists;
 
   MultiPlayListWrap();
 
@@ -70,7 +70,7 @@ class MultiPlayListWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class MultiPlayListWrap2 extends ServerStatusBean {
-  List<PlayListItem> playlist;
+  List<PlayItem> playlist;
 
   MultiPlayListWrap2();
 
@@ -127,7 +127,7 @@ const PLAYLIST_CATEGORY = [
 
 @JsonSerializable()
 class SinglePlayListWrap extends ServerStatusBean {
-  PlayListItem playlist;
+  PlayItem playlist;
 
   SinglePlayListWrap();
 

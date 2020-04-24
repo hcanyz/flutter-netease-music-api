@@ -6,8 +6,8 @@ part of 'bean.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PlayListItem _$PlayListItemFromJson(Map<String, dynamic> json) {
-  return PlayListItem()
+PlayItem _$PlayItemFromJson(Map<String, dynamic> json) {
+  return PlayItem()
     ..id = dynamicToString(json['id'])
     ..name = json['name'] as String
     ..description = json['description'] as String
@@ -34,8 +34,7 @@ PlayListItem _$PlayListItemFromJson(Map<String, dynamic> json) {
         ?.toList();
 }
 
-Map<String, dynamic> _$PlayListItemToJson(PlayListItem instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$PlayItemToJson(PlayItem instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'description': instance.description,
@@ -65,7 +64,7 @@ MultiPlayListWrap _$MultiPlayListWrapFromJson(Map<String, dynamic> json) {
     ..count = json['count'] as int
     ..playlists = (json['playlists'] as List)
         ?.map((e) =>
-            e == null ? null : PlayListItem.fromJson(e as Map<String, dynamic>))
+            e == null ? null : PlayItem.fromJson(e as Map<String, dynamic>))
         ?.toList();
 }
 
@@ -88,7 +87,7 @@ MultiPlayListWrap2 _$MultiPlayListWrap2FromJson(Map<String, dynamic> json) {
     ..count = json['count'] as int
     ..playlist = (json['playlist'] as List)
         ?.map((e) =>
-            e == null ? null : PlayListItem.fromJson(e as Map<String, dynamic>))
+            e == null ? null : PlayItem.fromJson(e as Map<String, dynamic>))
         ?.toList();
 }
 
@@ -111,7 +110,7 @@ SinglePlayListWrap _$SinglePlayListWrapFromJson(Map<String, dynamic> json) {
     ..count = json['count'] as int
     ..playlist = json['playlist'] == null
         ? null
-        : PlayListItem.fromJson(json['playlist'] as Map<String, dynamic>);
+        : PlayItem.fromJson(json['playlist'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$SinglePlayListWrapToJson(SinglePlayListWrap instance) =>

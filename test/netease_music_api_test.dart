@@ -131,7 +131,7 @@ void main() {
   });
 
   test('test user event list', () async {
-    var result = await api.userEventList(defaultUserId);
+    var result = await api.eventList(defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 
@@ -156,6 +156,15 @@ void main() {
     expect(result.code, RET_CODE_OK);
 
     var result2 = await api.eventDelete('${result.event.id}');
+    expect(result2.code, RET_CODE_OK);
+  });
+
+  test('test user event comment list', () async {
+    var result = await api.eventList(defaultUserId);
+    expect(result.code, RET_CODE_OK);
+    expect(result.events, isNotEmpty);
+
+    var result2 = await api.eventCommentList(result.events[0].info.threadId, 0);
     expect(result2.code, RET_CODE_OK);
   });
 
