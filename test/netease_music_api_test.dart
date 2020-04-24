@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:netease_music_api/netease_music_api.dart';
@@ -94,6 +96,23 @@ void main() {
 
   test('test userSubcount', () async {
     var result = await api.userSubcount();
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test user update profile', () async {
+    var info = NeteaseMusicApi.accountInfo;
+    if (info == null) {
+      return;
+    }
+    var result = await api.userUpdateProfile(
+        info.profile.gender,
+        info.profile.birthday < 0
+            ? DateTime.now().millisecondsSinceEpoch
+            : info.profile.birthday,
+        'hcanyz_${Random().nextInt(10)}',
+        info.profile.province,
+        info.profile.city,
+        '偶尔会发笑_${Random().nextInt(10)}');
     expect(result.code, RET_CODE_OK);
   });
 

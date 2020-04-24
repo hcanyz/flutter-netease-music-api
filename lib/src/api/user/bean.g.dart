@@ -12,6 +12,8 @@ NeteaseUserInfo _$NeteaseUserInfoFromJson(Map<String, dynamic> json) {
     ..nickname = json['nickname'] as String
     ..avatarUrl = json['avatarUrl'] as String
     ..signature = json['signature'] as String
+    ..gender = json['gender'] as int
+    ..birthday = json['birthday'] as int
     ..city = json['city'] as int
     ..province = json['province'] as int
     ..backgroundUrl = json['backgroundUrl'] as String
@@ -25,6 +27,8 @@ Map<String, dynamic> _$NeteaseUserInfoToJson(NeteaseUserInfo instance) =>
       'nickname': instance.nickname,
       'avatarUrl': instance.avatarUrl,
       'signature': instance.signature,
+      'gender': instance.gender,
+      'birthday': instance.birthday,
       'city': instance.city,
       'province': instance.province,
       'backgroundUrl': instance.backgroundUrl,
@@ -91,6 +95,8 @@ PlayListCreator _$PlayListCreatorFromJson(Map<String, dynamic> json) {
     ..nickname = json['nickname'] as String
     ..avatarUrl = json['avatarUrl'] as String
     ..signature = json['signature'] as String
+    ..gender = json['gender'] as int
+    ..birthday = json['birthday'] as int
     ..city = json['city'] as int
     ..province = json['province'] as int
     ..backgroundUrl = json['backgroundUrl'] as String
@@ -104,6 +110,8 @@ Map<String, dynamic> _$PlayListCreatorToJson(PlayListCreator instance) =>
       'nickname': instance.nickname,
       'avatarUrl': instance.avatarUrl,
       'signature': instance.signature,
+      'gender': instance.gender,
+      'birthday': instance.birthday,
       'city': instance.city,
       'province': instance.province,
       'backgroundUrl': instance.backgroundUrl,
@@ -116,6 +124,8 @@ PlayListSubscriber _$PlayListSubscriberFromJson(Map<String, dynamic> json) {
     ..nickname = json['nickname'] as String
     ..avatarUrl = json['avatarUrl'] as String
     ..signature = json['signature'] as String
+    ..gender = json['gender'] as int
+    ..birthday = json['birthday'] as int
     ..city = json['city'] as int
     ..province = json['province'] as int
     ..backgroundUrl = json['backgroundUrl'] as String
@@ -129,6 +139,8 @@ Map<String, dynamic> _$PlayListSubscriberToJson(PlayListSubscriber instance) =>
       'nickname': instance.nickname,
       'avatarUrl': instance.avatarUrl,
       'signature': instance.signature,
+      'gender': instance.gender,
+      'birthday': instance.birthday,
       'city': instance.city,
       'province': instance.province,
       'backgroundUrl': instance.backgroundUrl,

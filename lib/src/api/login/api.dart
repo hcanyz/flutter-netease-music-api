@@ -76,6 +76,7 @@ mixin ApiLogin {
   }
 
   /// 刷新token
+  /// !需要登录
   /// [ServerStatusBean] code [RetCode]
   Future<ServerStatusBean> loginRefresh() {
     return Https.dio
@@ -183,6 +184,7 @@ mixin ApiLogin {
   }
 
   /// 退出登录
+  /// !需要登录
   Future<ServerStatusBean> logout() {
     return Https.dio
         .postUri(joinUri('/weapi/logout'), data: {}, options: joinOptions())

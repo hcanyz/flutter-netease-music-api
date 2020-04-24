@@ -37,6 +37,8 @@ NeteaseAccountProfile _$NeteaseAccountProfileFromJson(
     ..nickname = json['nickname'] as String
     ..avatarUrl = json['avatarUrl'] as String
     ..signature = json['signature'] as String
+    ..gender = json['gender'] as int
+    ..birthday = json['birthday'] as int
     ..city = json['city'] as int
     ..province = json['province'] as int
     ..backgroundUrl = json['backgroundUrl'] as String
@@ -53,6 +55,8 @@ Map<String, dynamic> _$NeteaseAccountProfileToJson(
       'nickname': instance.nickname,
       'avatarUrl': instance.avatarUrl,
       'signature': instance.signature,
+      'gender': instance.gender,
+      'birthday': instance.birthday,
       'city': instance.city,
       'province': instance.province,
       'backgroundUrl': instance.backgroundUrl,

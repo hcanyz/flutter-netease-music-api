@@ -12,6 +12,12 @@ class NeteaseUserInfo {
   String avatarUrl;
   String signature;
 
+  //性别 0:保密 1:男性 2:女性
+  int gender;
+
+  //出生日期,时间戳 unix timestamp
+  int birthday;
+
   int city;
   int province;
 

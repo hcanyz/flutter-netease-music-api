@@ -48,7 +48,7 @@ void neteaseInterceptor(RequestOptions option) {
           if (csrfToken.isNotEmpty) {
             // map可能是<String,Int>类型的，默认转换成<String,dynamic>
             option.data = Map.from(option.data);
-            option.data['csrfToken'] = csrfToken;
+            option.data['csrf_token'] = csrfToken;
           }
           _handleWeApi(option);
           break;
