@@ -105,7 +105,6 @@ mixin ApiPlayList {
   }
 
   Future<SinglePlayListWrap> recommendPlayList(int page, {int limit = 30}) {
-    //TODO need login
     var params = {'limit': limit, 'offset': page * limit};
     return Https.dio
         .postUri(joinUri('/weapi/v1/discovery/recommend/songs'),

@@ -154,3 +154,162 @@ Map<String, dynamic> _$PlayListSubscriberToJson(PlayListSubscriber instance) =>
       'backgroundUrl': instance.backgroundUrl,
       'expertTags': instance.expertTags,
     };
+
+UserFollowListWrap _$UserFollowListWrapFromJson(Map<String, dynamic> json) {
+  return UserFollowListWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..more = json['more'] as bool
+    ..count = json['count'] as int
+    ..follow = (json['follow'] as List)
+        ?.map((e) => e == null
+            ? null
+            : NeteaseAccountProfile.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$UserFollowListWrapToJson(UserFollowListWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'more': instance.more,
+      'count': instance.count,
+      'follow': instance.follow,
+    };
+
+UserFollowedListWrap _$UserFollowedListWrapFromJson(Map<String, dynamic> json) {
+  return UserFollowedListWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..more = json['more'] as bool
+    ..count = json['count'] as int
+    ..followed = (json['followed'] as List)
+        ?.map((e) => e == null
+            ? null
+            : NeteaseAccountProfile.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..lasttime = json['lasttime'] as int;
+}
+
+Map<String, dynamic> _$UserFollowedListWrapToJson(
+        UserFollowedListWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'more': instance.more,
+      'count': instance.count,
+      'followed': instance.followed,
+      'lasttime': instance.lasttime,
+    };
+
+UserEventListItem _$UserEventListItemFromJson(Map<String, dynamic> json) {
+  return UserEventListItem()
+    ..id = dynamicToString(json['id'])
+    ..json = json['json'] as String
+    ..eventTime = json['eventTime'] as int;
+}
+
+Map<String, dynamic> _$UserEventListItemToJson(UserEventListItem instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'json': instance.json,
+      'eventTime': instance.eventTime,
+    };
+
+UserEventListWrap _$UserEventListWrapFromJson(Map<String, dynamic> json) {
+  return UserEventListWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..more = json['more'] as bool
+    ..count = json['count'] as int
+    ..events = (json['events'] as List)
+        ?.map((e) => e == null
+            ? null
+            : UserEventListItem.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..lasttime = json['lasttime'] as int;
+}
+
+Map<String, dynamic> _$UserEventListWrapToJson(UserEventListWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'more': instance.more,
+      'count': instance.count,
+      'events': instance.events,
+      'lasttime': instance.lasttime,
+    };
+
+UserEventSingleWrap _$UserEventSingleWrapFromJson(Map<String, dynamic> json) {
+  return UserEventSingleWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..more = json['more'] as bool
+    ..count = json['count'] as int
+    ..event = json['event'] == null
+        ? null
+        : UserEventListItem.fromJson(json['event'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$UserEventSingleWrapToJson(
+        UserEventSingleWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'more': instance.more,
+      'count': instance.count,
+      'event': instance.event,
+    };
+
+EventForwardRet _$EventForwardRetFromJson(Map<String, dynamic> json) {
+  return EventForwardRet()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..more = json['more'] as bool
+    ..count = json['count'] as int
+    ..msg = json['msg'] as String
+    ..eventId = json['eventId'] as int
+    ..eventTime = json['eventTime'] as int;
+}
+
+Map<String, dynamic> _$EventForwardRetToJson(EventForwardRet instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'more': instance.more,
+      'count': instance.count,
+      'msg': instance.msg,
+      'eventId': instance.eventId,
+      'eventTime': instance.eventTime,
+    };
+
+EventForwardRetWrap _$EventForwardRetWrapFromJson(Map<String, dynamic> json) {
+  return EventForwardRetWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..more = json['more'] as bool
+    ..count = json['count'] as int
+    ..data = json['data'] == null
+        ? null
+        : EventForwardRet.fromJson(json['data'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$EventForwardRetWrapToJson(
+        EventForwardRetWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'more': instance.more,
+      'count': instance.count,
+      'data': instance.data,
+    };

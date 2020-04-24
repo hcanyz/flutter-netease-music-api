@@ -11,7 +11,11 @@ void main() {
 
   var api = NeteaseMusicApi();
 
-  const bool doSetUp = true;
+  // PersistCookieJar 会存储cookie，登录完成后可以将doSetUp置为false,
+  // TODO 登录接口需要验证本地是否登录只类的场景，不需要每次都去调用
+  const bool doSetUp = false;
+
+  const defaultUserId = '3375937';
 
   //0:没有登录 ，1：手机  2：邮箱
   int logined = 0;
@@ -44,7 +48,7 @@ void main() {
 
   test('test login email', () async {
     if (logined == 1) {
-      (CookieJar() as DefaultCookieJar).deleteAll();
+      PersistCookieJar().deleteAll();
     }
     if (logined != 2) {
       var result = await api.loginEmail(login_email, login_email_password);
@@ -90,11 +94,11 @@ void main() {
 
   test('test userDetail', () async {
     var result = await api
-        .userDetail(NeteaseMusicApi?.accountInfo?.account?.id ?? '3375937');
+        .userDetail(NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test userSubcount', () async {
+  test('test user Subcount', () async {
     var result = await api.userSubcount();
     expect(result.code, RET_CODE_OK);
   });
@@ -116,16 +120,55 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test user followList', () async {
+    var result = await api.userFollowList(defaultUserId, 0);
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test user followedList', () async {
+    var result = await api.userFollowedList(defaultUserId);
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test user event list', () async {
+    var result = await api.userEventList(defaultUserId);
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test user forward event', () async {
+    var result =
+        await api.eventForward(defaultUserId, '12433751183', forwards: '偶尔会发笑');
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test user delete event', () async {
+    var result =
+        await api.eventForward(defaultUserId, '12433751183', forwards: '偶尔会发笑');
+    expect(result.code, RET_CODE_OK);
+
+    var result2 = await api.eventDelete('${result.data.eventId}');
+    expect(result2.code, RET_CODE_OK);
+  });
+
+  test('test user share resource', () async {
+    var result =
+        await api.shareResource('52057476', type: 'playlist', msg: '偶尔会发笑');
+    expect(result.code, RET_CODE_OK);
+
+    var result2 = await api.eventDelete('${result.event.id}');
+    expect(result2.code, RET_CODE_OK);
+  });
+
   test('test user playlist', () async {
     var result = await api.userPlayList(
-        NeteaseMusicApi?.accountInfo?.account?.id ?? '3375937', 0);
+        NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId, 0);
     expect(result.code, RET_CODE_OK);
     expect(result.playlist, isNotNull);
   });
 
   test('test user update playlist info', () async {
     var result = await api.userPlayList(
-        NeteaseMusicApi?.accountInfo?.account?.id ?? '3375937', 0);
+        NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId, 0);
     expect(result.playlist, isNotNull);
     expect(result.playlist, isNotEmpty);
 
@@ -150,7 +193,7 @@ void main() {
 
   test('test user dj list', () async {
     var result = await api.userDjList(
-        NeteaseMusicApi?.accountInfo?.account?.id ?? '3375937', 0);
+        NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId, 0);
     expect(result.code, RET_CODE_OK);
   });
 

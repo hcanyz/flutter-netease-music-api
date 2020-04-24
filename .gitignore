@@ -1,6 +1,9 @@
 # private
 test/private_config.dart
 
+# dio
+.cookies
+
 # Miscellaneous
 *.class
 *.log

@@ -86,3 +86,99 @@ class PlayListSubscriber extends NeteaseUserInfo {
 
   Map<String, dynamic> toJson() => _$PlayListSubscriberToJson(this);
 }
+
+@JsonSerializable()
+class UserFollowListWrap extends ServerStatusBean {
+  List<NeteaseAccountProfile> follow;
+
+  UserFollowListWrap();
+
+  factory UserFollowListWrap.fromJson(Map<String, dynamic> json) =>
+      _$UserFollowListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserFollowListWrapToJson(this);
+}
+
+@JsonSerializable()
+class UserFollowedListWrap extends ServerStatusBean {
+  //TODO eapi
+  List<NeteaseAccountProfile> followed;
+
+  int lasttime;
+
+  UserFollowedListWrap();
+
+  factory UserFollowedListWrap.fromJson(Map<String, dynamic> json) =>
+      _$UserFollowedListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserFollowedListWrapToJson(this);
+}
+
+@JsonSerializable()
+class UserEventListItem {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  String json;
+
+  int eventTime;
+
+  UserEventListItem();
+
+  factory UserEventListItem.fromJson(Map<String, dynamic> json) =>
+      _$UserEventListItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserEventListItemToJson(this);
+}
+
+@JsonSerializable()
+class UserEventListWrap extends ServerStatusBean {
+  List<UserEventListItem> events;
+
+  int lasttime;
+
+  UserEventListWrap();
+
+  factory UserEventListWrap.fromJson(Map<String, dynamic> json) =>
+      _$UserEventListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserEventListWrapToJson(this);
+}
+
+@JsonSerializable()
+class UserEventSingleWrap extends ServerStatusBean {
+  UserEventListItem event;
+
+  UserEventSingleWrap();
+
+  factory UserEventSingleWrap.fromJson(Map<String, dynamic> json) =>
+      _$UserEventSingleWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserEventSingleWrapToJson(this);
+}
+
+@JsonSerializable()
+class EventForwardRet extends ServerStatusBean {
+  String msg;
+  int eventId;
+  int eventTime;
+
+  EventForwardRet();
+
+  factory EventForwardRet.fromJson(Map<String, dynamic> json) =>
+      _$EventForwardRetFromJson(json);
+
+  Map<String, dynamic> toJson() => _$EventForwardRetToJson(this);
+}
+
+@JsonSerializable()
+class EventForwardRetWrap extends ServerStatusBean {
+  EventForwardRet data;
+
+  EventForwardRetWrap();
+
+  factory EventForwardRetWrap.fromJson(Map<String, dynamic> json) =>
+      _$EventForwardRetWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$EventForwardRetWrapToJson(this);
+}

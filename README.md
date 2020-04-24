@@ -1,9 +1,7 @@
-# netease_music_api
-
 Netease cloud music api for flutter ,reference https://github.com/Binaryify/NeteaseCloudMusicApi. 
 
 ### 注意事项
-- 测试登录，需要在test/目录下添加 private_config.dart
+- 需要在test/目录下添加 private_config.dart
     ```dart
     const String login_email = '';
     const String login_email_password = '';
@@ -11,6 +9,14 @@ Netease cloud music api for flutter ,reference https://github.com/Binaryify/Nete
     const String login_phone = '';
     const String login_phone_password = '';
     ```
+- 本项目仅供学习使用,请尊重版权，请勿利用此项目从事商业行为
+
+### TODO
+- [ ] 搬运 NeteaseCloudMusicApi 所有api.
+- [ ] 完善 api unit test
+- [ ] 补齐 api bean 字段
+- [ ] 代码结构优化、模块划分
+- [ ] 文档
 
 ### errorCode
 
