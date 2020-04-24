@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:dio/dio.dart';
 import 'package:encrypt/encrypt.dart';
+import 'package:netease_music_api/netease_music_api.dart';
 import 'package:netease_music_api/src/api/bean.dart';
 import 'package:netease_music_api/src/dio_ext.dart';
 import 'package:netease_music_api/src/netease_bean.dart';
@@ -29,7 +30,9 @@ mixin ApiLogin {
             options:
                 joinOptions(userAgent: UserAgent.Pc, cookies: {'os': 'pc'}))
         .then((Response value) {
-      return NeteaseAccountInfoWrap.fromJson(value.data);
+      var info = NeteaseAccountInfoWrap.fromJson(value.data);
+      NeteaseMusicApi.accountInfo = info;
+      return info;
     });
   }
 
@@ -47,7 +50,9 @@ mixin ApiLogin {
             options:
                 joinOptions(userAgent: UserAgent.Pc, cookies: {'os': 'pc'}))
         .then((Response value) {
-      return NeteaseAccountInfoWrap.fromJson(value.data);
+      var info = NeteaseAccountInfoWrap.fromJson(value.data);
+      NeteaseMusicApi.accountInfo = info;
+      return info;
     });
   }
 
@@ -182,6 +187,7 @@ mixin ApiLogin {
     return Https.dio
         .postUri(joinUri('/weapi/logout'), data: {}, options: joinOptions())
         .then((Response value) {
+      NeteaseMusicApi.accountInfo = null;
       return ServerStatusBean.fromJson(value.data);
     });
   }

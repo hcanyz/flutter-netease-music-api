@@ -86,6 +86,17 @@ void main() {
     expect(result.code, RET_CODE_NEED_LOGIN);
   });
 
+  test('test userDetail', () async {
+    var result = await api
+        .userDetail(NeteaseMusicApi?.accountInfo?.account?.id ?? '3375937');
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test userSubcount', () async {
+    var result = await api.userSubcount();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test homeBannerList', () async {
     await api.homeBannerList();
   });

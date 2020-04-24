@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:netease_music_api/src/api/bean.dart';
+import 'package:netease_music_api/src/api/login/bean.dart';
 
 part 'bean.g.dart';
 
@@ -24,6 +25,40 @@ class NeteaseUserInfo {
       _$NeteaseUserInfoFromJson(json);
 
   Map<String, dynamic> toJson() => _$NeteaseUserInfoToJson(this);
+}
+
+@JsonSerializable()
+class NeteaseUserDetail extends ServerStatusBean {
+  int createTime;
+  int createDays;
+
+  NeteaseAccountProfile profile;
+
+  NeteaseUserDetail();
+
+  factory NeteaseUserDetail.fromJson(Map<String, dynamic> json) =>
+      _$NeteaseUserDetailFromJson(json);
+
+  Map<String, dynamic> toJson() => _$NeteaseUserDetailToJson(this);
+}
+
+@JsonSerializable()
+class NeteaseUserSubcount extends ServerStatusBean {
+  int programCount;
+  int djRadioCount;
+  int mvCount;
+  int artistCount;
+  int newProgramCount;
+  int createDjRadioCount;
+  int createdPlaylistCount;
+  int subPlaylistCount;
+
+  NeteaseUserSubcount();
+
+  factory NeteaseUserSubcount.fromJson(Map<String, dynamic> json) =>
+      _$NeteaseUserSubcountFromJson(json);
+
+  Map<String, dynamic> toJson() => _$NeteaseUserSubcountToJson(this);
 }
 
 @JsonSerializable()
