@@ -29,6 +29,11 @@ class PlayListItem {
   int trackCount;
   int trackNumberUpdateTime;
 
+  // 歌单类型: TODO 待补充
+  // 0: 自建?
+  // 5: 我喜欢的音乐
+  int specialType;
+
   PlayListCreator creator;
 
   List<PlayListSubscriber> subscribers;
@@ -47,20 +52,37 @@ class PlayListItem {
 }
 
 @JsonSerializable()
-class HighqualityPlayListWrap extends ServerStatusBean {
+class MultiPlayListWrap extends ServerStatusBean {
   List<PlayListItem> playlists;
 
-  HighqualityPlayListWrap();
+  MultiPlayListWrap();
 
   @override
   String toString() {
     return 'HighqualityPlayListWrap{playlists: $playlists}';
   }
 
-  factory HighqualityPlayListWrap.fromJson(Map<String, dynamic> json) =>
-      _$HighqualityPlayListWrapFromJson(json);
+  factory MultiPlayListWrap.fromJson(Map<String, dynamic> json) =>
+      _$MultiPlayListWrapFromJson(json);
 
-  Map<String, dynamic> toJson() => _$HighqualityPlayListWrapToJson(this);
+  Map<String, dynamic> toJson() => _$MultiPlayListWrapToJson(this);
+}
+
+@JsonSerializable()
+class MultiPlayListWrap2 extends ServerStatusBean {
+  List<PlayListItem> playlist;
+
+  MultiPlayListWrap2();
+
+  @override
+  String toString() {
+    return 'HighqualityPlayListWrap{playlists: $playlist}';
+  }
+
+  factory MultiPlayListWrap2.fromJson(Map<String, dynamic> json) =>
+      _$MultiPlayListWrap2FromJson(json);
+
+  Map<String, dynamic> toJson() => _$MultiPlayListWrap2ToJson(this);
 }
 
 const PLAYLIST_CATEGORY = [
@@ -104,18 +126,18 @@ const PLAYLIST_CATEGORY = [
 ];
 
 @JsonSerializable()
-class CategoryPlayListWrap extends ServerStatusBean {
+class SinglePlayListWrap extends ServerStatusBean {
   PlayListItem playlist;
 
-  CategoryPlayListWrap();
+  SinglePlayListWrap();
 
   @override
   String toString() {
     return 'CategoryPlayListWrap{playlist: $playlist}';
   }
 
-  factory CategoryPlayListWrap.fromJson(Map<String, dynamic> json) =>
-      _$CategoryPlayListWrapFromJson(json);
+  factory SinglePlayListWrap.fromJson(Map<String, dynamic> json) =>
+      _$SinglePlayListWrapFromJson(json);
 
-  Map<String, dynamic> toJson() => _$CategoryPlayListWrapToJson(this);
+  Map<String, dynamic> toJson() => _$SinglePlayListWrapToJson(this);
 }

@@ -116,6 +116,37 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test user playlist', () async {
+    var result = await api.userPlayList(
+        NeteaseMusicApi?.accountInfo?.account?.id ?? '3375937', 0);
+    expect(result.code, RET_CODE_OK);
+    expect(result.playlist, isNotNull);
+  });
+
+  test('test user update playlist info', () async {
+    var result = await api.userPlayList(
+        NeteaseMusicApi?.accountInfo?.account?.id ?? '3375937', 0);
+    expect(result.playlist, isNotNull);
+    expect(result.playlist, isNotEmpty);
+
+    var id = result.playlist
+            .firstWhere((element) => element.specialType == 0,
+                orElse: () => null)
+            ?.id ??
+        '';
+
+    if (id.isEmpty) {
+      return;
+    }
+
+    var result2 = await api.updateUserPlayListInfo(id,
+        name: '偶尔会发笑_${Random().nextInt(10)}',
+        desc: '偶尔会发笑_${Random().nextInt(10)}',
+        tags: ['孤独']);
+
+    expect(result2.code, anyOf(RET_CODE_OK, RET_CODE_ILLEGAL_ARGUMENT));
+  });
+
   test('test homeBannerList', () async {
     await api.homeBannerList();
   });
