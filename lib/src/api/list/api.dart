@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:netease_music_api/src/dio_ext.dart';
 import 'package:netease_music_api/src/netease_handler.dart';
@@ -14,7 +12,7 @@ mixin ApiPlayList {
         .postUri(joinUri('/weapi/playlist/highquality/list'),
             data: params, options: joinOptions())
         .then((Response value) {
-      return HighqualityPlayListWrap.fromJson(jsonDecode(value.data));
+      return HighqualityPlayListWrap.fromJson(value.data);
     });
   }
 
@@ -25,7 +23,7 @@ mixin ApiPlayList {
         .postUri(joinUri('/weapi/v3/playlist/detail'),
             data: params, options: joinOptions())
         .then((Response value) {
-      return CategoryPlayListWrap.fromJson(jsonDecode(value.data));
+      return CategoryPlayListWrap.fromJson(value.data);
     });
   }
 
@@ -36,7 +34,7 @@ mixin ApiPlayList {
         .postUri(joinUri('/weapi/v1/discovery/recommend/songs'),
             data: params, options: joinOptions())
         .then((Response value) {
-      return CategoryPlayListWrap.fromJson(jsonDecode(value.data));
+      return CategoryPlayListWrap.fromJson(value.data);
     });
   }
 }

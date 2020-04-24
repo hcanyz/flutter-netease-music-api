@@ -91,8 +91,7 @@ mixin ApiLogin {
             data: {'ctcode': ctcode, 'cellphone': phone},
             options: joinOptions(userAgent: UserAgent.Pc))
         .then((Response value) {
-      //Response content-type: [text/plain;charset=UTF-8]
-      return ServerStatusBean.fromJson(jsonDecode(value.data));
+      return ServerStatusBean.fromJson(value.data);
     });
   }
 
@@ -106,8 +105,7 @@ mixin ApiLogin {
             data: {'ctcode': ctcode, 'cellphone': phone, 'captcha': captcha},
             options: joinOptions(userAgent: UserAgent.Pc))
         .then((Response value) {
-      //Response content-type: [text/plain;charset=UTF-8]
-      return ServerStatusBean.fromJson(jsonDecode(value.data));
+      return ServerStatusBean.fromJson(value.data);
     });
   }
 }

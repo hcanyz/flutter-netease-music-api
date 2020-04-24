@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
@@ -22,6 +24,15 @@ class NeteaseMusicApi with ApiPlayList, ApiLogin {
     Https.dio.interceptors
         .add(InterceptorsWrapper(onRequest: (RequestOptions option) async {
       neteaseInterceptor(option);
+    }, onResponse: (Response response) {
+      //Headers.jsonContentType.contains(
+      //response.headers.value(HttpHeaders.contentTypeHeader))
+      if (response.data is String) {
+        //Response content-type: [text/plain;charset=UTF-8]
+        try {
+          response.data = jsonDecode(response.data);
+        } catch (e) {}
+      }
     }));
     if (debug) {
       Https.dio.interceptors.add(PrettyDioLogger(
@@ -45,7 +56,7 @@ class NeteaseMusicApi with ApiPlayList, ApiLogin {
             data: {'clientType': 'pc'},
             options: joinOptions(hookRequestDate: true))
         .then((Response value) {
-      return value.data;
+      return jsonEncode(value.data);
     });
   }
 }

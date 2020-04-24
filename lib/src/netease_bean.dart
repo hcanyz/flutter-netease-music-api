@@ -4,6 +4,7 @@ export 'package:netease_music_api/src/api/user/bean.dart';
 
 const int RET_CODE_OK = 200;
 const int RET_CODE_UNKNOW = -233;
+const int RET_CODE_CHEATING = -460;
 const int RET_CODE_NEED_LOGIN = 301;
 const int RET_CODE_ILLEGAL_ARGUMENT = 400;
 const int RET_CODE_ACCOUNT_NOT_FOUND = 501;

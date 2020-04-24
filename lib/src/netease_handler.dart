@@ -9,6 +9,10 @@ import 'package:flutter/cupertino.dart' hide Key;
 
 import 'encrypt_ext.dart';
 
+/// [option.extra] 'hookRequestDate' [bool] 是否对request body加密
+/// [option.extra] 'userAgent' [UserAgent]
+/// [option.extra] 'cookies' [Map<String,String>]
+/// [option.extra] 'encryptType' [EncryptType]
 void neteaseInterceptor(RequestOptions option) {
   if (option.method == 'POST' &&
       HOST.contains(option.uri.host) &&
@@ -16,7 +20,7 @@ void neteaseInterceptor(RequestOptions option) {
     if (option.extra['hookRequestDate']) {
       debugPrint('$TAG   interceptor before: ${option.uri}   ${option.data}');
 
-      option.contentType = 'application/x-www-form-urlencoded';
+      option.contentType = Headers.formUrlEncodedContentType;
       option.headers[HttpHeaders.refererHeader] = HOST;
       //option.headers['X-Real-IP'] = '118.88.88.88';
       option.headers[HttpHeaders.userAgentHeader] =
@@ -42,6 +46,8 @@ void neteaseInterceptor(RequestOptions option) {
                 .group(1);
           } catch (e) {}
           if (csrfToken.isNotEmpty) {
+            // map可能是<String,Int>类型的，默认转换成<String,dynamic>
+            option.data = Map.from(option.data);
             option.data['csrfToken'] = csrfToken;
           }
           _handleWeApi(option);
@@ -58,6 +64,10 @@ const _BASE62 =
     'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 const String _presetKeyLinuxForward = 'rFgB&h#%2?^eDg:Q';
 
+/// linux forward 加密过程
+/// body:
+/// eparams=hex(aes_cbc(_presetKeyLinuxForward,'{method:"$option.method", url:"RegExp('\\w*api')", params:"$option.data"}'))
+/// url: $HOST/api/linux/forward
 void _handleLinuxForward(RequestOptions option) {
   var oldUriStr = option.uri.toString();
 
@@ -85,6 +95,10 @@ const _ivWeApi = '0102030405060708';
 const _publicKeyWeApi =
     '-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDgtQn2JZ34ZC28NWYpAUd98iZ37BUrX/aKzmFbt7clFSs6sXqHauqKWqdtLkF2KexO40H1YTX8z2lSgBBOAxLsvaklV8k4cBFK9snQXE9/DDaFt6Rr7iVZMldczhC0JNgTz+SHXT6CBHuX3e9SdB1Ua44oncaTWz7OBGLbCiK45wIDAQAB\n-----END PUBLIC KEY-----';
 
+/// weapi 加密过程
+/// body: option.data + {csrfToken:''}
+/// params: base64(aes_cbc(16_random_key, base64(aes_cbc(_presetKeyWeApi,body))))
+/// encSecKey: hex(rsa_nopadding(_publicKeyWeApi,array_reversed(16_random_key)))
 void _handleWeApi(RequestOptions option) {
   option.contentType = 'application/x-www-form-urlencoded';
 
