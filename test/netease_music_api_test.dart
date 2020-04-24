@@ -9,7 +9,7 @@ void main() {
 
   var api = NeteaseMusicApi();
 
-  const bool doSetUp = false;
+  const bool doSetUp = true;
 
   //0:没有登录 ，1：手机  2：邮箱
   int logined = 0;
@@ -70,6 +70,20 @@ void main() {
   test('test verify captcha', () async {
     var result = await api.captchaVerify(login_phone, '7721');
     expect(result.code, anyOf(RET_CODE_OK, RET_CODE_CAPTCHA_VERIFY_FAIL));
+  });
+
+  // TODO eapi
+  //test('test check cellPhone existence', () async {
+  //  var result = await api.checkCellPhoneExistence(login_phone);
+  //  expect(result.code, RET_CODE_OK);
+  //});
+
+  test('test verify logout', () async {
+    var result = await api.logout();
+    expect(result.code, RET_CODE_OK);
+
+    result = await api.loginStatus();
+    expect(result.code, RET_CODE_NEED_LOGIN);
   });
 
   test('test homeBannerList', () async {
