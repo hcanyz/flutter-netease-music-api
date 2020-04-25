@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:netease_music_api/src/api/bean.dart';
-import 'package:netease_music_api/src/api/list/bean.dart';
 import 'package:netease_music_api/src/api/login/bean.dart';
+import 'package:netease_music_api/src/api/play/bean.dart';
 
 part 'bean.g.dart';
 

@@ -9,8 +9,8 @@ import 'package:netease_music_api/src/api/event/api.dart';
 import 'package:netease_music_api/src/api/user/api.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-import 'api/list/api.dart';
 import 'api/login/api.dart';
+import 'api/play/api.dart';
 import 'dio_ext.dart';
 import 'netease_handler.dart';
 
