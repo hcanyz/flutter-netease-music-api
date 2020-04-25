@@ -134,3 +134,102 @@ class EventForwardRetWrap extends ServerStatusBean {
 
   Map<String, dynamic> toJson() => _$EventForwardRetWrapToJson(this);
 }
+
+@JsonSerializable()
+class TopicItem {
+  @JsonKey(fromJson: dynamicToString)
+  String actId;
+
+  String title;
+
+  List<String> text;
+
+  String reason;
+
+  String sharePicUrl;
+
+  int participateCount;
+
+  //featured TopicQualityScore
+  String alg;
+
+  TopicItem();
+
+  factory TopicItem.fromJson(Map<String, dynamic> json) =>
+      _$TopicItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TopicItemToJson(this);
+}
+
+@JsonSerializable()
+class TopicHotListWrap extends ServerStatusBean {
+  List<TopicItem> hot;
+
+  TopicHotListWrap();
+
+  factory TopicHotListWrap.fromJson(Map<String, dynamic> json) =>
+      _$TopicHotListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TopicHotListWrapToJson(this);
+}
+
+@JsonSerializable()
+class SimpleResourceInfo {
+  @JsonKey(fromJson: dynamicToString)
+  String songId;
+
+  String threadId;
+
+  String songCoverUrl;
+
+  String name;
+
+  Song song;
+
+  SimpleResourceInfo();
+
+  factory SimpleResourceInfo.fromJson(Map<String, dynamic> json) =>
+      _$SimpleResourceInfoFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SimpleResourceInfoToJson(this);
+}
+
+@JsonSerializable()
+class HotwallCommentItem {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  String threadId;
+
+  String content;
+
+  int time;
+
+  bool liked;
+
+  int likedCount;
+  int replyCount;
+
+  NeteaseSimpleUserInfo simpleUserInfo;
+
+  SimpleResourceInfo simpleResourceInfo;
+
+  HotwallCommentItem();
+
+  factory HotwallCommentItem.fromJson(Map<String, dynamic> json) =>
+      _$HotwallCommentItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$HotwallCommentItemToJson(this);
+}
+
+@JsonSerializable()
+class HotwallCommentListWrap extends ServerStatusBean {
+  List<HotwallCommentItem> data;
+
+  HotwallCommentListWrap();
+
+  factory HotwallCommentListWrap.fromJson(Map<String, dynamic> json) =>
+      _$HotwallCommentListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$HotwallCommentListWrapToJson(this);
+}

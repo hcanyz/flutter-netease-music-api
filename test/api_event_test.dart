@@ -30,18 +30,18 @@ void main() {
     }
   });
 
-  test('test user event list', () async {
+  test('test event list', () async {
     var result = await api.eventList(defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test user forward event', () async {
+  test('test forward event', () async {
     var result =
         await api.eventForward(defaultUserId, '12433751183', forwards: '偶尔会发笑');
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test user delete event', () async {
+  test('test delete event', () async {
     var result =
         await api.eventForward(defaultUserId, '12433751183', forwards: '偶尔会发笑');
     expect(result.code, RET_CODE_OK);
@@ -50,7 +50,7 @@ void main() {
     expect(result2.code, RET_CODE_OK);
   });
 
-  test('test user share resource', () async {
+  test('test share resource', () async {
     var result =
         await api.shareResource('52057476', type: 'playlist', msg: '偶尔会发笑');
     expect(result.code, RET_CODE_OK);
@@ -59,12 +59,22 @@ void main() {
     expect(result2.code, RET_CODE_OK);
   });
 
-  test('test user event comment list', () async {
+  test('test event comment list', () async {
     var result = await api.eventList(defaultUserId);
     expect(result.code, RET_CODE_OK);
     expect(result.events, isNotEmpty);
 
     var result2 = await api.eventCommentList(result.events[0].info.threadId, 0);
     expect(result2.code, RET_CODE_OK);
+  });
+
+  test('test topic hot list', () async {
+    var result = await api.topicHotList(0);
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test hotwall comment list', () async {
+    var result = await api.hotwallCommentList();
+    expect(result.code, RET_CODE_OK);
   });
 }

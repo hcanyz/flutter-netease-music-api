@@ -78,4 +78,25 @@ mixin ApiEvent {
       return CommentListWrap.fromJson(value.data);
     });
   }
+
+  /// 获取热门话题
+  Future<TopicHotListWrap> topicHotList(int page, {int limit = 20}) {
+    var params = {'limit': limit, 'offset': page * limit};
+    return Https.dio
+        .postUri(joinUri('/weapi/act/hot'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return TopicHotListWrap.fromJson(value.data);
+    });
+  }
+
+  /// 获取云村热评
+  Future<HotwallCommentListWrap> hotwallCommentList() {
+    return Https.dio
+        .postUri(joinUri('/api/comment/hotwall/list/get'),
+            data: {}, options: joinOptions())
+        .then((Response value) {
+      return HotwallCommentListWrap.fromJson(value.data);
+    });
+  }
 }

@@ -187,3 +187,125 @@ Map<String, dynamic> _$EventForwardRetWrapToJson(
       'count': instance.count,
       'data': instance.data,
     };
+
+TopicItem _$TopicItemFromJson(Map<String, dynamic> json) {
+  return TopicItem()
+    ..actId = dynamicToString(json['actId'])
+    ..title = json['title'] as String
+    ..text = (json['text'] as List)?.map((e) => e as String)?.toList()
+    ..reason = json['reason'] as String
+    ..sharePicUrl = json['sharePicUrl'] as String
+    ..participateCount = json['participateCount'] as int
+    ..alg = json['alg'] as String;
+}
+
+Map<String, dynamic> _$TopicItemToJson(TopicItem instance) => <String, dynamic>{
+      'actId': instance.actId,
+      'title': instance.title,
+      'text': instance.text,
+      'reason': instance.reason,
+      'sharePicUrl': instance.sharePicUrl,
+      'participateCount': instance.participateCount,
+      'alg': instance.alg,
+    };
+
+TopicHotListWrap _$TopicHotListWrapFromJson(Map<String, dynamic> json) {
+  return TopicHotListWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..more = json['more'] as bool
+    ..count = json['count'] as int
+    ..hot = (json['hot'] as List)
+        ?.map((e) =>
+            e == null ? null : TopicItem.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$TopicHotListWrapToJson(TopicHotListWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'more': instance.more,
+      'count': instance.count,
+      'hot': instance.hot,
+    };
+
+SimpleResourceInfo _$SimpleResourceInfoFromJson(Map<String, dynamic> json) {
+  return SimpleResourceInfo()
+    ..songId = dynamicToString(json['songId'])
+    ..threadId = json['threadId'] as String
+    ..songCoverUrl = json['songCoverUrl'] as String
+    ..name = json['name'] as String
+    ..song = json['song'] == null
+        ? null
+        : Song.fromJson(json['song'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$SimpleResourceInfoToJson(SimpleResourceInfo instance) =>
+    <String, dynamic>{
+      'songId': instance.songId,
+      'threadId': instance.threadId,
+      'songCoverUrl': instance.songCoverUrl,
+      'name': instance.name,
+      'song': instance.song,
+    };
+
+HotwallCommentItem _$HotwallCommentItemFromJson(Map<String, dynamic> json) {
+  return HotwallCommentItem()
+    ..id = dynamicToString(json['id'])
+    ..threadId = json['threadId'] as String
+    ..content = json['content'] as String
+    ..time = json['time'] as int
+    ..liked = json['liked'] as bool
+    ..likedCount = json['likedCount'] as int
+    ..replyCount = json['replyCount'] as int
+    ..simpleUserInfo = json['simpleUserInfo'] == null
+        ? null
+        : NeteaseSimpleUserInfo.fromJson(
+            json['simpleUserInfo'] as Map<String, dynamic>)
+    ..simpleResourceInfo = json['simpleResourceInfo'] == null
+        ? null
+        : SimpleResourceInfo.fromJson(
+            json['simpleResourceInfo'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$HotwallCommentItemToJson(HotwallCommentItem instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'threadId': instance.threadId,
+      'content': instance.content,
+      'time': instance.time,
+      'liked': instance.liked,
+      'likedCount': instance.likedCount,
+      'replyCount': instance.replyCount,
+      'simpleUserInfo': instance.simpleUserInfo,
+      'simpleResourceInfo': instance.simpleResourceInfo,
+    };
+
+HotwallCommentListWrap _$HotwallCommentListWrapFromJson(
+    Map<String, dynamic> json) {
+  return HotwallCommentListWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..more = json['more'] as bool
+    ..count = json['count'] as int
+    ..data = (json['data'] as List)
+        ?.map((e) => e == null
+            ? null
+            : HotwallCommentItem.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$HotwallCommentListWrapToJson(
+        HotwallCommentListWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'more': instance.more,
+      'count': instance.count,
+      'data': instance.data,
+    };

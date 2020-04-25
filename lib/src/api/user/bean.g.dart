@@ -6,6 +6,24 @@ part of 'bean.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+NeteaseSimpleUserInfo _$NeteaseSimpleUserInfoFromJson(
+    Map<String, dynamic> json) {
+  return NeteaseSimpleUserInfo()
+    ..userId = dynamicToString(json['userId'])
+    ..nickname = json['nickname'] as String
+    ..avatar = json['avatar'] as String
+    ..followed = json['followed'] as bool;
+}
+
+Map<String, dynamic> _$NeteaseSimpleUserInfoToJson(
+        NeteaseSimpleUserInfo instance) =>
+    <String, dynamic>{
+      'userId': instance.userId,
+      'nickname': instance.nickname,
+      'avatar': instance.avatar,
+      'followed': instance.followed,
+    };
+
 NeteaseUserInfo _$NeteaseUserInfoFromJson(Map<String, dynamic> json) {
   return NeteaseUserInfo()
     ..userId = dynamicToString(json['userId'])

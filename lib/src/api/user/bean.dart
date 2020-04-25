@@ -6,6 +6,23 @@ import 'package:netease_music_api/src/api/login/bean.dart';
 part 'bean.g.dart';
 
 @JsonSerializable()
+class NeteaseSimpleUserInfo {
+  @JsonKey(fromJson: dynamicToString)
+  String userId;
+  String nickname;
+  String avatar;
+
+  bool followed;
+
+  NeteaseSimpleUserInfo();
+
+  factory NeteaseSimpleUserInfo.fromJson(Map<String, dynamic> json) =>
+      _$NeteaseSimpleUserInfoFromJson(json);
+
+  Map<String, dynamic> toJson() => _$NeteaseSimpleUserInfoToJson(this);
+}
+
+@JsonSerializable()
 class NeteaseUserInfo {
   @JsonKey(fromJson: dynamicToString)
   String userId;
