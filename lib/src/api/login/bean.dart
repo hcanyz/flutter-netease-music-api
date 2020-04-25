@@ -56,3 +56,19 @@ class NeteaseAccountInfoWrap extends ServerStatusBean {
 
   Map<String, dynamic> toJson() => _$NeteaseAccountInfoWrapToJson(this);
 }
+
+@JsonSerializable()
+class CellPhoneCheckExistenceRet extends ServerStatusBean {
+  int exist;
+
+  String nickname;
+
+  bool hasPassword;
+
+  CellPhoneCheckExistenceRet();
+
+  factory CellPhoneCheckExistenceRet.fromJson(Map<String, dynamic> json) =>
+      _$CellPhoneCheckExistenceRetFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CellPhoneCheckExistenceRetToJson(this);
+}

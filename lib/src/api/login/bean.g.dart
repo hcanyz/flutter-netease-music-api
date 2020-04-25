@@ -95,3 +95,29 @@ Map<String, dynamic> _$NeteaseAccountInfoWrapToJson(
       'account': instance.account,
       'profile': instance.profile,
     };
+
+CellPhoneCheckExistenceRet _$CellPhoneCheckExistenceRetFromJson(
+    Map<String, dynamic> json) {
+  return CellPhoneCheckExistenceRet()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..more = json['more'] as bool
+    ..count = json['count'] as int
+    ..exist = json['exist'] as int
+    ..nickname = json['nickname'] as String
+    ..hasPassword = json['hasPassword'] as bool;
+}
+
+Map<String, dynamic> _$CellPhoneCheckExistenceRetToJson(
+        CellPhoneCheckExistenceRet instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'more': instance.more,
+      'count': instance.count,
+      'exist': instance.exist,
+      'nickname': instance.nickname,
+      'hasPassword': instance.hasPassword,
+    };

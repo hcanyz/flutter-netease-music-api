@@ -34,7 +34,6 @@ class NeteaseMusicApi with ApiPlayList, ApiDjList, ApiLogin, ApiUser, ApiEvent {
       return;
     }
     _hasInit = true;
-    //CookieManager需要先注册，neteaseInterceptor拦截器依赖CookieManager
     Https.dio.interceptors.add(CookieManager(PersistCookieJar()));
     Https.dio.interceptors
         .add(InterceptorsWrapper(onRequest: (RequestOptions option) async {

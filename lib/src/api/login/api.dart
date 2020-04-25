@@ -135,28 +135,28 @@ mixin ApiLogin {
 
   /// 检测手机号码是否已注册
   /// [countryCode] 国家区号
-  Future<ServerStatusBean> checkCellPhoneExistence(String phone,
+  Future<CellPhoneCheckExistenceRet> checkCellPhoneExistence(String phone,
       {String countrycode = ''}) {
-    //TODO eapi 请求方式
-    //url: '/api/cellphone/existence/check'
     return Https.dio
         .postUri(joinUri('/eapi/cellphone/existence/check'),
             data: {'cellphone': phone, 'countrycode': countrycode},
-            options: joinOptions(encryptType: EncryptType.EApi))
+            options: joinOptions(
+                encryptType: EncryptType.EApi,
+                eApiUrl: '/api/cellphone/existence/check'))
         .then((Response value) {
-      return ServerStatusBean.fromJson(value.data);
+      return CellPhoneCheckExistenceRet.fromJson(value.data);
     });
   }
 
   /// 刚注册的账号(需登录),调用此接口 ,可初始化昵称
   /// [nickname] 必须
   Future<ServerStatusBean> initNickname(String nickname) {
-    //TODO eapi 请求方式
-    //url: '/api/activate/initProfile'
     return Https.dio
         .postUri(joinUri('/eapi/activate/initProfile'),
             data: {'nickname': nickname},
-            options: joinOptions(encryptType: EncryptType.EApi))
+            options: joinOptions(
+                encryptType: EncryptType.EApi,
+                eApiUrl: '/api/activate/initProfile'))
         .then((Response value) {
       return ServerStatusBean.fromJson(value.data);
     });

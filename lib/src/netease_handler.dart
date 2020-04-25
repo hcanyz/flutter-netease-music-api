@@ -3,9 +3,12 @@ import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
 
+import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
+import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:encrypt/encrypt.dart';
 import 'package:flutter/cupertino.dart' hide Key;
+import 'package:pointycastle/digests/md5.dart';
 
 import 'encrypt_ext.dart';
 
@@ -13,6 +16,7 @@ import 'encrypt_ext.dart';
 /// [option.extra] 'userAgent' [UserAgent]
 /// [option.extra] 'cookies' [Map<String,String>]
 /// [option.extra] 'encryptType' [EncryptType]
+/// [option.extra] 'eApiUrl' [String] eApi请求方式请求url 只能eApi方式使用
 void neteaseInterceptor(RequestOptions option) {
   if (option.method == 'POST' &&
       HOST.contains(option.uri.host) &&
@@ -26,13 +30,14 @@ void neteaseInterceptor(RequestOptions option) {
       option.headers[HttpHeaders.userAgentHeader] =
           _chooseUserAgent(option.extra['userAgent']);
 
-      var cookies =
-          new StringBuffer(option.headers[HttpHeaders.cookieHeader] ?? '');
+      var cookies = PersistCookieJar().loadForRequest(option.uri);
+
+      var cookiesSb = new StringBuffer(CookieManager.getCookies(cookies) ?? '');
       option.extra['cookies'].forEach((key, value) {
-        cookies.write(
+        cookiesSb.write(
             ' ;${Uri.encodeComponent(key)}=${Uri.encodeComponent(value)}');
       });
-      option.headers[HttpHeaders.cookieHeader] = cookies.toString();
+      option.headers[HttpHeaders.cookieHeader] = cookiesSb.toString();
 
       switch (option.extra['encryptType']) {
         case EncryptType.LinuxForward:
@@ -54,7 +59,7 @@ void neteaseInterceptor(RequestOptions option) {
           _handleWeApi(option);
           break;
         case EncryptType.EApi:
-          _handleEApi(option);
+          _handleEApi(option, cookies);
           break;
       }
     }
@@ -80,7 +85,7 @@ void _handleLinuxForward(RequestOptions option) {
 
   var newData = {
     'method': option.method,
-    'url': oldUriStr.replaceAll(RegExp('\\w*api'), 'api'),
+    'url': oldUriStr.replaceAll(RegExp(r'\w*api'), 'api'),
     'params': option.data
   };
 
@@ -133,7 +138,59 @@ void _handleWeApi(RequestOptions option) {
       'params=${Uri.encodeQueryComponent(encryptedBody.base64)}&encSecKey=${Uri.encodeQueryComponent(encrypted3.base16)}';
 }
 
-void _handleEApi(RequestOptions option) {}
+const _KeyEApi = 'e82ckenh8dichen8';
+
+void _handleEApi(RequestOptions option, List<Cookie> cookies) {
+  var header = {};
+  if (cookies != null) {
+    Map<String, String> cookiesMap =
+        cookies.fold(<String, String>{}, (map, element) {
+      map[element.name] = element.value;
+      return map;
+    });
+    header['osver'] = cookiesMap['osver'];
+    header['deviceId'] = cookiesMap['deviceId'];
+    header['appver'] = cookiesMap['appver'] ?? '6.1.1';
+    header['versioncode'] = cookiesMap['versioncode'] ?? '140';
+    header['mobilename'] = cookiesMap['mobilename'];
+    header['buildver'] = cookiesMap['mobilename'] ??
+        DateTime.now().millisecondsSinceEpoch ~/ 1000;
+    header['resolution'] = cookiesMap['resolution'] ?? '1920x1080';
+    header['os'] = cookiesMap['os'] ?? 'android';
+    header['channel'] = cookiesMap['channel'];
+    header['__csrf'] = cookiesMap['__csrf'] ?? '';
+    if (cookiesMap['MUSIC_U'] != null) {
+      header['MUSIC_U'] = cookiesMap['MUSIC_U'];
+    }
+    if (cookiesMap['MUSIC_A'] != null) {
+      header['MUSIC_A'] = cookiesMap['MUSIC_A'];
+    }
+  }
+  header['requestId'] =
+      '${DateTime.now().millisecondsSinceEpoch}${Random().nextInt(1000).toString().padLeft(4, '0')}';
+
+  // map可能是<String,Int>类型的，默认转换成<String,dynamic>
+  option.data = Map.from(option.data);
+  option.data['header'] = header;
+
+  var oldUriStr = option.uri.toString();
+  option.path = oldUriStr.replaceAll(RegExp(r'\w*api'), 'eapi');
+
+  var url = option.extra['eApiUrl'];
+  var body = jsonEncode(option.data);
+  var message = 'nobody${url}use${body}md5forencrypt';
+  var digest =
+      Encrypted(MD5Digest().process(Uint8List.fromList(utf8.encode(message))))
+          .base16;
+  var data = '$url-36cd479b6b5-$body-36cd479b6b5-$digest';
+
+  final encrypted = Encrypter(AES(Key.fromUtf8(_KeyEApi), mode: AESMode.ecb))
+      .encrypt(data)
+      .base16
+      .toUpperCase();
+
+  option.data = 'params=${Uri.encodeComponent(encrypted)}';
+}
 
 const String TAG = 'NeteaseMusicApi';
 const String HOST = 'https://music.163.com';
@@ -176,12 +233,14 @@ Options joinOptions(
         {hookRequestDate = true,
         EncryptType encryptType = EncryptType.WeApi,
         UserAgent userAgent = UserAgent.Random,
-        Map<String, String> cookies = const {}}) =>
+        Map<String, String> cookies = const {},
+        String eApiUrl = ''}) =>
     Options(contentType: ContentType.json.value, extra: {
       'hookRequestDate': hookRequestDate,
       'encryptType': encryptType,
       'userAgent': userAgent,
-      'cookies': cookies
+      'cookies': cookies,
+      'eApiUrl': eApiUrl
     });
 
 Uri joinUri(String path) {

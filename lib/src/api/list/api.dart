@@ -45,10 +45,12 @@ mixin ApiPlayList {
   /// [desc] 歌单描述
   Future<ServerStatusBean> updateUserPlayListDesc(String id, String desc) {
     var params = {'id': id, 'desc': desc};
-    //TODO eapi   url: '/api/playlist/desc/update'
     return Https.dio
         .postUri(joinUri('/eapi/playlist/desc/update'),
-            data: params, options: joinOptions(encryptType: EncryptType.EApi))
+            data: params,
+            options: joinOptions(
+                encryptType: EncryptType.EApi,
+                eApiUrl: '/api/playlist/desc/update'))
         .then((Response value) {
       return ServerStatusBean.fromJson(value.data);
     });
@@ -59,10 +61,12 @@ mixin ApiPlayList {
   /// [name] 歌单名字
   Future<ServerStatusBean> updateUserPlayListName(String id, String name) {
     var params = {'id': id, 'name': name};
-    //TODO eapi    url: '/api/playlist/update/name'
     return Https.dio
         .postUri(joinUri('/eapi/playlist/update/name'),
-            data: params, options: joinOptions(encryptType: EncryptType.EApi))
+            data: params,
+            options: joinOptions(
+                encryptType: EncryptType.EApi,
+                eApiUrl: '/api/playlist/update/name'))
         .then((Response value) {
       return ServerStatusBean.fromJson(value.data);
     });
@@ -74,10 +78,12 @@ mixin ApiPlayList {
   Future<ServerStatusBean> updateUserPlayListTags(
       String id, List<String> tags) {
     var params = {'id': id, 'tags': tags?.join(',') ?? ''};
-    //TODO eapi    url: '/api/playlist/tags/update'
     return Https.dio
         .postUri(joinUri('/eapi/playlist/tags/update'),
-            data: params, options: joinOptions(encryptType: EncryptType.EApi))
+            data: params,
+            options: joinOptions(
+                encryptType: EncryptType.EApi,
+                eApiUrl: '/api/playlist/tags/update'))
         .then((Response value) {
       return ServerStatusBean.fromJson(value.data);
     });

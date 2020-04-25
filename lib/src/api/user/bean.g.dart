@@ -186,7 +186,7 @@ UserFollowedListWrap _$UserFollowedListWrapFromJson(Map<String, dynamic> json) {
     ..msg = json['msg'] as String
     ..more = json['more'] as bool
     ..count = json['count'] as int
-    ..followed = (json['followed'] as List)
+    ..followeds = (json['followeds'] as List)
         ?.map((e) => e == null
             ? null
             : NeteaseAccountProfile.fromJson(e as Map<String, dynamic>))
@@ -202,6 +202,6 @@ Map<String, dynamic> _$UserFollowedListWrapToJson(
       'msg': instance.msg,
       'more': instance.more,
       'count': instance.count,
-      'followed': instance.followed,
+      'followeds': instance.followeds,
       'lasttime': instance.lasttime,
     };

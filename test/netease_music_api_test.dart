@@ -14,7 +14,9 @@ void main() {
 
   // PersistCookieJar 会存储cookie，登录完成后可以将doSetUp置为false,
   // TODO 登录接口需要验证本地是否登录只类的场景，不需要每次都去调用
-  const bool doSetUp = false;
+  const bool doSetUp = true;
+  //是否测试发验证码
+  const bool doSendCaptcha = false;
 
   const defaultUserId = '3375937';
 
@@ -70,8 +72,11 @@ void main() {
   });
 
   test('test send captcha', () async {
-    var result = await api.captchaSend(login_phone);
-    expect(result.code, anyOf(RET_CODE_OK, RET_CODE_CAPTCHA_VERIFY_FREQUENTLY));
+    if (doSendCaptcha) {
+      var result = await api.captchaSend(login_phone);
+      expect(
+          result.code, anyOf(RET_CODE_OK, RET_CODE_CAPTCHA_VERIFY_FREQUENTLY));
+    }
   });
 
   test('test verify captcha', () async {
@@ -79,10 +84,14 @@ void main() {
     expect(result.code, anyOf(RET_CODE_OK, RET_CODE_CAPTCHA_VERIFY_FAIL));
   });
 
-  // TODO eapi
   test('test check cellPhone existence', () async {
     var result = await api.checkCellPhoneExistence(login_phone);
     expect(result.code, RET_CODE_OK);
+  });
+
+  test('test check cellPhone existence', () async {
+    var result = await api.initNickname('hcanyz');
+    expect(result.code, anyOf(RET_CODE_OK, RET_CODE_HAS_INIT));
   });
 
   test('test verify logout', () async {
@@ -215,6 +224,17 @@ void main() {
         ['孤独']);
 
     expect(result2.code, anyOf(RET_CODE_OK, RET_CODE_ILLEGAL_ARGUMENT));
+
+    var result3 =
+        await api.updateUserPlayListName(id, '偶尔会发笑_${Random().nextInt(10)}');
+    expect(result3.code, RET_CODE_OK);
+
+    result3 =
+        await api.updateUserPlayListDesc(id, '偶尔会发笑_${Random().nextInt(10)}');
+    expect(result3.code, RET_CODE_OK);
+
+    result3 = await api.updateUserPlayListTags(id, ['孤独']);
+    expect(result3.code, RET_CODE_OK);
   });
 
   test('test user dj list', () async {

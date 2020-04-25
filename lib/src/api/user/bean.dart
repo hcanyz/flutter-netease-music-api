@@ -101,10 +101,7 @@ class UserFollowListWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class UserFollowedListWrap extends ServerStatusBean {
-  //TODO eapi
-  List<NeteaseAccountProfile> followed;
-
-  int lasttime;
+  List<NeteaseAccountProfile> followeds;
 
   UserFollowedListWrap();
 

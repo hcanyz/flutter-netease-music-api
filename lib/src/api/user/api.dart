@@ -73,11 +73,12 @@ mixin ApiUser {
   /// [lastTime] 传入上一次返回结果的 lasttime,将会返回下一页的数据,默认-1
   Future<UserFollowedListWrap> userFollowedList(String userId,
       {int limit = 30, int lastTime = -1}) {
-    //TODO eapi    url: '/api/user/getfolloweds'
     return Https.dio
         .postUri(joinUri('/eapi/user/getfolloweds/$userId'),
             data: {'userId': userId, 'time': lastTime, 'limit': limit},
-            options: joinOptions())
+            options: joinOptions(
+                encryptType: EncryptType.EApi,
+                eApiUrl: '/api/user/getfolloweds'))
         .then((Response value) {
       return UserFollowedListWrap.fromJson(value.data);
     });
