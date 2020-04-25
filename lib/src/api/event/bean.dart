@@ -110,7 +110,7 @@ class CommentListWrap extends ServerStatusBean {
 }
 
 @JsonSerializable()
-class EventForwardRet extends ServerStatusBean {
+class EventForwardRet {
   String msg;
   int eventId;
   int eventTime;

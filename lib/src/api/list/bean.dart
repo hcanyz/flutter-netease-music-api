@@ -5,11 +5,164 @@ import 'package:netease_music_api/src/api/user/bean.dart';
 part 'bean.g.dart';
 
 @JsonSerializable()
+class Music {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  String name;
+
+  int size;
+  String extension;
+
+  int sr;
+  int dfsId;
+  int bitrate;
+  int playTime;
+  double volumeDelta;
+
+  Music();
+
+  factory Music.fromJson(Map<String, dynamic> json) => _$MusicFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MusicToJson(this);
+}
+
+@JsonSerializable()
+class Privilege {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  int fee;
+
+  int payed;
+  int st;
+  int pl;
+  int dl;
+  int sp;
+  int cp;
+  int subp;
+  bool cs;
+  int maxbr;
+  int fl;
+  bool toast;
+  int flag;
+  bool preSell;
+
+  Privilege();
+
+  factory Privilege.fromJson(Map<String, dynamic> json) =>
+      _$PrivilegeFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PrivilegeToJson(this);
+}
+
+@JsonSerializable()
+class Artists {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  String name;
+
+  //TODO
+  String picUrl;
+
+  int img1v1Id;
+  int albumSize;
+  int musicSize;
+  int topicPerson;
+
+  Artists();
+
+  factory Artists.fromJson(Map<String, dynamic> json) =>
+      _$ArtistsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ArtistsToJson(this);
+}
+
+@JsonSerializable()
+class Album {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  String name;
+
+  String type;
+  String subType;
+
+  int size;
+
+  //TODO
+  String picUrl;
+
+  String tags;
+
+  int companyId;
+  String company;
+
+  String description;
+  String briefDesc;
+
+  Artists artist;
+  List<Artists> artists;
+
+  Album();
+
+  factory Album.fromJson(Map<String, dynamic> json) => _$AlbumFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AlbumToJson(this);
+}
+
+@JsonSerializable()
 class Song {
   @JsonKey(fromJson: dynamicToString)
   String id;
 
   String name;
+
+  int copyrightId;
+
+  String disc;
+  int no;
+  int fee;
+  int status;
+
+  bool starred;
+  int starredNum;
+  double popularity;
+  int score;
+
+  int duration;
+  int playedNum;
+  int dayPlays;
+  int hearTime;
+
+  String ringtone;
+  String copyFrom;
+
+  String commentThreadId;
+
+  List<Artists> artists;
+
+  Album album;
+
+  int copyright;
+
+  String transName;
+
+  int mark;
+  int rtype;
+  int mvid;
+
+  String alg;
+
+  String reason;
+
+  Music hMusic;
+  Music mMusic;
+  Music lMusic;
+  Music bMusic;
+
+  String noCopyrightRcmd;
 
   Song();
 
@@ -43,6 +196,8 @@ class PlayItem {
   int trackCount;
   int trackNumberUpdateTime;
 
+  String commentThreadId;
+
   // 歌单类型: TODO 待补充
   // 0: 自建?
   // 5: 我喜欢的音乐
@@ -71,11 +226,6 @@ class MultiPlayListWrap extends ServerStatusBean {
 
   MultiPlayListWrap();
 
-  @override
-  String toString() {
-    return 'HighqualityPlayListWrap{playlists: $playlists}';
-  }
-
   factory MultiPlayListWrap.fromJson(Map<String, dynamic> json) =>
       _$MultiPlayListWrapFromJson(json);
 
@@ -87,11 +237,6 @@ class MultiPlayListWrap2 extends ServerStatusBean {
   List<PlayItem> playlist;
 
   MultiPlayListWrap2();
-
-  @override
-  String toString() {
-    return 'HighqualityPlayListWrap{playlists: $playlist}';
-  }
 
   factory MultiPlayListWrap2.fromJson(Map<String, dynamic> json) =>
       _$MultiPlayListWrap2FromJson(json);
@@ -145,13 +290,51 @@ class SinglePlayListWrap extends ServerStatusBean {
 
   SinglePlayListWrap();
 
-  @override
-  String toString() {
-    return 'CategoryPlayListWrap{playlist: $playlist}';
-  }
-
   factory SinglePlayListWrap.fromJson(Map<String, dynamic> json) =>
       _$SinglePlayListWrapFromJson(json);
 
   Map<String, dynamic> toJson() => _$SinglePlayListWrapToJson(this);
+}
+
+@JsonSerializable()
+class RecommendSongListWrap extends ServerStatusBean {
+  List<Song> recommend;
+
+  RecommendSongListWrap();
+
+  factory RecommendSongListWrap.fromJson(Map<String, dynamic> json) =>
+      _$RecommendSongListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RecommendSongListWrapToJson(this);
+}
+
+@JsonSerializable()
+class PlaymodeIntelligenceItem {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  bool recommended;
+
+  String alg;
+
+  Song data;
+
+  PlaymodeIntelligenceItem();
+
+  factory PlaymodeIntelligenceItem.fromJson(Map<String, dynamic> json) =>
+      _$PlaymodeIntelligenceItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PlaymodeIntelligenceItemToJson(this);
+}
+
+@JsonSerializable()
+class PlaymodeIntelligenceListWrap extends ServerStatusBean {
+  List<PlaymodeIntelligenceItem> data;
+
+  PlaymodeIntelligenceListWrap();
+
+  factory PlaymodeIntelligenceListWrap.fromJson(Map<String, dynamic> json) =>
+      _$PlaymodeIntelligenceListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PlaymodeIntelligenceListWrapToJson(this);
 }

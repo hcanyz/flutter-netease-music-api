@@ -81,17 +81,27 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test homeBannerList', () async {
+  test('test home bannerList', () async {
     await api.homeBannerList();
   });
 
-  test('test categoryPlayList', () async {
+  test('test highquality playlist', () async {
+    var result = await api.highqualityPlayList(0);
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test category playlist', () async {
     var result = await api.categoryPlayList(PLAYLIST_CATEGORY[0]['id'], 0);
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test highqualityPlayList', () async {
-    var result = await api.highqualityPlayList(0);
+  test('test recommend song list', () async {
+    var result = await api.recommendSongList(0);
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test playmode intelligence list', () async {
+    var result = await api.playmodeIntelligenceList('33894312', '24381616');
     expect(result.code, RET_CODE_OK);
   });
 }

@@ -145,10 +145,6 @@ Map<String, dynamic> _$CommentListWrapToJson(CommentListWrap instance) =>
 
 EventForwardRet _$EventForwardRetFromJson(Map<String, dynamic> json) {
   return EventForwardRet()
-    ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..more = json['more'] as bool
-    ..count = json['count'] as int
     ..msg = json['msg'] as String
     ..eventId = json['eventId'] as int
     ..eventTime = json['eventTime'] as int;
@@ -156,10 +152,6 @@ EventForwardRet _$EventForwardRetFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$EventForwardRetToJson(EventForwardRet instance) =>
     <String, dynamic>{
-      'code': instance.code,
-      'message': instance.message,
-      'more': instance.more,
-      'count': instance.count,
       'msg': instance.msg,
       'eventId': instance.eventId,
       'eventTime': instance.eventTime,

@@ -68,14 +68,4 @@ class NeteaseMusicApi with ApiPlayList, ApiDjList, ApiLogin, ApiUser, ApiEvent {
   factory NeteaseMusicApi() {
     return NeteaseMusicApi._internal();
   }
-
-  Future<String> homeBannerList() {
-    return Https.dio
-        .postUri(joinUri('/api/v2/banner/get'),
-            data: {'clientType': 'pc'},
-            options: joinOptions(hookRequestDate: true))
-        .then((Response value) {
-      return jsonEncode(value.data);
-    });
-  }
 }

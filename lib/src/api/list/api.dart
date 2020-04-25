@@ -89,6 +89,16 @@ mixin ApiPlayList {
     });
   }
 
+  Future<ServerStatusBean> homeBannerList() {
+    return Https.dio
+        .postUri(joinUri('/api/v2/banner/get'),
+            data: {'clientType': 'pc'},
+            options: joinOptions(hookRequestDate: true))
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
+  }
+
   Future<MultiPlayListWrap> highqualityPlayList(int page, {int limit = 30}) {
     var params = {'limit': limit, 'offset': page * limit};
     return Https.dio
@@ -110,13 +120,31 @@ mixin ApiPlayList {
     });
   }
 
-  Future<SinglePlayListWrap> recommendPlayList(int page, {int limit = 30}) {
+  Future<RecommendSongListWrap> recommendSongList(int page, {int limit = 30}) {
     var params = {'limit': limit, 'offset': page * limit};
     return Https.dio
         .postUri(joinUri('/weapi/v1/discovery/recommend/songs'),
             data: params, options: joinOptions())
         .then((Response value) {
-      return SinglePlayListWrap.fromJson(value.data);
+      return RecommendSongListWrap.fromJson(value.data);
+    });
+  }
+
+  Future<PlaymodeIntelligenceListWrap> playmodeIntelligenceList(
+      String songId, String playlistId,
+      {String startMusicId, int count = 1}) {
+    var params = {
+      'songId': songId,
+      'type': 'fromPlayOne',
+      'playlistId': playlistId,
+      'startMusicId': startMusicId ?? songId,
+      'count': count
+    };
+    return Https.dio
+        .postUri(joinUri('/weapi/playmode/intelligence/list'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return PlaymodeIntelligenceListWrap.fromJson(value.data);
     });
   }
 }
