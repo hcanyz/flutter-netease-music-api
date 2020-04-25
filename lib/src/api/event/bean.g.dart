@@ -41,8 +41,6 @@ EventListWrap _$EventListWrapFromJson(Map<String, dynamic> json) {
     ..code = json['code'] as int
     ..message = json['message'] as String
     ..msg = json['msg'] as String
-    ..more = json['more'] as bool
-    ..count = json['count'] as int
     ..events = (json['events'] as List)
         ?.map((e) =>
             e == null ? null : EventItem.fromJson(e as Map<String, dynamic>))
@@ -55,8 +53,6 @@ Map<String, dynamic> _$EventListWrapToJson(EventListWrap instance) =>
       'code': instance.code,
       'message': instance.message,
       'msg': instance.msg,
-      'more': instance.more,
-      'count': instance.count,
       'events': instance.events,
       'lasttime': instance.lasttime,
     };
@@ -66,8 +62,6 @@ EventSingleWrap _$EventSingleWrapFromJson(Map<String, dynamic> json) {
     ..code = json['code'] as int
     ..message = json['message'] as String
     ..msg = json['msg'] as String
-    ..more = json['more'] as bool
-    ..count = json['count'] as int
     ..event = json['event'] == null
         ? null
         : EventItem.fromJson(json['event'] as Map<String, dynamic>);
@@ -78,8 +72,6 @@ Map<String, dynamic> _$EventSingleWrapToJson(EventSingleWrap instance) =>
       'code': instance.code,
       'message': instance.message,
       'msg': instance.msg,
-      'more': instance.more,
-      'count': instance.count,
       'event': instance.event,
     };
 
@@ -112,8 +104,6 @@ CommentListWrap _$CommentListWrapFromJson(Map<String, dynamic> json) {
     ..code = json['code'] as int
     ..message = json['message'] as String
     ..msg = json['msg'] as String
-    ..more = json['more'] as bool
-    ..count = json['count'] as int
     ..moreHot = json['moreHot'] as bool
     ..cnum = json['cnum'] as int
     ..isMusician = json['isMusician'] as bool
@@ -133,8 +123,6 @@ Map<String, dynamic> _$CommentListWrapToJson(CommentListWrap instance) =>
       'code': instance.code,
       'message': instance.message,
       'msg': instance.msg,
-      'more': instance.more,
-      'count': instance.count,
       'moreHot': instance.moreHot,
       'cnum': instance.cnum,
       'isMusician': instance.isMusician,
@@ -162,8 +150,6 @@ EventForwardRetWrap _$EventForwardRetWrapFromJson(Map<String, dynamic> json) {
     ..code = json['code'] as int
     ..message = json['message'] as String
     ..msg = json['msg'] as String
-    ..more = json['more'] as bool
-    ..count = json['count'] as int
     ..data = json['data'] == null
         ? null
         : EventForwardRet.fromJson(json['data'] as Map<String, dynamic>);
@@ -175,8 +161,6 @@ Map<String, dynamic> _$EventForwardRetWrapToJson(
       'code': instance.code,
       'message': instance.message,
       'msg': instance.msg,
-      'more': instance.more,
-      'count': instance.count,
       'data': instance.data,
     };
 
@@ -206,8 +190,6 @@ TopicHotListWrap _$TopicHotListWrapFromJson(Map<String, dynamic> json) {
     ..code = json['code'] as int
     ..message = json['message'] as String
     ..msg = json['msg'] as String
-    ..more = json['more'] as bool
-    ..count = json['count'] as int
     ..hot = (json['hot'] as List)
         ?.map((e) =>
             e == null ? null : TopicItem.fromJson(e as Map<String, dynamic>))
@@ -219,8 +201,6 @@ Map<String, dynamic> _$TopicHotListWrapToJson(TopicHotListWrap instance) =>
       'code': instance.code,
       'message': instance.message,
       'msg': instance.msg,
-      'more': instance.more,
-      'count': instance.count,
       'hot': instance.hot,
     };
 
@@ -282,8 +262,6 @@ HotwallCommentListWrap _$HotwallCommentListWrapFromJson(
     ..code = json['code'] as int
     ..message = json['message'] as String
     ..msg = json['msg'] as String
-    ..more = json['more'] as bool
-    ..count = json['count'] as int
     ..data = (json['data'] as List)
         ?.map((e) => e == null
             ? null
@@ -297,7 +275,5 @@ Map<String, dynamic> _$HotwallCommentListWrapToJson(
       'code': instance.code,
       'message': instance.message,
       'msg': instance.msg,
-      'more': instance.more,
-      'count': instance.count,
       'data': instance.data,
     };

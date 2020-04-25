@@ -9,9 +9,6 @@ class ServerStatusBean {
   String message;
   String msg;
 
-  bool more;
-  int count;
-
   RetCode get codeEnum {
     return valueOfCode(code);
   }
@@ -26,6 +23,19 @@ class ServerStatusBean {
       _$ServerStatusBeanFromJson(json);
 
   Map<String, dynamic> toJson() => _$ServerStatusBeanToJson(this);
+}
+
+@JsonSerializable()
+class ServerStatusListBean extends ServerStatusBean {
+  bool more;
+  int count;
+
+  ServerStatusListBean();
+
+  factory ServerStatusListBean.fromJson(Map<String, dynamic> json) =>
+      _$ServerStatusListBeanFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ServerStatusListBeanToJson(this);
 }
 
 String dynamicToString(dynamic value) => value?.toString();

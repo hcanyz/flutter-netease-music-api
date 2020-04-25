@@ -28,8 +28,6 @@ DjListWrap _$DjListWrapFromJson(Map<String, dynamic> json) {
     ..code = json['code'] as int
     ..message = json['message'] as String
     ..msg = json['msg'] as String
-    ..more = json['more'] as bool
-    ..count = json['count'] as int
     ..programs = (json['programs'] as List)
         ?.map((e) =>
             e == null ? null : DjProgram.fromJson(e as Map<String, dynamic>))
@@ -41,7 +39,5 @@ Map<String, dynamic> _$DjListWrapToJson(DjListWrap instance) =>
       'code': instance.code,
       'message': instance.message,
       'msg': instance.msg,
-      'more': instance.more,
-      'count': instance.count,
       'programs': instance.programs,
     };
