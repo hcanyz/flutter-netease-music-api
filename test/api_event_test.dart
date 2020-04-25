@@ -35,6 +35,11 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test event my list', () async {
+    var result = await api.eventMyList();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test forward event', () async {
     var result =
         await api.eventForward(defaultUserId, '12433751183', forwards: '偶尔会发笑');

@@ -19,6 +19,19 @@ mixin ApiEvent {
     });
   }
 
+  /// 获取自己动态 对应网页版网易云，朋友界面里的各种动态消息 ，如分享的视频，音乐，照片等！
+  /// !需要登录
+  /// [lastTime] 传入上一次返回结果的 lasttime,将会返回下一页的数据,默认-1
+  Future<EventListWrap2> eventMyList({int limit = 30, int lastTime = -1}) {
+    return Https.dio
+        .postUri(joinUri('/weapi/v1/event/get'),
+            data: {'lasttime': lastTime, 'pagesize': limit},
+            options: joinOptions())
+        .then((Response value) {
+      return EventListWrap2.fromJson(value.data);
+    });
+  }
+
   /// 转发用户动态
   /// !需要登录
   /// [evId] 动态 id

@@ -6,8 +6,41 @@ import 'package:netease_music_api/src/api/login/bean.dart';
 part 'bean.g.dart';
 
 @JsonSerializable()
+class CommentThread {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  int resourceType;
+  int commentCount;
+  int likedCount;
+  int shareCount;
+  int hotCount;
+
+  int resourceId;
+  int resourceOwnerId;
+  String resourceTitle;
+
+  CommentThread();
+
+  factory CommentThread.fromJson(Map<String, dynamic> json) =>
+      _$CommentThreadFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CommentThreadToJson(this);
+}
+
+@JsonSerializable()
 class EventItemInfo {
   String threadId;
+
+  int resourceId;
+  int resourceType;
+
+  bool liked;
+  int commentCount;
+  int likedCount;
+  int shareCount;
+
+  CommentThread commentThread;
 
   EventItemInfo();
 
@@ -24,7 +57,16 @@ class EventItem {
 
   String json;
 
+  int type;
+
+  int actId;
   int eventTime;
+  int expireTime;
+  int showTime;
+
+  int insiteForwardCount;
+
+  bool topEvent;
 
   NeteaseAccountProfile user;
 
@@ -50,6 +92,20 @@ class EventListWrap extends ServerStatusBean {
       _$EventListWrapFromJson(json);
 
   Map<String, dynamic> toJson() => _$EventListWrapToJson(this);
+}
+
+@JsonSerializable()
+class EventListWrap2 extends ServerStatusBean {
+  List<EventItem> event;
+
+  int lasttime;
+
+  EventListWrap2();
+
+  factory EventListWrap2.fromJson(Map<String, dynamic> json) =>
+      _$EventListWrap2FromJson(json);
+
+  Map<String, dynamic> toJson() => _$EventListWrap2ToJson(this);
 }
 
 @JsonSerializable()

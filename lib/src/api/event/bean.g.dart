@@ -6,20 +6,69 @@ part of 'bean.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+CommentThread _$CommentThreadFromJson(Map<String, dynamic> json) {
+  return CommentThread()
+    ..id = dynamicToString(json['id'])
+    ..resourceType = json['resourceType'] as int
+    ..commentCount = json['commentCount'] as int
+    ..likedCount = json['likedCount'] as int
+    ..shareCount = json['shareCount'] as int
+    ..hotCount = json['hotCount'] as int
+    ..resourceId = json['resourceId'] as int
+    ..resourceOwnerId = json['resourceOwnerId'] as int
+    ..resourceTitle = json['resourceTitle'] as String;
+}
+
+Map<String, dynamic> _$CommentThreadToJson(CommentThread instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'resourceType': instance.resourceType,
+      'commentCount': instance.commentCount,
+      'likedCount': instance.likedCount,
+      'shareCount': instance.shareCount,
+      'hotCount': instance.hotCount,
+      'resourceId': instance.resourceId,
+      'resourceOwnerId': instance.resourceOwnerId,
+      'resourceTitle': instance.resourceTitle,
+    };
+
 EventItemInfo _$EventItemInfoFromJson(Map<String, dynamic> json) {
-  return EventItemInfo()..threadId = json['threadId'] as String;
+  return EventItemInfo()
+    ..threadId = json['threadId'] as String
+    ..resourceId = json['resourceId'] as int
+    ..resourceType = json['resourceType'] as int
+    ..liked = json['liked'] as bool
+    ..commentCount = json['commentCount'] as int
+    ..likedCount = json['likedCount'] as int
+    ..shareCount = json['shareCount'] as int
+    ..commentThread = json['commentThread'] == null
+        ? null
+        : CommentThread.fromJson(json['commentThread'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$EventItemInfoToJson(EventItemInfo instance) =>
     <String, dynamic>{
       'threadId': instance.threadId,
+      'resourceId': instance.resourceId,
+      'resourceType': instance.resourceType,
+      'liked': instance.liked,
+      'commentCount': instance.commentCount,
+      'likedCount': instance.likedCount,
+      'shareCount': instance.shareCount,
+      'commentThread': instance.commentThread,
     };
 
 EventItem _$EventItemFromJson(Map<String, dynamic> json) {
   return EventItem()
     ..id = dynamicToString(json['id'])
     ..json = json['json'] as String
+    ..type = json['type'] as int
+    ..actId = json['actId'] as int
     ..eventTime = json['eventTime'] as int
+    ..expireTime = json['expireTime'] as int
+    ..showTime = json['showTime'] as int
+    ..insiteForwardCount = json['insiteForwardCount'] as int
+    ..topEvent = json['topEvent'] as bool
     ..user = json['user'] == null
         ? null
         : NeteaseAccountProfile.fromJson(json['user'] as Map<String, dynamic>)
@@ -31,7 +80,13 @@ EventItem _$EventItemFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$EventItemToJson(EventItem instance) => <String, dynamic>{
       'id': instance.id,
       'json': instance.json,
+      'type': instance.type,
+      'actId': instance.actId,
       'eventTime': instance.eventTime,
+      'expireTime': instance.expireTime,
+      'showTime': instance.showTime,
+      'insiteForwardCount': instance.insiteForwardCount,
+      'topEvent': instance.topEvent,
       'user': instance.user,
       'info': instance.info,
     };
@@ -54,6 +109,27 @@ Map<String, dynamic> _$EventListWrapToJson(EventListWrap instance) =>
       'message': instance.message,
       'msg': instance.msg,
       'events': instance.events,
+      'lasttime': instance.lasttime,
+    };
+
+EventListWrap2 _$EventListWrap2FromJson(Map<String, dynamic> json) {
+  return EventListWrap2()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..event = (json['event'] as List)
+        ?.map((e) =>
+            e == null ? null : EventItem.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..lasttime = json['lasttime'] as int;
+}
+
+Map<String, dynamic> _$EventListWrap2ToJson(EventListWrap2 instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'event': instance.event,
       'lasttime': instance.lasttime,
     };
 
