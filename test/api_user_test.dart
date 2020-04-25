@@ -84,6 +84,6 @@ void main() {
   test('test user play record list', () async {
     var result = await api.userPlayRecordList(
         NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId, false);
-    expect(result.code, anyOf(RET_CODE_OK_FOLLOW, RET_CODE_OK));
+    expect(result.code, RET_CODE_OK);
   });
 }

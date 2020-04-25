@@ -56,7 +56,12 @@ class NeteaseMusicApi with ApiPlayList, ApiDjList, ApiLogin, ApiUser, ApiEvent {
           responseHeader: true,
           error: true,
           compact: true,
-          maxWidth: 90));
+          maxWidth: 90,
+          logPrint: (object) {
+            if (object is String) {
+              print(object.replaceAll('║', ''));
+            }
+          }));
     }
   }
 

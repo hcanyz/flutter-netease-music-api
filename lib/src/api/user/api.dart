@@ -99,7 +99,7 @@ mixin ApiUser {
 
   /// 获取用户播放记录
   /// !需要登录
-  Future<ServerStatusBean> userPlayRecordList(String userId, bool weekData) {
+  Future<PlayRecordListWrap> userPlayRecordList(String userId, bool weekData) {
     return Https.dio
         .postUri(joinUri('/weapi/v1/play/record'),
             data: {
@@ -109,7 +109,7 @@ mixin ApiUser {
             },
             options: joinOptions(cookies: {'os': 'pc'}))
         .then((Response value) {
-      return ServerStatusBean.fromJson(value.data);
+      return PlayRecordListWrap.fromJson(value.data);
     });
   }
 }

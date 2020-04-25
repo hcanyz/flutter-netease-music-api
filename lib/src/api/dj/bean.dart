@@ -5,25 +5,11 @@ import 'package:netease_music_api/src/netease_bean.dart';
 part 'bean.g.dart';
 
 @JsonSerializable()
-class DjSong {
-  @JsonKey(fromJson: dynamicToString)
-  String id;
-
-  String name;
-
-  DjSong();
-
-  factory DjSong.fromJson(Map<String, dynamic> json) => _$DjSongFromJson(json);
-
-  Map<String, dynamic> toJson() => _$DjSongToJson(this);
-}
-
-@JsonSerializable()
 class DjProgram {
   @JsonKey(fromJson: dynamicToString)
   String id;
 
-  DjSong mainSong;
+  Song mainSong;
 
   NeteaseAccountProfile dj;
 

@@ -203,3 +203,43 @@ Map<String, dynamic> _$UserFollowedListWrapToJson(
       'count': instance.count,
       'followeds': instance.followeds,
     };
+
+PlayRecordItem _$PlayRecordItemFromJson(Map<String, dynamic> json) {
+  return PlayRecordItem()
+    ..playCount = json['playCount'] as int
+    ..score = json['score'] as int
+    ..song = json['song'] == null
+        ? null
+        : Song.fromJson(json['song'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$PlayRecordItemToJson(PlayRecordItem instance) =>
+    <String, dynamic>{
+      'playCount': instance.playCount,
+      'score': instance.score,
+      'song': instance.song,
+    };
+
+PlayRecordListWrap _$PlayRecordListWrapFromJson(Map<String, dynamic> json) {
+  return PlayRecordListWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..more = json['more'] as bool
+    ..count = json['count'] as int
+    ..allData = (json['allData'] as List)
+        ?.map((e) => e == null
+            ? null
+            : PlayRecordItem.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$PlayRecordListWrapToJson(PlayRecordListWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'more': instance.more,
+      'count': instance.count,
+      'allData': instance.allData,
+    };

@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:netease_music_api/src/api/bean.dart';
+import 'package:netease_music_api/src/api/list/bean.dart';
 import 'package:netease_music_api/src/api/login/bean.dart';
 
 part 'bean.g.dart';
@@ -109,4 +110,31 @@ class UserFollowedListWrap extends ServerStatusBean {
       _$UserFollowedListWrapFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserFollowedListWrapToJson(this);
+}
+
+@JsonSerializable()
+class PlayRecordItem {
+  int playCount;
+  int score;
+
+  Song song;
+
+  PlayRecordItem();
+
+  factory PlayRecordItem.fromJson(Map<String, dynamic> json) =>
+      _$PlayRecordItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PlayRecordItemToJson(this);
+}
+
+@JsonSerializable()
+class PlayRecordListWrap extends ServerStatusBean {
+  List<PlayRecordItem> allData;
+
+  PlayRecordListWrap();
+
+  factory PlayRecordListWrap.fromJson(Map<String, dynamic> json) =>
+      _$PlayRecordListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PlayRecordListWrapToJson(this);
 }

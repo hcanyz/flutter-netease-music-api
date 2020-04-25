@@ -6,6 +6,17 @@ part of 'bean.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+Song _$SongFromJson(Map<String, dynamic> json) {
+  return Song()
+    ..id = dynamicToString(json['id'])
+    ..name = json['name'] as String;
+}
+
+Map<String, dynamic> _$SongToJson(Song instance) => <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+    };
+
 PlayItem _$PlayItemFromJson(Map<String, dynamic> json) {
   return PlayItem()
     ..id = dynamicToString(json['id'])

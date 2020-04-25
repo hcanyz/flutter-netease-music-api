@@ -6,23 +6,12 @@ part of 'bean.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-DjSong _$DjSongFromJson(Map<String, dynamic> json) {
-  return DjSong()
-    ..id = dynamicToString(json['id'])
-    ..name = json['name'] as String;
-}
-
-Map<String, dynamic> _$DjSongToJson(DjSong instance) => <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-    };
-
 DjProgram _$DjProgramFromJson(Map<String, dynamic> json) {
   return DjProgram()
     ..id = dynamicToString(json['id'])
     ..mainSong = json['mainSong'] == null
         ? null
-        : DjSong.fromJson(json['mainSong'] as Map<String, dynamic>)
+        : Song.fromJson(json['mainSong'] as Map<String, dynamic>)
     ..dj = json['dj'] == null
         ? null
         : NeteaseAccountProfile.fromJson(json['dj'] as Map<String, dynamic>);
