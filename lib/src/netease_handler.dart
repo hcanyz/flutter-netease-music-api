@@ -25,13 +25,14 @@ void neteaseInterceptor(RequestOptions option) {
       //option.headers['X-Real-IP'] = '118.88.88.88';
       option.headers[HttpHeaders.userAgentHeader] =
           _chooseUserAgent(option.extra['userAgent']);
-      String cookies = '';
+
+      var cookies =
+          new StringBuffer(option.headers[HttpHeaders.cookieHeader] ?? '');
       option.extra['cookies'].forEach((key, value) {
-        cookies +=
-            '${Uri.encodeComponent(key)}=${Uri.encodeComponent(value)}; ';
+        cookies.write(
+            ' ;${Uri.encodeComponent(key)}=${Uri.encodeComponent(value)}');
       });
-      option.headers[HttpHeaders.cookieHeader] =
-          option.headers[HttpHeaders.cookieHeader] ?? '' + ';' + cookies;
+      option.headers[HttpHeaders.cookieHeader] = cookies.toString();
 
       switch (option.extra['encryptType']) {
         case EncryptType.LinuxForward:

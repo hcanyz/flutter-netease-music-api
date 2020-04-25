@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:cookie_jar/cookie_jar.dart';
@@ -79,10 +80,10 @@ void main() {
   });
 
   // TODO eapi
-  //test('test check cellPhone existence', () async {
-  //  var result = await api.checkCellPhoneExistence(login_phone);
-  //  expect(result.code, RET_CODE_OK);
-  //});
+  test('test check cellPhone existence', () async {
+    var result = await api.checkCellPhoneExistence(login_phone);
+    expect(result.code, RET_CODE_OK);
+  });
 
   test('test verify logout', () async {
     var result = await api.logout();
@@ -120,14 +121,30 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test user followList', () async {
+  test('test user follow list', () async {
     var result = await api.userFollowList(defaultUserId, 0);
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test user followedList', () async {
+  test('test user followed list', () async {
     var result = await api.userFollowedList(defaultUserId);
     expect(result.code, RET_CODE_OK);
+  });
+
+  test('test user follow or delFollow', () async {
+    var result = await api.userFollow(defaultUserId, false);
+    expect(result.code, anyOf(RET_CODE_OK_FOLLOW, RET_CODE_OK));
+
+    sleep(Duration(seconds: 2));
+
+    var result2 = await api.userFollow(defaultUserId, true);
+    expect(result2.code, anyOf(RET_CODE_OK_FOLLOW, RET_CODE_OK));
+  });
+
+  test('test user play record list', () async {
+    var result = await api.userPlayRecordList(
+        NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId, false);
+    expect(result.code, anyOf(RET_CODE_OK_FOLLOW, RET_CODE_OK));
   });
 
   test('test user event list', () async {

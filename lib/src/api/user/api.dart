@@ -82,4 +82,33 @@ mixin ApiUser {
       return UserFollowedListWrap.fromJson(value.data);
     });
   }
+
+  /// 关注/取消关注用户
+  /// !需要登录
+  Future<ServerStatusBean> userFollow(String userId, bool follow) {
+    return Https.dio
+        .postUri(
+            joinUri('/weapi/user/${follow ? 'follow' : 'delfollow'}/$userId'),
+            data: {},
+            options: joinOptions(cookies: {'os': 'pc'}))
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
+  }
+
+  /// 获取用户播放记录
+  /// !需要登录
+  Future<ServerStatusBean> userPlayRecordList(String userId, bool weekData) {
+    return Https.dio
+        .postUri(joinUri('/weapi/v1/play/record'),
+            data: {
+              'uid': userId,
+              // 1: 最近一周, 0: 所有时间
+              'type': weekData ? '1' : '0'
+            },
+            options: joinOptions(cookies: {'os': 'pc'}))
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
+  }
 }

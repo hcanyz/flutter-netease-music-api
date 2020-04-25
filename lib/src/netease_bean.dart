@@ -2,8 +2,12 @@ export 'package:netease_music_api/src/api/list/bean.dart';
 export 'package:netease_music_api/src/api/login/bean.dart';
 export 'package:netease_music_api/src/api/user/bean.dart';
 
-const int RET_CODE_OK = 200;
 const int RET_CODE_UNKNOW = -233;
+const int RET_CODE_OK = 200;
+const int RET_CODE_NO_PERMISSION = -2;
+const int RET_CODE_OK_FOLLOW = 201;
+// title: "风险提示",subtitle: "请您尝试切换网络或设备再尝试操作哦~",buttonMsg: "查看详情",buttonUrl: "http://163.lu/EmUzy2"
+const int RET_CODE_RISK_WARNING = 250;
 const int RET_CODE_CHEATING = -460;
 const int RET_CODE_NEED_LOGIN = 301;
 const int RET_CODE_ILLEGAL_ARGUMENT = 400;
