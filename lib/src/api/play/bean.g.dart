@@ -154,6 +154,9 @@ Song _$SongFromJson(Map<String, dynamic> json) {
     ..album = json['album'] == null
         ? null
         : Album.fromJson(json['album'] as Map<String, dynamic>)
+    ..privilege = json['privilege'] == null
+        ? null
+        : Privilege.fromJson(json['privilege'] as Map<String, dynamic>)
     ..copyright = json['copyright'] as int
     ..transName = json['transName'] as String
     ..mark = json['mark'] as int
@@ -197,6 +200,7 @@ Map<String, dynamic> _$SongToJson(Song instance) => <String, dynamic>{
       'commentThreadId': instance.commentThreadId,
       'artists': instance.artists,
       'album': instance.album,
+      'privilege': instance.privilege,
       'copyright': instance.copyright,
       'transName': instance.transName,
       'mark': instance.mark,
@@ -345,9 +349,9 @@ PlaymodeIntelligenceItem _$PlaymodeIntelligenceItemFromJson(
     ..id = dynamicToString(json['id'])
     ..recommended = json['recommended'] as bool
     ..alg = json['alg'] as String
-    ..data = json['data'] == null
+    ..songInfo = json['songInfo'] == null
         ? null
-        : Song.fromJson(json['data'] as Map<String, dynamic>);
+        : Song.fromJson(json['songInfo'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$PlaymodeIntelligenceItemToJson(
@@ -356,7 +360,7 @@ Map<String, dynamic> _$PlaymodeIntelligenceItemToJson(
       'id': instance.id,
       'recommended': instance.recommended,
       'alg': instance.alg,
-      'data': instance.data,
+      'songInfo': instance.songInfo,
     };
 
 PlaymodeIntelligenceListWrap _$PlaymodeIntelligenceListWrapFromJson(

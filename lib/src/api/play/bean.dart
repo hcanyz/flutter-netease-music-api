@@ -145,6 +145,8 @@ class Song {
 
   Album album;
 
+  Privilege privilege;
+
   int copyright;
 
   String transName;
@@ -317,7 +319,7 @@ class PlaymodeIntelligenceItem {
 
   String alg;
 
-  Song data;
+  Song songInfo;
 
   PlaymodeIntelligenceItem();
 
