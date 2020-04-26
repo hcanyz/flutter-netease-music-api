@@ -98,6 +98,15 @@ mixin ApiPlayList {
     });
   }
 
+  Future<PlaylistHotTagsWrap> playlistHotTags() {
+    return Https.dio
+        .postUri(joinUri('/weapi/playlist/hottags'),
+            data: {}, options: joinOptions())
+        .then((Response value) {
+      return PlaylistHotTagsWrap.fromJson(value.data);
+    });
+  }
+
   Future<ServerStatusBean> homeBannerList() {
     return Https.dio
         .postUri(joinUri('/api/v2/banner/get'),

@@ -88,6 +88,11 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test home playlist hot tags', () async {
+    var result = await api.playlistHotTags();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test home bannerList', () async {
     await api.homeBannerList();
   });

@@ -314,6 +314,72 @@ class PlaylistCatalogueWrap extends ServerStatusBean {
   Map<String, dynamic> toJson() => _$PlaylistCatalogueWrapToJson(this);
 }
 
+@JsonSerializable()
+class PlaylistHotTag {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  String name;
+
+  int category;
+
+  int usedCount;
+
+  int type;
+
+  int position;
+  int highQuality;
+  int highQualityPos;
+  int officialPos;
+
+  int createTime;
+
+  PlaylistHotTag();
+
+  factory PlaylistHotTag.fromJson(Map<String, dynamic> json) =>
+      _$PlaylistHotTagFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PlaylistHotTagToJson(this);
+}
+
+@JsonSerializable()
+class PlaylistHotTagsItem {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  String name;
+
+  bool activity;
+  bool hot;
+
+  int position;
+  int category;
+  int createTime;
+
+  int type;
+
+  PlaylistHotTag playlistTag;
+
+  PlaylistHotTagsItem();
+
+  factory PlaylistHotTagsItem.fromJson(Map<String, dynamic> json) =>
+      _$PlaylistHotTagsItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PlaylistHotTagsItemToJson(this);
+}
+
+@JsonSerializable()
+class PlaylistHotTagsWrap extends ServerStatusBean {
+  List<PlaylistHotTagsItem> tags;
+
+  PlaylistHotTagsWrap();
+
+  factory PlaylistHotTagsWrap.fromJson(Map<String, dynamic> json) =>
+      _$PlaylistHotTagsWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PlaylistHotTagsWrapToJson(this);
+}
+
 const PLAYLIST_CATEGORY = [
   {'name': '云音乐新歌榜', 'id': '3779629'},
   {'name': '云音乐热歌榜', 'id': '3778678'},

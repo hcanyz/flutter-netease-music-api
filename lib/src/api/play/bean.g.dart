@@ -402,6 +402,84 @@ Map<String, dynamic> _$PlaylistCatalogueWrapToJson(
           instance.categories?.map((k, e) => MapEntry(k.toString(), e)),
     };
 
+PlaylistHotTag _$PlaylistHotTagFromJson(Map<String, dynamic> json) {
+  return PlaylistHotTag()
+    ..id = dynamicToString(json['id'])
+    ..name = json['name'] as String
+    ..category = json['category'] as int
+    ..usedCount = json['usedCount'] as int
+    ..type = json['type'] as int
+    ..position = json['position'] as int
+    ..highQuality = json['highQuality'] as int
+    ..highQualityPos = json['highQualityPos'] as int
+    ..officialPos = json['officialPos'] as int
+    ..createTime = json['createTime'] as int;
+}
+
+Map<String, dynamic> _$PlaylistHotTagToJson(PlaylistHotTag instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'category': instance.category,
+      'usedCount': instance.usedCount,
+      'type': instance.type,
+      'position': instance.position,
+      'highQuality': instance.highQuality,
+      'highQualityPos': instance.highQualityPos,
+      'officialPos': instance.officialPos,
+      'createTime': instance.createTime,
+    };
+
+PlaylistHotTagsItem _$PlaylistHotTagsItemFromJson(Map<String, dynamic> json) {
+  return PlaylistHotTagsItem()
+    ..id = dynamicToString(json['id'])
+    ..name = json['name'] as String
+    ..activity = json['activity'] as bool
+    ..hot = json['hot'] as bool
+    ..position = json['position'] as int
+    ..category = json['category'] as int
+    ..createTime = json['createTime'] as int
+    ..type = json['type'] as int
+    ..playlistTag = json['playlistTag'] == null
+        ? null
+        : PlaylistHotTag.fromJson(json['playlistTag'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$PlaylistHotTagsItemToJson(
+        PlaylistHotTagsItem instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'activity': instance.activity,
+      'hot': instance.hot,
+      'position': instance.position,
+      'category': instance.category,
+      'createTime': instance.createTime,
+      'type': instance.type,
+      'playlistTag': instance.playlistTag,
+    };
+
+PlaylistHotTagsWrap _$PlaylistHotTagsWrapFromJson(Map<String, dynamic> json) {
+  return PlaylistHotTagsWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..tags = (json['tags'] as List)
+        ?.map((e) => e == null
+            ? null
+            : PlaylistHotTagsItem.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$PlaylistHotTagsWrapToJson(
+        PlaylistHotTagsWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'tags': instance.tags,
+    };
+
 SinglePlayListWrap _$SinglePlayListWrapFromJson(Map<String, dynamic> json) {
   return SinglePlayListWrap()
     ..code = json['code'] as int
