@@ -179,4 +179,15 @@ mixin ApiPlayList {
       return ArtistsListWrap.fromJson(value.data);
     });
   }
+
+  /// 歌手热门50首歌曲
+  Future<ArtistTopSongList> artistTopSongList(String artistId) {
+    var params = {'id': artistId};
+    return Https.dio
+        .postUri(joinUri('/api/artist/top/song'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return ArtistTopSongList.fromJson(value.data);
+    });
+  }
 }

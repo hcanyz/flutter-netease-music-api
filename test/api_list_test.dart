@@ -15,6 +15,8 @@ void main() {
   const bool doSetUp = true;
 
   const defaultUserId = '3375937';
+  // ~
+  const defaultArtistId = '5770';
 
   setUp(() async {
     if (!doSetUp) return;
@@ -107,6 +109,11 @@ void main() {
 
   test('test artist list ', () async {
     var result = await api.artistList('a'.codeUnitAt(0));
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test artist top song list ', () async {
+    var result = await api.artistTopSongList(defaultArtistId);
     expect(result.code, RET_CODE_OK);
   });
 }

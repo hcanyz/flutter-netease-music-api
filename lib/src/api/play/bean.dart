@@ -179,6 +179,34 @@ class Song {
 }
 
 @JsonSerializable()
+class Song2 {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  String name;
+
+  int pst;
+  int t;
+  double pop;
+  int st;
+
+  String rt;
+
+  int fee;
+  int v;
+  String cf;
+  int dt;
+
+  Privilege privilege;
+
+  Song2();
+
+  factory Song2.fromJson(Map<String, dynamic> json) => _$Song2FromJson(json);
+
+  Map<String, dynamic> toJson() => _$Song2ToJson(this);
+}
+
+@JsonSerializable()
 class PlayItem {
   @JsonKey(fromJson: dynamicToString)
   String id;
@@ -356,4 +384,16 @@ class ArtistsListWrap extends ServerStatusBean {
       _$ArtistsListWrapFromJson(json);
 
   Map<String, dynamic> toJson() => _$ArtistsListWrapToJson(this);
+}
+
+@JsonSerializable()
+class ArtistTopSongList extends ServerStatusBean {
+  List<Song2> songs;
+
+  ArtistTopSongList();
+
+  factory ArtistTopSongList.fromJson(Map<String, dynamic> json) =>
+      _$ArtistTopSongListFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ArtistTopSongListToJson(this);
 }

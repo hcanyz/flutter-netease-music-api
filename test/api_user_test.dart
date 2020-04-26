@@ -16,7 +16,6 @@ void main() {
   const bool doSetUp = true;
 
   const defaultUserId = '3375937';
-
   // ~
   const defaultArtistId = '5770';
 

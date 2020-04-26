@@ -223,6 +223,39 @@ Map<String, dynamic> _$SongToJson(Song instance) => <String, dynamic>{
       'noCopyrightRcmd': instance.noCopyrightRcmd,
     };
 
+Song2 _$Song2FromJson(Map<String, dynamic> json) {
+  return Song2()
+    ..id = dynamicToString(json['id'])
+    ..name = json['name'] as String
+    ..pst = json['pst'] as int
+    ..t = json['t'] as int
+    ..pop = (json['pop'] as num)?.toDouble()
+    ..st = json['st'] as int
+    ..rt = json['rt'] as String
+    ..fee = json['fee'] as int
+    ..v = json['v'] as int
+    ..cf = json['cf'] as String
+    ..dt = json['dt'] as int
+    ..privilege = json['privilege'] == null
+        ? null
+        : Privilege.fromJson(json['privilege'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$Song2ToJson(Song2 instance) => <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'pst': instance.pst,
+      't': instance.t,
+      'pop': instance.pop,
+      'st': instance.st,
+      'rt': instance.rt,
+      'fee': instance.fee,
+      'v': instance.v,
+      'cf': instance.cf,
+      'dt': instance.dt,
+      'privilege': instance.privilege,
+    };
+
 PlayItem _$PlayItemFromJson(Map<String, dynamic> json) {
   return PlayItem()
     ..id = dynamicToString(json['id'])
@@ -410,4 +443,23 @@ Map<String, dynamic> _$ArtistsListWrapToJson(ArtistsListWrap instance) =>
       'message': instance.message,
       'msg': instance.msg,
       'artists': instance.artists,
+    };
+
+ArtistTopSongList _$ArtistTopSongListFromJson(Map<String, dynamic> json) {
+  return ArtistTopSongList()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..songs = (json['songs'] as List)
+        ?.map(
+            (e) => e == null ? null : Song2.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$ArtistTopSongListToJson(ArtistTopSongList instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'songs': instance.songs,
     };
