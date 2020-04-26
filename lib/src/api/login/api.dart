@@ -90,10 +90,10 @@ mixin ApiLogin {
   /// 发送手机验证码
   /// [ctcode] 国家区号,默认86即中国
   Future<ServerStatusBean> captchaSend(String phone, {String ctcode = '86'}) {
+    var params = {'ctcode': ctcode, 'cellphone': phone};
     return Https.dio
         .postUri(joinUri('/weapi/sms/captcha/sent'),
-            data: {'ctcode': ctcode, 'cellphone': phone},
-            options: joinOptions())
+            data: params, options: joinOptions())
         .then((Response value) {
       return ServerStatusBean.fromJson(value.data);
     });
@@ -104,10 +104,10 @@ mixin ApiLogin {
   /// [captcha] 获取到的验证码
   Future<ServerStatusBean> captchaVerify(String phone, String captcha,
       {String ctcode = '86'}) {
+    var params = {'ctcode': ctcode, 'cellphone': phone, 'captcha': captcha};
     return Https.dio
         .postUri(joinUri('/weapi/sms/captcha/verify'),
-            data: {'ctcode': ctcode, 'cellphone': phone, 'captcha': captcha},
-            options: joinOptions())
+            data: params, options: joinOptions())
         .then((Response value) {
       return ServerStatusBean.fromJson(value.data);
     });
@@ -119,15 +119,15 @@ mixin ApiLogin {
   Future<ServerStatusBean> registerCellPhone(
       String phone, String password, String captcha,
       {String nickname = ''}) {
+    var params = {
+      'phone': phone,
+      'password': _encryptPassword(password),
+      'captcha': captcha,
+      'nickname': nickname
+    };
     return Https.dio
         .postUri(joinUri('/weapi/register/cellphone'),
-            data: {
-              'phone': phone,
-              'password': _encryptPassword(password),
-              'captcha': captcha,
-              'nickname': nickname
-            },
-            options: joinOptions())
+            data: params, options: joinOptions())
         .then((Response value) {
       return ServerStatusBean.fromJson(value.data);
     });
@@ -137,9 +137,10 @@ mixin ApiLogin {
   /// [countryCode] 国家区号
   Future<CellPhoneCheckExistenceRet> checkCellPhoneExistence(String phone,
       {String countrycode = ''}) {
+    var params = {'cellphone': phone, 'countrycode': countrycode};
     return Https.dio
         .postUri(joinUri('/eapi/cellphone/existence/check'),
-            data: {'cellphone': phone, 'countrycode': countrycode},
+            data: params,
             options: joinOptions(
                 encryptType: EncryptType.EApi,
                 eApiUrl: '/api/cellphone/existence/check'))
@@ -151,9 +152,10 @@ mixin ApiLogin {
   /// 刚注册的账号(需登录),调用此接口 ,可初始化昵称
   /// [nickname] 必须
   Future<ServerStatusBean> initNickname(String nickname) {
+    var params = {'nickname': nickname};
     return Https.dio
         .postUri(joinUri('/eapi/activate/initProfile'),
-            data: {'nickname': nickname},
+            data: params,
             options: joinOptions(
                 encryptType: EncryptType.EApi,
                 eApiUrl: '/api/activate/initProfile'))
@@ -169,15 +171,15 @@ mixin ApiLogin {
   Future<ServerStatusBean> rebindCellPhone(
       String phone, String captcha, String oldcaptcha,
       {String ctcode = '86'}) {
+    var params = {
+      'phone': phone,
+      'captcha': captcha,
+      'oldcaptcha': oldcaptcha,
+      'ctcode': ctcode
+    };
     return Https.dio
         .postUri(joinUri('/api/user/replaceCellphone'),
-            data: {
-              'phone': phone,
-              'captcha': captcha,
-              'oldcaptcha': oldcaptcha,
-              'ctcode': ctcode
-            },
-            options: joinOptions())
+            data: params, options: joinOptions())
         .then((Response value) {
       return ServerStatusBean.fromJson(value.data);
     });

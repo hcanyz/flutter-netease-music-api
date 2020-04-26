@@ -8,9 +8,9 @@ import 'bean.dart';
 mixin ApiPlayList {
   /// 获取用户歌单
   /// !需要登录
-  Future<MultiPlayListWrap2> userPlayList(String userId, int page,
-      {int limit = 30}) {
-    var params = {'uid': userId, 'limit': limit, 'offset': page * limit};
+  Future<MultiPlayListWrap2> userPlayList(String userId,
+      {int offset = 0, int limit = 30}) {
+    var params = {'uid': userId, 'limit': limit, 'offset': offset};
     return Https.dio
         .postUri(joinUri('/weapi/user/playlist'),
             data: params, options: joinOptions())
@@ -99,8 +99,9 @@ mixin ApiPlayList {
     });
   }
 
-  Future<MultiPlayListWrap> highqualityPlayList(int page, {int limit = 30}) {
-    var params = {'limit': limit, 'offset': page * limit};
+  Future<MultiPlayListWrap> highqualityPlayList(
+      {int offset = 0, int limit = 30}) {
+    var params = {'limit': limit, 'offset': offset};
     return Https.dio
         .postUri(joinUri('/weapi/playlist/highquality/list'),
             data: params, options: joinOptions())
@@ -109,9 +110,9 @@ mixin ApiPlayList {
     });
   }
 
-  Future<SinglePlayListWrap> categoryPlayList(String categoryId, int page,
-      {int limit = 30}) {
-    var params = {'id': categoryId, 'limit': limit, 'offset': page * limit};
+  Future<SinglePlayListWrap> categoryPlayList(String categoryId,
+      {int offset = 0, int limit = 30}) {
+    var params = {'id': categoryId, 'limit': limit, 'offset': offset};
     return Https.dio
         .postUri(joinUri('/weapi/v3/playlist/detail'),
             data: params, options: joinOptions())
@@ -120,8 +121,9 @@ mixin ApiPlayList {
     });
   }
 
-  Future<RecommendSongListWrap> recommendSongList(int page, {int limit = 30}) {
-    var params = {'limit': limit, 'offset': page * limit};
+  Future<RecommendSongListWrap> recommendSongList(
+      {int offset = 0, int limit = 30}) {
+    var params = {'limit': limit, 'offset': offset};
     return Https.dio
         .postUri(joinUri('/weapi/v1/discovery/recommend/songs'),
             data: params, options: joinOptions())
@@ -156,15 +158,19 @@ mixin ApiPlayList {
   /// [type]   -1:全部 1:男歌手 2:女歌手 3:乐队
   /// [area]   -1:全部 7:华语 96:欧美 8:日本 16:韩国 0:其他
   /// [initial] 取值 a-z/A-Z
-  Future<ArtistsListWrap> artistList(int page, int initial,
-      {int limit = 30, bool total = true, int type = 1, int area = -1}) {
+  Future<ArtistsListWrap> artistList(int initial,
+      {int offset = 0,
+      int limit = 30,
+      bool total = true,
+      int type = 1,
+      int area = -1}) {
     var params = {
       'initial': initial,
       'type': type,
       'area': area,
       'total': total,
       'limit': limit,
-      'offset': page * limit
+      'offset': offset
     };
     return Https.dio
         .postUri(joinUri('/api/v1/artist/list'),

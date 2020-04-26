@@ -38,18 +38,18 @@ mixin ApiUser {
   Future<ServerStatusBean> userUpdateProfile(int gender, int birthday,
       String nickname, int province, int city, String signature,
       {String avatarImgId = '0'}) {
+    var params = {
+      'avatarImgId': avatarImgId,
+      'gender': gender,
+      'birthday': birthday,
+      'nickname': nickname,
+      'province': province,
+      'city': city,
+      'signature': signature
+    };
     return Https.dio
         .postUri(joinUri('/weapi/user/profile/update'),
-            data: {
-              'avatarImgId': avatarImgId,
-              'gender': gender,
-              'birthday': birthday,
-              'nickname': nickname,
-              'province': province,
-              'city': city,
-              'signature': signature
-            },
-            options: joinOptions())
+            data: params, options: joinOptions())
         .then((Response value) {
       return ServerStatusBean.fromJson(value.data);
     });
@@ -57,9 +57,9 @@ mixin ApiUser {
 
   /// 获取用户关注列表
   /// !需要登录
-  Future<UserFollowListWrap> userFollowList(String userId, int page,
-      {int limit = 30, bool order = true}) {
-    var params = {'limit': limit, 'offset': page * limit};
+  Future<UserFollowListWrap> userFollowList(String userId,
+      {int offset = 0, int limit = 30, bool order = true}) {
+    var params = {'limit': limit, 'offset': offset};
     return Https.dio
         .postUri(joinUri('/weapi/user/getfollows/$userId'),
             data: params, options: joinOptions())
@@ -73,9 +73,10 @@ mixin ApiUser {
   /// [lastTime] 传入上一次返回结果的 lasttime,将会返回下一页的数据,默认-1
   Future<UserFollowedListWrap> userFollowedList(String userId,
       {int limit = 30, int lastTime = -1}) {
+    var params = {'userId': userId, 'time': lastTime, 'limit': limit};
     return Https.dio
         .postUri(joinUri('/eapi/user/getfolloweds/$userId'),
-            data: {'userId': userId, 'time': lastTime, 'limit': limit},
+            data: params,
             options: joinOptions(
                 encryptType: EncryptType.EApi,
                 eApiUrl: '/api/user/getfolloweds'))
@@ -113,14 +114,14 @@ mixin ApiUser {
   /// 获取用户播放记录
   /// !需要登录
   Future<PlayRecordListWrap> userPlayRecordList(String userId, bool weekData) {
+    var params = {
+      'uid': userId,
+      // 1: 最近一周, 0: 所有时间
+      'type': weekData ? '1' : '0'
+    };
     return Https.dio
         .postUri(joinUri('/weapi/v1/play/record'),
-            data: {
-              'uid': userId,
-              // 1: 最近一周, 0: 所有时间
-              'type': weekData ? '1' : '0'
-            },
-            options: joinOptions(cookies: {'os': 'pc'}))
+            data: params, options: joinOptions(cookies: {'os': 'pc'}))
         .then((Response value) {
       return PlayRecordListWrap.fromJson(value.data);
     });

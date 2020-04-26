@@ -69,12 +69,12 @@ void main() {
     expect(result.code, RET_CODE_OK);
     expect(result.events, isNotEmpty);
 
-    var result2 = await api.eventCommentList(result.events[0].info.threadId, 0);
+    var result2 = await api.eventCommentList(result.events[0].info.threadId);
     expect(result2.code, RET_CODE_OK);
   });
 
   test('test topic hot list', () async {
-    var result = await api.topicHotList(0);
+    var result = await api.topicHotList();
     expect(result.code, RET_CODE_OK);
   });
 

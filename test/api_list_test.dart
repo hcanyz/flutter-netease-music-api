@@ -34,14 +34,14 @@ void main() {
 
   test('test user playlist', () async {
     var result = await api.userPlayList(
-        NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId, 0);
+        NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
     expect(result.playlist, isNotNull);
   });
 
   test('test user update playlist info', () async {
     var result = await api.userPlayList(
-        NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId, 0);
+        NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId);
     expect(result.playlist, isNotNull);
     expect(result.playlist, isNotEmpty);
 
@@ -76,8 +76,8 @@ void main() {
   });
 
   test('test user dj list', () async {
-    var result = await api.userDjList(
-        NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId, 0);
+    var result = await api
+        .userDjList(NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 
@@ -86,17 +86,17 @@ void main() {
   });
 
   test('test highquality playlist', () async {
-    var result = await api.highqualityPlayList(0);
+    var result = await api.highqualityPlayList();
     expect(result.code, RET_CODE_OK);
   });
 
   test('test category playlist', () async {
-    var result = await api.categoryPlayList(PLAYLIST_CATEGORY[0]['id'], 0);
+    var result = await api.categoryPlayList(PLAYLIST_CATEGORY[0]['id']);
     expect(result.code, RET_CODE_OK);
   });
 
   test('test recommend song list', () async {
-    var result = await api.recommendSongList(0);
+    var result = await api.recommendSongList();
     expect(result.code, RET_CODE_OK);
   });
 
@@ -106,7 +106,7 @@ void main() {
   });
 
   test('test artist list ', () async {
-    var result = await api.artistList(0, 'a'.codeUnitAt(0));
+    var result = await api.artistList('a'.codeUnitAt(0));
     expect(result.code, RET_CODE_OK);
   });
 }

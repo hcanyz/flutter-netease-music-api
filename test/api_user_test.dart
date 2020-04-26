@@ -65,7 +65,7 @@ void main() {
   });
 
   test('test user follow list', () async {
-    var result = await api.userFollowList(defaultUserId, 0);
+    var result = await api.userFollowList(defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 
