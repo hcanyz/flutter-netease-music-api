@@ -279,6 +279,41 @@ class MultiPlayListWrap2 extends ServerStatusBean {
   Map<String, dynamic> toJson() => _$MultiPlayListWrap2ToJson(this);
 }
 
+@JsonSerializable()
+class PlaylistCatalogueItem {
+  String name;
+  int resourceCount;
+  String imgUrl;
+
+  int type;
+  int category;
+  int resourceType;
+  bool hot;
+  bool activity;
+
+  PlaylistCatalogueItem();
+
+  factory PlaylistCatalogueItem.fromJson(Map<String, dynamic> json) =>
+      _$PlaylistCatalogueItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PlaylistCatalogueItemToJson(this);
+}
+
+@JsonSerializable()
+class PlaylistCatalogueWrap extends ServerStatusBean {
+  PlaylistCatalogueItem all;
+  List<PlaylistCatalogueItem> sub;
+
+  Map<int, String> categories;
+
+  PlaylistCatalogueWrap();
+
+  factory PlaylistCatalogueWrap.fromJson(Map<String, dynamic> json) =>
+      _$PlaylistCatalogueWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PlaylistCatalogueWrapToJson(this);
+}
+
 const PLAYLIST_CATEGORY = [
   {'name': '云音乐新歌榜', 'id': '3779629'},
   {'name': '云音乐热歌榜', 'id': '3778678'},

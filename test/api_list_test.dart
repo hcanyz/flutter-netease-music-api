@@ -83,6 +83,11 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test home playlist catalogue', () async {
+    var result = await api.playlistCatalogue();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test home bannerList', () async {
     await api.homeBannerList();
   });

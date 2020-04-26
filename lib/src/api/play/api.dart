@@ -89,11 +89,19 @@ mixin ApiPlayList {
     });
   }
 
+  Future<PlaylistCatalogueWrap> playlistCatalogue() {
+    return Https.dio
+        .postUri(joinUri('/weapi/playlist/catalogue'),
+            data: {}, options: joinOptions())
+        .then((Response value) {
+      return PlaylistCatalogueWrap.fromJson(value.data);
+    });
+  }
+
   Future<ServerStatusBean> homeBannerList() {
     return Https.dio
         .postUri(joinUri('/api/v2/banner/get'),
-            data: {'clientType': 'pc'},
-            options: joinOptions(hookRequestDate: true))
+            data: {'clientType': 'pc'}, options: joinOptions())
         .then((Response value) {
       return ServerStatusBean.fromJson(value.data);
     });

@@ -345,6 +345,63 @@ Map<String, dynamic> _$MultiPlayListWrap2ToJson(MultiPlayListWrap2 instance) =>
       'playlist': instance.playlist,
     };
 
+PlaylistCatalogueItem _$PlaylistCatalogueItemFromJson(
+    Map<String, dynamic> json) {
+  return PlaylistCatalogueItem()
+    ..name = json['name'] as String
+    ..resourceCount = json['resourceCount'] as int
+    ..imgUrl = json['imgUrl'] as String
+    ..type = json['type'] as int
+    ..category = json['category'] as int
+    ..resourceType = json['resourceType'] as int
+    ..hot = json['hot'] as bool
+    ..activity = json['activity'] as bool;
+}
+
+Map<String, dynamic> _$PlaylistCatalogueItemToJson(
+        PlaylistCatalogueItem instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'resourceCount': instance.resourceCount,
+      'imgUrl': instance.imgUrl,
+      'type': instance.type,
+      'category': instance.category,
+      'resourceType': instance.resourceType,
+      'hot': instance.hot,
+      'activity': instance.activity,
+    };
+
+PlaylistCatalogueWrap _$PlaylistCatalogueWrapFromJson(
+    Map<String, dynamic> json) {
+  return PlaylistCatalogueWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..all = json['all'] == null
+        ? null
+        : PlaylistCatalogueItem.fromJson(json['all'] as Map<String, dynamic>)
+    ..sub = (json['sub'] as List)
+        ?.map((e) => e == null
+            ? null
+            : PlaylistCatalogueItem.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..categories = (json['categories'] as Map<String, dynamic>)?.map(
+      (k, e) => MapEntry(int.parse(k), e as String),
+    );
+}
+
+Map<String, dynamic> _$PlaylistCatalogueWrapToJson(
+        PlaylistCatalogueWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'all': instance.all,
+      'sub': instance.sub,
+      'categories':
+          instance.categories?.map((k, e) => MapEntry(k.toString(), e)),
+    };
+
 SinglePlayListWrap _$SinglePlayListWrapFromJson(Map<String, dynamic> json) {
   return SinglePlayListWrap()
     ..code = json['code'] as int
