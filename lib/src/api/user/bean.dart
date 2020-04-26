@@ -130,6 +130,70 @@ class UserFollowedListWrap extends ServerStatusBean {
 }
 
 @JsonSerializable()
+class ArtistsSubListWrap extends ServerStatusListBean {
+  List<Artists> data;
+
+  ArtistsSubListWrap();
+
+  factory ArtistsSubListWrap.fromJson(Map<String, dynamic> json) =>
+      _$ArtistsSubListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ArtistsSubListWrapToJson(this);
+}
+
+@JsonSerializable()
+class MvSubItemCreator {
+  @JsonKey(fromJson: dynamicToString)
+  String userId;
+
+  String userName;
+
+  MvSubItemCreator();
+
+  factory MvSubItemCreator.fromJson(Map<String, dynamic> json) =>
+      _$MvSubItemCreatorFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MvSubItemCreatorToJson(this);
+}
+
+@JsonSerializable()
+class MvSubItem {
+  int type;
+
+  String title;
+  int durationms;
+
+  int playTime;
+
+  String vid;
+  String coverUrl;
+
+  String aliaName;
+  String transName;
+
+  List<MvSubItemCreator> creator;
+
+  MvSubItem();
+
+  factory MvSubItem.fromJson(Map<String, dynamic> json) =>
+      _$MvSubItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MvSubItemToJson(this);
+}
+
+@JsonSerializable()
+class MvSubListWrap extends ServerStatusListBean {
+  List<MvSubItem> data;
+
+  MvSubListWrap();
+
+  factory MvSubListWrap.fromJson(Map<String, dynamic> json) =>
+      _$MvSubListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MvSubListWrapToJson(this);
+}
+
+@JsonSerializable()
 class PlayRecordItem {
   int playCount;
   int score;

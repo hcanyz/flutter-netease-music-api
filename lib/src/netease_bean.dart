@@ -12,7 +12,7 @@ const int RET_CODE_OK_FOLLOW = 201;
 const int RET_CODE_RISK_WARNING = 250;
 const int RET_CODE_CHEATING = -460;
 const int RET_CODE_NEED_LOGIN = 301;
-const int RET_CODE_ILLEGAL_ARGUMENT = 400;
+const int RET_CODE_ILLEGAL = 400;
 const int RET_CODE_ILLEGAL_REQUEST = 403;
 const int RET_CODE_REQUEST_NOT_FOUNT = 404;
 //用户已初始化
@@ -38,7 +38,7 @@ RetCode valueOfCode(int code) {
       return RetCode.Ok;
     case RET_CODE_NEED_LOGIN:
       return RetCode.NeedLogin;
-    case RET_CODE_ILLEGAL_ARGUMENT:
+    case RET_CODE_ILLEGAL:
       return RetCode.IllegalArgument;
     case RET_CODE_ILLEGAL_REQUEST:
       return RetCode.IllegalRequest;

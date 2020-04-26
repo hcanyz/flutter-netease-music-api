@@ -111,6 +111,57 @@ mixin ApiUser {
     });
   }
 
+  /// 收藏的歌手列表
+  /// !需要登录
+  Future<ArtistsSubListWrap> artistSubList(
+      {bool total = true, int offset = 0, int limit = 30}) {
+    var params = {'total': total, 'limit': limit, 'offset': offset};
+    return Https.dio
+        .postUri(joinUri('/weapi/artist/sublist'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return ArtistsSubListWrap.fromJson(value.data);
+    });
+  }
+
+  /// 收藏视频
+  /// !需要登录
+  Future<ServerStatusBean> videoSub(String videoId, bool sub) {
+    var params = {'id': videoId};
+    return Https.dio
+        .postUri(joinUri('/weapi/cloudvideo/video/${sub ? 'sub' : 'unsub'}'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
+  }
+
+  /// 收藏/取消收藏 MV
+  /// !需要登录
+  Future<ServerStatusBean> mvSub(String mvId, bool sub) {
+    // 批量?
+    var params = {'mvId': mvId, 'mvIds': '[$mvId]'};
+    return Https.dio
+        .postUri(joinUri('/weapi/mv/${sub ? 'sub' : 'unsub'}'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
+  }
+
+  /// 收藏的 MV 列表
+  /// !需要登录
+  Future<MvSubListWrap> mvSubList(
+      {bool total = true, int offset = 0, int limit = 30}) {
+    var params = {'total': total, 'limit': limit, 'offset': offset};
+    return Https.dio
+        .postUri(joinUri('/weapi/cloudvideo/allvideo/sublist'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return MvSubListWrap.fromJson(value.data);
+    });
+  }
+
   /// 获取用户播放记录
   /// !需要登录
   Future<PlayRecordListWrap> userPlayRecordList(String userId, bool weekData) {

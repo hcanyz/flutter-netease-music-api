@@ -63,7 +63,7 @@ void main() {
         '偶尔会发笑_${Random().nextInt(10)}',
         ['孤独']);
 
-    expect(result2.code, anyOf(RET_CODE_OK, RET_CODE_ILLEGAL_ARGUMENT));
+    expect(result2.code, anyOf(RET_CODE_OK, RET_CODE_ILLEGAL));
 
     var result3 =
         await api.updateUserPlayListName(id, '偶尔会发笑_${Random().nextInt(10)}');

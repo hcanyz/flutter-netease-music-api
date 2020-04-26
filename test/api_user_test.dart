@@ -83,7 +83,7 @@ void main() {
     expect(result2.code, anyOf(RET_CODE_OK_FOLLOW, RET_CODE_OK));
   });
 
-  test('test user artist Sub or unSub', () async {
+  test('test user artist sub or unSub', () async {
     var result = await api.artistSub(defaultArtistId, false);
     expect(result.code, anyOf(RET_CODE_OK_FOLLOW, RET_CODE_OK));
 
@@ -91,6 +91,36 @@ void main() {
 
     var result2 = await api.artistSub(defaultArtistId, true);
     expect(result2.code, anyOf(RET_CODE_OK_FOLLOW, RET_CODE_OK));
+  });
+
+  test('test user artist sub list', () async {
+    var result = await api.artistSubList();
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test user video sub or unSub', () async {
+    var result = await api.videoSub('84107D4616B72B929C8AEB7D1E6CC904', false);
+    expect(result.code, anyOf(RET_CODE_ILLEGAL, RET_CODE_OK));
+
+    sleep(Duration(seconds: 2));
+
+    var result2 = await api.videoSub('84107D4616B72B929C8AEB7D1E6CC904', true);
+    expect(result2.code, anyOf(RET_CODE_ILLEGAL, RET_CODE_OK));
+  });
+
+  test('test user mv sub or unSub', () async {
+    var result = await api.mvSub('5300126', false);
+    expect(result.code, anyOf(RET_CODE_ILLEGAL, RET_CODE_OK));
+
+    sleep(Duration(seconds: 2));
+
+    var result2 = await api.mvSub('5300126', true);
+    expect(result2.code, anyOf(RET_CODE_ILLEGAL, RET_CODE_OK));
+  });
+
+  test('test user mv sub list', () async {
+    var result = await api.mvSubList();
+    expect(result.code, RET_CODE_OK);
   });
 
   test('test user play record list', () async {

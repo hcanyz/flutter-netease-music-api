@@ -206,6 +206,91 @@ Map<String, dynamic> _$UserFollowedListWrapToJson(
       'followeds': instance.followeds,
     };
 
+ArtistsSubListWrap _$ArtistsSubListWrapFromJson(Map<String, dynamic> json) {
+  return ArtistsSubListWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..more = json['more'] as bool
+    ..count = json['count'] as int
+    ..data = (json['data'] as List)
+        ?.map((e) =>
+            e == null ? null : Artists.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$ArtistsSubListWrapToJson(ArtistsSubListWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'more': instance.more,
+      'count': instance.count,
+      'data': instance.data,
+    };
+
+MvSubItemCreator _$MvSubItemCreatorFromJson(Map<String, dynamic> json) {
+  return MvSubItemCreator()
+    ..userId = dynamicToString(json['userId'])
+    ..userName = json['userName'] as String;
+}
+
+Map<String, dynamic> _$MvSubItemCreatorToJson(MvSubItemCreator instance) =>
+    <String, dynamic>{
+      'userId': instance.userId,
+      'userName': instance.userName,
+    };
+
+MvSubItem _$MvSubItemFromJson(Map<String, dynamic> json) {
+  return MvSubItem()
+    ..type = json['type'] as int
+    ..title = json['title'] as String
+    ..durationms = json['durationms'] as int
+    ..playTime = json['playTime'] as int
+    ..vid = json['vid'] as String
+    ..aliaName = json['aliaName'] as String
+    ..transName = json['transName'] as String
+    ..creator = (json['creator'] as List)
+        ?.map((e) => e == null
+            ? null
+            : MvSubItemCreator.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$MvSubItemToJson(MvSubItem instance) => <String, dynamic>{
+      'type': instance.type,
+      'title': instance.title,
+      'durationms': instance.durationms,
+      'playTime': instance.playTime,
+      'vid': instance.vid,
+      'aliaName': instance.aliaName,
+      'transName': instance.transName,
+      'creator': instance.creator,
+    };
+
+MvSubListWrap _$MvSubListWrapFromJson(Map<String, dynamic> json) {
+  return MvSubListWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..more = json['more'] as bool
+    ..count = json['count'] as int
+    ..data = (json['data'] as List)
+        ?.map((e) =>
+            e == null ? null : MvSubItem.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$MvSubListWrapToJson(MvSubListWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'more': instance.more,
+      'count': instance.count,
+      'data': instance.data,
+    };
+
 PlayRecordItem _$PlayRecordItemFromJson(Map<String, dynamic> json) {
   return PlayRecordItem()
     ..playCount = json['playCount'] as int
