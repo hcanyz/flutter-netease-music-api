@@ -17,6 +17,9 @@ void main() {
 
   const defaultUserId = '3375937';
 
+  // ~
+  const defaultArtistId = '5770';
+
   setUp(() async {
     if (!doSetUp) return;
     try {
@@ -78,6 +81,16 @@ void main() {
     sleep(Duration(seconds: 2));
 
     var result2 = await api.userFollow(defaultUserId, true);
+    expect(result2.code, anyOf(RET_CODE_OK_FOLLOW, RET_CODE_OK));
+  });
+
+  test('test user artist Sub or unSub', () async {
+    var result = await api.artistSub(defaultArtistId, false);
+    expect(result.code, anyOf(RET_CODE_OK_FOLLOW, RET_CODE_OK));
+
+    sleep(Duration(seconds: 2));
+
+    var result2 = await api.artistSub(defaultArtistId, true);
     expect(result2.code, anyOf(RET_CODE_OK_FOLLOW, RET_CODE_OK));
   });
 

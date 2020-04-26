@@ -97,6 +97,19 @@ mixin ApiUser {
     });
   }
 
+  /// 收藏/取消收藏歌手
+  /// !需要登录
+  Future<ServerStatusBean> artistSub(String artistId, bool sub) {
+    // 批量?
+    var params = {'artistId': artistId, 'artistIds': '[$artistId]'};
+    return Https.dio
+        .postUri(joinUri('/weapi/artist/${sub ? 'sub' : 'unsub'}'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
+  }
+
   /// 获取用户播放记录
   /// !需要登录
   Future<PlayRecordListWrap> userPlayRecordList(String userId, bool weekData) {
