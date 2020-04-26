@@ -248,6 +248,7 @@ MvSubItem _$MvSubItemFromJson(Map<String, dynamic> json) {
     ..durationms = json['durationms'] as int
     ..playTime = json['playTime'] as int
     ..vid = json['vid'] as String
+    ..coverUrl = json['coverUrl'] as String
     ..aliaName = json['aliaName'] as String
     ..transName = json['transName'] as String
     ..creator = (json['creator'] as List)
@@ -263,6 +264,7 @@ Map<String, dynamic> _$MvSubItemToJson(MvSubItem instance) => <String, dynamic>{
       'durationms': instance.durationms,
       'playTime': instance.playTime,
       'vid': instance.vid,
+      'coverUrl': instance.coverUrl,
       'aliaName': instance.aliaName,
       'transName': instance.transName,
       'creator': instance.creator,
