@@ -89,6 +89,7 @@ mixin ApiPlayList {
     });
   }
 
+  /// 歌单分类
   Future<PlaylistCatalogueWrap> playlistCatalogue() {
     return Https.dio
         .postUri(joinUri('/weapi/playlist/catalogue'),
@@ -98,12 +99,38 @@ mixin ApiPlayList {
     });
   }
 
+  /// 热门歌单tags
   Future<PlaylistHotTagsWrap> playlistHotTags() {
     return Https.dio
         .postUri(joinUri('/weapi/playlist/hottags'),
             data: {}, options: joinOptions())
         .then((Response value) {
       return PlaylistHotTagsWrap.fromJson(value.data);
+    });
+  }
+
+  /// 分类歌单歌曲列表
+  /// [category] tag, 比如 " 华语 "、" 古风 " 、" 欧美 "、" 流行 ", 默认为 "全部",可从歌单分类接口获取[playlistCatalogue]
+  /// [order] 'new':最新  'hot':最热 默认为 'hot'
+  Future<MultiPlayListWrap> categorySongList({
+    String category = '全部',
+    String order = 'hot',
+    int offset = 0,
+    int limit = 30,
+    bool total = true,
+  }) {
+    var params = {
+      'cat': category,
+      'order': order,
+      'total': total,
+      'limit': limit,
+      'offset': offset
+    };
+    return Https.dio
+        .postUri(joinUri('/weapi/playlist/list'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return MultiPlayListWrap.fromJson(value.data);
     });
   }
 

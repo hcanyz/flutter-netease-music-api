@@ -83,13 +83,18 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test home playlist catalogue', () async {
+  test('test playlist catalogue', () async {
     var result = await api.playlistCatalogue();
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test home playlist hot tags', () async {
+  test('test playlist hot tags', () async {
     var result = await api.playlistHotTags();
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test category song list', () async {
+    var result = await api.categorySongList();
     expect(result.code, RET_CODE_OK);
   });
 
