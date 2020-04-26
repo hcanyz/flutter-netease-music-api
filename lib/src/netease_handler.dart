@@ -44,18 +44,6 @@ void neteaseInterceptor(RequestOptions option) {
           _handleLinuxForward(option);
           break;
         case EncryptType.WeApi:
-          //weApi方式请求body里面需要带上csrfToken字段，这个是登录请求set-cookie返回的
-          String csrfToken = '';
-          try {
-            csrfToken = RegExp(r'_csrf=([^(;|$)]+)')
-                .firstMatch(option.headers[HttpHeaders.cookieHeader] ?? '')
-                .group(1);
-          } catch (e) {}
-          if (csrfToken.isNotEmpty) {
-            // map可能是<String,Int>类型的，默认转换成<String,dynamic>
-            option.data = Map.from(option.data);
-            option.data['csrf_token'] = csrfToken;
-          }
           _handleWeApi(option);
           break;
         case EncryptType.EApi:
@@ -106,7 +94,21 @@ const _publicKeyWeApi =
 /// params: base64(aes_cbc(16_random_key, base64(aes_cbc(_presetKeyWeApi,body))))
 /// encSecKey: hex(rsa_nopadding(_publicKeyWeApi,array_reversed(16_random_key)))
 void _handleWeApi(RequestOptions option) {
-  option.contentType = 'application/x-www-form-urlencoded';
+  var oldUriStr = option.uri.toString();
+  option.path = oldUriStr.replaceAll(RegExp(r'\w*api'), 'weapi');
+
+  //weApi方式请求body里面需要带上csrfToken字段，这个是登录请求set-cookie返回的
+  String csrfToken = '';
+  try {
+    csrfToken = RegExp(r'_csrf=([^(;|$)]+)')
+        .firstMatch(option.headers[HttpHeaders.cookieHeader] ?? '')
+        .group(1);
+  } catch (e) {}
+  if (csrfToken.isNotEmpty) {
+    // map可能是<String,Int>类型的，默认转换成<String,dynamic>
+    option.data = Map.from(option.data);
+    option.data['csrf_token'] = csrfToken;
+  }
 
   String body = jsonEncode(option.data);
 
@@ -141,6 +143,9 @@ void _handleWeApi(RequestOptions option) {
 const _KeyEApi = 'e82ckenh8dichen8';
 
 void _handleEApi(RequestOptions option, List<Cookie> cookies) {
+  var oldUriStr = option.uri.toString();
+  option.path = oldUriStr.replaceAll(RegExp(r'\w*api'), 'eapi');
+
   var header = {};
   if (cookies != null) {
     Map<String, String> cookiesMap =
@@ -172,9 +177,6 @@ void _handleEApi(RequestOptions option, List<Cookie> cookies) {
   // map可能是<String,Int>类型的，默认转换成<String,dynamic>
   option.data = Map.from(option.data);
   option.data['header'] = header;
-
-  var oldUriStr = option.uri.toString();
-  option.path = oldUriStr.replaceAll(RegExp(r'\w*api'), 'eapi');
 
   var url = option.extra['eApiUrl'];
   var body = jsonEncode(option.data);
