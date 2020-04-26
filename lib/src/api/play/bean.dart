@@ -60,16 +60,22 @@ class Privilege {
 class Artists {
   @JsonKey(fromJson: dynamicToString)
   String id;
+  @JsonKey(fromJson: dynamicToString)
+  String accountId;
 
   String name;
 
-  //TODO
   String picUrl;
 
   int img1v1Id;
   int albumSize;
   int musicSize;
   int topicPerson;
+
+  String trans;
+  String briefDesc;
+
+  bool followed;
 
   Artists();
 
@@ -91,7 +97,6 @@ class Album {
 
   int size;
 
-  //TODO
   String picUrl;
 
   String tags;
@@ -339,4 +344,16 @@ class PlaymodeIntelligenceListWrap extends ServerStatusBean {
       _$PlaymodeIntelligenceListWrapFromJson(json);
 
   Map<String, dynamic> toJson() => _$PlaymodeIntelligenceListWrapToJson(this);
+}
+
+@JsonSerializable()
+class ArtistsListWrap extends ServerStatusBean {
+  List<Artists> artists;
+
+  ArtistsListWrap();
+
+  factory ArtistsListWrap.fromJson(Map<String, dynamic> json) =>
+      _$ArtistsListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ArtistsListWrapToJson(this);
 }

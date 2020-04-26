@@ -130,6 +130,10 @@ mixin ApiPlayList {
     });
   }
 
+  /// 心动模式/智能播放
+  /// [songId]  歌曲 id
+  /// [playlistId]  歌单 id
+  /// [startMusicId]  要开始播放的歌曲的 id
   Future<PlaymodeIntelligenceListWrap> playmodeIntelligenceList(
       String songId, String playlistId,
       {String startMusicId, int count = 1}) {
@@ -145,6 +149,28 @@ mixin ApiPlayList {
             data: params, options: joinOptions())
         .then((Response value) {
       return PlaymodeIntelligenceListWrap.fromJson(value.data);
+    });
+  }
+
+  /// 分类 歌手列表
+  /// [type]   -1:全部 1:男歌手 2:女歌手 3:乐队
+  /// [area]   -1:全部 7:华语 96:欧美 8:日本 16:韩国 0:其他
+  /// [initial] 取值 a-z/A-Z
+  Future<ArtistsListWrap> artistList(int page, int initial,
+      {int limit = 30, bool total = true, int type = 1, int area = -1}) {
+    var params = {
+      'initial': initial,
+      'type': type,
+      'area': area,
+      'total': total,
+      'limit': limit,
+      'offset': page * limit
+    };
+    return Https.dio
+        .postUri(joinUri('/api/v1/artist/list'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return ArtistsListWrap.fromJson(value.data);
     });
   }
 }

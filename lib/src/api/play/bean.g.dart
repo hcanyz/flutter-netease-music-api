@@ -71,22 +71,30 @@ Map<String, dynamic> _$PrivilegeToJson(Privilege instance) => <String, dynamic>{
 Artists _$ArtistsFromJson(Map<String, dynamic> json) {
   return Artists()
     ..id = dynamicToString(json['id'])
+    ..accountId = dynamicToString(json['accountId'])
     ..name = json['name'] as String
     ..picUrl = json['picUrl'] as String
     ..img1v1Id = json['img1v1Id'] as int
     ..albumSize = json['albumSize'] as int
     ..musicSize = json['musicSize'] as int
-    ..topicPerson = json['topicPerson'] as int;
+    ..topicPerson = json['topicPerson'] as int
+    ..trans = json['trans'] as String
+    ..briefDesc = json['briefDesc'] as String
+    ..followed = json['followed'] as bool;
 }
 
 Map<String, dynamic> _$ArtistsToJson(Artists instance) => <String, dynamic>{
       'id': instance.id,
+      'accountId': instance.accountId,
       'name': instance.name,
       'picUrl': instance.picUrl,
       'img1v1Id': instance.img1v1Id,
       'albumSize': instance.albumSize,
       'musicSize': instance.musicSize,
       'topicPerson': instance.topicPerson,
+      'trans': instance.trans,
+      'briefDesc': instance.briefDesc,
+      'followed': instance.followed,
     };
 
 Album _$AlbumFromJson(Map<String, dynamic> json) {
@@ -383,4 +391,23 @@ Map<String, dynamic> _$PlaymodeIntelligenceListWrapToJson(
       'message': instance.message,
       'msg': instance.msg,
       'data': instance.data,
+    };
+
+ArtistsListWrap _$ArtistsListWrapFromJson(Map<String, dynamic> json) {
+  return ArtistsListWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..artists = (json['artists'] as List)
+        ?.map((e) =>
+            e == null ? null : Artists.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$ArtistsListWrapToJson(ArtistsListWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'artists': instance.artists,
     };

@@ -104,4 +104,9 @@ void main() {
     var result = await api.playmodeIntelligenceList('33894312', '24381616');
     expect(result.code, RET_CODE_OK);
   });
+
+  test('test artist list ', () async {
+    var result = await api.artistList(0, 'a'.codeUnitAt(0));
+    expect(result.code, RET_CODE_OK);
+  });
 }
