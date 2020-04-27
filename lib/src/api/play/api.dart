@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:netease_music_api/netease_music_api.dart';
 import 'package:netease_music_api/src/api/bean.dart';
 import 'package:netease_music_api/src/dio_ext.dart';
 import 'package:netease_music_api/src/netease_handler.dart';
@@ -164,9 +165,12 @@ mixin ApiPlayList {
     });
   }
 
-  Future<SinglePlayListWrap> categoryPlayList(String categoryId,
-      {int offset = 0, int limit = 30}) {
-    var params = {'id': categoryId, 'limit': limit, 'offset': offset};
+  /// 歌单详情
+  /// https://binaryify.github.io/NeteaseCloudMusicApi/#/?id=%e8%8e%b7%e5%8f%96%e6%ad%8c%e5%8d%95%e8%af%a6%e6%83%85
+  /// [categoryId] 可从歌单分类接口获取[playlistCatalogue]
+  Future<SinglePlayListWrap> playListDetail(String categoryId,
+      {int subCount = 8}) {
+    var params = {'id': categoryId, 'n': 1000, 's': subCount};
     return Https.dio
         .postUri(joinUri('/weapi/v3/playlist/detail'),
             data: params, options: joinOptions())
@@ -175,6 +179,43 @@ mixin ApiPlayList {
     });
   }
 
+  /// 歌曲相关歌单列表
+  /// [songId] 歌曲id
+  Future<MultiPlayListWrap> relatedPlayList(String songId) {
+    return Https.dio
+        .getUri(joinUri('/playlist?id=$songId'),
+            options: joinOptions(userAgent: UserAgent.Pc))
+        .then((Response value) {
+      var listWrap = MultiPlayListWrap();
+      listWrap.code = RET_CODE_OK;
+      listWrap.playlists = [];
+      try {
+        const pattern =
+            r'<div class="cver u-cover u-cover-3">[\s\S]*?<img src="([^"]+)">[\s\S]*?<a class="sname f-fs1 s-fc0" href="([^"]+)"[^>]*>([^<]+?)<\/a>[\s\S]*?<a class="nm nm f-thide s-fc3" href="([^"]+)"[^>]*>([^<]+?)<\/a>';
+        var matchs = RegExp(pattern, multiLine: true).allMatches(value.data);
+        for (var match in matchs) {
+          try {
+            var item = PlayItem();
+            item.id = match.group(2).substring('/playlist?id='.length);
+            item.name = match.group(3);
+            item.coverImgUrl = match
+                .group(1)
+                .substring(0, match.group(1).length - '?param=50y50'.length);
+            item.creator = PlayListCreator();
+            item.creator.userId =
+                match.group(4).substring('/user/home?id='.length);
+            item.creator.nickname = match.group(5);
+            listWrap.playlists.add(item);
+          } catch (ignore) {}
+        }
+      } catch (e) {
+        listWrap.code = RET_CODE_UNKNOW;
+      }
+      return listWrap;
+    });
+  }
+
+  /// 推荐音乐列表
   Future<RecommendSongListWrap> recommendSongList(
       {int offset = 0, int limit = 30}) {
     var params = {'limit': limit, 'offset': offset};

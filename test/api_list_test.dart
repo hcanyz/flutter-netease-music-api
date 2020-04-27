@@ -102,7 +102,12 @@ void main() {
   });
 
   test('test category playlist', () async {
-    var result = await api.categoryPlayList(PLAYLIST_CATEGORY[0]['id']);
+    var result = await api.playListDetail(PLAYLIST_CATEGORY[0]['id']);
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test related playlist', () async {
+    var result = await api.relatedPlayList('167975');
     expect(result.code, RET_CODE_OK);
   });
 
