@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:netease_music_api/src/api/bean.dart';
 import 'package:netease_music_api/src/api/play/bean.dart';
+import 'package:netease_music_api/src/api/user/bean.dart';
 
 part 'bean.g.dart';
 
@@ -74,4 +75,52 @@ class SearchArtistsWrapX extends ServerStatusBean {
       _$SearchArtistsWrapXFromJson(json);
 
   Map<String, dynamic> toJson() => _$SearchArtistsWrapXToJson(this);
+}
+
+@JsonSerializable()
+class SearchPlaylistWrap {
+  List<PlayItem> playlists;
+
+  SearchPlaylistWrap();
+
+  factory SearchPlaylistWrap.fromJson(Map<String, dynamic> json) =>
+      _$SearchPlaylistWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SearchPlaylistWrapToJson(this);
+}
+
+@JsonSerializable()
+class SearchPlaylistWrapX extends ServerStatusBean {
+  SearchPlaylistWrap result;
+
+  SearchPlaylistWrapX();
+
+  factory SearchPlaylistWrapX.fromJson(Map<String, dynamic> json) =>
+      _$SearchPlaylistWrapXFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SearchPlaylistWrapXToJson(this);
+}
+
+@JsonSerializable()
+class SearchUserWrap {
+  List<NeteaseUserInfo> userprofiles;
+
+  SearchUserWrap();
+
+  factory SearchUserWrap.fromJson(Map<String, dynamic> json) =>
+      _$SearchUserWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SearchUserWrapToJson(this);
+}
+
+@JsonSerializable()
+class SearchUserWrapX extends ServerStatusBean {
+  SearchUserWrap result;
+
+  SearchUserWrapX();
+
+  factory SearchUserWrapX.fromJson(Map<String, dynamic> json) =>
+      _$SearchUserWrapXFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SearchUserWrapXToJson(this);
 }

@@ -98,3 +98,67 @@ Map<String, dynamic> _$SearchArtistsWrapXToJson(SearchArtistsWrapX instance) =>
       'msg': instance.msg,
       'result': instance.result,
     };
+
+SearchPlaylistWrap _$SearchPlaylistWrapFromJson(Map<String, dynamic> json) {
+  return SearchPlaylistWrap()
+    ..playlists = (json['playlists'] as List)
+        ?.map((e) =>
+            e == null ? null : PlayItem.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$SearchPlaylistWrapToJson(SearchPlaylistWrap instance) =>
+    <String, dynamic>{
+      'playlists': instance.playlists,
+    };
+
+SearchPlaylistWrapX _$SearchPlaylistWrapXFromJson(Map<String, dynamic> json) {
+  return SearchPlaylistWrapX()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..result = json['result'] == null
+        ? null
+        : SearchPlaylistWrap.fromJson(json['result'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$SearchPlaylistWrapXToJson(
+        SearchPlaylistWrapX instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'result': instance.result,
+    };
+
+SearchUserWrap _$SearchUserWrapFromJson(Map<String, dynamic> json) {
+  return SearchUserWrap()
+    ..userprofiles = (json['userprofiles'] as List)
+        ?.map((e) => e == null
+            ? null
+            : NeteaseUserInfo.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$SearchUserWrapToJson(SearchUserWrap instance) =>
+    <String, dynamic>{
+      'userprofiles': instance.userprofiles,
+    };
+
+SearchUserWrapX _$SearchUserWrapXFromJson(Map<String, dynamic> json) {
+  return SearchUserWrapX()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..result = json['result'] == null
+        ? null
+        : SearchUserWrap.fromJson(json['result'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$SearchUserWrapXToJson(SearchUserWrapX instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'result': instance.result,
+    };

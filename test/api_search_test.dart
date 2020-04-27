@@ -44,4 +44,14 @@ void main() {
     var result = await api.searchArtists("许巍");
     expect(result.code, RET_CODE_OK);
   });
+
+  test('test search playlist', () async {
+    var result = await api.searchPlaylist("许巍");
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test search user', () async {
+    var result = await api.searchUser("许巍");
+    expect(result.code, RET_CODE_OK);
+  });
 }
