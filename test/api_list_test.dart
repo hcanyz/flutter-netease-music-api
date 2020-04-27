@@ -77,10 +77,8 @@ void main() {
     expect(result3.code, RET_CODE_OK);
   });
 
-  test('test user dj list', () async {
-    var result = await api
-        .userDjList(NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId);
-    expect(result.code, RET_CODE_OK);
+  test('test home bannerList', () async {
+    await api.homeBannerList();
   });
 
   test('test playlist catalogue', () async {
@@ -96,10 +94,6 @@ void main() {
   test('test category song list', () async {
     var result = await api.categorySongList();
     expect(result.code, RET_CODE_OK);
-  });
-
-  test('test home bannerList', () async {
-    await api.homeBannerList();
   });
 
   test('test highquality playlist', () async {

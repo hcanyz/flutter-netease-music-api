@@ -89,6 +89,15 @@ mixin ApiPlayList {
     });
   }
 
+  Future<ServerStatusBean> homeBannerList() {
+    return Https.dio
+        .postUri(joinUri('/api/v2/banner/get'),
+            data: {'clientType': 'pc'}, options: joinOptions())
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
+  }
+
   /// 歌单分类
   Future<PlaylistCatalogueWrap> playlistCatalogue() {
     return Https.dio
@@ -134,18 +143,19 @@ mixin ApiPlayList {
     });
   }
 
-  Future<ServerStatusBean> homeBannerList() {
-    return Https.dio
-        .postUri(joinUri('/api/v2/banner/get'),
-            data: {'clientType': 'pc'}, options: joinOptions())
-        .then((Response value) {
-      return ServerStatusBean.fromJson(value.data);
-    });
-  }
-
+  /// 精品歌单
+  /// [category] tag, 比如 " 华语 "、" 古风 " 、" 欧美 "、" 流行 ", 默认为 "全部",可从歌单分类接口获取[playlistCatalogue]
   Future<MultiPlayListWrap> highqualityPlayList(
-      {int offset = 0, int limit = 30}) {
-    var params = {'limit': limit, 'offset': offset};
+      {String category = '全部',
+      int limit = 30,
+      bool total = true,
+      int lastTime = 0}) {
+    var params = {
+      'cat': category,
+      'limit': limit,
+      'lastTime': lastTime,
+      'total': total
+    };
     return Https.dio
         .postUri(joinUri('/weapi/playlist/highquality/list'),
             data: params, options: joinOptions())
