@@ -101,13 +101,13 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test category playlist', () async {
-    var result = await api.playListDetail(PLAYLIST_CATEGORY[0]['id']);
+  test('test related playlist', () async {
+    var result = await api.relatedPlayList('167975');
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test related playlist', () async {
-    var result = await api.relatedPlayList('167975');
+  test('test category playlist', () async {
+    var result = await api.playListDetail(PLAYLIST_CATEGORY[0]['id']);
     expect(result.code, RET_CODE_OK);
   });
 
@@ -118,6 +118,11 @@ void main() {
 
   test('test playmode intelligence list ', () async {
     var result = await api.playmodeIntelligenceList('33894312', '24381616');
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test playmode intelligence list ', () async {
+    var result = await api.songUrl(['167975', '167975']);
     expect(result.code, RET_CODE_OK);
   });
 

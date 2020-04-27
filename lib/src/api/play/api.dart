@@ -165,20 +165,6 @@ mixin ApiPlayList {
     });
   }
 
-  /// 歌单详情
-  /// https://binaryify.github.io/NeteaseCloudMusicApi/#/?id=%e8%8e%b7%e5%8f%96%e6%ad%8c%e5%8d%95%e8%af%a6%e6%83%85
-  /// [categoryId] 可从歌单分类接口获取[playlistCatalogue]
-  Future<SinglePlayListWrap> playListDetail(String categoryId,
-      {int subCount = 8}) {
-    var params = {'id': categoryId, 'n': 1000, 's': subCount};
-    return Https.dio
-        .postUri(joinUri('/weapi/v3/playlist/detail'),
-            data: params, options: joinOptions())
-        .then((Response value) {
-      return SinglePlayListWrap.fromJson(value.data);
-    });
-  }
-
   /// 歌曲相关歌单列表
   /// [songId] 歌曲id
   Future<MultiPlayListWrap> relatedPlayList(String songId) {
@@ -215,6 +201,20 @@ mixin ApiPlayList {
     });
   }
 
+  /// 歌单详情
+  /// https://binaryify.github.io/NeteaseCloudMusicApi/#/?id=%e8%8e%b7%e5%8f%96%e6%ad%8c%e5%8d%95%e8%af%a6%e6%83%85
+  /// [categoryId] 可从歌单分类接口获取[playlistCatalogue]
+  Future<SinglePlayListWrap> playListDetail(String categoryId,
+      {int subCount = 8}) {
+    var params = {'id': categoryId, 'n': 1000, 's': subCount};
+    return Https.dio
+        .postUri(joinUri('/weapi/v3/playlist/detail'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return SinglePlayListWrap.fromJson(value.data);
+    });
+  }
+
   /// 推荐音乐列表
   Future<RecommendSongListWrap> recommendSongList(
       {int offset = 0, int limit = 30}) {
@@ -246,6 +246,22 @@ mixin ApiPlayList {
             data: params, options: joinOptions())
         .then((Response value) {
       return PlaymodeIntelligenceListWrap.fromJson(value.data);
+    });
+  }
+
+  /// 音乐url
+  /// https://binaryify.github.io/NeteaseCloudMusicApi/#/?id=%e8%8e%b7%e5%8f%96%e9%9f%b3%e4%b9%90-url
+  /// 注 : 部分用户反馈获取的 url 会 403,hwaphon找到的 解决方案是当获取到音乐的 id 后，将 https://music.163.com/song/media/outer/url?id=id.mp3 以 src 赋予 Audio 即可播放
+  /// [br] 码率,默认设置了 999000 即最大码率,如果要 320k 则可设置为 320000,其他类推
+  Future<SongUrlListWrap> songUrl(List<String> songIds, {int br = 999000}) {
+    var params = {'ids': songIds, 'br': br};
+    return Https.dio
+        .postUri(joinUri('/api/song/enhance/player/url'),
+            data: params,
+            options: joinOptions(
+                encryptType: EncryptType.LinuxForward, cookies: {'os': 'pc'}))
+        .then((Response value) {
+      return SongUrlListWrap.fromJson(value.data);
     });
   }
 

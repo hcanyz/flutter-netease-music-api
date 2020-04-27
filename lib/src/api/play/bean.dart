@@ -207,6 +207,47 @@ class Song2 {
 }
 
 @JsonSerializable()
+class SongUrl {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  String url;
+
+  //码率
+  int br;
+  int size;
+  int code;
+  int expi;
+  double gain;
+  int fee;
+  int payed;
+  int flag;
+
+  bool canExtend;
+
+  String md5;
+
+  SongUrl();
+
+  factory SongUrl.fromJson(Map<String, dynamic> json) =>
+      _$SongUrlFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SongUrlToJson(this);
+}
+
+@JsonSerializable()
+class SongUrlListWrap extends ServerStatusBean {
+  List<SongUrl> data;
+
+  SongUrlListWrap();
+
+  factory SongUrlListWrap.fromJson(Map<String, dynamic> json) =>
+      _$SongUrlListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SongUrlListWrapToJson(this);
+}
+
+@JsonSerializable()
 class PlayItem {
   @JsonKey(fromJson: dynamicToString)
   String id;
