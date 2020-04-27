@@ -265,6 +265,20 @@ mixin ApiPlayList {
     });
   }
 
+  /// 音乐是否可用
+  /// [br] 码率,默认设置了 999000 即最大码率,如果要 320k 则可设置为 320000,其他类推
+  /// [SongUrlListWrap.code] 200
+  Future<SongUrlListWrap> songAvailableCheck(List<String> songIds,
+      {int br = 999000}) {
+    var params = {'ids': songIds, 'br': br};
+    return Https.dio
+        .postUri(joinUri('/weapi/song/enhance/player/url'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return SongUrlListWrap.fromJson(value.data);
+    });
+  }
+
   /// 分类 歌手列表
   /// [type]   -1:全部 1:男歌手 2:女歌手 3:乐队
   /// [area]   -1:全部 7:华语 96:欧美 8:日本 16:韩国 0:其他

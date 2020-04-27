@@ -121,8 +121,13 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test playmode intelligence list ', () async {
+  test('test song url list ', () async {
     var result = await api.songUrl(['167975', '167975']);
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test song available check', () async {
+    var result = await api.songAvailableCheck(['167975', '167975']);
     expect(result.code, RET_CODE_OK);
   });
 
