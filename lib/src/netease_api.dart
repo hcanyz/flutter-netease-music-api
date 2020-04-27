@@ -6,6 +6,7 @@ import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:netease_music_api/netease_music_api.dart';
 import 'package:netease_music_api/src/api/dj/api.dart';
 import 'package:netease_music_api/src/api/event/api.dart';
+import 'package:netease_music_api/src/api/search/api.dart';
 import 'package:netease_music_api/src/api/user/api.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
@@ -14,7 +15,8 @@ import 'api/play/api.dart';
 import 'dio_ext.dart';
 import 'netease_handler.dart';
 
-class NeteaseMusicApi with ApiPlayList, ApiDjList, ApiLogin, ApiUser, ApiEvent {
+class NeteaseMusicApi
+    with ApiPlay, ApiDj, ApiLogin, ApiUser, ApiEvent, ApiSearch {
   static bool _hasInit = false;
   static bool debug = false;
 

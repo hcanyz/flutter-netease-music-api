@@ -4,7 +4,7 @@ import 'package:netease_music_api/src/netease_handler.dart';
 
 import 'bean.dart';
 
-mixin ApiDjList {
+mixin ApiDj {
   Future<DjListWrap> userDjList(String userId,
       {int offset = 0, int limit = 30}) {
     var params = {'limit': limit, 'offset': offset};

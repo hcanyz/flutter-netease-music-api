@@ -6,7 +6,7 @@ import 'package:netease_music_api/src/netease_handler.dart';
 
 import 'bean.dart';
 
-mixin ApiPlayList {
+mixin ApiPlay {
   /// 获取用户歌单
   /// !需要登录
   Future<MultiPlayListWrap2> userPlayList(String userId,
