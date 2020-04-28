@@ -229,47 +229,6 @@ Map<String, dynamic> _$ArtistsSubListWrapToJson(ArtistsSubListWrap instance) =>
       'data': instance.data,
     };
 
-MvSubItemCreator _$MvSubItemCreatorFromJson(Map<String, dynamic> json) {
-  return MvSubItemCreator()
-    ..userId = dynamicToString(json['userId'])
-    ..userName = json['userName'] as String;
-}
-
-Map<String, dynamic> _$MvSubItemCreatorToJson(MvSubItemCreator instance) =>
-    <String, dynamic>{
-      'userId': instance.userId,
-      'userName': instance.userName,
-    };
-
-MvSubItem _$MvSubItemFromJson(Map<String, dynamic> json) {
-  return MvSubItem()
-    ..type = json['type'] as int
-    ..title = json['title'] as String
-    ..durationms = json['durationms'] as int
-    ..playTime = json['playTime'] as int
-    ..vid = json['vid'] as String
-    ..coverUrl = json['coverUrl'] as String
-    ..aliaName = json['aliaName'] as String
-    ..transName = json['transName'] as String
-    ..creator = (json['creator'] as List)
-        ?.map((e) => e == null
-            ? null
-            : MvSubItemCreator.fromJson(e as Map<String, dynamic>))
-        ?.toList();
-}
-
-Map<String, dynamic> _$MvSubItemToJson(MvSubItem instance) => <String, dynamic>{
-      'type': instance.type,
-      'title': instance.title,
-      'durationms': instance.durationms,
-      'playTime': instance.playTime,
-      'vid': instance.vid,
-      'coverUrl': instance.coverUrl,
-      'aliaName': instance.aliaName,
-      'transName': instance.transName,
-      'creator': instance.creator,
-    };
-
 MvSubListWrap _$MvSubListWrapFromJson(Map<String, dynamic> json) {
   return MvSubListWrap()
     ..code = json['code'] as int
@@ -278,8 +237,7 @@ MvSubListWrap _$MvSubListWrapFromJson(Map<String, dynamic> json) {
     ..more = json['more'] as bool
     ..count = json['count'] as int
     ..data = (json['data'] as List)
-        ?.map((e) =>
-            e == null ? null : MvSubItem.fromJson(e as Map<String, dynamic>))
+        ?.map((e) => e == null ? null : Mv2.fromJson(e as Map<String, dynamic>))
         ?.toList();
 }
 

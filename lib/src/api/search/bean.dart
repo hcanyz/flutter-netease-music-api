@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:netease_music_api/src/api/bean.dart';
+import 'package:netease_music_api/src/api/dj/bean.dart';
 import 'package:netease_music_api/src/api/play/bean.dart';
 import 'package:netease_music_api/src/api/user/bean.dart';
 
@@ -123,4 +124,124 @@ class SearchUserWrapX extends ServerStatusBean {
       _$SearchUserWrapXFromJson(json);
 
   Map<String, dynamic> toJson() => _$SearchUserWrapXToJson(this);
+}
+
+@JsonSerializable()
+class SearchMvWrap {
+  List<Mv> mvs;
+
+  SearchMvWrap();
+
+  factory SearchMvWrap.fromJson(Map<String, dynamic> json) =>
+      _$SearchMvWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SearchMvWrapToJson(this);
+}
+
+@JsonSerializable()
+class SearchMvWrapX extends ServerStatusBean {
+  SearchMvWrap result;
+
+  SearchMvWrapX();
+
+  factory SearchMvWrapX.fromJson(Map<String, dynamic> json) =>
+      _$SearchMvWrapXFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SearchMvWrapXToJson(this);
+}
+
+@JsonSerializable()
+class SearchLyricsWrap {
+  List<Song> songs;
+
+  SearchLyricsWrap();
+
+  factory SearchLyricsWrap.fromJson(Map<String, dynamic> json) =>
+      _$SearchLyricsWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SearchLyricsWrapToJson(this);
+}
+
+@JsonSerializable()
+class SearchLyricsWrapX extends ServerStatusBean {
+  SearchLyricsWrap result;
+
+  SearchLyricsWrapX();
+
+  factory SearchLyricsWrapX.fromJson(Map<String, dynamic> json) =>
+      _$SearchLyricsWrapXFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SearchLyricsWrapXToJson(this);
+}
+
+@JsonSerializable()
+class SearchDjradiorap {
+  List<Dj> djRadios;
+
+  SearchDjradiorap();
+
+  factory SearchDjradiorap.fromJson(Map<String, dynamic> json) =>
+      _$SearchDjradiorapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SearchDjradiorapToJson(this);
+}
+
+@JsonSerializable()
+class SearchDjradioWrapX extends ServerStatusBean {
+  SearchDjradiorap result;
+
+  SearchDjradioWrapX();
+
+  factory SearchDjradioWrapX.fromJson(Map<String, dynamic> json) =>
+      _$SearchDjradioWrapXFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SearchDjradioWrapXToJson(this);
+}
+
+@JsonSerializable()
+class SearchVideoWrap {
+  List<Mv2> videos;
+
+  SearchVideoWrap();
+
+  factory SearchVideoWrap.fromJson(Map<String, dynamic> json) =>
+      _$SearchVideoWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SearchVideoWrapToJson(this);
+}
+
+@JsonSerializable()
+class SearchVideoWrapX extends ServerStatusBean {
+  SearchVideoWrap result;
+
+  SearchVideoWrapX();
+
+  factory SearchVideoWrapX.fromJson(Map<String, dynamic> json) =>
+      _$SearchVideoWrapXFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SearchVideoWrapXToJson(this);
+}
+
+@JsonSerializable()
+class SearchComplexWrap {
+  //TODO
+
+  SearchComplexWrap();
+
+  factory SearchComplexWrap.fromJson(Map<String, dynamic> json) =>
+      _$SearchComplexWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SearchComplexWrapToJson(this);
+}
+
+@JsonSerializable()
+class SearchComplexWrapX extends ServerStatusBean {
+  SearchComplexWrap result;
+
+  SearchComplexWrapX();
+
+  factory SearchComplexWrapX.fromJson(Map<String, dynamic> json) =>
+      _$SearchComplexWrapXFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SearchComplexWrapXToJson(this);
 }

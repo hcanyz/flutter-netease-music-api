@@ -135,6 +135,89 @@ Map<String, dynamic> _$AlbumToJson(Album instance) => <String, dynamic>{
       'artists': instance.artists,
     };
 
+MvCreator _$MvCreatorFromJson(Map<String, dynamic> json) {
+  return MvCreator()
+    ..userId = dynamicToString(json['userId'])
+    ..userName = json['userName'] as String;
+}
+
+Map<String, dynamic> _$MvCreatorToJson(MvCreator instance) => <String, dynamic>{
+      'userId': instance.userId,
+      'userName': instance.userName,
+    };
+
+Mv _$MvFromJson(Map<String, dynamic> json) {
+  return Mv()
+    ..id = dynamicToString(json['id'])
+    ..name = json['name'] as String
+    ..cover = json['cover'] as String
+    ..playCount = json['playCount'] as int
+    ..briefDesc = json['briefDesc'] as String
+    ..desc = json['desc'] as String
+    ..arTransName = json['arTransName'] as String
+    ..artistName = json['artistName'] as String
+    ..artistId = json['artistId'] as int
+    ..duration = json['duration'] as int
+    ..mark = json['mark'] as int
+    ..alg = json['alg'] as String
+    ..artists = (json['artists'] as List)
+        ?.map((e) =>
+            e == null ? null : Artists.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$MvToJson(Mv instance) => <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'cover': instance.cover,
+      'playCount': instance.playCount,
+      'briefDesc': instance.briefDesc,
+      'desc': instance.desc,
+      'arTransName': instance.arTransName,
+      'artistName': instance.artistName,
+      'artistId': instance.artistId,
+      'duration': instance.duration,
+      'mark': instance.mark,
+      'alg': instance.alg,
+      'artists': instance.artists,
+    };
+
+Mv2 _$Mv2FromJson(Map<String, dynamic> json) {
+  return Mv2()
+    ..type = json['type'] as int
+    ..title = json['title'] as String
+    ..durationms = json['durationms'] as int
+    ..playTime = json['playTime'] as int
+    ..vid = json['vid'] as String
+    ..coverUrl = json['coverUrl'] as String
+    ..aliaName = json['aliaName'] as String
+    ..transName = json['transName'] as String
+    ..creator = (json['creator'] as List)
+        ?.map((e) =>
+            e == null ? null : MvCreator.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$Mv2ToJson(Mv2 instance) => <String, dynamic>{
+      'type': instance.type,
+      'title': instance.title,
+      'durationms': instance.durationms,
+      'playTime': instance.playTime,
+      'vid': instance.vid,
+      'coverUrl': instance.coverUrl,
+      'aliaName': instance.aliaName,
+      'transName': instance.transName,
+      'creator': instance.creator,
+    };
+
+Lyrics _$LyricsFromJson(Map<String, dynamic> json) {
+  return Lyrics()..txt = json['txt'] as String;
+}
+
+Map<String, dynamic> _$LyricsToJson(Lyrics instance) => <String, dynamic>{
+      'txt': instance.txt,
+    };
+
 Song _$SongFromJson(Map<String, dynamic> json) {
   return Song()
     ..id = dynamicToString(json['id'])
@@ -162,6 +245,9 @@ Song _$SongFromJson(Map<String, dynamic> json) {
     ..album = json['album'] == null
         ? null
         : Album.fromJson(json['album'] as Map<String, dynamic>)
+    ..lyrics = json['lyrics'] == null
+        ? null
+        : Lyrics.fromJson(json['lyrics'] as Map<String, dynamic>)
     ..privilege = json['privilege'] == null
         ? null
         : Privilege.fromJson(json['privilege'] as Map<String, dynamic>)
@@ -208,6 +294,7 @@ Map<String, dynamic> _$SongToJson(Song instance) => <String, dynamic>{
       'commentThreadId': instance.commentThreadId,
       'artists': instance.artists,
       'album': instance.album,
+      'lyrics': instance.lyrics,
       'privilege': instance.privilege,
       'copyright': instance.copyright,
       'transName': instance.transName,

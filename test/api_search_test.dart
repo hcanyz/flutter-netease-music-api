@@ -54,4 +54,29 @@ void main() {
     var result = await api.searchUser("许巍");
     expect(result.code, RET_CODE_OK);
   });
+
+  test('test search mv', () async {
+    var result = await api.searchMv("许巍");
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test search lyrics', () async {
+    var result = await api.searchLyrics("许巍");
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test search djradio', () async {
+    var result = await api.searchDjradio("许巍");
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test search video', () async {
+    var result = await api.searchVideo("许巍");
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test search complex', () async {
+    var result = await api.searchComplex("许巍");
+    expect(result.code, RET_CODE_OK);
+  });
 }

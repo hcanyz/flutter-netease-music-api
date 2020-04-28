@@ -118,6 +118,88 @@ class Album {
 }
 
 @JsonSerializable()
+class MvCreator {
+  @JsonKey(fromJson: dynamicToString)
+  String userId;
+
+  String userName;
+
+  MvCreator();
+
+  factory MvCreator.fromJson(Map<String, dynamic> json) =>
+      _$MvCreatorFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MvCreatorToJson(this);
+}
+
+@JsonSerializable()
+class Mv {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  String name;
+
+  String cover;
+
+  int playCount;
+  String briefDesc;
+  String desc;
+
+  String arTransName;
+
+  String artistName;
+  int artistId;
+
+  int duration;
+  int mark;
+
+  String alg;
+
+  List<Artists> artists;
+
+  Mv();
+
+  factory Mv.fromJson(Map<String, dynamic> json) => _$MvFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MvToJson(this);
+}
+
+@JsonSerializable()
+class Mv2 {
+  int type;
+
+  String title;
+  int durationms;
+
+  int playTime;
+
+  String vid;
+  String coverUrl;
+
+  String aliaName;
+  String transName;
+
+  List<MvCreator> creator;
+
+  Mv2();
+
+  factory Mv2.fromJson(Map<String, dynamic> json) => _$Mv2FromJson(json);
+
+  Map<String, dynamic> toJson() => _$Mv2ToJson(this);
+}
+
+@JsonSerializable()
+class Lyrics {
+  String txt;
+
+  Lyrics();
+
+  factory Lyrics.fromJson(Map<String, dynamic> json) => _$LyricsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$LyricsToJson(this);
+}
+
+@JsonSerializable()
 class Song {
   @JsonKey(fromJson: dynamicToString)
   String id;
@@ -149,6 +231,8 @@ class Song {
   List<Artists> artists;
 
   Album album;
+
+  Lyrics lyrics;
 
   Privilege privilege;
 

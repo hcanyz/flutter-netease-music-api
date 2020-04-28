@@ -53,7 +53,7 @@ mixin ApiSearch {
     });
   }
 
-  /// [type] 搜索类型 1: 单曲, 10: 专辑, 100: 歌手, 1000: 歌单, 1002: 用户, 1004: MV, 1006: 歌词, 1009: 电台, 1014: 视频, 1018:综合，默认为1
+  /// [type] 1002: 用户
   Future<SearchUserWrapX> searchUser(String keyword,
       {int offset = 0, int limit = 30}) {
     var params = {'s': keyword, 'type': 1002, 'limit': limit, 'offset': offset};
@@ -62,6 +62,66 @@ mixin ApiSearch {
             data: params, options: joinOptions())
         .then((Response value) {
       return SearchUserWrapX.fromJson(value.data);
+    });
+  }
+
+  /// [type] 1004: MV
+  Future<SearchMvWrapX> searchMv(String keyword,
+      {int offset = 0, int limit = 30}) {
+    var params = {'s': keyword, 'type': 1004, 'limit': limit, 'offset': offset};
+    return Https.dio
+        .postUri(joinUri('/weapi/search/get'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return SearchMvWrapX.fromJson(value.data);
+    });
+  }
+
+  /// [type] 1006: 歌词
+  Future<SearchLyricsWrapX> searchLyrics(String keyword,
+      {int offset = 0, int limit = 30}) {
+    var params = {'s': keyword, 'type': 1006, 'limit': limit, 'offset': offset};
+    return Https.dio
+        .postUri(joinUri('/weapi/search/get'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return SearchLyricsWrapX.fromJson(value.data);
+    });
+  }
+
+  /// [type] 1009: 电台
+  Future<SearchDjradioWrapX> searchDjradio(String keyword,
+      {int offset = 0, int limit = 30}) {
+    var params = {'s': keyword, 'type': 1009, 'limit': limit, 'offset': offset};
+    return Https.dio
+        .postUri(joinUri('/weapi/search/get'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return SearchDjradioWrapX.fromJson(value.data);
+    });
+  }
+
+  /// [type] 1014: 视频
+  Future<SearchVideoWrapX> searchVideo(String keyword,
+      {int offset = 0, int limit = 30}) {
+    var params = {'s': keyword, 'type': 1014, 'limit': limit, 'offset': offset};
+    return Https.dio
+        .postUri(joinUri('/weapi/search/get'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return SearchVideoWrapX.fromJson(value.data);
+    });
+  }
+
+  /// [type] 1018:综合
+  Future<SearchComplexWrapX> searchComplex(String keyword,
+      {int offset = 0, int limit = 30}) {
+    var params = {'s': keyword, 'type': 1018, 'limit': limit, 'offset': offset};
+    return Https.dio
+        .postUri(joinUri('/weapi/search/get'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return SearchComplexWrapX.fromJson(value.data);
     });
   }
 }
