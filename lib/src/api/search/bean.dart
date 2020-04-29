@@ -223,8 +223,111 @@ class SearchVideoWrapX extends ServerStatusBean {
 }
 
 @JsonSerializable()
+class SearchComplexSong {
+  List<Song> songs;
+
+  String moreText;
+
+  String highText;
+
+  bool more;
+
+  List<int> resourceIds;
+
+  SearchComplexSong();
+
+  factory SearchComplexSong.fromJson(Map<String, dynamic> json) =>
+      _$SearchComplexSongFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SearchComplexSongToJson(this);
+}
+
+@JsonSerializable()
+class SearchComplexMlog {
+  //? mlogs;
+
+  String moreText;
+
+  bool more;
+
+  List<int> resourceIds;
+
+  SearchComplexMlog();
+
+  factory SearchComplexMlog.fromJson(Map<String, dynamic> json) =>
+      _$SearchComplexMlogFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SearchComplexMlogToJson(this);
+}
+
+@JsonSerializable()
+class SearchComplexPlaylist {
+  List<PlayItem> playLists;
+
+  String moreText;
+
+  String highText;
+
+  bool more;
+
+  List<int> resourceIds;
+
+  SearchComplexPlaylist();
+
+  factory SearchComplexPlaylist.fromJson(Map<String, dynamic> json) =>
+      _$SearchComplexPlaylistFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SearchComplexPlaylistToJson(this);
+}
+
+@JsonSerializable()
+class SearchComplexArtist {
+  List<Artists> artists;
+
+  String moreText;
+
+  String highText;
+
+  bool more;
+
+  List<int> resourceIds;
+
+  SearchComplexArtist();
+
+  factory SearchComplexArtist.fromJson(Map<String, dynamic> json) =>
+      _$SearchComplexArtistFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SearchComplexArtistToJson(this);
+}
+
+@JsonSerializable()
+class SearchComplexAlbum {
+  List<Album> albums;
+
+  String moreText;
+
+  String highText;
+
+  bool more;
+
+  List<int> resourceIds;
+
+  SearchComplexAlbum();
+
+  factory SearchComplexAlbum.fromJson(Map<String, dynamic> json) =>
+      _$SearchComplexAlbumFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SearchComplexAlbumToJson(this);
+}
+
+@JsonSerializable()
 class SearchComplexWrap {
   //TODO
+  SearchComplexSong song;
+  SearchComplexMlog mlog;
+  SearchComplexPlaylist playList;
+  SearchComplexArtist artist;
+  SearchComplexAlbum album;
 
   SearchComplexWrap();
 
