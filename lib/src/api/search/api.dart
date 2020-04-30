@@ -124,4 +124,30 @@ mixin ApiSearch {
       return SearchComplexWrapX.fromJson(value.data);
     });
   }
+
+  /// 默认搜索关键词
+  Future<SearchSearchKeyWrap> searchDefaultKey() {
+    return Https.dio
+        .postUri(
+            Uri.parse(
+                'http://interface3.music.163.com/eapi/search/defaultkeyword/get'),
+            data: {},
+            options: joinOptions(
+                encryptType: EncryptType.EApi,
+                eApiUrl: '/api/search/defaultkeyword/get'))
+        .then((Response value) {
+      return SearchSearchKeyWrap.fromJson(value.data);
+    });
+  }
+
+  /// 热搜列表(简略)
+  Future<SearchSearchKeyWrapX> searchHotKey() {
+    return Https.dio
+        .postUri(joinUri('/weapi/search/hot'),
+            data: {'type': 1111},
+            options: joinOptions(userAgent: UserAgent.Mobile))
+        .then((Response value) {
+      return SearchSearchKeyWrapX.fromJson(value.data);
+    });
+  }
 }

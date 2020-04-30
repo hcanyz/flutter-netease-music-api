@@ -19,7 +19,7 @@ import 'encrypt_ext.dart';
 /// [option.extra] 'eApiUrl' [String] eApi请求方式请求url 只能eApi方式使用
 void neteaseInterceptor(RequestOptions option) {
   if (option.method == 'POST' &&
-      HOST.contains(option.uri.host) &&
+      HOSTS.contains(option.uri.host) &&
       option.extra['hookRequestDate']) {
     if (option.extra['hookRequestDate']) {
       debugPrint('$TAG   interceptor before: ${option.uri}   ${option.data}');
@@ -196,6 +196,7 @@ void _handleEApi(RequestOptions option, List<Cookie> cookies) {
 
 const String TAG = 'NeteaseMusicApi';
 const String HOST = 'https://music.163.com';
+const HOSTS = ['music.163.com', 'interface3.music.163.com'];
 
 enum EncryptType { LinuxForward, WeApi, EApi }
 

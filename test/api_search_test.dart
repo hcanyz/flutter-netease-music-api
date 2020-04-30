@@ -79,4 +79,14 @@ void main() {
     var result = await api.searchComplex("许巍");
     expect(result.code, RET_CODE_OK);
   });
+
+  test('test search default key', () async {
+    var result = await api.searchDefaultKey();
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test search hot key', () async {
+    var result = await api.searchHotKey();
+    expect(result.code, RET_CODE_OK);
+  });
 }
