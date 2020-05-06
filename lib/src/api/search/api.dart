@@ -176,4 +176,15 @@ mixin ApiSearch {
       return SearchSuggestWrapX.fromJson(value.data);
     });
   }
+
+  /// 搜索多重匹配
+  Future<SearchMultiMatchWrapX> searchMultiMatch(String keyword) {
+    var params = {'s': keyword, 'type': '1'};
+    return Https.dio
+        .postUri(joinUri('/weapi/search/suggest/multimatch'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return SearchMultiMatchWrapX.fromJson(value.data);
+    });
+  }
 }

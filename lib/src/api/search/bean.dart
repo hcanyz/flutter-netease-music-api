@@ -487,3 +487,33 @@ class SearchSuggestWrapX extends ServerStatusBean {
 
   Map<String, dynamic> toJson() => _$SearchSuggestWrapXToJson(this);
 }
+
+@JsonSerializable()
+class SearchMultiMatchWrap {
+  //TODO
+  List<Song> song;
+  List<PlayItem> playList;
+  List<Artists> artist;
+  List<Album> album;
+
+  List<String> orders;
+
+  SearchMultiMatchWrap();
+
+  factory SearchMultiMatchWrap.fromJson(Map<String, dynamic> json) =>
+      _$SearchMultiMatchWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SearchMultiMatchWrapToJson(this);
+}
+
+@JsonSerializable()
+class SearchMultiMatchWrapX extends ServerStatusBean {
+  SearchMultiMatchWrap result;
+
+  SearchMultiMatchWrapX();
+
+  factory SearchMultiMatchWrapX.fromJson(Map<String, dynamic> json) =>
+      _$SearchMultiMatchWrapXFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SearchMultiMatchWrapXToJson(this);
+}

@@ -614,3 +614,54 @@ Map<String, dynamic> _$SearchSuggestWrapXToJson(SearchSuggestWrapX instance) =>
       'msg': instance.msg,
       'result': instance.result,
     };
+
+SearchMultiMatchWrap _$SearchMultiMatchWrapFromJson(Map<String, dynamic> json) {
+  return SearchMultiMatchWrap()
+    ..song = (json['song'] as List)
+        ?.map(
+            (e) => e == null ? null : Song.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..playList = (json['playList'] as List)
+        ?.map((e) =>
+            e == null ? null : PlayItem.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..artist = (json['artist'] as List)
+        ?.map((e) =>
+            e == null ? null : Artists.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..album = (json['album'] as List)
+        ?.map(
+            (e) => e == null ? null : Album.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..orders = (json['orders'] as List)?.map((e) => e as String)?.toList();
+}
+
+Map<String, dynamic> _$SearchMultiMatchWrapToJson(
+        SearchMultiMatchWrap instance) =>
+    <String, dynamic>{
+      'song': instance.song,
+      'playList': instance.playList,
+      'artist': instance.artist,
+      'album': instance.album,
+      'orders': instance.orders,
+    };
+
+SearchMultiMatchWrapX _$SearchMultiMatchWrapXFromJson(
+    Map<String, dynamic> json) {
+  return SearchMultiMatchWrapX()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..result = json['result'] == null
+        ? null
+        : SearchMultiMatchWrap.fromJson(json['result'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$SearchMultiMatchWrapXToJson(
+        SearchMultiMatchWrapX instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'result': instance.result,
+    };

@@ -99,4 +99,9 @@ void main() {
     var result = await api.searchSuggest('许巍');
     expect(result.code, RET_CODE_OK);
   });
+
+  test('test search multi match', () async {
+    var result = await api.searchMultiMatch('许巍');
+    expect(result.code, RET_CODE_OK);
+  });
 }
