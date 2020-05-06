@@ -160,4 +160,20 @@ mixin ApiSearch {
       return SearchSearchKeyDetailedWrap.fromJson(value.data);
     });
   }
+
+  /// 搜索建议(联想)
+  /// [type] : 'mobile': 返回移动端数据  'web': web
+  Future<SearchSearchSuggestWrapX> searchSuggest(String keyword,
+      {String type = 'mobile'}) {
+    var params = {'s': keyword};
+    return Https.dio
+        .postUri(
+            joinUri(
+                '/weapi/search/suggest/${type == 'mobile' ? 'keyword' : 'web'}'),
+            data: params,
+            options: joinOptions())
+        .then((Response value) {
+      return SearchSearchSuggestWrapX.fromJson(value.data);
+    });
+  }
 }

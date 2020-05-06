@@ -448,3 +448,42 @@ class SearchSearchKeyDetailedWrap extends ServerStatusBean {
 
   Map<String, dynamic> toJson() => _$SearchSearchKeyDetailedWrapToJson(this);
 }
+
+@JsonSerializable()
+class SearchSearchSuggestItem {
+  String keyword;
+  int type;
+  String alg;
+  String lastKeyword;
+
+  SearchSearchSuggestItem();
+
+  factory SearchSearchSuggestItem.fromJson(Map<String, dynamic> json) =>
+      _$SearchSearchSuggestItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SearchSearchSuggestItemToJson(this);
+}
+
+@JsonSerializable()
+class SearchSearchSuggestWrap {
+  List<SearchSearchSuggestItem> allMatch;
+
+  SearchSearchSuggestWrap();
+
+  factory SearchSearchSuggestWrap.fromJson(Map<String, dynamic> json) =>
+      _$SearchSearchSuggestWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SearchSearchSuggestWrapToJson(this);
+}
+
+@JsonSerializable()
+class SearchSearchSuggestWrapX extends ServerStatusBean {
+  SearchSearchSuggestWrap result;
+
+  SearchSearchSuggestWrapX();
+
+  factory SearchSearchSuggestWrapX.fromJson(Map<String, dynamic> json) =>
+      _$SearchSearchSuggestWrapXFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SearchSearchSuggestWrapXToJson(this);
+}

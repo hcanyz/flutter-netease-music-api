@@ -572,3 +572,58 @@ Map<String, dynamic> _$SearchSearchKeyDetailedWrapToJson(
       'msg': instance.msg,
       'data': instance.data,
     };
+
+SearchSearchSuggestItem _$SearchSearchSuggestItemFromJson(
+    Map<String, dynamic> json) {
+  return SearchSearchSuggestItem()
+    ..keyword = json['keyword'] as String
+    ..type = json['type'] as int
+    ..alg = json['alg'] as String
+    ..lastKeyword = json['lastKeyword'] as String;
+}
+
+Map<String, dynamic> _$SearchSearchSuggestItemToJson(
+        SearchSearchSuggestItem instance) =>
+    <String, dynamic>{
+      'keyword': instance.keyword,
+      'type': instance.type,
+      'alg': instance.alg,
+      'lastKeyword': instance.lastKeyword,
+    };
+
+SearchSearchSuggestWrap _$SearchSearchSuggestWrapFromJson(
+    Map<String, dynamic> json) {
+  return SearchSearchSuggestWrap()
+    ..allMatch = (json['allMatch'] as List)
+        ?.map((e) => e == null
+            ? null
+            : SearchSearchSuggestItem.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$SearchSearchSuggestWrapToJson(
+        SearchSearchSuggestWrap instance) =>
+    <String, dynamic>{
+      'allMatch': instance.allMatch,
+    };
+
+SearchSearchSuggestWrapX _$SearchSearchSuggestWrapXFromJson(
+    Map<String, dynamic> json) {
+  return SearchSearchSuggestWrapX()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..result = json['result'] == null
+        ? null
+        : SearchSearchSuggestWrap.fromJson(
+            json['result'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$SearchSearchSuggestWrapXToJson(
+        SearchSearchSuggestWrapX instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'result': instance.result,
+    };
