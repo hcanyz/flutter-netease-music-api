@@ -194,3 +194,15 @@ class PlaylistCreateWrap extends ServerStatusBean {
 
   Map<String, dynamic> toJson() => _$PlaylistCreateWrapToJson(this);
 }
+
+@JsonSerializable()
+class PlaylistSubscribersWrap extends ServerStatusBean {
+  List<NeteaseUserInfo> subscribers;
+
+  PlaylistSubscribersWrap();
+
+  factory PlaylistSubscribersWrap.fromJson(Map<String, dynamic> json) =>
+      _$PlaylistSubscribersWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PlaylistSubscribersWrapToJson(this);
+}

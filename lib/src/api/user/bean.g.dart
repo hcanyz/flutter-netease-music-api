@@ -306,3 +306,25 @@ Map<String, dynamic> _$PlaylistCreateWrapToJson(PlaylistCreateWrap instance) =>
       'id': instance.id,
       'playlist': instance.playlist,
     };
+
+PlaylistSubscribersWrap _$PlaylistSubscribersWrapFromJson(
+    Map<String, dynamic> json) {
+  return PlaylistSubscribersWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..subscribers = (json['subscribers'] as List)
+        ?.map((e) => e == null
+            ? null
+            : NeteaseUserInfo.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$PlaylistSubscribersWrapToJson(
+        PlaylistSubscribersWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'subscribers': instance.subscribers,
+    };

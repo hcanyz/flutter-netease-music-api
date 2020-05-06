@@ -138,4 +138,19 @@ void main() {
     var result2 = await api.playlistDelete(result.id);
     expect(result2.code, RET_CODE_OK);
   });
+
+  test('test user playlist sub or unSub', () async {
+    var result = await api.playlistSub('2819660572', false);
+    expect(result.code, anyOf(RET_CODE_ILLEGAL, RET_CODE_OK));
+
+    sleep(Duration(seconds: 2));
+
+    var result2 = await api.playlistSub('2819660572', true);
+    expect(result2.code, anyOf(RET_CODE_ILLEGAL, RET_CODE_OK));
+  });
+
+  test('test user playlist subscribers', () async {
+    var result = await api.playlistSubscribers('2819660572');
+    expect(result.code, RET_CODE_OK);
+  });
 }

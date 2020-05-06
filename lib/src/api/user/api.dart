@@ -203,4 +203,30 @@ mixin ApiUser {
       return ServerStatusBean.fromJson(value.data);
     });
   }
+
+  /// 收藏/取消收藏 歌单
+  /// !需要登录
+  Future<ServerStatusBean> playlistSub(String pid, bool sub) {
+    var params = {'id': pid};
+    return Https.dio
+        .postUri(
+            joinUri('/weapi/playlist/${sub ? 'subscribe' : 'unsubscribe'}'),
+            data: params,
+            options: joinOptions())
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
+  }
+
+  /// 歌单收藏者
+  Future<PlaylistSubscribersWrap> playlistSubscribers(String pid,
+      {int offset = 0, int limit = 30}) {
+    var params = {'id': pid, 'limit': limit, 'offset': offset};
+    return Https.dio
+        .postUri(joinUri('/weapi/playlist/subscribers'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return PlaylistSubscribersWrap.fromJson(value.data);
+    });
+  }
 }
