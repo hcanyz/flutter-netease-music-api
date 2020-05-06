@@ -227,6 +227,18 @@ mixin ApiPlay {
     });
   }
 
+  /// 新歌速递
+  /// [areaId] 全部:0 华语:7 欧美:96 日本:8 韩国:16 默认0
+  Future<NewSongListWrap> newSongList({String areaId = '0'}) {
+    var params = {'areaId': areaId, 'total': true};
+    return Https.dio
+        .postUri(joinUri('/weapi/v1/discovery/new/songs'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return NewSongListWrap.fromJson(value.data);
+    });
+  }
+
   /// 心动模式/智能播放
   /// [songId]  歌曲 id
   /// [playlistId]  歌单 id

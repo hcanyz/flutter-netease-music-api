@@ -602,6 +602,18 @@ class RecommendSongListWrap extends ServerStatusBean {
 }
 
 @JsonSerializable()
+class NewSongListWrap extends ServerStatusBean {
+  List<Song> data;
+
+  NewSongListWrap();
+
+  factory NewSongListWrap.fromJson(Map<String, dynamic> json) =>
+      _$NewSongListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$NewSongListWrapToJson(this);
+}
+
+@JsonSerializable()
 class PlaymodeIntelligenceItem {
   @JsonKey(fromJson: dynamicToString)
   String id;
