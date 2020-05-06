@@ -286,3 +286,23 @@ Map<String, dynamic> _$PlayRecordListWrapToJson(PlayRecordListWrap instance) =>
       'msg': instance.msg,
       'allData': instance.allData,
     };
+
+PlaylistCreateWrap _$PlaylistCreateWrapFromJson(Map<String, dynamic> json) {
+  return PlaylistCreateWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..id = dynamicToString(json['id'])
+    ..playlist = json['playlist'] == null
+        ? null
+        : PlayItem.fromJson(json['playlist'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$PlaylistCreateWrapToJson(PlaylistCreateWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'id': instance.id,
+      'playlist': instance.playlist,
+    };

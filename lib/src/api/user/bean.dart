@@ -179,3 +179,18 @@ class PlayRecordListWrap extends ServerStatusBean {
 
   Map<String, dynamic> toJson() => _$PlayRecordListWrapToJson(this);
 }
+
+@JsonSerializable()
+class PlaylistCreateWrap extends ServerStatusBean {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  PlayItem playlist;
+
+  PlaylistCreateWrap();
+
+  factory PlaylistCreateWrap.fromJson(Map<String, dynamic> json) =>
+      _$PlaylistCreateWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PlaylistCreateWrapToJson(this);
+}

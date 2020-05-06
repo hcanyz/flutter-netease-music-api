@@ -177,4 +177,30 @@ mixin ApiUser {
       return PlayRecordListWrap.fromJson(value.data);
     });
   }
+
+  /// 新建歌单
+  /// !需要登录
+  /// [name] 歌单名
+  /// [privacy] 是否私密
+  Future<PlaylistCreateWrap> playlistCreate(String name, bool privacy) {
+    var params = {'name': name, 'privacy': privacy ? '10' : '0'};
+    return Https.dio
+        .postUri(joinUri('/weapi/playlist/create'),
+            data: params, options: joinOptions(cookies: {'os': 'pc'}))
+        .then((Response value) {
+      return PlaylistCreateWrap.fromJson(value.data);
+    });
+  }
+
+  /// 删除歌单
+  /// !需要登录
+  Future<ServerStatusBean> playlistDelete(String pid) {
+    var params = {'pid': pid};
+    return Https.dio
+        .postUri(joinUri('/weapi/playlist/delete'),
+            data: params, options: joinOptions(cookies: {'os': 'pc'}))
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
+  }
 }

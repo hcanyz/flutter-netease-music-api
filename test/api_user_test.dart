@@ -128,4 +128,14 @@ void main() {
         NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId, false);
     expect(result.code, RET_CODE_OK);
   });
+
+  test('test playlist create or delete', () async {
+    var result = await api.playlistCreate('老白涮肉铺', true);
+    expect(result.code, RET_CODE_OK);
+
+    sleep(Duration(seconds: 2));
+
+    var result2 = await api.playlistDelete(result.id);
+    expect(result2.code, RET_CODE_OK);
+  });
 }
