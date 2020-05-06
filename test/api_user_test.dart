@@ -149,6 +149,23 @@ void main() {
     expect(result2.code, anyOf(RET_CODE_ILLEGAL, RET_CODE_OK));
   });
 
+  test('test user playlist manipulate tracks', () async {
+    var result = await api.playlistCreate('老白涮肉铺', true);
+    expect(result.code, RET_CODE_OK);
+
+    var result2 = await api.playlistManipulateTracks(result.id, '167975', true);
+    expect(result2.code, RET_CODE_OK);
+
+    var result3 =
+        await api.playlistManipulateTracks(result.id, '167975', false);
+    expect(result3.code, RET_CODE_OK);
+
+    sleep(Duration(seconds: 2));
+
+    var result4 = await api.playlistDelete(result.id);
+    expect(result4.code, RET_CODE_OK);
+  });
+
   test('test user playlist subscribers', () async {
     var result = await api.playlistSubscribers('2819660572');
     expect(result.code, RET_CODE_OK);

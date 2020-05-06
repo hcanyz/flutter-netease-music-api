@@ -218,6 +218,24 @@ mixin ApiUser {
     });
   }
 
+  /// 收藏单曲到歌单 从歌单删除歌曲
+  /// !需要登录
+  Future<ServerStatusBean> playlistManipulateTracks(
+      String pid, String trackId, bool add) {
+    // 批量?
+    var params = {
+      'op': add ? 'add' : 'del',
+      'pid': pid,
+      'trackIds': '[$trackId]'
+    };
+    return Https.dio
+        .postUri(joinUri('/weapi/playlist/manipulate/tracks'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
+  }
+
   /// 歌单收藏者
   Future<PlaylistSubscribersWrap> playlistSubscribers(String pid,
       {int offset = 0, int limit = 30}) {
