@@ -180,6 +180,9 @@ CommentListWrap _$CommentListWrapFromJson(Map<String, dynamic> json) {
     ..code = json['code'] as int
     ..message = json['message'] as String
     ..msg = json['msg'] as String
+    ..more = json['more'] as bool
+    ..count = json['count'] as int
+    ..total = json['total'] as int
     ..moreHot = json['moreHot'] as bool
     ..cnum = json['cnum'] as int
     ..isMusician = json['isMusician'] as bool
@@ -191,6 +194,10 @@ CommentListWrap _$CommentListWrapFromJson(Map<String, dynamic> json) {
     ..hotComments = (json['hotComments'] as List)
         ?.map((e) =>
             e == null ? null : CommentItem.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..comments = (json['comments'] as List)
+        ?.map((e) =>
+            e == null ? null : CommentItem.fromJson(e as Map<String, dynamic>))
         ?.toList();
 }
 
@@ -199,12 +206,16 @@ Map<String, dynamic> _$CommentListWrapToJson(CommentListWrap instance) =>
       'code': instance.code,
       'message': instance.message,
       'msg': instance.msg,
+      'more': instance.more,
+      'count': instance.count,
+      'total': instance.total,
       'moreHot': instance.moreHot,
       'cnum': instance.cnum,
       'isMusician': instance.isMusician,
       'userId': instance.userId,
       'topComments': instance.topComments,
       'hotComments': instance.hotComments,
+      'comments': instance.comments,
     };
 
 EventForwardRet _$EventForwardRetFromJson(Map<String, dynamic> json) {

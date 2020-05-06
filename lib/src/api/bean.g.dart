@@ -26,7 +26,8 @@ ServerStatusListBean _$ServerStatusListBeanFromJson(Map<String, dynamic> json) {
     ..message = json['message'] as String
     ..msg = json['msg'] as String
     ..more = json['more'] as bool
-    ..count = json['count'] as int;
+    ..count = json['count'] as int
+    ..total = json['total'] as int;
 }
 
 Map<String, dynamic> _$ServerStatusListBeanToJson(
@@ -37,4 +38,5 @@ Map<String, dynamic> _$ServerStatusListBeanToJson(
       'msg': instance.msg,
       'more': instance.more,
       'count': instance.count,
+      'total': instance.total,
     };

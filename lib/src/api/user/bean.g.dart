@@ -213,6 +213,7 @@ ArtistsSubListWrap _$ArtistsSubListWrapFromJson(Map<String, dynamic> json) {
     ..msg = json['msg'] as String
     ..more = json['more'] as bool
     ..count = json['count'] as int
+    ..total = json['total'] as int
     ..data = (json['data'] as List)
         ?.map((e) =>
             e == null ? null : Artists.fromJson(e as Map<String, dynamic>))
@@ -226,6 +227,7 @@ Map<String, dynamic> _$ArtistsSubListWrapToJson(ArtistsSubListWrap instance) =>
       'msg': instance.msg,
       'more': instance.more,
       'count': instance.count,
+      'total': instance.total,
       'data': instance.data,
     };
 
@@ -236,6 +238,7 @@ MvSubListWrap _$MvSubListWrapFromJson(Map<String, dynamic> json) {
     ..msg = json['msg'] as String
     ..more = json['more'] as bool
     ..count = json['count'] as int
+    ..total = json['total'] as int
     ..data = (json['data'] as List)
         ?.map((e) => e == null ? null : Mv2.fromJson(e as Map<String, dynamic>))
         ?.toList();
@@ -248,6 +251,7 @@ Map<String, dynamic> _$MvSubListWrapToJson(MvSubListWrap instance) =>
       'msg': instance.msg,
       'more': instance.more,
       'count': instance.count,
+      'total': instance.total,
       'data': instance.data,
     };
 

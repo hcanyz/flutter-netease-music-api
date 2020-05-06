@@ -146,7 +146,7 @@ class CommentItem {
 }
 
 @JsonSerializable()
-class CommentListWrap extends ServerStatusBean {
+class CommentListWrap extends ServerStatusListBean {
   bool moreHot;
   int cnum;
   bool isMusician;
@@ -156,6 +156,7 @@ class CommentListWrap extends ServerStatusBean {
 
   List<CommentItem> topComments;
   List<CommentItem> hotComments;
+  List<CommentItem> comments;
 
   CommentListWrap();
 

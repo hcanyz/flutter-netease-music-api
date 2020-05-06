@@ -29,6 +29,7 @@ class ServerStatusBean {
 class ServerStatusListBean extends ServerStatusBean {
   bool more;
   int count;
+  int total;
 
   ServerStatusListBean();
 
