@@ -200,6 +200,20 @@ class Lyrics {
 }
 
 @JsonSerializable()
+class Lyrics2 {
+  String lyric;
+
+  int version;
+
+  Lyrics2();
+
+  factory Lyrics2.fromJson(Map<String, dynamic> json) =>
+      _$Lyrics2FromJson(json);
+
+  Map<String, dynamic> toJson() => _$Lyrics2ToJson(this);
+}
+
+@JsonSerializable()
 class Song {
   @JsonKey(fromJson: dynamicToString)
   String id;
@@ -329,6 +343,24 @@ class SongUrlListWrap extends ServerStatusBean {
       _$SongUrlListWrapFromJson(json);
 
   Map<String, dynamic> toJson() => _$SongUrlListWrapToJson(this);
+}
+
+@JsonSerializable()
+class SongLyricWrap extends ServerStatusBean {
+  bool sgc;
+  bool sfy;
+  bool qfy;
+
+  Lyrics2 lrc;
+  Lyrics2 klyric;
+  Lyrics2 tlyric;
+
+  SongLyricWrap();
+
+  factory SongLyricWrap.fromJson(Map<String, dynamic> json) =>
+      _$SongLyricWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SongLyricWrapToJson(this);
 }
 
 @JsonSerializable()

@@ -265,6 +265,19 @@ mixin ApiPlay {
     });
   }
 
+  /// 音乐歌词
+  Future<SongLyricWrap> songLyric(String songId) {
+    var params = {'id': songId, 'lv': -1, 'kv': -1, 'tv': -1};
+    return Https.dio
+        .postUri(joinUri('/api/song/lyric'),
+            data: params,
+            options: joinOptions(
+                encryptType: EncryptType.LinuxForward, cookies: {'os': 'pc'}))
+        .then((Response value) {
+      return SongLyricWrap.fromJson(value.data);
+    });
+  }
+
   /// 音乐是否可用
   /// [br] 码率,默认设置了 999000 即最大码率,如果要 320k 则可设置为 320000,其他类推
   /// [SongUrlListWrap.code] 200

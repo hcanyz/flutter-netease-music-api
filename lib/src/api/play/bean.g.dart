@@ -218,6 +218,17 @@ Map<String, dynamic> _$LyricsToJson(Lyrics instance) => <String, dynamic>{
       'txt': instance.txt,
     };
 
+Lyrics2 _$Lyrics2FromJson(Map<String, dynamic> json) {
+  return Lyrics2()
+    ..lyric = json['lyric'] as String
+    ..version = json['version'] as int;
+}
+
+Map<String, dynamic> _$Lyrics2ToJson(Lyrics2 instance) => <String, dynamic>{
+      'lyric': instance.lyric,
+      'version': instance.version,
+    };
+
 Song _$SongFromJson(Map<String, dynamic> json) {
   return Song()
     ..id = dynamicToString(json['id'])
@@ -391,6 +402,38 @@ Map<String, dynamic> _$SongUrlListWrapToJson(SongUrlListWrap instance) =>
       'message': instance.message,
       'msg': instance.msg,
       'data': instance.data,
+    };
+
+SongLyricWrap _$SongLyricWrapFromJson(Map<String, dynamic> json) {
+  return SongLyricWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..sgc = json['sgc'] as bool
+    ..sfy = json['sfy'] as bool
+    ..qfy = json['qfy'] as bool
+    ..lrc = json['lrc'] == null
+        ? null
+        : Lyrics2.fromJson(json['lrc'] as Map<String, dynamic>)
+    ..klyric = json['klyric'] == null
+        ? null
+        : Lyrics2.fromJson(json['klyric'] as Map<String, dynamic>)
+    ..tlyric = json['tlyric'] == null
+        ? null
+        : Lyrics2.fromJson(json['tlyric'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$SongLyricWrapToJson(SongLyricWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'sgc': instance.sgc,
+      'sfy': instance.sfy,
+      'qfy': instance.qfy,
+      'lrc': instance.lrc,
+      'klyric': instance.klyric,
+      'tlyric': instance.tlyric,
     };
 
 PlayItem _$PlayItemFromJson(Map<String, dynamic> json) {
