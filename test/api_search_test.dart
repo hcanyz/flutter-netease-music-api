@@ -89,4 +89,9 @@ void main() {
     var result = await api.searchHotKey();
     expect(result.code, RET_CODE_OK);
   });
+
+  test('test search hot key detail', () async {
+    var result = await api.searchHotKeyDetailed();
+    expect(result.code, RET_CODE_OK);
+  });
 }

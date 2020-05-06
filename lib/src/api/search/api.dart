@@ -150,4 +150,14 @@ mixin ApiSearch {
       return SearchSearchKeyWrapX.fromJson(value.data);
     });
   }
+
+  /// 热搜列表(详细)
+  Future<SearchSearchKeyDetailedWrap> searchHotKeyDetailed() {
+    return Https.dio
+        .postUri(joinUri('/weapi/hotsearchlist/get'),
+            data: {}, options: joinOptions())
+        .then((Response value) {
+      return SearchSearchKeyDetailedWrap.fromJson(value.data);
+    });
+  }
 }
