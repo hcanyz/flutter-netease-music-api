@@ -83,6 +83,11 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test album comment list', () async {
+    var result = await api.albumCommentList('16967');
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test hotwall comment list', () async {
     var result = await api.hotwallCommentList();
     expect(result.code, RET_CODE_OK);

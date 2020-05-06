@@ -118,6 +118,23 @@ mixin ApiEvent {
     });
   }
 
+  /// 专辑评论
+  Future<CommentListWrap> albumCommentList(String albumId,
+      {int offset = 0, int limit = 20, int beforeTime = 0}) {
+    var params = {
+      'rid': albumId,
+      'limit': limit,
+      'offset': offset,
+      'beforeTime': beforeTime
+    };
+    return Https.dio
+        .postUri(joinUri('/weapi/v1/resource/comments/R_AL_3_$albumId'),
+            data: params, options: joinOptions(cookies: {'os': 'pc'}))
+        .then((Response value) {
+      return CommentListWrap.fromJson(value.data);
+    });
+  }
+
   /// 获取云村热评
   Future<HotwallCommentListWrap> hotwallCommentList() {
     return Https.dio
