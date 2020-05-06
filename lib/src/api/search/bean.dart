@@ -350,7 +350,7 @@ class SearchComplexWrapX extends ServerStatusBean {
 }
 
 @JsonSerializable()
-class SearchSearchKey {
+class SearchKey {
   String showKeyword;
   int action;
   String realkeyword;
@@ -358,24 +358,24 @@ class SearchSearchKey {
   String alg;
   int gap;
 
-  SearchSearchKey();
+  SearchKey();
 
-  factory SearchSearchKey.fromJson(Map<String, dynamic> json) =>
-      _$SearchSearchKeyFromJson(json);
+  factory SearchKey.fromJson(Map<String, dynamic> json) =>
+      _$SearchKeyFromJson(json);
 
-  Map<String, dynamic> toJson() => _$SearchSearchKeyToJson(this);
+  Map<String, dynamic> toJson() => _$SearchKeyToJson(this);
 }
 
 @JsonSerializable()
-class SearchSearchKeyWrap extends ServerStatusBean {
-  SearchSearchKey data;
+class SearchKeyWrap extends ServerStatusBean {
+  SearchKey data;
 
-  SearchSearchKeyWrap();
+  SearchKeyWrap();
 
-  factory SearchSearchKeyWrap.fromJson(Map<String, dynamic> json) =>
-      _$SearchSearchKeyWrapFromJson(json);
+  factory SearchKeyWrap.fromJson(Map<String, dynamic> json) =>
+      _$SearchKeyWrapFromJson(json);
 
-  Map<String, dynamic> toJson() => _$SearchSearchKeyWrapToJson(this);
+  Map<String, dynamic> toJson() => _$SearchKeyWrapToJson(this);
 }
 
 @JsonSerializable()
@@ -393,31 +393,31 @@ class SearchHotKey {
 }
 
 @JsonSerializable()
-class SearchSearchHotKeyWrap {
+class SearchHotKeyWrap {
   List<SearchHotKey> hots;
 
-  SearchSearchHotKeyWrap();
+  SearchHotKeyWrap();
 
-  factory SearchSearchHotKeyWrap.fromJson(Map<String, dynamic> json) =>
-      _$SearchSearchHotKeyWrapFromJson(json);
+  factory SearchHotKeyWrap.fromJson(Map<String, dynamic> json) =>
+      _$SearchHotKeyWrapFromJson(json);
 
-  Map<String, dynamic> toJson() => _$SearchSearchHotKeyWrapToJson(this);
+  Map<String, dynamic> toJson() => _$SearchHotKeyWrapToJson(this);
 }
 
 @JsonSerializable()
-class SearchSearchKeyWrapX extends ServerStatusBean {
-  SearchSearchHotKeyWrap result;
+class SearchKeyWrapX extends ServerStatusBean {
+  SearchHotKeyWrap result;
 
-  SearchSearchKeyWrapX();
+  SearchKeyWrapX();
 
-  factory SearchSearchKeyWrapX.fromJson(Map<String, dynamic> json) =>
-      _$SearchSearchKeyWrapXFromJson(json);
+  factory SearchKeyWrapX.fromJson(Map<String, dynamic> json) =>
+      _$SearchKeyWrapXFromJson(json);
 
-  Map<String, dynamic> toJson() => _$SearchSearchKeyWrapXToJson(this);
+  Map<String, dynamic> toJson() => _$SearchKeyWrapXToJson(this);
 }
 
 @JsonSerializable()
-class SearchSearchKeyDetailedItem {
+class SearchKeyDetailedItem {
   String searchWord;
   String content;
 
@@ -429,61 +429,61 @@ class SearchSearchKeyDetailedItem {
   int source;
   int iconType;
 
-  SearchSearchKeyDetailedItem();
+  SearchKeyDetailedItem();
 
-  factory SearchSearchKeyDetailedItem.fromJson(Map<String, dynamic> json) =>
-      _$SearchSearchKeyDetailedItemFromJson(json);
+  factory SearchKeyDetailedItem.fromJson(Map<String, dynamic> json) =>
+      _$SearchKeyDetailedItemFromJson(json);
 
-  Map<String, dynamic> toJson() => _$SearchSearchKeyDetailedItemToJson(this);
+  Map<String, dynamic> toJson() => _$SearchKeyDetailedItemToJson(this);
 }
 
 @JsonSerializable()
-class SearchSearchKeyDetailedWrap extends ServerStatusBean {
-  List<SearchSearchKeyDetailedItem> data;
+class SearchKeyDetailedWrap extends ServerStatusBean {
+  List<SearchKeyDetailedItem> data;
 
-  SearchSearchKeyDetailedWrap();
+  SearchKeyDetailedWrap();
 
-  factory SearchSearchKeyDetailedWrap.fromJson(Map<String, dynamic> json) =>
-      _$SearchSearchKeyDetailedWrapFromJson(json);
+  factory SearchKeyDetailedWrap.fromJson(Map<String, dynamic> json) =>
+      _$SearchKeyDetailedWrapFromJson(json);
 
-  Map<String, dynamic> toJson() => _$SearchSearchKeyDetailedWrapToJson(this);
+  Map<String, dynamic> toJson() => _$SearchKeyDetailedWrapToJson(this);
 }
 
 @JsonSerializable()
-class SearchSearchSuggestItem {
+class SearchSuggestItem {
   String keyword;
   int type;
   String alg;
   String lastKeyword;
 
-  SearchSearchSuggestItem();
+  SearchSuggestItem();
 
-  factory SearchSearchSuggestItem.fromJson(Map<String, dynamic> json) =>
-      _$SearchSearchSuggestItemFromJson(json);
+  factory SearchSuggestItem.fromJson(Map<String, dynamic> json) =>
+      _$SearchSuggestItemFromJson(json);
 
-  Map<String, dynamic> toJson() => _$SearchSearchSuggestItemToJson(this);
+  Map<String, dynamic> toJson() => _$SearchSuggestItemToJson(this);
 }
 
 @JsonSerializable()
-class SearchSearchSuggestWrap {
-  List<SearchSearchSuggestItem> allMatch;
+class SearchSuggestWrap {
+  List<SearchSuggestItem> allMatch;
 
-  SearchSearchSuggestWrap();
+  SearchSuggestWrap();
 
-  factory SearchSearchSuggestWrap.fromJson(Map<String, dynamic> json) =>
-      _$SearchSearchSuggestWrapFromJson(json);
+  factory SearchSuggestWrap.fromJson(Map<String, dynamic> json) =>
+      _$SearchSuggestWrapFromJson(json);
 
-  Map<String, dynamic> toJson() => _$SearchSearchSuggestWrapToJson(this);
+  Map<String, dynamic> toJson() => _$SearchSuggestWrapToJson(this);
 }
 
 @JsonSerializable()
-class SearchSearchSuggestWrapX extends ServerStatusBean {
-  SearchSearchSuggestWrap result;
+class SearchSuggestWrapX extends ServerStatusBean {
+  SearchSuggestWrap result;
 
-  SearchSearchSuggestWrapX();
+  SearchSuggestWrapX();
 
-  factory SearchSearchSuggestWrapX.fromJson(Map<String, dynamic> json) =>
-      _$SearchSearchSuggestWrapXFromJson(json);
+  factory SearchSuggestWrapX.fromJson(Map<String, dynamic> json) =>
+      _$SearchSuggestWrapXFromJson(json);
 
-  Map<String, dynamic> toJson() => _$SearchSearchSuggestWrapXToJson(this);
+  Map<String, dynamic> toJson() => _$SearchSuggestWrapXToJson(this);
 }

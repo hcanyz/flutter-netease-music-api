@@ -437,8 +437,8 @@ Map<String, dynamic> _$SearchComplexWrapXToJson(SearchComplexWrapX instance) =>
       'result': instance.result,
     };
 
-SearchSearchKey _$SearchSearchKeyFromJson(Map<String, dynamic> json) {
-  return SearchSearchKey()
+SearchKey _$SearchKeyFromJson(Map<String, dynamic> json) {
+  return SearchKey()
     ..showKeyword = json['showKeyword'] as String
     ..action = json['action'] as int
     ..realkeyword = json['realkeyword'] as String
@@ -447,8 +447,7 @@ SearchSearchKey _$SearchSearchKeyFromJson(Map<String, dynamic> json) {
     ..gap = json['gap'] as int;
 }
 
-Map<String, dynamic> _$SearchSearchKeyToJson(SearchSearchKey instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$SearchKeyToJson(SearchKey instance) => <String, dynamic>{
       'showKeyword': instance.showKeyword,
       'action': instance.action,
       'realkeyword': instance.realkeyword,
@@ -457,18 +456,17 @@ Map<String, dynamic> _$SearchSearchKeyToJson(SearchSearchKey instance) =>
       'gap': instance.gap,
     };
 
-SearchSearchKeyWrap _$SearchSearchKeyWrapFromJson(Map<String, dynamic> json) {
-  return SearchSearchKeyWrap()
+SearchKeyWrap _$SearchKeyWrapFromJson(Map<String, dynamic> json) {
+  return SearchKeyWrap()
     ..code = json['code'] as int
     ..message = json['message'] as String
     ..msg = json['msg'] as String
     ..data = json['data'] == null
         ? null
-        : SearchSearchKey.fromJson(json['data'] as Map<String, dynamic>);
+        : SearchKey.fromJson(json['data'] as Map<String, dynamic>);
 }
 
-Map<String, dynamic> _$SearchSearchKeyWrapToJson(
-        SearchSearchKeyWrap instance) =>
+Map<String, dynamic> _$SearchKeyWrapToJson(SearchKeyWrap instance) =>
     <String, dynamic>{
       'code': instance.code,
       'message': instance.message,
@@ -490,34 +488,30 @@ Map<String, dynamic> _$SearchHotKeyToJson(SearchHotKey instance) =>
       'iconType': instance.iconType,
     };
 
-SearchSearchHotKeyWrap _$SearchSearchHotKeyWrapFromJson(
-    Map<String, dynamic> json) {
-  return SearchSearchHotKeyWrap()
+SearchHotKeyWrap _$SearchHotKeyWrapFromJson(Map<String, dynamic> json) {
+  return SearchHotKeyWrap()
     ..hots = (json['hots'] as List)
         ?.map((e) =>
             e == null ? null : SearchHotKey.fromJson(e as Map<String, dynamic>))
         ?.toList();
 }
 
-Map<String, dynamic> _$SearchSearchHotKeyWrapToJson(
-        SearchSearchHotKeyWrap instance) =>
+Map<String, dynamic> _$SearchHotKeyWrapToJson(SearchHotKeyWrap instance) =>
     <String, dynamic>{
       'hots': instance.hots,
     };
 
-SearchSearchKeyWrapX _$SearchSearchKeyWrapXFromJson(Map<String, dynamic> json) {
-  return SearchSearchKeyWrapX()
+SearchKeyWrapX _$SearchKeyWrapXFromJson(Map<String, dynamic> json) {
+  return SearchKeyWrapX()
     ..code = json['code'] as int
     ..message = json['message'] as String
     ..msg = json['msg'] as String
     ..result = json['result'] == null
         ? null
-        : SearchSearchHotKeyWrap.fromJson(
-            json['result'] as Map<String, dynamic>);
+        : SearchHotKeyWrap.fromJson(json['result'] as Map<String, dynamic>);
 }
 
-Map<String, dynamic> _$SearchSearchKeyWrapXToJson(
-        SearchSearchKeyWrapX instance) =>
+Map<String, dynamic> _$SearchKeyWrapXToJson(SearchKeyWrapX instance) =>
     <String, dynamic>{
       'code': instance.code,
       'message': instance.message,
@@ -525,9 +519,9 @@ Map<String, dynamic> _$SearchSearchKeyWrapXToJson(
       'result': instance.result,
     };
 
-SearchSearchKeyDetailedItem _$SearchSearchKeyDetailedItemFromJson(
+SearchKeyDetailedItem _$SearchKeyDetailedItemFromJson(
     Map<String, dynamic> json) {
-  return SearchSearchKeyDetailedItem()
+  return SearchKeyDetailedItem()
     ..searchWord = json['searchWord'] as String
     ..content = json['content'] as String
     ..iconUrl = json['iconUrl'] as String
@@ -538,8 +532,8 @@ SearchSearchKeyDetailedItem _$SearchSearchKeyDetailedItemFromJson(
     ..iconType = json['iconType'] as int;
 }
 
-Map<String, dynamic> _$SearchSearchKeyDetailedItemToJson(
-        SearchSearchKeyDetailedItem instance) =>
+Map<String, dynamic> _$SearchKeyDetailedItemToJson(
+        SearchKeyDetailedItem instance) =>
     <String, dynamic>{
       'searchWord': instance.searchWord,
       'content': instance.content,
@@ -551,21 +545,21 @@ Map<String, dynamic> _$SearchSearchKeyDetailedItemToJson(
       'iconType': instance.iconType,
     };
 
-SearchSearchKeyDetailedWrap _$SearchSearchKeyDetailedWrapFromJson(
+SearchKeyDetailedWrap _$SearchKeyDetailedWrapFromJson(
     Map<String, dynamic> json) {
-  return SearchSearchKeyDetailedWrap()
+  return SearchKeyDetailedWrap()
     ..code = json['code'] as int
     ..message = json['message'] as String
     ..msg = json['msg'] as String
     ..data = (json['data'] as List)
         ?.map((e) => e == null
             ? null
-            : SearchSearchKeyDetailedItem.fromJson(e as Map<String, dynamic>))
+            : SearchKeyDetailedItem.fromJson(e as Map<String, dynamic>))
         ?.toList();
 }
 
-Map<String, dynamic> _$SearchSearchKeyDetailedWrapToJson(
-        SearchSearchKeyDetailedWrap instance) =>
+Map<String, dynamic> _$SearchKeyDetailedWrapToJson(
+        SearchKeyDetailedWrap instance) =>
     <String, dynamic>{
       'code': instance.code,
       'message': instance.message,
@@ -573,17 +567,15 @@ Map<String, dynamic> _$SearchSearchKeyDetailedWrapToJson(
       'data': instance.data,
     };
 
-SearchSearchSuggestItem _$SearchSearchSuggestItemFromJson(
-    Map<String, dynamic> json) {
-  return SearchSearchSuggestItem()
+SearchSuggestItem _$SearchSuggestItemFromJson(Map<String, dynamic> json) {
+  return SearchSuggestItem()
     ..keyword = json['keyword'] as String
     ..type = json['type'] as int
     ..alg = json['alg'] as String
     ..lastKeyword = json['lastKeyword'] as String;
 }
 
-Map<String, dynamic> _$SearchSearchSuggestItemToJson(
-        SearchSearchSuggestItem instance) =>
+Map<String, dynamic> _$SearchSuggestItemToJson(SearchSuggestItem instance) =>
     <String, dynamic>{
       'keyword': instance.keyword,
       'type': instance.type,
@@ -591,36 +583,31 @@ Map<String, dynamic> _$SearchSearchSuggestItemToJson(
       'lastKeyword': instance.lastKeyword,
     };
 
-SearchSearchSuggestWrap _$SearchSearchSuggestWrapFromJson(
-    Map<String, dynamic> json) {
-  return SearchSearchSuggestWrap()
+SearchSuggestWrap _$SearchSuggestWrapFromJson(Map<String, dynamic> json) {
+  return SearchSuggestWrap()
     ..allMatch = (json['allMatch'] as List)
         ?.map((e) => e == null
             ? null
-            : SearchSearchSuggestItem.fromJson(e as Map<String, dynamic>))
+            : SearchSuggestItem.fromJson(e as Map<String, dynamic>))
         ?.toList();
 }
 
-Map<String, dynamic> _$SearchSearchSuggestWrapToJson(
-        SearchSearchSuggestWrap instance) =>
+Map<String, dynamic> _$SearchSuggestWrapToJson(SearchSuggestWrap instance) =>
     <String, dynamic>{
       'allMatch': instance.allMatch,
     };
 
-SearchSearchSuggestWrapX _$SearchSearchSuggestWrapXFromJson(
-    Map<String, dynamic> json) {
-  return SearchSearchSuggestWrapX()
+SearchSuggestWrapX _$SearchSuggestWrapXFromJson(Map<String, dynamic> json) {
+  return SearchSuggestWrapX()
     ..code = json['code'] as int
     ..message = json['message'] as String
     ..msg = json['msg'] as String
     ..result = json['result'] == null
         ? null
-        : SearchSearchSuggestWrap.fromJson(
-            json['result'] as Map<String, dynamic>);
+        : SearchSuggestWrap.fromJson(json['result'] as Map<String, dynamic>);
 }
 
-Map<String, dynamic> _$SearchSearchSuggestWrapXToJson(
-        SearchSearchSuggestWrapX instance) =>
+Map<String, dynamic> _$SearchSuggestWrapXToJson(SearchSuggestWrapX instance) =>
     <String, dynamic>{
       'code': instance.code,
       'message': instance.message,

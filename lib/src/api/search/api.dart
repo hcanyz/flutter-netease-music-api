@@ -126,7 +126,7 @@ mixin ApiSearch {
   }
 
   /// 默认搜索关键词
-  Future<SearchSearchKeyWrap> searchDefaultKey() {
+  Future<SearchKeyWrap> searchDefaultKey() {
     return Https.dio
         .postUri(
             Uri.parse(
@@ -136,34 +136,34 @@ mixin ApiSearch {
                 encryptType: EncryptType.EApi,
                 eApiUrl: '/api/search/defaultkeyword/get'))
         .then((Response value) {
-      return SearchSearchKeyWrap.fromJson(value.data);
+      return SearchKeyWrap.fromJson(value.data);
     });
   }
 
   /// 热搜列表(简略)
-  Future<SearchSearchKeyWrapX> searchHotKey() {
+  Future<SearchKeyWrapX> searchHotKey() {
     return Https.dio
         .postUri(joinUri('/weapi/search/hot'),
             data: {'type': 1111},
             options: joinOptions(userAgent: UserAgent.Mobile))
         .then((Response value) {
-      return SearchSearchKeyWrapX.fromJson(value.data);
+      return SearchKeyWrapX.fromJson(value.data);
     });
   }
 
   /// 热搜列表(详细)
-  Future<SearchSearchKeyDetailedWrap> searchHotKeyDetailed() {
+  Future<SearchKeyDetailedWrap> searchHotKeyDetailed() {
     return Https.dio
         .postUri(joinUri('/weapi/hotsearchlist/get'),
             data: {}, options: joinOptions())
         .then((Response value) {
-      return SearchSearchKeyDetailedWrap.fromJson(value.data);
+      return SearchKeyDetailedWrap.fromJson(value.data);
     });
   }
 
   /// 搜索建议(联想)
   /// [type] : 'mobile': 返回移动端数据  'web': web
-  Future<SearchSearchSuggestWrapX> searchSuggest(String keyword,
+  Future<SearchSuggestWrapX> searchSuggest(String keyword,
       {String type = 'mobile'}) {
     var params = {'s': keyword};
     return Https.dio
@@ -173,7 +173,7 @@ mixin ApiSearch {
             data: params,
             options: joinOptions())
         .then((Response value) {
-      return SearchSearchSuggestWrapX.fromJson(value.data);
+      return SearchSuggestWrapX.fromJson(value.data);
     });
   }
 }
