@@ -108,6 +108,12 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test hot comment list', () async {
+    var result =
+        await api.hotCommentList('84107D4616B72B929C8AEB7D1E6CC904', 'video');
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test hotwall comment list', () async {
     var result = await api.hotwallCommentList();
     expect(result.code, RET_CODE_OK);

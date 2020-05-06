@@ -203,6 +203,46 @@ mixin ApiEvent {
     });
   }
 
+  /// 热门评论
+  /// [id] id
+  /// [type] 'song':歌曲 'mv':mv 'playlist':歌单 'album':专辑 'dj':电台 'video':视频
+  Future<CommentListWrap> hotCommentList(String id, String type,
+      {int offset = 0, int limit = 20, int beforeTime = 0}) {
+    String typeKey = 'R_SO_4_';
+    switch (type) {
+      case 'song':
+        typeKey = 'R_SO_4_';
+        break;
+      case 'mv':
+        typeKey = 'R_MV_5_';
+        break;
+      case 'playlist':
+        typeKey = 'A_PL_0_';
+        break;
+      case 'album':
+        typeKey = 'R_AL_3_';
+        break;
+      case 'dj':
+        typeKey = 'A_DJ_1_';
+        break;
+      case 'video':
+        typeKey = 'R_VI_62_';
+        break;
+    }
+    var params = {
+      'rid': id,
+      'limit': limit,
+      'offset': offset,
+      'beforeTime': beforeTime
+    };
+    return Https.dio
+        .postUri(joinUri('/weapi/v1/resource/hotcomments/$typeKey$id'),
+            data: params, options: joinOptions(cookies: {'os': 'pc'}))
+        .then((Response value) {
+      return CommentListWrap.fromJson(value.data);
+    });
+  }
+
   /// 获取云村热评
   Future<HotwallCommentListWrap> hotwallCommentList() {
     return Https.dio
