@@ -135,6 +135,74 @@ mixin ApiEvent {
     });
   }
 
+  /// 歌单评论
+  Future<CommentListWrap> playlistCommentList(String pid,
+      {int offset = 0, int limit = 20, int beforeTime = 0}) {
+    var params = {
+      'rid': pid,
+      'limit': limit,
+      'offset': offset,
+      'beforeTime': beforeTime
+    };
+    return Https.dio
+        .postUri(joinUri('/weapi/v1/resource/comments/A_PL_0_$pid'),
+            data: params, options: joinOptions(cookies: {'os': 'pc'}))
+        .then((Response value) {
+      return CommentListWrap.fromJson(value.data);
+    });
+  }
+
+  /// mv评论
+  Future<CommentListWrap> mvCommentList(String mvId,
+      {int offset = 0, int limit = 20, int beforeTime = 0}) {
+    var params = {
+      'rid': mvId,
+      'limit': limit,
+      'offset': offset,
+      'beforeTime': beforeTime
+    };
+    return Https.dio
+        .postUri(joinUri('/weapi/v1/resource/comments/R_MV_5_$mvId'),
+            data: params, options: joinOptions(cookies: {'os': 'pc'}))
+        .then((Response value) {
+      return CommentListWrap.fromJson(value.data);
+    });
+  }
+
+  /// 电台评论
+  Future<CommentListWrap> djCommentList(String djId,
+      {int offset = 0, int limit = 20, int beforeTime = 0}) {
+    var params = {
+      'rid': djId,
+      'limit': limit,
+      'offset': offset,
+      'beforeTime': beforeTime
+    };
+    return Https.dio
+        .postUri(joinUri('/weapi/v1/resource/comments/A_DJ_1_$djId'),
+            data: params, options: joinOptions(cookies: {'os': 'pc'}))
+        .then((Response value) {
+      return CommentListWrap.fromJson(value.data);
+    });
+  }
+
+  /// 视频评论
+  Future<CommentListWrap> videoCommentList(String videoId,
+      {int offset = 0, int limit = 20, int beforeTime = 0}) {
+    var params = {
+      'rid': videoId,
+      'limit': limit,
+      'offset': offset,
+      'beforeTime': beforeTime
+    };
+    return Https.dio
+        .postUri(joinUri('/weapi/v1/resource/comments/R_VI_62_$videoId'),
+            data: params, options: joinOptions(cookies: {'os': 'pc'}))
+        .then((Response value) {
+      return CommentListWrap.fromJson(value.data);
+    });
+  }
+
   /// 获取云村热评
   Future<HotwallCommentListWrap> hotwallCommentList() {
     return Https.dio

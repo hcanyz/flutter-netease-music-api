@@ -88,6 +88,26 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test playlist comment list', () async {
+    var result = await api.playlistCommentList('2819660572');
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test mv comment list', () async {
+    var result = await api.mvCommentList('5300126');
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test dj comment list', () async {
+    var result = await api.djCommentList('526230592');
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test video comment list', () async {
+    var result = await api.videoCommentList('84107D4616B72B929C8AEB7D1E6CC904');
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test hotwall comment list', () async {
     var result = await api.hotwallCommentList();
     expect(result.code, RET_CODE_OK);
