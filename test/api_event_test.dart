@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:netease_music_api/netease_music_api.dart';
 
@@ -117,5 +119,24 @@ void main() {
   test('test hotwall comment list', () async {
     var result = await api.hotwallCommentList();
     expect(result.code, RET_CODE_OK);
+  });
+
+  test('test hotwall comment list', () async {
+    var result = await api.playlistCommentList('2819660572');
+    expect(result.code, RET_CODE_OK);
+
+    if (result.comments.isEmpty) {
+      return;
+    }
+
+    var result2 = await api.likeComment(
+        '2819660572', result.comments[0].commentId, 'playlist', true);
+    expect(result2.code, RET_CODE_OK);
+
+    sleep(Duration(seconds: 1));
+
+    var result3 = await api.likeComment(
+        '2819660572', result.comments[0].commentId, 'playlist', false);
+    expect(result3.code, RET_CODE_OK);
   });
 }
