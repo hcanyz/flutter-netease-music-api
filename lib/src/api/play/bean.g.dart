@@ -90,12 +90,15 @@ Artists _$ArtistsFromJson(Map<String, dynamic> json) {
     ..name = json['name'] as String
     ..picUrl = json['picUrl'] as String
     ..img1v1Id = json['img1v1Id'] as int
+    ..img1v1Url = json['img1v1Url'] as String
     ..albumSize = json['albumSize'] as int
     ..musicSize = json['musicSize'] as int
     ..topicPerson = json['topicPerson'] as int
     ..trans = json['trans'] as String
     ..briefDesc = json['briefDesc'] as String
-    ..followed = json['followed'] as bool;
+    ..followed = json['followed'] as bool
+    ..mvSize = json['mvSize'] as int
+    ..publishTime = json['publishTime'] as int;
 }
 
 Map<String, dynamic> _$ArtistsToJson(Artists instance) => <String, dynamic>{
@@ -104,12 +107,15 @@ Map<String, dynamic> _$ArtistsToJson(Artists instance) => <String, dynamic>{
       'name': instance.name,
       'picUrl': instance.picUrl,
       'img1v1Id': instance.img1v1Id,
+      'img1v1Url': instance.img1v1Url,
       'albumSize': instance.albumSize,
       'musicSize': instance.musicSize,
       'topicPerson': instance.topicPerson,
       'trans': instance.trans,
       'briefDesc': instance.briefDesc,
       'followed': instance.followed,
+      'mvSize': instance.mvSize,
+      'publishTime': instance.publishTime,
     };
 
 Album _$AlbumFromJson(Map<String, dynamic> json) {
@@ -925,4 +931,27 @@ Map<String, dynamic> _$ArtistTopSongListToJson(ArtistTopSongList instance) =>
       'message': instance.message,
       'msg': instance.msg,
       'songs': instance.songs,
+    };
+
+ArtistSongList _$ArtistSongListFromJson(Map<String, dynamic> json) {
+  return ArtistSongList()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..hotSongs = (json['hotSongs'] as List)
+        ?.map(
+            (e) => e == null ? null : Song2.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..artist = json['artist'] == null
+        ? null
+        : Artists.fromJson(json['artist'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$ArtistSongListToJson(ArtistSongList instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'hotSongs': instance.hotSongs,
+      'artist': instance.artist,
     };

@@ -368,4 +368,14 @@ mixin ApiPlay {
       return ArtistTopSongList.fromJson(value.data);
     });
   }
+
+  /// 歌手信息+歌曲
+  Future<ArtistSongList> artistSongList(String artistId) {
+    return Https.dio
+        .postUri(joinUri('/weapi/v1/artist/$artistId'),
+            data: {}, options: joinOptions())
+        .then((Response value) {
+      return ArtistSongList.fromJson(value.data);
+    });
+  }
 }

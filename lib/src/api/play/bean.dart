@@ -82,6 +82,8 @@ class Artists {
   String picUrl;
 
   int img1v1Id;
+  String img1v1Url;
+
   int albumSize;
   int musicSize;
   int topicPerson;
@@ -90,6 +92,10 @@ class Artists {
   String briefDesc;
 
   bool followed;
+
+  int mvSize;
+
+  int publishTime;
 
   Artists();
 
@@ -746,4 +752,18 @@ class ArtistTopSongList extends ServerStatusBean {
       _$ArtistTopSongListFromJson(json);
 
   Map<String, dynamic> toJson() => _$ArtistTopSongListToJson(this);
+}
+
+@JsonSerializable()
+class ArtistSongList extends ServerStatusBean {
+  List<Song2> hotSongs;
+
+  Artists artist;
+
+  ArtistSongList();
+
+  factory ArtistSongList.fromJson(Map<String, dynamic> json) =>
+      _$ArtistSongListFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ArtistSongListToJson(this);
 }
