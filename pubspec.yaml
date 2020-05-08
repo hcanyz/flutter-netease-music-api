@@ -28,5 +28,5 @@ dev_dependencies:
     sdk: flutter
 
   # x json
-  build_runner: ^1.8.1
-  json_serializable: ^3.2.5
+  build_runner: ^1.9.0
+  json_serializable: ^3.3.0
