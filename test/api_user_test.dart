@@ -111,6 +111,11 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test user sign', () async {
+    var result = await api.userSign();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test user followed list', () async {
     var result = await api.userFollowedList(defaultUserId);
     expect(result.code, RET_CODE_OK);

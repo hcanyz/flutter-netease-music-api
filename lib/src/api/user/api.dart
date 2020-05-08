@@ -152,6 +152,20 @@ mixin ApiUser {
     });
   }
 
+  /// 用户签到
+  /// !需要登录
+  /// [clientType] android web
+  /// 0为安卓端签到 3点经验, 1为网页签到,2点经验
+  Future<ServerStatusBean> userSign({String clientType = 'android'}) {
+    var params = {'type': clientType == 'android' ? 0 : 1};
+    return Https.dio
+        .postUri(joinUri('/weapi/point/dailyTask'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
+  }
+
   /// 获取用户粉丝列表
   /// !需要登录
   /// [lastTime] 传入上一次返回结果的 lasttime,将会返回下一页的数据,默认-1
