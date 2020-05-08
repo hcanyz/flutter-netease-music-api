@@ -429,6 +429,36 @@ Map<String, dynamic> _$AlbumDetailWrapToJson(AlbumDetailWrap instance) =>
       'album': instance.album,
     };
 
+AlbumDetailDynamicWrap _$AlbumDetailDynamicWrapFromJson(
+    Map<String, dynamic> json) {
+  return AlbumDetailDynamicWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..onSale = json['onSale'] as bool
+    ..isSub = json['isSub'] as bool
+    ..subTime = json['subTime'] as int
+    ..commentCount = json['commentCount'] as int
+    ..likedCount = json['likedCount'] as int
+    ..shareCount = json['shareCount'] as int
+    ..subCount = json['subCount'] as int;
+}
+
+Map<String, dynamic> _$AlbumDetailDynamicWrapToJson(
+        AlbumDetailDynamicWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'onSale': instance.onSale,
+      'isSub': instance.isSub,
+      'subTime': instance.subTime,
+      'commentCount': instance.commentCount,
+      'likedCount': instance.likedCount,
+      'shareCount': instance.shareCount,
+      'subCount': instance.subCount,
+    };
+
 SongDetailWrap _$SongDetailWrapFromJson(Map<String, dynamic> json) {
   return SongDetailWrap()
     ..code = json['code'] as int

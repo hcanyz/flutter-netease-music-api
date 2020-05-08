@@ -351,6 +351,26 @@ class AlbumDetailWrap extends ServerStatusBean {
 }
 
 @JsonSerializable()
+class AlbumDetailDynamicWrap extends ServerStatusBean {
+  bool onSale;
+  bool isSub;
+
+  int subTime;
+
+  int commentCount;
+  int likedCount;
+  int shareCount;
+  int subCount;
+
+  AlbumDetailDynamicWrap();
+
+  factory AlbumDetailDynamicWrap.fromJson(Map<String, dynamic> json) =>
+      _$AlbumDetailDynamicWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AlbumDetailDynamicWrapToJson(this);
+}
+
+@JsonSerializable()
 class SongDetailWrap extends ServerStatusBean {
   List<Song2> songs;
 

@@ -264,6 +264,17 @@ mixin ApiPlay {
     });
   }
 
+  /// 专辑动态信息
+  Future<AlbumDetailDynamicWrap> albumDetailDynamic(String albumId) {
+    var params = {'id': albumId};
+    return Https.dio
+        .postUri(joinUri('/api/album/detail/dynamic'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return AlbumDetailDynamicWrap.fromJson(value.data);
+    });
+  }
+
   /// 音乐详情
   Future<SongDetailWrap> songDetail(List<String> songIds) {
     var params = {
