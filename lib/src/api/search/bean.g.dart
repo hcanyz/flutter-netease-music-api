@@ -131,20 +131,6 @@ Map<String, dynamic> _$SearchPlaylistWrapXToJson(
       'result': instance.result,
     };
 
-SearchUserWrap _$SearchUserWrapFromJson(Map<String, dynamic> json) {
-  return SearchUserWrap()
-    ..userprofiles = (json['userprofiles'] as List)
-        ?.map((e) => e == null
-            ? null
-            : NeteaseUserInfo.fromJson(e as Map<String, dynamic>))
-        ?.toList();
-}
-
-Map<String, dynamic> _$SearchUserWrapToJson(SearchUserWrap instance) =>
-    <String, dynamic>{
-      'userprofiles': instance.userprofiles,
-    };
-
 SearchUserWrapX _$SearchUserWrapXFromJson(Map<String, dynamic> json) {
   return SearchUserWrapX()
     ..code = json['code'] as int
@@ -152,7 +138,7 @@ SearchUserWrapX _$SearchUserWrapXFromJson(Map<String, dynamic> json) {
     ..msg = json['msg'] as String
     ..result = json['result'] == null
         ? null
-        : SearchUserWrap.fromJson(json['result'] as Map<String, dynamic>);
+        : UserListWrap.fromJson(json['result'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$SearchUserWrapXToJson(SearchUserWrapX instance) =>

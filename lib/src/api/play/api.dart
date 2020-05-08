@@ -183,6 +183,17 @@ mixin ApiPlay {
     });
   }
 
+  /// 最近5个听了这首歌的用户
+  Future<UserListWrap> userSongSimi(String songId) {
+    var params = {'songid': songId};
+    return Https.dio
+        .postUri(joinUri('/weapi/discovery/simiUser'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return UserListWrap.fromJson(value.data);
+    });
+  }
+
   /// 相似mv
   Future<SongListWrap> songSimi(String songId,
       {int offset = 0, int limit = 30}) {

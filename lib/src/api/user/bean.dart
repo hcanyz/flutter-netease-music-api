@@ -28,20 +28,36 @@ class NeteaseUserInfo {
   String userId;
   String nickname;
   String avatarUrl;
+  String backgroundUrl;
   String signature;
+  String description;
+  String detailDescription;
+  String recommendReason;
 
   //性别 0:保密 1:男性 2:女性
   int gender;
+
+  int authority;
 
   //出生日期,时间戳 unix timestamp
   int birthday;
 
   int city;
   int province;
-
-  String backgroundUrl;
+  int vipType;
+  int authenticationTypes;
+  int authStatus;
+  int djStatus;
+  int accountStatus;
 
   List<String> expertTags;
+
+  String alg;
+
+  bool followed;
+  bool mutual;
+  bool anchor;
+  bool defaultAvatar;
 
   NeteaseUserInfo();
 
@@ -127,6 +143,18 @@ class UserFollowedListWrap extends ServerStatusBean {
       _$UserFollowedListWrapFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserFollowedListWrapToJson(this);
+}
+
+@JsonSerializable()
+class UserListWrap extends ServerStatusBean {
+  List<NeteaseUserInfo> userprofiles;
+
+  UserListWrap();
+
+  factory UserListWrap.fromJson(Map<String, dynamic> json) =>
+      _$UserListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserListWrapToJson(this);
 }
 
 @JsonSerializable()

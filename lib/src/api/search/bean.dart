@@ -103,20 +103,8 @@ class SearchPlaylistWrapX extends ServerStatusBean {
 }
 
 @JsonSerializable()
-class SearchUserWrap {
-  List<NeteaseUserInfo> userprofiles;
-
-  SearchUserWrap();
-
-  factory SearchUserWrap.fromJson(Map<String, dynamic> json) =>
-      _$SearchUserWrapFromJson(json);
-
-  Map<String, dynamic> toJson() => _$SearchUserWrapToJson(this);
-}
-
-@JsonSerializable()
 class SearchUserWrapX extends ServerStatusBean {
-  SearchUserWrap result;
+  UserListWrap result;
 
   SearchUserWrapX();
 
