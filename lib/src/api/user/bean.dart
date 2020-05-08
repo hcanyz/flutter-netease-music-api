@@ -102,26 +102,6 @@ class NeteaseUserSubcount extends ServerStatusBean {
 }
 
 @JsonSerializable()
-class PlayListCreator extends NeteaseUserInfo {
-  PlayListCreator();
-
-  factory PlayListCreator.fromJson(Map<String, dynamic> json) =>
-      _$PlayListCreatorFromJson(json);
-
-  Map<String, dynamic> toJson() => _$PlayListCreatorToJson(this);
-}
-
-@JsonSerializable()
-class PlayListSubscriber extends NeteaseUserInfo {
-  PlayListSubscriber();
-
-  factory PlayListSubscriber.fromJson(Map<String, dynamic> json) =>
-      _$PlayListSubscriberFromJson(json);
-
-  Map<String, dynamic> toJson() => _$PlayListSubscriberToJson(this);
-}
-
-@JsonSerializable()
 class UserFollowListWrap extends ServerStatusBean {
   List<NeteaseAccountProfile> follow;
 
@@ -227,7 +207,7 @@ class PlaylistCreateWrap extends ServerStatusBean {
   @JsonKey(fromJson: dynamicToString)
   String id;
 
-  PlayItem playlist;
+  Play playlist;
 
   PlaylistCreateWrap();
 

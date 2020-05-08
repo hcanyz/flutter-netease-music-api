@@ -135,120 +135,6 @@ Map<String, dynamic> _$NeteaseUserSubcountToJson(
       'subPlaylistCount': instance.subPlaylistCount,
     };
 
-PlayListCreator _$PlayListCreatorFromJson(Map<String, dynamic> json) {
-  return PlayListCreator()
-    ..userId = dynamicToString(json['userId'])
-    ..nickname = json['nickname'] as String
-    ..avatarUrl = json['avatarUrl'] as String
-    ..backgroundUrl = json['backgroundUrl'] as String
-    ..signature = json['signature'] as String
-    ..description = json['description'] as String
-    ..detailDescription = json['detailDescription'] as String
-    ..recommendReason = json['recommendReason'] as String
-    ..gender = json['gender'] as int
-    ..authority = json['authority'] as int
-    ..birthday = json['birthday'] as int
-    ..city = json['city'] as int
-    ..province = json['province'] as int
-    ..vipType = json['vipType'] as int
-    ..authenticationTypes = json['authenticationTypes'] as int
-    ..authStatus = json['authStatus'] as int
-    ..djStatus = json['djStatus'] as int
-    ..accountStatus = json['accountStatus'] as int
-    ..expertTags =
-        (json['expertTags'] as List)?.map((e) => e as String)?.toList()
-    ..alg = json['alg'] as String
-    ..followed = json['followed'] as bool
-    ..mutual = json['mutual'] as bool
-    ..anchor = json['anchor'] as bool
-    ..defaultAvatar = json['defaultAvatar'] as bool;
-}
-
-Map<String, dynamic> _$PlayListCreatorToJson(PlayListCreator instance) =>
-    <String, dynamic>{
-      'userId': instance.userId,
-      'nickname': instance.nickname,
-      'avatarUrl': instance.avatarUrl,
-      'backgroundUrl': instance.backgroundUrl,
-      'signature': instance.signature,
-      'description': instance.description,
-      'detailDescription': instance.detailDescription,
-      'recommendReason': instance.recommendReason,
-      'gender': instance.gender,
-      'authority': instance.authority,
-      'birthday': instance.birthday,
-      'city': instance.city,
-      'province': instance.province,
-      'vipType': instance.vipType,
-      'authenticationTypes': instance.authenticationTypes,
-      'authStatus': instance.authStatus,
-      'djStatus': instance.djStatus,
-      'accountStatus': instance.accountStatus,
-      'expertTags': instance.expertTags,
-      'alg': instance.alg,
-      'followed': instance.followed,
-      'mutual': instance.mutual,
-      'anchor': instance.anchor,
-      'defaultAvatar': instance.defaultAvatar,
-    };
-
-PlayListSubscriber _$PlayListSubscriberFromJson(Map<String, dynamic> json) {
-  return PlayListSubscriber()
-    ..userId = dynamicToString(json['userId'])
-    ..nickname = json['nickname'] as String
-    ..avatarUrl = json['avatarUrl'] as String
-    ..backgroundUrl = json['backgroundUrl'] as String
-    ..signature = json['signature'] as String
-    ..description = json['description'] as String
-    ..detailDescription = json['detailDescription'] as String
-    ..recommendReason = json['recommendReason'] as String
-    ..gender = json['gender'] as int
-    ..authority = json['authority'] as int
-    ..birthday = json['birthday'] as int
-    ..city = json['city'] as int
-    ..province = json['province'] as int
-    ..vipType = json['vipType'] as int
-    ..authenticationTypes = json['authenticationTypes'] as int
-    ..authStatus = json['authStatus'] as int
-    ..djStatus = json['djStatus'] as int
-    ..accountStatus = json['accountStatus'] as int
-    ..expertTags =
-        (json['expertTags'] as List)?.map((e) => e as String)?.toList()
-    ..alg = json['alg'] as String
-    ..followed = json['followed'] as bool
-    ..mutual = json['mutual'] as bool
-    ..anchor = json['anchor'] as bool
-    ..defaultAvatar = json['defaultAvatar'] as bool;
-}
-
-Map<String, dynamic> _$PlayListSubscriberToJson(PlayListSubscriber instance) =>
-    <String, dynamic>{
-      'userId': instance.userId,
-      'nickname': instance.nickname,
-      'avatarUrl': instance.avatarUrl,
-      'backgroundUrl': instance.backgroundUrl,
-      'signature': instance.signature,
-      'description': instance.description,
-      'detailDescription': instance.detailDescription,
-      'recommendReason': instance.recommendReason,
-      'gender': instance.gender,
-      'authority': instance.authority,
-      'birthday': instance.birthday,
-      'city': instance.city,
-      'province': instance.province,
-      'vipType': instance.vipType,
-      'authenticationTypes': instance.authenticationTypes,
-      'authStatus': instance.authStatus,
-      'djStatus': instance.djStatus,
-      'accountStatus': instance.accountStatus,
-      'expertTags': instance.expertTags,
-      'alg': instance.alg,
-      'followed': instance.followed,
-      'mutual': instance.mutual,
-      'anchor': instance.anchor,
-      'defaultAvatar': instance.defaultAvatar,
-    };
-
 UserFollowListWrap _$UserFollowListWrapFromJson(Map<String, dynamic> json) {
   return UserFollowListWrap()
     ..code = json['code'] as int
@@ -430,7 +316,7 @@ PlaylistCreateWrap _$PlaylistCreateWrapFromJson(Map<String, dynamic> json) {
     ..id = dynamicToString(json['id'])
     ..playlist = json['playlist'] == null
         ? null
-        : PlayItem.fromJson(json['playlist'] as Map<String, dynamic>);
+        : Play.fromJson(json['playlist'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$PlaylistCreateWrapToJson(PlaylistCreateWrap instance) =>

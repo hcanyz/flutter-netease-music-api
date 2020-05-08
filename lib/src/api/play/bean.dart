@@ -458,9 +458,12 @@ class SongLyricWrap extends ServerStatusBean {
 }
 
 @JsonSerializable()
-class PlayItem {
+class Play {
   @JsonKey(fromJson: dynamicToString)
   String id;
+
+  @JsonKey(fromJson: dynamicToString)
+  String userId;
 
   //歌单名
   String name;
@@ -484,31 +487,32 @@ class PlayItem {
 
   String commentThreadId;
 
+  String alg;
+
   // 歌单类型: TODO 待补充
   // 0: 自建?
   // 5: 我喜欢的音乐
   int specialType;
 
-  PlayListCreator creator;
+  NeteaseUserInfo creator;
 
-  List<PlayListSubscriber> subscribers;
+  List<NeteaseUserInfo> subscribers;
 
-  PlayItem();
+  Play();
 
   @override
   String toString() {
-    return 'PlayItem{id: $id, name: $name}';
+    return 'Play{id: $id, name: $name}';
   }
 
-  factory PlayItem.fromJson(Map<String, dynamic> json) =>
-      _$PlayItemFromJson(json);
+  factory Play.fromJson(Map<String, dynamic> json) => _$PlayFromJson(json);
 
-  Map<String, dynamic> toJson() => _$PlayItemToJson(this);
+  Map<String, dynamic> toJson() => _$PlayToJson(this);
 }
 
 @JsonSerializable()
 class MultiPlayListWrap extends ServerStatusBean {
-  List<PlayItem> playlists;
+  List<Play> playlists;
 
   MultiPlayListWrap();
 
@@ -520,7 +524,7 @@ class MultiPlayListWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class MultiPlayListWrap2 extends ServerStatusBean {
-  List<PlayItem> playlist;
+  List<Play> playlist;
 
   MultiPlayListWrap2();
 
@@ -528,6 +532,21 @@ class MultiPlayListWrap2 extends ServerStatusBean {
       _$MultiPlayListWrap2FromJson(json);
 
   Map<String, dynamic> toJson() => _$MultiPlayListWrap2ToJson(this);
+}
+
+@JsonSerializable()
+class RecommendPlayListWrap extends ServerStatusBean {
+  List<Play> recommend;
+
+  bool featureFirst;
+  bool haveRcmdSongs;
+
+  RecommendPlayListWrap();
+
+  factory RecommendPlayListWrap.fromJson(Map<String, dynamic> json) =>
+      _$RecommendPlayListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RecommendPlayListWrapToJson(this);
 }
 
 @JsonSerializable()
@@ -673,7 +692,7 @@ const PLAYLIST_CATEGORY = [
 
 @JsonSerializable()
 class SinglePlayListWrap extends ServerStatusBean {
-  PlayItem playlist;
+  Play playlist;
 
   SinglePlayListWrap();
 
@@ -698,9 +717,6 @@ class SongListWrap extends ServerStatusBean {
 @JsonSerializable()
 class RecommendSongListWrap extends ServerStatusBean {
   List<Song> recommend;
-
-  bool featureFirst;
-  bool haveRcmdSongs;
 
   RecommendSongListWrap();
 

@@ -80,7 +80,7 @@ class SearchArtistsWrapX extends ServerStatusBean {
 
 @JsonSerializable()
 class SearchPlaylistWrap {
-  List<PlayItem> playlists;
+  List<Play> playlists;
 
   SearchPlaylistWrap();
 
@@ -238,7 +238,7 @@ class SearchComplexMlog {
 
 @JsonSerializable()
 class SearchComplexPlaylist {
-  List<PlayItem> playLists;
+  List<Play> playLists;
 
   String moreText;
 
@@ -468,7 +468,7 @@ class SearchSuggestWrapX extends ServerStatusBean {
 class SearchMultiMatchWrap {
   //TODO
   List<Song> song;
-  List<PlayItem> playList;
+  List<Play> playList;
   List<Artists> artist;
   List<Album> album;
 

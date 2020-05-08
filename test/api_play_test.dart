@@ -52,6 +52,11 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test recommend everyday song list', () async {
+    var result = await api.recommendPlaylist();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test playmode intelligence list ', () async {
     var result = await api.playmodeIntelligenceList('33894312', '24381616');
     expect(result.code, RET_CODE_OK);
@@ -79,11 +84,6 @@ void main() {
 
   test('test new song list', () async {
     var result = await api.newSongList();
-    expect(result.code, RET_CODE_OK);
-  });
-
-  test('test recommend everyday song list', () async {
-    var result = await api.recommendEveryDaySongList();
     expect(result.code, RET_CODE_OK);
   });
 

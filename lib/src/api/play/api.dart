@@ -65,13 +65,13 @@ mixin ApiPlay {
         var matchs = RegExp(pattern, multiLine: true).allMatches(value.data);
         for (var match in matchs) {
           try {
-            var item = PlayItem();
+            var item = Play();
             item.id = match.group(2).substring('/playlist?id='.length);
             item.name = match.group(3);
             item.coverImgUrl = match
                 .group(1)
                 .substring(0, match.group(1).length - '?param=50y50'.length);
-            item.creator = PlayListCreator();
+            item.creator = NeteaseUserInfo();
             item.creator.userId =
                 match.group(4).substring('/user/home?id='.length);
             item.creator.nickname = match.group(5);
@@ -82,6 +82,16 @@ mixin ApiPlay {
         listWrap.code = RET_CODE_UNKNOW;
       }
       return listWrap;
+    });
+  }
+
+  /// 每日推荐歌单
+  Future<RecommendPlayListWrap> recommendPlaylist() {
+    return Https.dio
+        .postUri(joinUri('/weapi/v1/discovery/recommend/resource'),
+            data: {}, options: joinOptions())
+        .then((Response value) {
+      return RecommendPlayListWrap.fromJson(value.data);
     });
   }
 
@@ -180,16 +190,6 @@ mixin ApiPlay {
             data: params, options: joinOptions())
         .then((Response value) {
       return NewSongListWrap.fromJson(value.data);
-    });
-  }
-
-  /// 每日推荐歌单
-  Future<RecommendSongListWrap> recommendEveryDaySongList() {
-    return Https.dio
-        .postUri(joinUri('/weapi/v1/discovery/recommend/resource'),
-            data: {}, options: joinOptions())
-        .then((Response value) {
-      return RecommendSongListWrap.fromJson(value.data);
     });
   }
 
