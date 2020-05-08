@@ -305,32 +305,55 @@ mixin ApiEvent {
       return CommentWrap.fromJson(value.data);
     });
   }
-}
 
-String _type2key(String type) {
-  String typeKey = 'R_SO_4_';
-  switch (type) {
-    case 'song':
-      typeKey = 'R_SO_4_';
-      break;
-    case 'mv':
-      typeKey = 'R_MV_5_';
-      break;
-    case 'playlist':
-      typeKey = 'A_PL_0_';
-      break;
-    case 'album':
-      typeKey = 'R_AL_3_';
-      break;
-    case 'dj':
-      typeKey = 'A_DJ_1_';
-      break;
-    case 'video':
-      typeKey = 'R_VI_62_';
-      break;
-    case 'event':
-      typeKey = 'A_EV_2_';
-      break;
+  /// 点赞与取消点赞资源
+  /// [id] 资源id
+  /// 注意： 动态点赞不需要传入 id 参数，需要传入动态的 threadId 参数,
+  /// 如：/comment/like?type=6&cid=1419532712&threadId=A_EV_2_6559519868_32953014&t=0，
+  /// threadId 可通过 /event，/user/event 接口获取
+  Future<ServerStatusBean> likeResource(String id, String type, bool like,
+      {String commentId, String threadId, String content}) {
+    String typeKey = _type2key(type);
+    var params = {'threadId': typeKey + id};
+    if (type == 'event') {
+      if (threadId == null) {
+        return Future.error(ArgumentError('event type, threadId not null'));
+      }
+      params['threadId'] = threadId;
+    }
+    return Https.dio
+        .postUri(joinUri('/weapi/resource/${like ? 'like' : 'unlike'}'),
+            data: params, options: joinOptions(cookies: {'os': 'pc'}))
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
   }
-  return typeKey;
+
+  String _type2key(String type) {
+    String typeKey = 'R_SO_4_';
+    switch (type) {
+      case 'song':
+        typeKey = 'R_SO_4_';
+        break;
+      case 'mv':
+        typeKey = 'R_MV_5_';
+        break;
+      case 'playlist':
+        typeKey = 'A_PL_0_';
+        break;
+      case 'album':
+        typeKey = 'R_AL_3_';
+        break;
+      case 'dj':
+        typeKey = 'A_DJ_1_';
+        break;
+      case 'video':
+        typeKey = 'R_VI_62_';
+        break;
+      case 'event':
+        typeKey = 'A_EV_2_';
+        break;
+    }
+    return typeKey;
+  }
 }

@@ -165,4 +165,14 @@ void main() {
         commentId: result2.comment.commentId);
     expect(result4.code, RET_CODE_OK);
   });
+
+  test('test like x', () async {
+    var result2 = await api.likeResource('2819660572', 'playlist', false);
+    expect(result2.code, RET_CODE_OK);
+
+    sleep(Duration(seconds: 1));
+
+    var result3 = await api.likeResource('2819660572', 'playlist', true);
+    expect(result3.code, RET_CODE_OK);
+  });
 }
