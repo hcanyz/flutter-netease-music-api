@@ -63,6 +63,49 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test user playlist', () async {
+    var result = await api.userPlayList(
+        NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId);
+    expect(result.code, RET_CODE_OK);
+    expect(result.playlist, isNotNull);
+  });
+
+  test('test user update playlist info', () async {
+    var result = await api.userPlayList(
+        NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId);
+    expect(result.playlist, isNotNull);
+    expect(result.playlist, isNotEmpty);
+
+    var id = result.playlist
+            .firstWhere((element) => element.specialType == 0,
+                orElse: () => null)
+            ?.id ??
+        '';
+
+    if (id.isEmpty) {
+      return;
+    }
+
+    var result2 = await api.updateUserPlayListInfo(
+        id,
+        '偶尔会发笑_${Random().nextInt(10)}',
+        '偶尔会发笑_${Random().nextInt(10)}',
+        ['孤独']);
+
+    expect(result2.code, anyOf(RET_CODE_OK, RET_CODE_ILLEGAL));
+
+    var result3 =
+        await api.updateUserPlayListName(id, '偶尔会发笑_${Random().nextInt(10)}');
+    expect(result3.code, RET_CODE_OK);
+
+    result3 =
+        await api.updateUserPlayListDesc(id, '偶尔会发笑_${Random().nextInt(10)}');
+    expect(result3.code, RET_CODE_OK);
+
+    result3 = await api.updateUserPlayListTags(id, ['孤独']);
+    expect(result3.code, RET_CODE_OK);
+  });
+
   test('test user follow list', () async {
     var result = await api.userFollowList(defaultUserId);
     expect(result.code, RET_CODE_OK);

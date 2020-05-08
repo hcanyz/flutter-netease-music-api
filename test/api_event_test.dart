@@ -42,16 +42,12 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test forward event', () async {
-    var result =
-        await api.eventForward(defaultUserId, '12433751183', forwards: '偶尔会发笑');
+  test('test forward delete event', () async {
+    var result = await api.eventForward(defaultUserId, '12485325409',
+        forwards: '偶尔会发笑_');
     expect(result.code, RET_CODE_OK);
-  });
 
-  test('test delete event', () async {
-    var result =
-        await api.eventForward(defaultUserId, '12433751183', forwards: '偶尔会发笑');
-    expect(result.code, RET_CODE_OK);
+    sleep(Duration(seconds: 1));
 
     var result2 = await api.eventDelete('${result.data.eventId}');
     expect(result2.code, RET_CODE_OK);
