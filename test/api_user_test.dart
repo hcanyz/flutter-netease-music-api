@@ -113,7 +113,7 @@ void main() {
 
   test('test user sign', () async {
     var result = await api.userSign();
-    expect(result.code, RET_CODE_OK);
+    expect(result.code, anyOf(RET_CODE_OK, RET_CODE_NO_PERMISSION));
   });
 
   test('test user followed list', () async {

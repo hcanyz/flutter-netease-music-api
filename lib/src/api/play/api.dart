@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:netease_music_api/netease_music_api.dart';
+import 'package:netease_music_api/src/api/bean.dart';
 import 'package:netease_music_api/src/dio_ext.dart';
 import 'package:netease_music_api/src/netease_handler.dart';
 
@@ -226,6 +227,20 @@ mixin ApiPlay {
             data: params, options: joinOptions())
         .then((Response value) {
       return SongListWrap.fromJson(value.data);
+    });
+  }
+
+  /// 歌曲 红心与取消红心
+  Future<ServerStatusBean> likeSong(String songId, bool like,
+      {int time = 3, String alg = 'itembased'}) {
+    var params = {'trackId': songId, 'like': like};
+    return Https.dio
+        .postUri(
+            joinUri('/weapi/radio/like?alg=$alg&trackId=$songId&time=$time'),
+            data: params,
+            options: joinOptions())
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
     });
   }
 

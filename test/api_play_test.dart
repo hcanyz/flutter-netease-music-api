@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:netease_music_api/netease_music_api.dart';
 
@@ -100,6 +102,16 @@ void main() {
   test('test song simi', () async {
     var result = await api.songSimi('167975');
     expect(result.code, RET_CODE_OK);
+  });
+
+  test('test song like', () async {
+    var result = await api.likeSong('167975', false);
+    expect(result.code, RET_CODE_OK);
+
+    sleep(Duration(seconds: 1));
+
+    var result2 = await api.likeSong('167975', true);
+    expect(result2.code, RET_CODE_OK);
   });
 
   test('test song detail', () async {
