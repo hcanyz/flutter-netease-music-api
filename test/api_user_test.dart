@@ -139,6 +139,11 @@ void main() {
     expect(result2.code, RET_CODE_OK);
   });
 
+  test('test album sub list', () async {
+    var result = await api.albumSubList();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test user playlist sub or unSub', () async {
     var result = await api.playlistSub('2819660572', false);
     expect(result.code, anyOf(RET_CODE_ILLEGAL, RET_CODE_OK));

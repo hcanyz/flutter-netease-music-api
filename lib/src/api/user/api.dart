@@ -190,6 +190,19 @@ mixin ApiUser {
     });
   }
 
+  /// 收藏的 专辑 列表
+  /// !需要登录
+  Future<AlbumSubListWrap> albumSubList(
+      {bool total = true, int offset = 0, int limit = 30}) {
+    var params = {'total': total, 'limit': limit, 'offset': offset};
+    return Https.dio
+        .postUri(joinUri('/weapi/album/sublist'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return AlbumSubListWrap.fromJson(value.data);
+    });
+  }
+
   /// 收藏/取消收藏 歌单
   /// !需要登录
   Future<ServerStatusBean> playlistSub(String pid, bool sub) {

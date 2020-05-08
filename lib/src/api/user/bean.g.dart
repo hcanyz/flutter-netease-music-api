@@ -255,6 +255,33 @@ Map<String, dynamic> _$MvSubListWrapToJson(MvSubListWrap instance) =>
       'data': instance.data,
     };
 
+AlbumSubListWrap _$AlbumSubListWrapFromJson(Map<String, dynamic> json) {
+  return AlbumSubListWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..more = json['more'] as bool
+    ..count = json['count'] as int
+    ..total = json['total'] as int
+    ..data = (json['data'] as List)
+        ?.map(
+            (e) => e == null ? null : Album.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..paidCount = json['paidCount'] as int;
+}
+
+Map<String, dynamic> _$AlbumSubListWrapToJson(AlbumSubListWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'more': instance.more,
+      'count': instance.count,
+      'total': instance.total,
+      'data': instance.data,
+      'paidCount': instance.paidCount,
+    };
+
 PlayRecordItem _$PlayRecordItemFromJson(Map<String, dynamic> json) {
   return PlayRecordItem()
     ..playCount = json['playCount'] as int

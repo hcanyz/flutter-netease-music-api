@@ -154,6 +154,20 @@ class MvSubListWrap extends ServerStatusListBean {
 }
 
 @JsonSerializable()
+class AlbumSubListWrap extends ServerStatusListBean {
+  List<Album> data;
+
+  int paidCount;
+
+  AlbumSubListWrap();
+
+  factory AlbumSubListWrap.fromJson(Map<String, dynamic> json) =>
+      _$AlbumSubListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AlbumSubListWrapToJson(this);
+}
+
+@JsonSerializable()
 class PlayRecordItem {
   int playCount;
   int score;
