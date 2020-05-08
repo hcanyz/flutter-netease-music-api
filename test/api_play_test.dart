@@ -82,16 +82,6 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test album detail x', () async {
-    var result = await api.albumDetail('489928');
-    expect(result.code, RET_CODE_OK);
-  });
-
-  test('test album detail dynamic', () async {
-    var result = await api.albumDetailDynamic('489928');
-    expect(result.code, RET_CODE_OK);
-  });
-
   test('test song simi', () async {
     var result = await api.songSimi('167975');
     expect(result.code, RET_CODE_OK);
@@ -154,6 +144,16 @@ void main() {
 
   test('test artist album list ', () async {
     var result = await api.artistAlbumList(defaultArtistId);
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test album detail x', () async {
+    var result = await api.albumDetail('489928');
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test album detail dynamic', () async {
+    var result = await api.albumDetailDynamic('489928');
     expect(result.code, RET_CODE_OK);
   });
 }

@@ -183,27 +183,6 @@ mixin ApiPlay {
     });
   }
 
-  /// 专辑详情
-  Future<AlbumDetailWrap> albumDetail(String albumId) {
-    return Https.dio
-        .postUri(joinUri('/weapi/v1/album/$albumId'),
-            data: {}, options: joinOptions())
-        .then((Response value) {
-      return AlbumDetailWrap.fromJson(value.data);
-    });
-  }
-
-  /// 专辑动态信息
-  Future<AlbumDetailDynamicWrap> albumDetailDynamic(String albumId) {
-    var params = {'id': albumId};
-    return Https.dio
-        .postUri(joinUri('/api/album/detail/dynamic'),
-            data: params, options: joinOptions())
-        .then((Response value) {
-      return AlbumDetailDynamicWrap.fromJson(value.data);
-    });
-  }
-
   /// 相似mv
   Future<SongListWrap> songSimi(String songId,
       {int offset = 0, int limit = 30}) {
@@ -379,6 +358,27 @@ mixin ApiPlay {
             data: params, options: joinOptions())
         .then((Response value) {
       return ArtistAlbumListWrap.fromJson(value.data);
+    });
+  }
+
+  /// 专辑详情
+  Future<AlbumDetailWrap> albumDetail(String albumId) {
+    return Https.dio
+        .postUri(joinUri('/weapi/v1/album/$albumId'),
+            data: {}, options: joinOptions())
+        .then((Response value) {
+      return AlbumDetailWrap.fromJson(value.data);
+    });
+  }
+
+  /// 专辑动态信息
+  Future<AlbumDetailDynamicWrap> albumDetailDynamic(String albumId) {
+    var params = {'id': albumId};
+    return Https.dio
+        .postUri(joinUri('/api/album/detail/dynamic'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return AlbumDetailDynamicWrap.fromJson(value.data);
     });
   }
 }
