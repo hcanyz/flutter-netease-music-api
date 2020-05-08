@@ -290,3 +290,39 @@ class HotwallCommentListWrap extends ServerStatusBean {
 
   Map<String, dynamic> toJson() => _$HotwallCommentListWrapToJson(this);
 }
+
+@JsonSerializable()
+class Comment {
+  @JsonKey(fromJson: dynamicToString)
+  String commentId;
+
+  NeteaseUserInfo user;
+  NeteaseUserInfo beRepliedUser;
+
+  String expressionUrl;
+
+  int commentLocationType;
+
+  int time;
+
+  String content;
+
+  Comment();
+
+  factory Comment.fromJson(Map<String, dynamic> json) =>
+      _$CommentFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CommentToJson(this);
+}
+
+@JsonSerializable()
+class CommentWrap extends ServerStatusBean {
+  Comment comment;
+
+  CommentWrap();
+
+  factory CommentWrap.fromJson(Map<String, dynamic> json) =>
+      _$CommentWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CommentWrapToJson(this);
+}

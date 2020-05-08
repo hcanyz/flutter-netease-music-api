@@ -121,7 +121,7 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test hotwall comment list', () async {
+  test('test like comment', () async {
     var result = await api.playlistCommentList('2819660572');
     expect(result.code, RET_CODE_OK);
 
@@ -138,5 +138,31 @@ void main() {
     var result3 = await api.likeComment(
         '2819660572', result.comments[0].commentId, 'playlist', false);
     expect(result3.code, RET_CODE_OK);
+  });
+
+  test('test comment', () async {
+    var result = await api.playlistCommentList('2819660572');
+    expect(result.code, RET_CODE_OK);
+
+    if (result.comments.isEmpty) {
+      return;
+    }
+
+    var result2 =
+        await api.comment('2819660572', 'playlist', 'add', content: '123');
+    expect(result2.code, RET_CODE_OK);
+
+    sleep(Duration(seconds: 1));
+
+    //    fixme 回复评论 code 400
+    //    var result3 = await api.comment('2819660572', 'playlist', 'replay',
+    //        content: '321', commentId: result2.comment.commentId);
+    //    expect(result3.code, RET_CODE_OK);
+    //
+    //    sleep(Duration(seconds: 1));
+
+    var result4 = await api.comment('2819660572', 'playlist', 'delete',
+        commentId: result2.comment.commentId);
+    expect(result4.code, RET_CODE_OK);
   });
 }

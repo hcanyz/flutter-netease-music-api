@@ -208,27 +208,7 @@ mixin ApiEvent {
   /// [type] 'song':歌曲 'mv':mv 'playlist':歌单 'album':专辑 'dj':电台 'video':视频
   Future<CommentListWrap> hotCommentList(String id, String type,
       {int offset = 0, int limit = 20, int beforeTime = 0}) {
-    String typeKey = 'R_SO_4_';
-    switch (type) {
-      case 'song':
-        typeKey = 'R_SO_4_';
-        break;
-      case 'mv':
-        typeKey = 'R_MV_5_';
-        break;
-      case 'playlist':
-        typeKey = 'A_PL_0_';
-        break;
-      case 'album':
-        typeKey = 'R_AL_3_';
-        break;
-      case 'dj':
-        typeKey = 'A_DJ_1_';
-        break;
-      case 'video':
-        typeKey = 'R_VI_62_';
-        break;
-    }
+    String typeKey = _type2key(type);
     var params = {
       'rid': id,
       'limit': limit,
@@ -262,34 +242,12 @@ mixin ApiEvent {
   Future<ServerStatusBean> likeComment(
       String id, String commentId, String type, bool like,
       {String threadId}) {
-    String typeKey = 'R_SO_4_';
-    switch (type) {
-      case 'song':
-        typeKey = 'R_SO_4_';
-        break;
-      case 'mv':
-        typeKey = 'R_MV_5_';
-        break;
-      case 'playlist':
-        typeKey = 'A_PL_0_';
-        break;
-      case 'album':
-        typeKey = 'R_AL_3_';
-        break;
-      case 'dj':
-        typeKey = 'A_DJ_1_';
-        break;
-      case 'video':
-        typeKey = 'R_VI_62_';
-        break;
-      case 'event':
-        typeKey = 'A_EV_2_';
-        break;
-    }
+    String typeKey = _type2key(type);
     var params = {'commentId': commentId, 'threadId': typeKey + id};
     if (type == 'event') {
-      if (threadId == null)
+      if (threadId == null) {
         return Future.error(ArgumentError('event type, threadId not null'));
+      }
       params['threadId'] = threadId;
     }
     return Https.dio
@@ -299,4 +257,80 @@ mixin ApiEvent {
       return ServerStatusBean.fromJson(value.data);
     });
   }
+
+  /// 发表/删除/回复评论
+  /// [id] 资源id
+  /// [op] 'add':发表  'delete':删除  'reply':回复
+  /// 注意： 动态点赞不需要传入 id 参数，需要传入动态的 threadId 参数,
+  /// 如：/comment/like?type=6&cid=1419532712&threadId=A_EV_2_6559519868_32953014&t=0，
+  /// threadId 可通过 /event，/user/event 接口获取
+  Future<CommentWrap> comment(String id, String type, String op,
+      {String commentId, String threadId, String content}) {
+    String typeKey = _type2key(type);
+    var params = {'threadId': typeKey + id};
+    if (type == 'event') {
+      if (threadId == null) {
+        return Future.error(ArgumentError('event type, threadId not null'));
+      }
+      params['threadId'] = threadId;
+    }
+    switch (op) {
+      case 'add':
+        if (content == null) {
+          return Future.error(ArgumentError('add op, content not null'));
+        }
+        params['content'] = content;
+        break;
+      case 'delete':
+        if (commentId == null) {
+          return Future.error(ArgumentError('delete op, commentId not null'));
+        }
+        params['commentId'] = commentId;
+        break;
+      case 'reply':
+        if (commentId == null) {
+          return Future.error(ArgumentError('reply op, commentId not null'));
+        }
+        if (content == null) {
+          return Future.error(ArgumentError('reply op, content not null'));
+        }
+        params['commentId'] = commentId;
+        params['content'] = content;
+        break;
+    }
+    return Https.dio
+        .postUri(joinUri('/weapi/resource/comments/$op'),
+            data: params, options: joinOptions(cookies: {'os': 'pc'}))
+        .then((Response value) {
+      return CommentWrap.fromJson(value.data);
+    });
+  }
+}
+
+String _type2key(String type) {
+  String typeKey = 'R_SO_4_';
+  switch (type) {
+    case 'song':
+      typeKey = 'R_SO_4_';
+      break;
+    case 'mv':
+      typeKey = 'R_MV_5_';
+      break;
+    case 'playlist':
+      typeKey = 'A_PL_0_';
+      break;
+    case 'album':
+      typeKey = 'R_AL_3_';
+      break;
+    case 'dj':
+      typeKey = 'A_DJ_1_';
+      break;
+    case 'video':
+      typeKey = 'R_VI_62_';
+      break;
+    case 'event':
+      typeKey = 'A_EV_2_';
+      break;
+  }
+  return typeKey;
 }

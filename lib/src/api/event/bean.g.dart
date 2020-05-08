@@ -364,3 +364,47 @@ Map<String, dynamic> _$HotwallCommentListWrapToJson(
       'msg': instance.msg,
       'data': instance.data,
     };
+
+Comment _$CommentFromJson(Map<String, dynamic> json) {
+  return Comment()
+    ..commentId = dynamicToString(json['commentId'])
+    ..user = json['user'] == null
+        ? null
+        : NeteaseUserInfo.fromJson(json['user'] as Map<String, dynamic>)
+    ..beRepliedUser = json['beRepliedUser'] == null
+        ? null
+        : NeteaseUserInfo.fromJson(
+            json['beRepliedUser'] as Map<String, dynamic>)
+    ..expressionUrl = json['expressionUrl'] as String
+    ..commentLocationType = json['commentLocationType'] as int
+    ..time = json['time'] as int
+    ..content = json['content'] as String;
+}
+
+Map<String, dynamic> _$CommentToJson(Comment instance) => <String, dynamic>{
+      'commentId': instance.commentId,
+      'user': instance.user,
+      'beRepliedUser': instance.beRepliedUser,
+      'expressionUrl': instance.expressionUrl,
+      'commentLocationType': instance.commentLocationType,
+      'time': instance.time,
+      'content': instance.content,
+    };
+
+CommentWrap _$CommentWrapFromJson(Map<String, dynamic> json) {
+  return CommentWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..comment = json['comment'] == null
+        ? null
+        : Comment.fromJson(json['comment'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$CommentWrapToJson(CommentWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'comment': instance.comment,
+    };
