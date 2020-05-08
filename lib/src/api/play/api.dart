@@ -108,6 +108,19 @@ mixin ApiPlay {
   }
 
   /// 歌单详情
+  /// [songId] 歌曲 id
+  Future<MultiPlayListWrap> playListSimi(String songId,
+      {int offset = 0, int limit = 30}) {
+    var params = {'songid': songId, 'limit': limit, 'offset': offset};
+    return Https.dio
+        .postUri(joinUri('/weapi/discovery/simiPlaylist'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return MultiPlayListWrap.fromJson(value.data);
+    });
+  }
+
+  /// 歌单详情
   /// https://binaryify.github.io/NeteaseCloudMusicApi/#/?id=%e8%8e%b7%e5%8f%96%e6%ad%8c%e5%8d%95%e8%af%a6%e6%83%85
   /// [categoryId] 可从歌单分类接口获取[playlistCatalogue]
   Future<SinglePlayListWrap> playListDetail(String categoryId,

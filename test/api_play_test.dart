@@ -57,6 +57,11 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test playlist simi', () async {
+    var result = await api.playListSimi('4875306');
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test category playlist', () async {
     var result = await api.playListDetail(PLAYLIST_CATEGORY[0]['id']);
     expect(result.code, RET_CODE_OK);
