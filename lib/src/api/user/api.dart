@@ -178,6 +178,32 @@ mixin ApiUser {
     });
   }
 
+  /// 收藏/取消收藏 歌单
+  /// !需要登录
+  Future<ServerStatusBean> albumSub(String albumId, bool sub) {
+    var params = {'id': albumId};
+    return Https.dio
+        .postUri(joinUri('/api/album/${sub ? 'sub' : 'unsub'}'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
+  }
+
+  /// 收藏/取消收藏 歌单
+  /// !需要登录
+  Future<ServerStatusBean> playlistSub(String pid, bool sub) {
+    var params = {'id': pid};
+    return Https.dio
+        .postUri(
+            joinUri('/weapi/playlist/${sub ? 'subscribe' : 'unsubscribe'}'),
+            data: params,
+            options: joinOptions())
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
+  }
+
   /// 新建歌单
   /// !需要登录
   /// [name] 歌单名
@@ -199,20 +225,6 @@ mixin ApiUser {
     return Https.dio
         .postUri(joinUri('/weapi/playlist/delete'),
             data: params, options: joinOptions(cookies: {'os': 'pc'}))
-        .then((Response value) {
-      return ServerStatusBean.fromJson(value.data);
-    });
-  }
-
-  /// 收藏/取消收藏 歌单
-  /// !需要登录
-  Future<ServerStatusBean> playlistSub(String pid, bool sub) {
-    var params = {'id': pid};
-    return Https.dio
-        .postUri(
-            joinUri('/weapi/playlist/${sub ? 'subscribe' : 'unsubscribe'}'),
-            data: params,
-            options: joinOptions())
         .then((Response value) {
       return ServerStatusBean.fromJson(value.data);
     });

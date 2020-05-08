@@ -129,13 +129,13 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test playlist create or delete', () async {
-    var result = await api.playlistCreate('老白涮肉铺', true);
-    expect(result.code, RET_CODE_OK);
+  test('test user album sub or unSub', () async {
+    var result = await api.albumSub('489928', false);
+    expect(result.code, anyOf(RET_CODE_REQUEST_NOT_FOUNT, RET_CODE_OK));
 
     sleep(Duration(seconds: 2));
 
-    var result2 = await api.playlistDelete(result.id);
+    var result2 = await api.albumSub('489928', true);
     expect(result2.code, RET_CODE_OK);
   });
 
@@ -147,6 +147,16 @@ void main() {
 
     var result2 = await api.playlistSub('2819660572', true);
     expect(result2.code, anyOf(RET_CODE_ILLEGAL, RET_CODE_OK));
+  });
+
+  test('test playlist create or delete', () async {
+    var result = await api.playlistCreate('老白涮肉铺', true);
+    expect(result.code, RET_CODE_OK);
+
+    sleep(Duration(seconds: 2));
+
+    var result2 = await api.playlistDelete(result.id);
+    expect(result2.code, RET_CODE_OK);
   });
 
   test('test user playlist manipulate tracks', () async {
