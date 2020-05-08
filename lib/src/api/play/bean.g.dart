@@ -31,6 +31,21 @@ Map<String, dynamic> _$MusicToJson(Music instance) => <String, dynamic>{
       'volumeDelta': instance.volumeDelta,
     };
 
+Music2 _$Music2FromJson(Map<String, dynamic> json) {
+  return Music2()
+    ..br = json['br'] as int
+    ..fid = json['fid'] as int
+    ..size = json['size'] as int
+    ..vd = (json['vd'] as num)?.toDouble();
+}
+
+Map<String, dynamic> _$Music2ToJson(Music2 instance) => <String, dynamic>{
+      'br': instance.br,
+      'fid': instance.fid,
+      'size': instance.size,
+      'vd': instance.vd,
+    };
+
 Privilege _$PrivilegeFromJson(Map<String, dynamic> json) {
   return Privilege()
     ..id = dynamicToString(json['id'])
@@ -327,13 +342,38 @@ Song2 _$Song2FromJson(Map<String, dynamic> json) {
     ..name = json['name'] as String
     ..pst = json['pst'] as int
     ..t = json['t'] as int
+    ..ar = (json['ar'] as List)
+        ?.map((e) =>
+            e == null ? null : Artists.fromJson(e as Map<String, dynamic>))
+        ?.toList()
     ..pop = (json['pop'] as num)?.toDouble()
     ..st = json['st'] as int
     ..rt = json['rt'] as String
     ..fee = json['fee'] as int
     ..v = json['v'] as int
     ..cf = json['cf'] as String
+    ..al = json['al'] == null
+        ? null
+        : Album.fromJson(json['al'] as Map<String, dynamic>)
     ..dt = json['dt'] as int
+    ..h = json['h'] == null
+        ? null
+        : Music2.fromJson(json['h'] as Map<String, dynamic>)
+    ..m = json['m'] == null
+        ? null
+        : Music2.fromJson(json['m'] as Map<String, dynamic>)
+    ..l = json['l'] == null
+        ? null
+        : Music2.fromJson(json['l'] as Map<String, dynamic>)
+    ..a = json['a'] == null
+        ? null
+        : Music2.fromJson(json['a'] as Map<String, dynamic>)
+    ..mark = json['mark'] as int
+    ..mv = json['mv'] as int
+    ..rtype = json['rtype'] as int
+    ..mst = json['mst'] as int
+    ..cp = json['cp'] as int
+    ..publishTime = json['publishTime'] as int
     ..privilege = json['privilege'] == null
         ? null
         : Privilege.fromJson(json['privilege'] as Map<String, dynamic>);
@@ -344,13 +384,25 @@ Map<String, dynamic> _$Song2ToJson(Song2 instance) => <String, dynamic>{
       'name': instance.name,
       'pst': instance.pst,
       't': instance.t,
+      'ar': instance.ar,
       'pop': instance.pop,
       'st': instance.st,
       'rt': instance.rt,
       'fee': instance.fee,
       'v': instance.v,
       'cf': instance.cf,
+      'al': instance.al,
       'dt': instance.dt,
+      'h': instance.h,
+      'm': instance.m,
+      'l': instance.l,
+      'a': instance.a,
+      'mark': instance.mark,
+      'mv': instance.mv,
+      'rtype': instance.rtype,
+      'mst': instance.mst,
+      'cp': instance.cp,
+      'publishTime': instance.publishTime,
       'privilege': instance.privilege,
     };
 

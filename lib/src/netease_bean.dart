@@ -2,6 +2,8 @@ export 'package:netease_music_api/src/api/dj/bean.dart';
 export 'package:netease_music_api/src/api/event/bean.dart';
 export 'package:netease_music_api/src/api/login/bean.dart';
 export 'package:netease_music_api/src/api/play/bean.dart';
+export 'package:netease_music_api/src/api/search/bean.dart';
+export 'package:netease_music_api/src/api/uncategorized/bean.dart';
 export 'package:netease_music_api/src/api/user/bean.dart';
 
 const int RET_CODE_UNKNOW = -233;

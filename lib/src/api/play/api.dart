@@ -90,15 +90,6 @@ mixin ApiPlay {
     });
   }
 
-  Future<ServerStatusBean> homeBannerList() {
-    return Https.dio
-        .postUri(joinUri('/api/v2/banner/get'),
-            data: {'clientType': 'pc'}, options: joinOptions())
-        .then((Response value) {
-      return ServerStatusBean.fromJson(value.data);
-    });
-  }
-
   /// 歌单分类
   Future<PlaylistCatalogueWrap> playlistCatalogue() {
     return Https.dio

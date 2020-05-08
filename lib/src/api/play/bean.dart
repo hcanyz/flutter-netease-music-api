@@ -28,6 +28,20 @@ class Music {
 }
 
 @JsonSerializable()
+class Music2 {
+  int br;
+  int fid;
+  int size;
+  double vd;
+
+  Music2();
+
+  factory Music2.fromJson(Map<String, dynamic> json) => _$Music2FromJson(json);
+
+  Map<String, dynamic> toJson() => _$Music2ToJson(this);
+}
+
+@JsonSerializable()
 class Privilege {
   @JsonKey(fromJson: dynamicToString)
   String id;
@@ -285,6 +299,9 @@ class Song2 {
 
   int pst;
   int t;
+
+  List<Artists> ar;
+
   double pop;
   int st;
 
@@ -293,7 +310,22 @@ class Song2 {
   int fee;
   int v;
   String cf;
+
+  Album al;
+
   int dt;
+
+  Music2 h;
+  Music2 m;
+  Music2 l;
+  Music2 a;
+
+  int mark;
+  int mv;
+  int rtype;
+  int mst;
+  int cp;
+  int publishTime;
 
   Privilege privilege;
 
