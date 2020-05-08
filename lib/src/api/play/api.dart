@@ -204,6 +204,18 @@ mixin ApiPlay {
     });
   }
 
+  /// 相似mv
+  Future<SongListWrap> songSimi(String songId,
+      {int offset = 0, int limit = 30}) {
+    var params = {'songid': songId, 'limit': limit, 'offset': offset};
+    return Https.dio
+        .postUri(joinUri('/weapi/v1/discovery/simiSong'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return SongListWrap.fromJson(value.data);
+    });
+  }
+
   /// 音乐详情
   Future<SongDetailWrap> songDetail(List<String> songIds) {
     var params = {

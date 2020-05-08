@@ -92,6 +92,11 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test song simi', () async {
+    var result = await api.songSimi('167975');
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test song detail', () async {
     var result = await api.songDetail(['167975', '167975']);
     expect(result.code, RET_CODE_OK);
