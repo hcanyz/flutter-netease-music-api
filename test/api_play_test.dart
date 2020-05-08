@@ -117,6 +117,11 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test simi mv', () async {
+    var result = await api.mvSimi('5293222');
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test simi artist', () async {
     var result = await api.artistSimi(defaultArtistId);
     expect(result.code, RET_CODE_OK);

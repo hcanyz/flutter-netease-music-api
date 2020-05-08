@@ -127,20 +127,8 @@ class SearchUserWrapX extends ServerStatusBean {
 }
 
 @JsonSerializable()
-class SearchMvWrap {
-  List<Mv> mvs;
-
-  SearchMvWrap();
-
-  factory SearchMvWrap.fromJson(Map<String, dynamic> json) =>
-      _$SearchMvWrapFromJson(json);
-
-  Map<String, dynamic> toJson() => _$SearchMvWrapToJson(this);
-}
-
-@JsonSerializable()
 class SearchMvWrapX extends ServerStatusBean {
-  SearchMvWrap result;
+  MvListWrap result;
 
   SearchMvWrapX();
 

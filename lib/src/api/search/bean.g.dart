@@ -163,18 +163,6 @@ Map<String, dynamic> _$SearchUserWrapXToJson(SearchUserWrapX instance) =>
       'result': instance.result,
     };
 
-SearchMvWrap _$SearchMvWrapFromJson(Map<String, dynamic> json) {
-  return SearchMvWrap()
-    ..mvs = (json['mvs'] as List)
-        ?.map((e) => e == null ? null : Mv.fromJson(e as Map<String, dynamic>))
-        ?.toList();
-}
-
-Map<String, dynamic> _$SearchMvWrapToJson(SearchMvWrap instance) =>
-    <String, dynamic>{
-      'mvs': instance.mvs,
-    };
-
 SearchMvWrapX _$SearchMvWrapXFromJson(Map<String, dynamic> json) {
   return SearchMvWrapX()
     ..code = json['code'] as int
@@ -182,7 +170,7 @@ SearchMvWrapX _$SearchMvWrapXFromJson(Map<String, dynamic> json) {
     ..msg = json['msg'] as String
     ..result = json['result'] == null
         ? null
-        : SearchMvWrap.fromJson(json['result'] as Map<String, dynamic>);
+        : MvListWrap.fromJson(json['result'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$SearchMvWrapXToJson(SearchMvWrapX instance) =>

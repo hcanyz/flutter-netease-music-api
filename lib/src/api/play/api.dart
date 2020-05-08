@@ -287,6 +287,17 @@ mixin ApiPlay {
     });
   }
 
+  /// 相似mv
+  Future<MvListWrap> mvSimi(String mvId) {
+    var params = {'mvid': mvId};
+    return Https.dio
+        .postUri(joinUri('/weapi/discovery/simiMV'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return MvListWrap.fromJson(value.data);
+    });
+  }
+
   /// 相似歌手
   Future<ArtistsListWrap> artistSimi(String artistId) {
     var params = {'artistid': artistId};

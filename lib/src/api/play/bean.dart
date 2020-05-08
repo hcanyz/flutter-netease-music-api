@@ -808,9 +808,19 @@ class ArtistSongListWrap extends ServerStatusBean {
 }
 
 @JsonSerializable()
-class ArtistMvListWrap extends ServerStatusListBean {
+class MvListWrap extends ServerStatusListBean {
   List<Mv> mvs;
 
+  MvListWrap();
+
+  factory MvListWrap.fromJson(Map<String, dynamic> json) =>
+      _$MvListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MvListWrapToJson(this);
+}
+
+@JsonSerializable()
+class ArtistMvListWrap extends MvListWrap {
   int time;
 
   ArtistMvListWrap();
