@@ -926,6 +926,47 @@ Map<String, dynamic> _$ArtistsListWrapToJson(ArtistsListWrap instance) =>
       'artists': instance.artists,
     };
 
+ArtistIntroduction _$ArtistIntroductionFromJson(Map<String, dynamic> json) {
+  return ArtistIntroduction()
+    ..ti = json['ti'] as String
+    ..txt = json['txt'] as String;
+}
+
+Map<String, dynamic> _$ArtistIntroductionToJson(ArtistIntroduction instance) =>
+    <String, dynamic>{
+      'ti': instance.ti,
+      'txt': instance.txt,
+    };
+
+ArtistDescWrap _$ArtistDescWrapFromJson(Map<String, dynamic> json) {
+  return ArtistDescWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..introduction = (json['introduction'] as List)
+        ?.map((e) => e == null
+            ? null
+            : ArtistIntroduction.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..briefDesc = json['briefDesc'] as String
+    ..count = json['count'] as int
+    ..topicData = (json['topicData'] as List)
+        ?.map((e) =>
+            e == null ? null : TopicItem2.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$ArtistDescWrapToJson(ArtistDescWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'introduction': instance.introduction,
+      'briefDesc': instance.briefDesc,
+      'count': instance.count,
+      'topicData': instance.topicData,
+    };
+
 ArtistTopSongListWrap _$ArtistTopSongListWrapFromJson(
     Map<String, dynamic> json) {
   return ArtistTopSongListWrap()

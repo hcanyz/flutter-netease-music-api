@@ -157,6 +157,11 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test artist desc', () async {
+    var result = await api.artistDesc(defaultArtistId);
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test artist top song list ', () async {
     var result = await api.artistTopSongList(defaultArtistId);
     expect(result.code, RET_CODE_OK);

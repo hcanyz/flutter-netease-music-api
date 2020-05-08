@@ -358,6 +358,17 @@ mixin ApiPlay {
     });
   }
 
+  /// 歌手介绍
+  Future<ArtistDescWrap> artistDesc(String artistId) {
+    var params = {'id': artistId};
+    return Https.dio
+        .postUri(joinUri('/weapi/artist/introduction'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return ArtistDescWrap.fromJson(value.data);
+    });
+  }
+
   /// 歌手热门50首歌曲
   Future<ArtistTopSongListWrap> artistTopSongList(String artistId) {
     var params = {'id': artistId};

@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:netease_music_api/netease_music_api.dart';
 import 'package:netease_music_api/src/api/bean.dart';
 import 'package:netease_music_api/src/api/user/bean.dart';
 
@@ -747,6 +748,37 @@ class ArtistsListWrap extends ServerStatusBean {
       _$ArtistsListWrapFromJson(json);
 
   Map<String, dynamic> toJson() => _$ArtistsListWrapToJson(this);
+}
+
+@JsonSerializable()
+class ArtistIntroduction {
+  String ti;
+  String txt;
+
+  ArtistIntroduction();
+
+  factory ArtistIntroduction.fromJson(Map<String, dynamic> json) =>
+      _$ArtistIntroductionFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ArtistIntroductionToJson(this);
+}
+
+@JsonSerializable()
+class ArtistDescWrap extends ServerStatusBean {
+  List<ArtistIntroduction> introduction;
+
+  String briefDesc;
+
+  int count;
+
+  List<TopicItem2> topicData;
+
+  ArtistDescWrap();
+
+  factory ArtistDescWrap.fromJson(Map<String, dynamic> json) =>
+      _$ArtistDescWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ArtistDescWrapToJson(this);
 }
 
 @JsonSerializable()

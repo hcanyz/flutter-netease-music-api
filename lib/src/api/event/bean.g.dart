@@ -251,6 +251,168 @@ Map<String, dynamic> _$EventForwardRetWrapToJson(
       'data': instance.data,
     };
 
+TopicContent _$TopicContentFromJson(Map<String, dynamic> json) {
+  return TopicContent()
+    ..id = dynamicToString(json['id'])
+    ..type = json['type'] as int
+    ..content = json['content'] as String;
+}
+
+Map<String, dynamic> _$TopicContentToJson(TopicContent instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'type': instance.type,
+      'content': instance.content,
+    };
+
+Topic _$TopicFromJson(Map<String, dynamic> json) {
+  return Topic()
+    ..id = dynamicToString(json['id'])
+    ..userId = dynamicToString(json['userId'])
+    ..content = (json['content'] as List)
+        ?.map((e) =>
+            e == null ? null : TopicContent.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..title = json['title'] as String
+    ..wxTitle = json['wxTitle'] as String
+    ..mainTitle = json['mainTitle'] as String
+    ..startText = json['startText'] as String
+    ..summary = json['summary'] as String
+    ..adInfo = json['adInfo'] as String
+    ..recomdTitle = json['recomdTitle'] as String
+    ..recomdContent = json['recomdContent'] as String
+    ..addTime = json['addTime'] as int
+    ..pubTime = json['pubTime'] as int
+    ..updateTime = json['updateTime'] as int
+    ..cover = json['cover'] as int
+    ..headPic = json['headPic'] as int
+    ..status = json['status'] as int
+    ..seriesId = json['seriesId'] as int
+    ..categoryId = json['categoryId'] as int
+    ..hotScore = (json['hotScore'] as num)?.toDouble()
+    ..auditor = json['auditor'] as String
+    ..auditTime = json['auditTime'] as int
+    ..auditStatus = json['auditStatus'] as int
+    ..delReason = json['delReason'] as String
+    ..number = json['number'] as int
+    ..readCount = json['readCount'] as int
+    ..rectanglePic = json['rectanglePic'] as int
+    ..tags = (json['tags'] as List)?.map((e) => e as String)?.toList()
+    ..reward = json['reward'] as bool
+    ..fromBackend = json['fromBackend'] as bool
+    ..showRelated = json['showRelated'] as bool
+    ..showComment = json['showComment'] as bool
+    ..pubImmidiatly = json['pubImmidiatly'] as bool;
+}
+
+Map<String, dynamic> _$TopicToJson(Topic instance) => <String, dynamic>{
+      'id': instance.id,
+      'userId': instance.userId,
+      'content': instance.content,
+      'title': instance.title,
+      'wxTitle': instance.wxTitle,
+      'mainTitle': instance.mainTitle,
+      'startText': instance.startText,
+      'summary': instance.summary,
+      'adInfo': instance.adInfo,
+      'recomdTitle': instance.recomdTitle,
+      'recomdContent': instance.recomdContent,
+      'addTime': instance.addTime,
+      'pubTime': instance.pubTime,
+      'updateTime': instance.updateTime,
+      'cover': instance.cover,
+      'headPic': instance.headPic,
+      'status': instance.status,
+      'seriesId': instance.seriesId,
+      'categoryId': instance.categoryId,
+      'hotScore': instance.hotScore,
+      'auditor': instance.auditor,
+      'auditTime': instance.auditTime,
+      'auditStatus': instance.auditStatus,
+      'delReason': instance.delReason,
+      'number': instance.number,
+      'readCount': instance.readCount,
+      'rectanglePic': instance.rectanglePic,
+      'tags': instance.tags,
+      'reward': instance.reward,
+      'fromBackend': instance.fromBackend,
+      'showRelated': instance.showRelated,
+      'showComment': instance.showComment,
+      'pubImmidiatly': instance.pubImmidiatly,
+    };
+
+TopicItem2 _$TopicItem2FromJson(Map<String, dynamic> json) {
+  return TopicItem2()
+    ..id = dynamicToString(json['id'])
+    ..topic = json['topic'] == null
+        ? null
+        : Topic.fromJson(json['topic'] as Map<String, dynamic>)
+    ..creator = json['creator'] == null
+        ? null
+        : NeteaseUserInfo.fromJson(json['creator'] as Map<String, dynamic>)
+    ..number = json['number'] as int
+    ..shareCount = json['shareCount'] as int
+    ..commentCount = json['commentCount'] as int
+    ..likedCount = json['likedCount'] as int
+    ..readCount = json['readCount'] as int
+    ..rewardCount = json['rewardCount'] as int
+    ..rewardMoney = (json['rewardMoney'] as num)?.toDouble()
+    ..rectanglePicUrl = json['rectanglePicUrl'] as String
+    ..coverUrl = json['coverUrl'] as String
+    ..seriesId = json['seriesId'] as int
+    ..categoryId = json['categoryId'] as int
+    ..categoryName = json['categoryName'] as String
+    ..url = json['url'] as String
+    ..wxTitle = json['wxTitle'] as String
+    ..mainTitle = json['mainTitle'] as String
+    ..title = json['title'] as String
+    ..summary = json['summary'] as String
+    ..shareContent = json['shareContent'] as String
+    ..recmdTitle = json['recmdTitle'] as String
+    ..recmdContent = json['recmdContent'] as String
+    ..tags = (json['tags'] as List)?.map((e) => e as String)?.toList()
+    ..addTime = json['addTime'] as int
+    ..commentThreadId = json['commentThreadId'] as String
+    ..showRelated = json['showRelated'] as bool
+    ..showComment = json['showComment'] as bool
+    ..reward = json['reward'] as bool
+    ..liked = json['liked'] as bool;
+}
+
+Map<String, dynamic> _$TopicItem2ToJson(TopicItem2 instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'topic': instance.topic,
+      'creator': instance.creator,
+      'number': instance.number,
+      'shareCount': instance.shareCount,
+      'commentCount': instance.commentCount,
+      'likedCount': instance.likedCount,
+      'readCount': instance.readCount,
+      'rewardCount': instance.rewardCount,
+      'rewardMoney': instance.rewardMoney,
+      'rectanglePicUrl': instance.rectanglePicUrl,
+      'coverUrl': instance.coverUrl,
+      'seriesId': instance.seriesId,
+      'categoryId': instance.categoryId,
+      'categoryName': instance.categoryName,
+      'url': instance.url,
+      'wxTitle': instance.wxTitle,
+      'mainTitle': instance.mainTitle,
+      'title': instance.title,
+      'summary': instance.summary,
+      'shareContent': instance.shareContent,
+      'recmdTitle': instance.recmdTitle,
+      'recmdContent': instance.recmdContent,
+      'tags': instance.tags,
+      'addTime': instance.addTime,
+      'commentThreadId': instance.commentThreadId,
+      'showRelated': instance.showRelated,
+      'showComment': instance.showComment,
+      'reward': instance.reward,
+      'liked': instance.liked,
+    };
+
 TopicItem _$TopicItemFromJson(Map<String, dynamic> json) {
   return TopicItem()
     ..actId = dynamicToString(json['actId'])

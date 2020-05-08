@@ -193,6 +193,129 @@ class EventForwardRetWrap extends ServerStatusBean {
 }
 
 @JsonSerializable()
+class TopicContent {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  int type;
+
+  String content;
+
+  TopicContent();
+
+  factory TopicContent.fromJson(Map<String, dynamic> json) =>
+      _$TopicContentFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TopicContentToJson(this);
+}
+
+@JsonSerializable()
+class Topic {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  @JsonKey(fromJson: dynamicToString)
+  String userId;
+
+  List<TopicContent> content;
+  String title;
+  String wxTitle;
+  String mainTitle;
+  String startText;
+  String summary;
+  String adInfo;
+  String recomdTitle;
+  String recomdContent;
+
+  int addTime;
+  int pubTime;
+  int updateTime;
+
+  int cover;
+  int headPic;
+  int status;
+  int seriesId;
+  int categoryId;
+  double hotScore;
+
+  String auditor;
+  int auditTime;
+  int auditStatus;
+  String delReason;
+
+  int number;
+  int readCount;
+
+  int rectanglePic;
+
+  List<String> tags;
+
+  bool reward;
+  bool fromBackend;
+  bool showRelated;
+  bool showComment;
+  bool pubImmidiatly;
+
+  Topic();
+
+  factory Topic.fromJson(Map<String, dynamic> json) => _$TopicFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TopicToJson(this);
+}
+
+@JsonSerializable()
+class TopicItem2 {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  Topic topic;
+
+  NeteaseUserInfo creator;
+
+  int number;
+  int shareCount;
+  int commentCount;
+  int likedCount;
+  int readCount;
+  int rewardCount;
+  double rewardMoney;
+
+  String rectanglePicUrl;
+  String coverUrl;
+
+  int seriesId;
+  int categoryId;
+  String categoryName;
+
+  String url;
+  String wxTitle;
+  String mainTitle;
+  String title;
+  String summary;
+  String shareContent;
+  String recmdTitle;
+  String recmdContent;
+
+  List<String> tags;
+
+  int addTime;
+
+  String commentThreadId;
+
+  bool showRelated;
+  bool showComment;
+  bool reward;
+  bool liked;
+
+  TopicItem2();
+
+  factory TopicItem2.fromJson(Map<String, dynamic> json) =>
+      _$TopicItem2FromJson(json);
+
+  Map<String, dynamic> toJson() => _$TopicItem2ToJson(this);
+}
+
+@JsonSerializable()
 class TopicItem {
   @JsonKey(fromJson: dynamicToString)
   String actId;
