@@ -122,6 +122,11 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test album detail', () async {
+    var result = await api.albumDetail('489928');
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test song detail', () async {
     var result = await api.songDetail(['167975', '167975']);
     expect(result.code, RET_CODE_OK);

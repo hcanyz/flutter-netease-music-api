@@ -337,6 +337,20 @@ class Song2 {
 }
 
 @JsonSerializable()
+class AlbumDetailWrap extends ServerStatusBean {
+  List<Song2> songs;
+
+  Album album;
+
+  AlbumDetailWrap();
+
+  factory AlbumDetailWrap.fromJson(Map<String, dynamic> json) =>
+      _$AlbumDetailWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AlbumDetailWrapToJson(this);
+}
+
+@JsonSerializable()
 class SongDetailWrap extends ServerStatusBean {
   List<Song2> songs;
 
