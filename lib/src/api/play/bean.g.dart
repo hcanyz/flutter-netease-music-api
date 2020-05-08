@@ -853,7 +853,9 @@ RecommendSongListWrap _$RecommendSongListWrapFromJson(
     ..recommend = (json['recommend'] as List)
         ?.map(
             (e) => e == null ? null : Song.fromJson(e as Map<String, dynamic>))
-        ?.toList();
+        ?.toList()
+    ..featureFirst = json['featureFirst'] as bool
+    ..haveRcmdSongs = json['haveRcmdSongs'] as bool;
 }
 
 Map<String, dynamic> _$RecommendSongListWrapToJson(
@@ -863,6 +865,8 @@ Map<String, dynamic> _$RecommendSongListWrapToJson(
       'message': instance.message,
       'msg': instance.msg,
       'recommend': instance.recommend,
+      'featureFirst': instance.featureFirst,
+      'haveRcmdSongs': instance.haveRcmdSongs,
     };
 
 NewSongListWrap _$NewSongListWrapFromJson(Map<String, dynamic> json) {

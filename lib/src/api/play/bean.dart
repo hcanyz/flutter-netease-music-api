@@ -699,6 +699,9 @@ class SongListWrap extends ServerStatusBean {
 class RecommendSongListWrap extends ServerStatusBean {
   List<Song> recommend;
 
+  bool featureFirst;
+  bool haveRcmdSongs;
+
   RecommendSongListWrap();
 
   factory RecommendSongListWrap.fromJson(Map<String, dynamic> json) =>

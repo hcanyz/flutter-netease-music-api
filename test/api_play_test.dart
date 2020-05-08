@@ -82,6 +82,11 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test recommend everyday song list', () async {
+    var result = await api.recommendEveryDaySongList();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test user song simi', () async {
     var result = await api.userSongSimi('167975');
     expect(result.code, RET_CODE_OK);

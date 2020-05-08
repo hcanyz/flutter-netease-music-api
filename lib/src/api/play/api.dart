@@ -183,6 +183,16 @@ mixin ApiPlay {
     });
   }
 
+  /// 每日推荐歌单
+  Future<RecommendSongListWrap> recommendEveryDaySongList() {
+    return Https.dio
+        .postUri(joinUri('/weapi/v1/discovery/recommend/resource'),
+            data: {}, options: joinOptions())
+        .then((Response value) {
+      return RecommendSongListWrap.fromJson(value.data);
+    });
+  }
+
   /// 最近5个听了这首歌的用户
   Future<UserListWrap> userSongSimi(String songId) {
     var params = {'songid': songId};
