@@ -82,6 +82,11 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test user radio', () async {
+    var result = await api.userRadio();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test new song list', () async {
     var result = await api.newSongList();
     expect(result.code, RET_CODE_OK);

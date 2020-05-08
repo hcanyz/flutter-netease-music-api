@@ -86,6 +86,7 @@ mixin ApiPlay {
   }
 
   /// 每日推荐歌单
+  /// !需要登录
   Future<RecommendPlayListWrap> recommendPlaylist() {
     return Https.dio
         .postUri(joinUri('/weapi/v1/discovery/recommend/resource'),
@@ -170,6 +171,7 @@ mixin ApiPlay {
   }
 
   /// 推荐音乐列表
+  /// !需要登录
   Future<RecommendSongListWrap> recommendSongList(
       {int offset = 0, int limit = 30}) {
     var params = {'limit': limit, 'offset': offset};
@@ -178,6 +180,17 @@ mixin ApiPlay {
             data: params, options: joinOptions())
         .then((Response value) {
       return RecommendSongListWrap.fromJson(value.data);
+    });
+  }
+
+  /// 私人FM
+  /// !需要登录
+  Future<NewSongListWrap> userRadio() {
+    return Https.dio
+        .postUri(joinUri('/weapi/v1/radio/get'),
+            data: {}, options: joinOptions())
+        .then((Response value) {
+      return NewSongListWrap.fromJson(value.data);
     });
   }
 
