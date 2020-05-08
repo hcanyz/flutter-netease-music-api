@@ -378,4 +378,21 @@ mixin ApiPlay {
       return ArtistSongList.fromJson(value.data);
     });
   }
+
+  /// 歌手相关MV
+  Future<ArtistMvList> artistMvList(String artistId,
+      {int offset = 0, int limit = 30, bool total = true}) {
+    var params = {
+      'artistId': artistId,
+      'total': total,
+      'limit': limit,
+      'offset': offset
+    };
+    return Https.dio
+        .postUri(joinUri('/weapi/artist/mvs'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return ArtistMvList.fromJson(value.data);
+    });
+  }
 }

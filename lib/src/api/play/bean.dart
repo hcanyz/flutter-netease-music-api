@@ -767,3 +767,17 @@ class ArtistSongList extends ServerStatusBean {
 
   Map<String, dynamic> toJson() => _$ArtistSongListToJson(this);
 }
+
+@JsonSerializable()
+class ArtistMvList extends ServerStatusListBean {
+  List<Mv> mvs;
+
+  int time;
+
+  ArtistMvList();
+
+  factory ArtistMvList.fromJson(Map<String, dynamic> json) =>
+      _$ArtistMvListFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ArtistMvListToJson(this);
+}

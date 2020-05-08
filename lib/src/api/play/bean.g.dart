@@ -955,3 +955,29 @@ Map<String, dynamic> _$ArtistSongListToJson(ArtistSongList instance) =>
       'hotSongs': instance.hotSongs,
       'artist': instance.artist,
     };
+
+ArtistMvList _$ArtistMvListFromJson(Map<String, dynamic> json) {
+  return ArtistMvList()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..more = json['more'] as bool
+    ..count = json['count'] as int
+    ..total = json['total'] as int
+    ..mvs = (json['mvs'] as List)
+        ?.map((e) => e == null ? null : Mv.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..time = json['time'] as int;
+}
+
+Map<String, dynamic> _$ArtistMvListToJson(ArtistMvList instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'more': instance.more,
+      'count': instance.count,
+      'total': instance.total,
+      'mvs': instance.mvs,
+      'time': instance.time,
+    };

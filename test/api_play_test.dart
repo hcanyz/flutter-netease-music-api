@@ -166,4 +166,9 @@ void main() {
     var result = await api.artistSongList(defaultArtistId);
     expect(result.code, RET_CODE_OK);
   });
+
+  test('test artist mv list ', () async {
+    var result = await api.artistMvList(defaultArtistId);
+    expect(result.code, RET_CODE_OK);
+  });
 }
