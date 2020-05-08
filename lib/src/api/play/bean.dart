@@ -337,6 +337,20 @@ class Song2 {
 }
 
 @JsonSerializable()
+class SongDetailWrap extends ServerStatusBean {
+  List<Song2> songs;
+
+  List<Privilege> privileges;
+
+  SongDetailWrap();
+
+  factory SongDetailWrap.fromJson(Map<String, dynamic> json) =>
+      _$SongDetailWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SongDetailWrapToJson(this);
+}
+
+@JsonSerializable()
 class SongUrl {
   @JsonKey(fromJson: dynamicToString)
   String id;

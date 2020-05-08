@@ -406,6 +406,30 @@ Map<String, dynamic> _$Song2ToJson(Song2 instance) => <String, dynamic>{
       'privilege': instance.privilege,
     };
 
+SongDetailWrap _$SongDetailWrapFromJson(Map<String, dynamic> json) {
+  return SongDetailWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..songs = (json['songs'] as List)
+        ?.map(
+            (e) => e == null ? null : Song2.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..privileges = (json['privileges'] as List)
+        ?.map((e) =>
+            e == null ? null : Privilege.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$SongDetailWrapToJson(SongDetailWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'songs': instance.songs,
+      'privileges': instance.privileges,
+    };
+
 SongUrl _$SongUrlFromJson(Map<String, dynamic> json) {
   return SongUrl()
     ..id = dynamicToString(json['id'])

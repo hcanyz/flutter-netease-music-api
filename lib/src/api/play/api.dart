@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:netease_music_api/netease_music_api.dart';
 import 'package:netease_music_api/src/api/bean.dart';
@@ -249,6 +251,20 @@ mixin ApiPlay {
             data: params, options: joinOptions())
         .then((Response value) {
       return PlaymodeIntelligenceListWrap.fromJson(value.data);
+    });
+  }
+
+  /// 音乐详情
+  Future<SongDetailWrap> songDetail(List<String> songIds) {
+    var params = {
+      'ids': songIds,
+      'c': songIds.map((e) => jsonEncode({'id': e})).toList()
+    };
+    return Https.dio
+        .postUri(joinUri('/weapi/v3/song/detail'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return SongDetailWrap.fromJson(value.data);
     });
   }
 
