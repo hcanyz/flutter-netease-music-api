@@ -358,6 +358,17 @@ mixin ApiPlay {
     });
   }
 
+  /// 相似歌手
+  Future<ArtistsListWrap> artistSimi(String artistId) {
+    var params = {'artistid': artistId};
+    return Https.dio
+        .postUri(joinUri('/weapi/discovery/simiArtist'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return ArtistsListWrap.fromJson(value.data);
+    });
+  }
+
   /// 歌手介绍
   Future<ArtistDescWrap> artistDesc(String artistId) {
     var params = {'id': artistId};

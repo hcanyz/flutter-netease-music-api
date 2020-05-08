@@ -157,6 +157,11 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test simi artist', () async {
+    var result = await api.artistSimi(defaultArtistId);
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test artist desc', () async {
     var result = await api.artistDesc(defaultArtistId);
     expect(result.code, RET_CODE_OK);
