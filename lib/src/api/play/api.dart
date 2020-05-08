@@ -359,28 +359,28 @@ mixin ApiPlay {
   }
 
   /// 歌手热门50首歌曲
-  Future<ArtistTopSongList> artistTopSongList(String artistId) {
+  Future<ArtistTopSongListWrap> artistTopSongList(String artistId) {
     var params = {'id': artistId};
     return Https.dio
         .postUri(joinUri('/api/artist/top/song'),
             data: params, options: joinOptions())
         .then((Response value) {
-      return ArtistTopSongList.fromJson(value.data);
+      return ArtistTopSongListWrap.fromJson(value.data);
     });
   }
 
   /// 歌手信息+歌曲
-  Future<ArtistSongList> artistSongList(String artistId) {
+  Future<ArtistSongListWrap> artistSongList(String artistId) {
     return Https.dio
         .postUri(joinUri('/weapi/v1/artist/$artistId'),
             data: {}, options: joinOptions())
         .then((Response value) {
-      return ArtistSongList.fromJson(value.data);
+      return ArtistSongListWrap.fromJson(value.data);
     });
   }
 
-  /// 歌手相关MV
-  Future<ArtistMvList> artistMvList(String artistId,
+  /// 歌手MV列表
+  Future<ArtistMvListWrap> artistMvList(String artistId,
       {int offset = 0, int limit = 30, bool total = true}) {
     var params = {
       'artistId': artistId,
@@ -392,7 +392,19 @@ mixin ApiPlay {
         .postUri(joinUri('/weapi/artist/mvs'),
             data: params, options: joinOptions())
         .then((Response value) {
-      return ArtistMvList.fromJson(value.data);
+      return ArtistMvListWrap.fromJson(value.data);
+    });
+  }
+
+  /// 歌手专辑列表
+  Future<ArtistAlbumListWrap> artistAlbumList(String artistId,
+      {int offset = 0, int limit = 30, bool total = true}) {
+    var params = {'total': total, 'limit': limit, 'offset': offset};
+    return Https.dio
+        .postUri(joinUri('/weapi/artist/albums/$artistId'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return ArtistAlbumListWrap.fromJson(value.data);
     });
   }
 }

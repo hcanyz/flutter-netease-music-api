@@ -171,4 +171,9 @@ void main() {
     var result = await api.artistMvList(defaultArtistId);
     expect(result.code, RET_CODE_OK);
   });
+
+  test('test artist album list ', () async {
+    var result = await api.artistAlbumList(defaultArtistId);
+    expect(result.code, RET_CODE_OK);
+  });
 }

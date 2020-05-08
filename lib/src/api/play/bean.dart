@@ -115,12 +115,15 @@ class Album {
   String type;
   String subType;
 
+  int mark;
   int size;
+  int publishTime;
 
   String picUrl;
 
   String tags;
 
+  int copyrightId;
   int companyId;
   String company;
 
@@ -129,6 +132,10 @@ class Album {
 
   Artists artist;
   List<Artists> artists;
+
+  bool isSub;
+  bool paid;
+  bool onSale;
 
   Album();
 
@@ -743,41 +750,57 @@ class ArtistsListWrap extends ServerStatusBean {
 }
 
 @JsonSerializable()
-class ArtistTopSongList extends ServerStatusBean {
+class ArtistTopSongListWrap extends ServerStatusBean {
   List<Song2> songs;
 
-  ArtistTopSongList();
+  ArtistTopSongListWrap();
 
-  factory ArtistTopSongList.fromJson(Map<String, dynamic> json) =>
-      _$ArtistTopSongListFromJson(json);
+  factory ArtistTopSongListWrap.fromJson(Map<String, dynamic> json) =>
+      _$ArtistTopSongListWrapFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ArtistTopSongListToJson(this);
+  Map<String, dynamic> toJson() => _$ArtistTopSongListWrapToJson(this);
 }
 
 @JsonSerializable()
-class ArtistSongList extends ServerStatusBean {
+class ArtistSongListWrap extends ServerStatusBean {
   List<Song2> hotSongs;
 
   Artists artist;
 
-  ArtistSongList();
+  ArtistSongListWrap();
 
-  factory ArtistSongList.fromJson(Map<String, dynamic> json) =>
-      _$ArtistSongListFromJson(json);
+  factory ArtistSongListWrap.fromJson(Map<String, dynamic> json) =>
+      _$ArtistSongListWrapFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ArtistSongListToJson(this);
+  Map<String, dynamic> toJson() => _$ArtistSongListWrapToJson(this);
 }
 
 @JsonSerializable()
-class ArtistMvList extends ServerStatusListBean {
+class ArtistMvListWrap extends ServerStatusListBean {
   List<Mv> mvs;
 
   int time;
 
-  ArtistMvList();
+  ArtistMvListWrap();
 
-  factory ArtistMvList.fromJson(Map<String, dynamic> json) =>
-      _$ArtistMvListFromJson(json);
+  factory ArtistMvListWrap.fromJson(Map<String, dynamic> json) =>
+      _$ArtistMvListWrapFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ArtistMvListToJson(this);
+  Map<String, dynamic> toJson() => _$ArtistMvListWrapToJson(this);
+}
+
+@JsonSerializable()
+class ArtistAlbumListWrap extends ServerStatusListBean {
+  int time;
+
+  List<Album> hotAlbums;
+
+  Artists artist;
+
+  ArtistAlbumListWrap();
+
+  factory ArtistAlbumListWrap.fromJson(Map<String, dynamic> json) =>
+      _$ArtistAlbumListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ArtistAlbumListWrapToJson(this);
 }
