@@ -453,6 +453,16 @@ mixin ApiPlay {
     });
   }
 
+  /// 最新专辑
+  Future<AlbumListWrap> newestAlbumList() {
+    return Https.dio
+        .postUri(joinUri('/api/discovery/newAlbum'),
+            data: {}, options: joinOptions())
+        .then((Response value) {
+      return AlbumListWrap.fromJson(value.data);
+    });
+  }
+
   /// 专辑详情
   Future<AlbumDetailWrap> albumDetail(String albumId) {
     return Https.dio
