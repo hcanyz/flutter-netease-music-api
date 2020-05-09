@@ -31,20 +31,8 @@ class SearchSongWrapX extends ServerStatusBean {
 }
 
 @JsonSerializable()
-class SearchAlbumsWrap {
-  List<Album> albums;
-
-  SearchAlbumsWrap();
-
-  factory SearchAlbumsWrap.fromJson(Map<String, dynamic> json) =>
-      _$SearchAlbumsWrapFromJson(json);
-
-  Map<String, dynamic> toJson() => _$SearchAlbumsWrapToJson(this);
-}
-
-@JsonSerializable()
 class SearchAlbumsWrapX extends ServerStatusBean {
-  SearchAlbumsWrap result;
+  AlbumListWrap result;
 
   SearchAlbumsWrapX();
 

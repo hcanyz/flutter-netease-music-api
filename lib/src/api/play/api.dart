@@ -437,6 +437,22 @@ mixin ApiPlay {
     });
   }
 
+  /// 新碟上架
+  /// [area] ALL,ZH,EA,KR,JP
+  Future<AlbumListWrap> newAlbumList(
+      {String area = 'ALL',
+      int offset = 0,
+      int limit = 30,
+      bool total = true}) {
+    var params = {'total': total, 'limit': limit, 'offset': offset};
+    return Https.dio
+        .postUri(joinUri('/weapi/album/new'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return AlbumListWrap.fromJson(value.data);
+    });
+  }
+
   /// 专辑详情
   Future<AlbumDetailWrap> albumDetail(String albumId) {
     return Https.dio

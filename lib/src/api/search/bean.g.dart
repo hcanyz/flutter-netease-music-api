@@ -37,19 +37,6 @@ Map<String, dynamic> _$SearchSongWrapXToJson(SearchSongWrapX instance) =>
       'result': instance.result,
     };
 
-SearchAlbumsWrap _$SearchAlbumsWrapFromJson(Map<String, dynamic> json) {
-  return SearchAlbumsWrap()
-    ..albums = (json['albums'] as List)
-        ?.map(
-            (e) => e == null ? null : Album.fromJson(e as Map<String, dynamic>))
-        ?.toList();
-}
-
-Map<String, dynamic> _$SearchAlbumsWrapToJson(SearchAlbumsWrap instance) =>
-    <String, dynamic>{
-      'albums': instance.albums,
-    };
-
 SearchAlbumsWrapX _$SearchAlbumsWrapXFromJson(Map<String, dynamic> json) {
   return SearchAlbumsWrapX()
     ..code = json['code'] as int
@@ -57,7 +44,7 @@ SearchAlbumsWrapX _$SearchAlbumsWrapXFromJson(Map<String, dynamic> json) {
     ..msg = json['msg'] as String
     ..result = json['result'] == null
         ? null
-        : SearchAlbumsWrap.fromJson(json['result'] as Map<String, dynamic>);
+        : AlbumListWrap.fromJson(json['result'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$SearchAlbumsWrapXToJson(SearchAlbumsWrapX instance) =>
