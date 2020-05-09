@@ -873,6 +873,24 @@ Map<String, dynamic> _$SongListWrapToJson(SongListWrap instance) =>
       'songs': instance.songs,
     };
 
+LikeSongListWrap _$LikeSongListWrapFromJson(Map<String, dynamic> json) {
+  return LikeSongListWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..checkPoint = json['checkPoint'] as int
+    ..ids = (json['ids'] as List)?.map((e) => e as int)?.toList();
+}
+
+Map<String, dynamic> _$LikeSongListWrapToJson(LikeSongListWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'checkPoint': instance.checkPoint,
+      'ids': instance.ids,
+    };
+
 RecommendSongListWrap _$RecommendSongListWrapFromJson(
     Map<String, dynamic> json) {
   return RecommendSongListWrap()

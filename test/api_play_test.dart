@@ -104,7 +104,13 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test song like', () async {
+  test('test song like list', () async {
+    var result = await api.likeSongList(
+        NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId);
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test song like x', () async {
     var result = await api.likeSong('167975', false);
     expect(result.code, RET_CODE_OK);
 

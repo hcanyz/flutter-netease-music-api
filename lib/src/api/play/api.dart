@@ -230,6 +230,17 @@ mixin ApiPlay {
     });
   }
 
+  /// 喜欢的歌曲(无序)
+  Future<LikeSongListWrap> likeSongList(String userId) {
+    var params = {'uid': userId};
+    return Https.dio
+        .postUri(joinUri('/weapi/song/like/get'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return LikeSongListWrap.fromJson(value.data);
+    });
+  }
+
   /// 歌曲 红心与取消红心
   Future<ServerStatusBean> likeSong(String songId, bool like,
       {int time = 3, String alg = 'itembased'}) {
