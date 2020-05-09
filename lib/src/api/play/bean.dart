@@ -715,6 +715,18 @@ class SongListWrap extends ServerStatusBean {
 }
 
 @JsonSerializable()
+class SongListWrap2 extends ServerStatusBean {
+  List<Song> data;
+
+  SongListWrap2();
+
+  factory SongListWrap2.fromJson(Map<String, dynamic> json) =>
+      _$SongListWrap2FromJson(json);
+
+  Map<String, dynamic> toJson() => _$SongListWrap2ToJson(this);
+}
+
+@JsonSerializable()
 class LikeSongListWrap extends ServerStatusBean {
   int checkPoint;
 
@@ -738,18 +750,6 @@ class RecommendSongListWrap extends ServerStatusBean {
       _$RecommendSongListWrapFromJson(json);
 
   Map<String, dynamic> toJson() => _$RecommendSongListWrapToJson(this);
-}
-
-@JsonSerializable()
-class NewSongListWrap extends ServerStatusBean {
-  List<Song> data;
-
-  NewSongListWrap();
-
-  factory NewSongListWrap.fromJson(Map<String, dynamic> json) =>
-      _$NewSongListWrapFromJson(json);
-
-  Map<String, dynamic> toJson() => _$NewSongListWrapToJson(this);
 }
 
 @JsonSerializable()

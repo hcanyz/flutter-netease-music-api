@@ -186,24 +186,24 @@ mixin ApiPlay {
 
   /// 私人FM
   /// !需要登录
-  Future<NewSongListWrap> userRadio() {
+  Future<SongListWrap2> userRadio() {
     return Https.dio
         .postUri(joinUri('/weapi/v1/radio/get'),
             data: {}, options: joinOptions())
         .then((Response value) {
-      return NewSongListWrap.fromJson(value.data);
+      return SongListWrap2.fromJson(value.data);
     });
   }
 
   /// 新歌速递
   /// [areaId] 全部:0 华语:7 欧美:96 日本:8 韩国:16 默认0
-  Future<NewSongListWrap> newSongList({String areaId = '0'}) {
+  Future<SongListWrap2> newSongList({String areaId = '0'}) {
     var params = {'areaId': areaId, 'total': true};
     return Https.dio
         .postUri(joinUri('/weapi/v1/discovery/new/songs'),
             data: params, options: joinOptions())
         .then((Response value) {
-      return NewSongListWrap.fromJson(value.data);
+      return SongListWrap2.fromJson(value.data);
     });
   }
 

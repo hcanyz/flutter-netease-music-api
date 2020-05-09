@@ -873,6 +873,25 @@ Map<String, dynamic> _$SongListWrapToJson(SongListWrap instance) =>
       'songs': instance.songs,
     };
 
+SongListWrap2 _$SongListWrap2FromJson(Map<String, dynamic> json) {
+  return SongListWrap2()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..data = (json['data'] as List)
+        ?.map(
+            (e) => e == null ? null : Song.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$SongListWrap2ToJson(SongListWrap2 instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
 LikeSongListWrap _$LikeSongListWrapFromJson(Map<String, dynamic> json) {
   return LikeSongListWrap()
     ..code = json['code'] as int
@@ -910,25 +929,6 @@ Map<String, dynamic> _$RecommendSongListWrapToJson(
       'message': instance.message,
       'msg': instance.msg,
       'recommend': instance.recommend,
-    };
-
-NewSongListWrap _$NewSongListWrapFromJson(Map<String, dynamic> json) {
-  return NewSongListWrap()
-    ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
-    ..data = (json['data'] as List)
-        ?.map(
-            (e) => e == null ? null : Song.fromJson(e as Map<String, dynamic>))
-        ?.toList();
-}
-
-Map<String, dynamic> _$NewSongListWrapToJson(NewSongListWrap instance) =>
-    <String, dynamic>{
-      'code': instance.code,
-      'message': instance.message,
-      'msg': instance.msg,
-      'data': instance.data,
     };
 
 PlaymodeIntelligenceItem _$PlaymodeIntelligenceItemFromJson(
