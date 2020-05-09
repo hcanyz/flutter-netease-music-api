@@ -196,7 +196,11 @@ void _handleEApi(RequestOptions option, List<Cookie> cookies) {
 
 const String TAG = 'NeteaseMusicApi';
 const String HOST = 'https://music.163.com';
-const HOSTS = ['music.163.com', 'interface3.music.163.com'];
+const HOSTS = [
+  'music.163.com',
+  'interface.music.163.com',
+  'interface3.music.163.com'
+];
 
 enum EncryptType { LinuxForward, WeApi, EApi }
 

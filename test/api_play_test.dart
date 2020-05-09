@@ -162,11 +162,6 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test simi mv', () async {
-    var result = await api.mvSimi('5293222');
-    expect(result.code, RET_CODE_OK);
-  });
-
   test('test top artist', () async {
     var result = await api.topArtist();
     expect(result.code, RET_CODE_OK);
@@ -192,8 +187,18 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test all mv list', () async {
+    var result = await api.allMvList();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test artist mv list ', () async {
     var result = await api.artistMvList(defaultArtistId);
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test simi mv', () async {
+    var result = await api.mvSimi('5293222');
     expect(result.code, RET_CODE_OK);
   });
 

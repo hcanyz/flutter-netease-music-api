@@ -865,6 +865,18 @@ class MvListWrap extends ServerStatusListBean {
 }
 
 @JsonSerializable()
+class AllMvListWrap extends ServerStatusListBean {
+  List<Mv> data;
+
+  AllMvListWrap();
+
+  factory AllMvListWrap.fromJson(Map<String, dynamic> json) =>
+      _$AllMvListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AllMvListWrapToJson(this);
+}
+
+@JsonSerializable()
 class ArtistMvListWrap extends MvListWrap {
   int time;
 

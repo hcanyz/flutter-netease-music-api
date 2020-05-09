@@ -363,17 +363,6 @@ mixin ApiPlay {
     });
   }
 
-  /// 相似mv
-  Future<MvListWrap> mvSimi(String mvId) {
-    var params = {'mvid': mvId};
-    return Https.dio
-        .postUri(joinUri('/weapi/discovery/simiMV'),
-            data: params, options: joinOptions())
-        .then((Response value) {
-      return MvListWrap.fromJson(value.data);
-    });
-  }
-
   /// 热门歌手
   Future<ArtistsListWrap> topArtist(
       {int offset = 0, int limit = 30, bool total = true}) {
@@ -429,6 +418,31 @@ mixin ApiPlay {
     });
   }
 
+  /// 全部 mv
+  /// [area] 全部,内地,港台,欧美,日本,韩国  默认全部
+  /// [type] 全部,官方版,原生,现场版,网易出品  默认全部
+  /// [order] 上升最快,最热,最新  默认上升最快
+  Future<AllMvListWrap> allMvList(
+      {String area = '全部',
+      String type = '全部',
+      String order = '上升最快',
+      int offset = 0,
+      int limit = 30,
+      bool total = true}) {
+    var params = {
+      'tags': jsonEncode({'地区': area, '类型': type, '排序': order}),
+      'total': total,
+      'limit': limit,
+      'offset': offset
+    };
+    return Https.dio
+        .postUri(Uri.parse('https://interface.music.163.com/api/mv/all'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return AllMvListWrap.fromJson(value.data);
+    });
+  }
+
   /// 歌手MV列表
   Future<ArtistMvListWrap> artistMvList(String artistId,
       {int offset = 0, int limit = 30, bool total = true}) {
@@ -443,6 +457,17 @@ mixin ApiPlay {
             data: params, options: joinOptions())
         .then((Response value) {
       return ArtistMvListWrap.fromJson(value.data);
+    });
+  }
+
+  /// 相似mv
+  Future<MvListWrap> mvSimi(String mvId) {
+    var params = {'mvid': mvId};
+    return Https.dio
+        .postUri(joinUri('/weapi/discovery/simiMV'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return MvListWrap.fromJson(value.data);
     });
   }
 
