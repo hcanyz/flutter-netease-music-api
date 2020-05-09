@@ -271,6 +271,15 @@ mixin ApiPlay {
     });
   }
 
+  /// 听歌打卡
+  /// [id] 歌单或专辑 id
+  /// [time] 歌曲播放时间,单位为秒
+  Future<ServerStatusBean> punchSong(
+      NeteaseMusicApi api, String songId, String id,
+      {int time = 0}) {
+    return api.weblog(songId, id, 'play', 'song', 'playend');
+  }
+
   /// 音乐详情
   Future<SongDetailWrap> songDetail(List<String> songIds) {
     var params = {

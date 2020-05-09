@@ -132,6 +132,11 @@ void main() {
     expect(result2.code, RET_CODE_OK);
   });
 
+  test('test punch song', () async {
+    var result = await api.punchSong(api, '167975', '2819660572');
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test song detail', () async {
     var result = await api.songDetail(['167975', '167975']);
     expect(result.code, RET_CODE_OK);
