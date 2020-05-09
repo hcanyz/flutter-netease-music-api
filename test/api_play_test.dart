@@ -84,9 +84,21 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test user radio', () async {
+  test('test user radio x', () async {
     var result = await api.userRadio();
     expect(result.code, RET_CODE_OK);
+  });
+
+  test('test user radio trash', () async {
+    var result = await api.userRadio();
+    expect(result.code, RET_CODE_OK);
+
+    if (result.data.isEmpty) {
+      return;
+    }
+
+    var result2 = await api.userRadioTrash(result.data[0].id);
+    expect(result2.code, RET_CODE_OK);
   });
 
   test('test new song list', () async {

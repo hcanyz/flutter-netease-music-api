@@ -195,6 +195,22 @@ mixin ApiPlay {
     });
   }
 
+  /// 私人FM 垃圾桶
+  /// !需要登录
+  Future<SongListWrap> userRadioTrash(String songId,
+      {int time = 3, String alg = 'RT'}) {
+    var params = {'songId': songId};
+    return Https.dio
+        .postUri(
+            joinUri(
+                '/weapi/radio/trash/add?alg=$alg&songId=$songId&time=$time'),
+            data: params,
+            options: joinOptions())
+        .then((Response value) {
+      return SongListWrap.fromJson(value.data);
+    });
+  }
+
   /// 新歌速递
   /// [areaId] 全部:0 华语:7 欧美:96 日本:8 韩国:16 默认0
   Future<SongListWrap2> newSongList({String areaId = '0'}) {
