@@ -16,6 +16,17 @@ mixin ApiDj {
     });
   }
 
+  /// 用户创建的电台
+  Future<DjListWrap> userDjList(String userId) {
+    var params = {'userId': userId};
+    return Https.dio
+        .postUri(joinUri('/weapi/djradio/get/byuser'),
+            data: params, options: joinOptions(cookies: {'os': 'pc'}))
+        .then((Response value) {
+      return DjListWrap.fromJson(value.data);
+    });
+  }
+
   Future<DjProgramsListWrap> userDjProgramsList(String userId,
       {int offset = 0, int limit = 30}) {
     var params = {'limit': limit, 'offset': offset};

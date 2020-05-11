@@ -69,6 +69,21 @@ class DjProgram {
 }
 
 @JsonSerializable()
+class DjListWrap extends ServerStatusListBean {
+  List<Dj> djRadios;
+
+  int subCount;
+  int count;
+
+  DjListWrap();
+
+  factory DjListWrap.fromJson(Map<String, dynamic> json) =>
+      _$DjListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DjListWrapToJson(this);
+}
+
+@JsonSerializable()
 class DjProgramsListWrap extends ServerStatusListBean {
   List<DjProgram> programs;
 

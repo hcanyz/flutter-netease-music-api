@@ -36,6 +36,11 @@ void main() {
   });
 
   test('test user dj list', () async {
+    var result = await api.userDjList(defaultUserId);
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test user dj programs list', () async {
     var result = await api.userDjProgramsList(
         NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
