@@ -1193,6 +1193,67 @@ class VideoListWrap extends ServerStatusBean {
 }
 
 @JsonSerializable()
+class VideoDetailWrap extends ServerStatusBean {
+  Video data;
+
+  VideoDetailWrap();
+
+  factory VideoDetailWrap.fromJson(Map<String, dynamic> json) =>
+      _$VideoDetailWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$VideoDetailWrapToJson(this);
+}
+
+@JsonSerializable()
+class VideoDetailInfoWrap extends ServerStatusBean {
+  int likedCount;
+  int shareCount;
+  int commentCount;
+
+  bool liked;
+
+  VideoDetailInfoWrap();
+
+  factory VideoDetailInfoWrap.fromJson(Map<String, dynamic> json) =>
+      _$VideoDetailInfoWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$VideoDetailInfoWrapToJson(this);
+}
+
+@JsonSerializable()
+class VideoUrl {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  String url;
+  int size;
+  int validityTime;
+
+  bool needPay;
+
+  int r;
+
+  VideoUrl();
+
+  factory VideoUrl.fromJson(Map<String, dynamic> json) =>
+      _$VideoUrlFromJson(json);
+
+  Map<String, dynamic> toJson() => _$VideoUrlToJson(this);
+}
+
+@JsonSerializable()
+class VideoUrlWrap extends ServerStatusBean {
+  List<VideoUrl> urls;
+
+  VideoUrlWrap();
+
+  factory VideoUrlWrap.fromJson(Map<String, dynamic> json) =>
+      _$VideoUrlWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$VideoUrlWrapToJson(this);
+}
+
+@JsonSerializable()
 class AlbumListWrap extends ServerStatusListBean {
   List<Album> albums;
 

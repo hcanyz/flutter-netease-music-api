@@ -1686,6 +1686,85 @@ Map<String, dynamic> _$VideoListWrapToJson(VideoListWrap instance) =>
       'data': instance.data,
     };
 
+VideoDetailWrap _$VideoDetailWrapFromJson(Map<String, dynamic> json) {
+  return VideoDetailWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..data = json['data'] == null
+        ? null
+        : Video.fromJson(json['data'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$VideoDetailWrapToJson(VideoDetailWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
+VideoDetailInfoWrap _$VideoDetailInfoWrapFromJson(Map<String, dynamic> json) {
+  return VideoDetailInfoWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..likedCount = json['likedCount'] as int
+    ..shareCount = json['shareCount'] as int
+    ..commentCount = json['commentCount'] as int
+    ..liked = json['liked'] as bool;
+}
+
+Map<String, dynamic> _$VideoDetailInfoWrapToJson(
+        VideoDetailInfoWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'likedCount': instance.likedCount,
+      'shareCount': instance.shareCount,
+      'commentCount': instance.commentCount,
+      'liked': instance.liked,
+    };
+
+VideoUrl _$VideoUrlFromJson(Map<String, dynamic> json) {
+  return VideoUrl()
+    ..id = dynamicToString(json['id'])
+    ..url = json['url'] as String
+    ..size = json['size'] as int
+    ..validityTime = json['validityTime'] as int
+    ..needPay = json['needPay'] as bool
+    ..r = json['r'] as int;
+}
+
+Map<String, dynamic> _$VideoUrlToJson(VideoUrl instance) => <String, dynamic>{
+      'id': instance.id,
+      'url': instance.url,
+      'size': instance.size,
+      'validityTime': instance.validityTime,
+      'needPay': instance.needPay,
+      'r': instance.r,
+    };
+
+VideoUrlWrap _$VideoUrlWrapFromJson(Map<String, dynamic> json) {
+  return VideoUrlWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..urls = (json['urls'] as List)
+        ?.map((e) =>
+            e == null ? null : VideoUrl.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$VideoUrlWrapToJson(VideoUrlWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'urls': instance.urls,
+    };
+
 AlbumListWrap _$AlbumListWrapFromJson(Map<String, dynamic> json) {
   return AlbumListWrap()
     ..code = json['code'] as int

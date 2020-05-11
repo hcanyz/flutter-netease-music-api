@@ -577,8 +577,8 @@ mixin ApiPlay {
   }
 
   /// MV链接
-  Future<MvUrlWrap> mvUrl(String mvId, {int res = 1080}) {
-    var params = {'id': mvId, 'r': res};
+  Future<MvUrlWrap> mvUrl(String mvId, {int resolution = 1080}) {
+    var params = {'id': mvId, 'r': resolution};
     return Https.dio
         .postUri(joinUri('/weapi/song/enhance/play/mv/url'),
             data: params, options: joinOptions())
@@ -599,12 +599,12 @@ mixin ApiPlay {
 
   /// 视频标签下的视频
   Future<VideoListWrapX> videoListByGroup(String groupId,
-      {int offset = 0, int res = 1080}) {
+      {int offset = 0, int resolution = 1080}) {
     var params = {
       'groupId': groupId,
       'offset': offset,
       'needUrl': true,
-      'resolution': res
+      'resolution': resolution
     };
     return Https.dio
         .postUri(joinUri('/weapi/videotimeline/videogroup/get'),
@@ -625,6 +625,40 @@ mixin ApiPlay {
             data: params, options: joinOptions())
         .then((Response value) {
       return VideoListWrap.fromJson(value.data);
+    });
+  }
+
+  /// 视频详情
+  Future<VideoDetailWrap> videoDetail(String videoId) {
+    var params = {'id': videoId};
+    return Https.dio
+        .postUri(joinUri('/weapi/cloudvideo/v1/video/detail'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return VideoDetailWrap.fromJson(value.data);
+    });
+  }
+
+  /// 视频点赞转发评论数数据
+  Future<VideoDetailInfoWrap> videoDetailInfo(String videoId) {
+    var params = {'threadid': 'R_VI_62_$videoId', 'composeliked': true};
+    return Https.dio
+        .postUri(joinUri('/api/comment/commentthread/info'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return VideoDetailInfoWrap.fromJson(value.data);
+    });
+  }
+
+  /// 视频url
+  Future<VideoUrlWrap> videoUrl(List<String> videoIds,
+      {int resolution = 1080}) {
+    var params = {'ids': jsonEncode(videoIds), 'resolution': resolution};
+    return Https.dio
+        .postUri(joinUri('/weapi/cloudvideo/playurl'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return VideoUrlWrap.fromJson(value.data);
     });
   }
 

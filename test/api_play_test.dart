@@ -264,6 +264,24 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test video detail x', () async {
+    var result = await api.videoDetail('84107D4616B72B929C8AEB7D1E6CC904');
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test video detail info', () async {
+    var result = await api.videoDetailInfo('84107D4616B72B929C8AEB7D1E6CC904');
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test video url', () async {
+    var result = await api.videoUrl([
+      '84107D4616B72B929C8AEB7D1E6CC904',
+      '84107D4616B72B929C8AEB7D1E6CC904'
+    ]);
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test artist album list ', () async {
     var result = await api.artistAlbumList(defaultArtistId);
     expect(result.code, RET_CODE_OK);
