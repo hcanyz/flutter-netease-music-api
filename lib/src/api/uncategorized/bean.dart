@@ -52,6 +52,18 @@ class BannerListWrap extends ServerStatusBean {
 }
 
 @JsonSerializable()
+class BannerListWrap2 extends ServerStatusBean {
+  List<BannerItem> data;
+
+  BannerListWrap2();
+
+  factory BannerListWrap2.fromJson(Map<String, dynamic> json) =>
+      _$BannerListWrap2FromJson(json);
+
+  Map<String, dynamic> toJson() => _$BannerListWrap2ToJson(this);
+}
+
+@JsonSerializable()
 class PersonalizedPrivateContentItem {
   @JsonKey(fromJson: dynamicToString)
   String id;

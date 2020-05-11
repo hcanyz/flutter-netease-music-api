@@ -30,9 +30,14 @@ void main() {
     }
   });
 
+  test('test dj banner', () async {
+    var result = await api.djBanner();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test user dj list', () async {
-    var result = await api
-        .userDjProgramsList(NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId);
+    var result = await api.userDjProgramsList(
+        NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 

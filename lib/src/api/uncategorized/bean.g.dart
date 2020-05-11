@@ -65,6 +65,25 @@ Map<String, dynamic> _$BannerListWrapToJson(BannerListWrap instance) =>
       'banners': instance.banners,
     };
 
+BannerListWrap2 _$BannerListWrap2FromJson(Map<String, dynamic> json) {
+  return BannerListWrap2()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..data = (json['data'] as List)
+        ?.map((e) =>
+            e == null ? null : BannerItem.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$BannerListWrap2ToJson(BannerListWrap2 instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
 PersonalizedPrivateContentItem _$PersonalizedPrivateContentItemFromJson(
     Map<String, dynamic> json) {
   return PersonalizedPrivateContentItem()

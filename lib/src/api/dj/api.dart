@@ -1,10 +1,21 @@
 import 'package:dio/dio.dart';
+import 'package:netease_music_api/src/api/uncategorized/bean.dart';
 import 'package:netease_music_api/src/dio_ext.dart';
 import 'package:netease_music_api/src/netease_handler.dart';
 
 import 'bean.dart';
 
 mixin ApiDj {
+  /// 电台banner
+  Future<BannerListWrap2> djBanner() {
+    return Https.dio
+        .postUri(joinUri('/weapi/djradio/banner/get'),
+            data: {}, options: joinOptions(cookies: {'os': 'pc'}))
+        .then((Response value) {
+      return BannerListWrap2.fromJson(value.data);
+    });
+  }
+
   Future<DjProgramsListWrap> userDjProgramsList(String userId,
       {int offset = 0, int limit = 30}) {
     var params = {'limit': limit, 'offset': offset};
