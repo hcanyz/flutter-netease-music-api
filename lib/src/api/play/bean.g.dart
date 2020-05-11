@@ -1279,6 +1279,28 @@ Map<String, dynamic> _$MvDetailWrapToJson(MvDetailWrap instance) =>
       'data': instance.data,
     };
 
+MvDetailInfoWrap _$MvDetailInfoWrapFromJson(Map<String, dynamic> json) {
+  return MvDetailInfoWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..likedCount = json['likedCount'] as int
+    ..shareCount = json['shareCount'] as int
+    ..commentCount = json['commentCount'] as int
+    ..liked = json['liked'] as bool;
+}
+
+Map<String, dynamic> _$MvDetailInfoWrapToJson(MvDetailInfoWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'likedCount': instance.likedCount,
+      'shareCount': instance.shareCount,
+      'commentCount': instance.commentCount,
+      'liked': instance.liked,
+    };
+
 AlbumListWrap _$AlbumListWrapFromJson(Map<String, dynamic> json) {
   return AlbumListWrap()
     ..code = json['code'] as int

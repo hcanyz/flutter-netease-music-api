@@ -237,6 +237,11 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test mv detailInfo', () async {
+    var result = await api.mvDetailInfo('5293222');
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test artist album list ', () async {
     var result = await api.artistAlbumList(defaultArtistId);
     expect(result.code, RET_CODE_OK);

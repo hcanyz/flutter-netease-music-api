@@ -565,6 +565,17 @@ mixin ApiPlay {
     });
   }
 
+  /// MV 点赞转发评论数数据
+  Future<MvDetailInfoWrap> mvDetailInfo(String mvId) {
+    var params = {'threadid': 'R_MV_5_$mvId', 'composeliked': true};
+    return Https.dio
+        .postUri(joinUri('/api/comment/commentthread/info'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return MvDetailInfoWrap.fromJson(value.data);
+    });
+  }
+
   /// 歌手专辑列表
   Future<ArtistAlbumListWrap> artistAlbumList(String artistId,
       {int offset = 0, int limit = 30, bool total = true}) {

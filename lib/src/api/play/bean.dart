@@ -978,6 +978,22 @@ class MvDetailWrap extends ServerStatusBean {
 }
 
 @JsonSerializable()
+class MvDetailInfoWrap extends ServerStatusBean {
+  int likedCount;
+  int shareCount;
+  int commentCount;
+
+  bool liked;
+
+  MvDetailInfoWrap();
+
+  factory MvDetailInfoWrap.fromJson(Map<String, dynamic> json) =>
+      _$MvDetailInfoWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MvDetailInfoWrapToJson(this);
+}
+
+@JsonSerializable()
 class AlbumListWrap extends ServerStatusListBean {
   List<Album> albums;
 
