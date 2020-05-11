@@ -133,7 +133,7 @@ mixin ApiPlay {
 
   /// 歌单详情
   /// [songId] 歌曲 id
-  Future<MultiPlayListWrap> playListSimi(String songId,
+  Future<MultiPlayListWrap> playListSimiList(String songId,
       {int offset = 0, int limit = 30}) {
     var params = {'songid': songId, 'limit': limit, 'offset': offset};
     return Https.dio
@@ -247,7 +247,7 @@ mixin ApiPlay {
   }
 
   /// 最近5个听了这首歌的用户
-  Future<UserListWrap> userSongSimi(String songId) {
+  Future<UserListWrap> userSongSimiList(String songId) {
     var params = {'songid': songId};
     return Https.dio
         .postUri(joinUri('/weapi/discovery/simiUser'),
@@ -258,7 +258,7 @@ mixin ApiPlay {
   }
 
   /// 相似mv
-  Future<SongListWrap> songSimi(String songId,
+  Future<SongListWrap> songSimiList(String songId,
       {int offset = 0, int limit = 30}) {
     var params = {'songid': songId, 'limit': limit, 'offset': offset};
     return Https.dio
@@ -399,7 +399,7 @@ mixin ApiPlay {
   }
 
   /// 相似歌手
-  Future<ArtistsListWrap> artistSimi(String artistId) {
+  Future<ArtistsListWrap> artistSimiList(String artistId) {
     var params = {'artistid': artistId};
     return Https.dio
         .postUri(joinUri('/weapi/discovery/simiArtist'),
@@ -544,7 +544,7 @@ mixin ApiPlay {
   }
 
   /// 相似mv
-  Future<MvListWrap> mvSimi(String mvId) {
+  Future<MvListWrap> mvSimiList(String mvId) {
     var params = {'mvid': mvId};
     return Https.dio
         .postUri(joinUri('/weapi/discovery/simiMV'),

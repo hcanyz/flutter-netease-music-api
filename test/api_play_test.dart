@@ -70,7 +70,7 @@ void main() {
   });
 
   test('test playlist simi', () async {
-    var result = await api.playListSimi('4875306');
+    var result = await api.playListSimiList('4875306');
     expect(result.code, RET_CODE_OK);
   });
 
@@ -117,12 +117,12 @@ void main() {
   });
 
   test('test user song simi', () async {
-    var result = await api.userSongSimi('167975');
+    var result = await api.userSongSimiList('167975');
     expect(result.code, RET_CODE_OK);
   });
 
   test('test song simi', () async {
-    var result = await api.songSimi('167975');
+    var result = await api.songSimiList('167975');
     expect(result.code, RET_CODE_OK);
   });
 
@@ -178,7 +178,7 @@ void main() {
   });
 
   test('test simi artist', () async {
-    var result = await api.artistSimi(defaultArtistId);
+    var result = await api.artistSimiList(defaultArtistId);
     expect(result.code, RET_CODE_OK);
   });
 
@@ -228,7 +228,7 @@ void main() {
   });
 
   test('test simi mv', () async {
-    var result = await api.mvSimi('5293222');
+    var result = await api.mvSimiList('5293222');
     expect(result.code, RET_CODE_OK);
   });
 
