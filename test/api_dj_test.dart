@@ -45,13 +45,13 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test dj programs top list', () async {
+  test('test dj top list', () async {
     var result = await api.djProgramsTopList();
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test dj programs pay top list', () async {
-    var result = await api.djProgramsPayTopList();
+  test('test dj pay top list', () async {
+    var result = await api.djPayTopList();
     expect(result.code, RET_CODE_OK);
   });
 

@@ -38,6 +38,17 @@ mixin ApiDj {
     });
   }
 
+  /// 付费精品电台
+  Future<DjPayTopListListWrapX> djPayTopList({int limit = 100}) {
+    var params = {'limit': limit};
+    return Https.dio
+        .postUri(joinUri('/api/djradio/toplist/pay'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return DjPayTopListListWrapX.fromJson(value.data);
+    });
+  }
+
   /// 电台节目排行榜
   /// !需要登录
   Future<DjProgramsTopListListWrap> djProgramsTopList(
@@ -51,18 +62,7 @@ mixin ApiDj {
     });
   }
 
-  /// 付费精品电台
-  Future<DjProgramsPayTopListListWrapX> djProgramsPayTopList(
-      {int limit = 100}) {
-    var params = {'limit': limit};
-    return Https.dio
-        .postUri(joinUri('/api/djradio/toplist/pay'),
-            data: params, options: joinOptions())
-        .then((Response value) {
-      return DjProgramsPayTopListListWrapX.fromJson(value.data);
-    });
-  }
-
+  /// 用户电台节目列表
   Future<DjProgramsListWrap> userDjProgramsList(String userId,
       {int offset = 0, int limit = 30}) {
     var params = {'limit': limit, 'offset': offset};

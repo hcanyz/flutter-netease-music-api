@@ -119,6 +119,53 @@ class DjListWrap extends ServerStatusListBean {
 }
 
 @JsonSerializable()
+class DjPayTopListItem {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+  String name;
+  String picUrl;
+  String creatorName;
+
+  int rank;
+  int lastRank;
+  int score;
+
+  DjPayTopListItem();
+
+  factory DjPayTopListItem.fromJson(Map<String, dynamic> json) =>
+      _$DjPayTopListItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DjPayTopListItemToJson(this);
+}
+
+@JsonSerializable()
+class DjPayTopListListWrap {
+  List<DjPayTopListItem> list;
+
+  int total;
+  int updateTime;
+
+  DjPayTopListListWrap();
+
+  factory DjPayTopListListWrap.fromJson(Map<String, dynamic> json) =>
+      _$DjPayTopListListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DjPayTopListListWrapToJson(this);
+}
+
+@JsonSerializable()
+class DjPayTopListListWrapX extends ServerStatusBean {
+  DjPayTopListListWrap data;
+
+  DjPayTopListListWrapX();
+
+  factory DjPayTopListListWrapX.fromJson(Map<String, dynamic> json) =>
+      _$DjPayTopListListWrapXFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DjPayTopListListWrapXToJson(this);
+}
+
+@JsonSerializable()
 class DjProgramsListWrap extends ServerStatusListBean {
   List<DjProgram> programs;
 
@@ -161,53 +208,6 @@ class DjProgramsTopListListWrap extends ServerStatusBean {
       _$DjProgramsTopListListWrapFromJson(json);
 
   Map<String, dynamic> toJson() => _$DjProgramsTopListListWrapToJson(this);
-}
-
-@JsonSerializable()
-class DjProgramsPayTopListItem {
-  @JsonKey(fromJson: dynamicToString)
-  String id;
-  String name;
-  String picUrl;
-  String creatorName;
-
-  int rank;
-  int lastRank;
-  int score;
-
-  DjProgramsPayTopListItem();
-
-  factory DjProgramsPayTopListItem.fromJson(Map<String, dynamic> json) =>
-      _$DjProgramsPayTopListItemFromJson(json);
-
-  Map<String, dynamic> toJson() => _$DjProgramsPayTopListItemToJson(this);
-}
-
-@JsonSerializable()
-class DjProgramsPayTopListListWrap {
-  List<DjProgramsPayTopListItem> list;
-
-  int total;
-  int updateTime;
-
-  DjProgramsPayTopListListWrap();
-
-  factory DjProgramsPayTopListListWrap.fromJson(Map<String, dynamic> json) =>
-      _$DjProgramsPayTopListListWrapFromJson(json);
-
-  Map<String, dynamic> toJson() => _$DjProgramsPayTopListListWrapToJson(this);
-}
-
-@JsonSerializable()
-class DjProgramsPayTopListListWrapX extends ServerStatusBean {
-  DjProgramsPayTopListListWrap data;
-
-  DjProgramsPayTopListListWrapX();
-
-  factory DjProgramsPayTopListListWrapX.fromJson(Map<String, dynamic> json) =>
-      _$DjProgramsPayTopListListWrapXFromJson(json);
-
-  Map<String, dynamic> toJson() => _$DjProgramsPayTopListListWrapXToJson(this);
 }
 
 @JsonSerializable()
