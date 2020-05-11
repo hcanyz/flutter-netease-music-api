@@ -1226,6 +1226,74 @@ Map<String, dynamic> _$LikeSongListWrapToJson(LikeSongListWrap instance) =>
       'ids': instance.ids,
     };
 
+CloudSongItem _$CloudSongItemFromJson(Map<String, dynamic> json) {
+  return CloudSongItem()
+    ..simpleSong = json['simpleSong'] == null
+        ? null
+        : Song2.fromJson(json['simpleSong'] as Map<String, dynamic>)
+    ..songId = dynamicToString(json['songId'])
+    ..songName = json['songName'] as String
+    ..fileName = json['fileName'] as String
+    ..cover = json['cover'] as int
+    ..fileSize = json['fileSize'] as int
+    ..addTime = json['addTime'] as int
+    ..version = json['version'] as int
+    ..coverId = json['coverId'] as String
+    ..lyricId = json['lyricId'] as String
+    ..album = json['album'] as String
+    ..artist = json['artist'] as String
+    ..bitrate = json['bitrate'] as int;
+}
+
+Map<String, dynamic> _$CloudSongItemToJson(CloudSongItem instance) =>
+    <String, dynamic>{
+      'simpleSong': instance.simpleSong,
+      'songId': instance.songId,
+      'songName': instance.songName,
+      'fileName': instance.fileName,
+      'cover': instance.cover,
+      'fileSize': instance.fileSize,
+      'addTime': instance.addTime,
+      'version': instance.version,
+      'coverId': instance.coverId,
+      'lyricId': instance.lyricId,
+      'album': instance.album,
+      'artist': instance.artist,
+      'bitrate': instance.bitrate,
+    };
+
+CloudSongListWrap _$CloudSongListWrapFromJson(Map<String, dynamic> json) {
+  return CloudSongListWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..more = json['more'] as bool
+    ..count = json['count'] as int
+    ..total = json['total'] as int
+    ..size = json['size'] as String
+    ..maxSize = json['maxSize'] as String
+    ..upgradeSign = json['upgradeSign'] as int
+    ..data = (json['data'] as List)
+        ?.map((e) => e == null
+            ? null
+            : CloudSongItem.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$CloudSongListWrapToJson(CloudSongListWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'more': instance.more,
+      'count': instance.count,
+      'total': instance.total,
+      'size': instance.size,
+      'maxSize': instance.maxSize,
+      'upgradeSign': instance.upgradeSign,
+      'data': instance.data,
+    };
+
 RecommendSongListWrap _$RecommendSongListWrapFromJson(
     Map<String, dynamic> json) {
   return RecommendSongListWrap()

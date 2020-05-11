@@ -280,6 +280,17 @@ mixin ApiPlay {
     });
   }
 
+  /// 获取云盘?音乐?
+  Future<CloudSongListWrap> cloudGet({int offset = 0, int limit = 30}) {
+    var params = {'limit': limit, 'offset': offset};
+    return Https.dio
+        .postUri(joinUri('/weapi/v1/cloud/get'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return CloudSongListWrap.fromJson(value.data);
+    });
+  }
+
   /// 歌曲 红心与取消红心
   Future<ServerStatusBean> likeSong(String songId, bool like,
       {int time = 3, String alg = 'itembased'}) {

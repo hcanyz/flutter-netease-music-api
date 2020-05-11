@@ -886,6 +886,51 @@ class LikeSongListWrap extends ServerStatusBean {
 }
 
 @JsonSerializable()
+class CloudSongItem {
+  Song2 simpleSong;
+
+  @JsonKey(fromJson: dynamicToString)
+  String songId;
+  String songName;
+  String fileName;
+
+  int cover;
+  int fileSize;
+  int addTime;
+  int version;
+  String coverId;
+  String lyricId;
+
+  String album;
+  String artist;
+
+  int bitrate;
+
+  CloudSongItem();
+
+  factory CloudSongItem.fromJson(Map<String, dynamic> json) =>
+      _$CloudSongItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CloudSongItemToJson(this);
+}
+
+@JsonSerializable()
+class CloudSongListWrap extends ServerStatusListBean {
+  String size;
+  String maxSize;
+  int upgradeSign;
+
+  List<CloudSongItem> data;
+
+  CloudSongListWrap();
+
+  factory CloudSongListWrap.fromJson(Map<String, dynamic> json) =>
+      _$CloudSongListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CloudSongListWrapToJson(this);
+}
+
+@JsonSerializable()
 class RecommendSongListWrap extends ServerStatusBean {
   List<Song> recommend;
 
