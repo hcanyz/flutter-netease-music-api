@@ -54,7 +54,12 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test recommend everyday song list', () async {
+  test('test personalized playlist', () async {
+    var result = await api.personalizedPlaylist();
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test recommend everyday playlist', () async {
     var result = await api.recommendPlaylist();
     expect(result.code, RET_CODE_OK);
   });

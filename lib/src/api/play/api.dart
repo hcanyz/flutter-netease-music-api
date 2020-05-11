@@ -86,6 +86,18 @@ mixin ApiPlay {
     });
   }
 
+  /// 推荐歌单
+  Future<PersonalizedPlayListWrap> personalizedPlaylist(
+      {int offset = 0, int limit = 30}) {
+    var params = {'limit': limit, 'offset': offset, 'n': 1000};
+    return Https.dio
+        .postUri(joinUri('/weapi/personalized/playlist'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return PersonalizedPlayListWrap.fromJson(value.data);
+    });
+  }
+
   /// 每日推荐歌单
   /// !需要登录
   Future<RecommendPlayListWrap> recommendPlaylist() {
@@ -476,12 +488,12 @@ mixin ApiPlay {
   }
 
   /// 推荐MV
-  Future<PersonalizedListWrap> personalizedMvList() {
+  Future<PersonalizedMvListWrap> personalizedMvList() {
     return Https.dio
         .postUri(joinUri('/weapi/personalized/mv'),
             data: {}, options: joinOptions())
         .then((Response value) {
-      return PersonalizedListWrap.fromJson(value.data);
+      return PersonalizedMvListWrap.fromJson(value.data);
     });
   }
 

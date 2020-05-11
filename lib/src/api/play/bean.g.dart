@@ -595,7 +595,7 @@ Play _$PlayFromJson(Map<String, dynamic> json) {
     ..copywriter = json['copywriter'] as String
     ..createTime = json['createTime'] as int
     ..updateTime = json['updateTime'] as int
-    ..playCount = json['playCount'] as int
+    ..playCount = dynamicToInt(json['playCount'])
     ..subscribedCount = json['subscribedCount'] as int
     ..shareCount = json['shareCount'] as int
     ..commentCount = json['commentCount'] as int
@@ -699,6 +699,31 @@ Map<String, dynamic> _$RecommendPlayListWrapToJson(
       'recommend': instance.recommend,
       'featureFirst': instance.featureFirst,
       'haveRcmdSongs': instance.haveRcmdSongs,
+    };
+
+PersonalizedPlayListWrap _$PersonalizedPlayListWrapFromJson(
+    Map<String, dynamic> json) {
+  return PersonalizedPlayListWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..result = (json['result'] as List)
+        ?.map(
+            (e) => e == null ? null : Play.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..hasTaste = json['hasTaste'] as bool
+    ..category = json['category'] as int;
+}
+
+Map<String, dynamic> _$PersonalizedPlayListWrapToJson(
+        PersonalizedPlayListWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'result': instance.result,
+      'hasTaste': instance.hasTaste,
+      'category': instance.category,
     };
 
 PlaylistCatalogueItem _$PlaylistCatalogueItemFromJson(
@@ -1125,8 +1150,9 @@ Map<String, dynamic> _$MvListWrap2ToJson(MvListWrap2 instance) =>
       'data': instance.data,
     };
 
-PersonalizedListWrap _$PersonalizedListWrapFromJson(Map<String, dynamic> json) {
-  return PersonalizedListWrap()
+PersonalizedMvListWrap _$PersonalizedMvListWrapFromJson(
+    Map<String, dynamic> json) {
+  return PersonalizedMvListWrap()
     ..code = json['code'] as int
     ..message = json['message'] as String
     ..msg = json['msg'] as String
@@ -1136,8 +1162,8 @@ PersonalizedListWrap _$PersonalizedListWrapFromJson(Map<String, dynamic> json) {
     ..category = json['category'] as int;
 }
 
-Map<String, dynamic> _$PersonalizedListWrapToJson(
-        PersonalizedListWrap instance) =>
+Map<String, dynamic> _$PersonalizedMvListWrapToJson(
+        PersonalizedMvListWrap instance) =>
     <String, dynamic>{
       'code': instance.code,
       'message': instance.message,

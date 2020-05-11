@@ -40,3 +40,12 @@ class ServerStatusListBean extends ServerStatusBean {
 }
 
 String dynamicToString(dynamic value) => value?.toString();
+
+int dynamicToInt(dynamic value) {
+  if (value is double) {
+    return value.toInt();
+  } else if (value is String) {
+    return int.parse(value);
+  }
+  return value;
+}

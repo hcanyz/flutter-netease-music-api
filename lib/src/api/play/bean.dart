@@ -477,6 +477,7 @@ class Play {
   int createTime;
   int updateTime;
 
+  @JsonKey(fromJson: dynamicToInt)
   int playCount;
   int subscribedCount;
   int shareCount;
@@ -547,6 +548,21 @@ class RecommendPlayListWrap extends ServerStatusBean {
       _$RecommendPlayListWrapFromJson(json);
 
   Map<String, dynamic> toJson() => _$RecommendPlayListWrapToJson(this);
+}
+
+@JsonSerializable()
+class PersonalizedPlayListWrap extends ServerStatusBean {
+  List<Play> result;
+
+  bool hasTaste;
+  int category;
+
+  PersonalizedPlayListWrap();
+
+  factory PersonalizedPlayListWrap.fromJson(Map<String, dynamic> json) =>
+      _$PersonalizedPlayListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PersonalizedPlayListWrapToJson(this);
 }
 
 @JsonSerializable()
@@ -877,17 +893,17 @@ class MvListWrap2 extends ServerStatusListBean {
 }
 
 @JsonSerializable()
-class PersonalizedListWrap extends ServerStatusBean {
+class PersonalizedMvListWrap extends ServerStatusBean {
   List<Mv> result;
 
   int category;
 
-  PersonalizedListWrap();
+  PersonalizedMvListWrap();
 
-  factory PersonalizedListWrap.fromJson(Map<String, dynamic> json) =>
-      _$PersonalizedListWrapFromJson(json);
+  factory PersonalizedMvListWrap.fromJson(Map<String, dynamic> json) =>
+      _$PersonalizedMvListWrapFromJson(json);
 
-  Map<String, dynamic> toJson() => _$PersonalizedListWrapToJson(this);
+  Map<String, dynamic> toJson() => _$PersonalizedMvListWrapToJson(this);
 }
 
 @JsonSerializable()
