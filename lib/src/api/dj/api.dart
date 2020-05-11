@@ -15,4 +15,14 @@ mixin ApiDj {
       return DjListWrap.fromJson(value.data);
     });
   }
+
+  /// 推荐电台
+  Future<PersonalizedDjListWrap> personalizedDjList() {
+    return Https.dio
+        .postUri(joinUri('/weapi/personalized/djprogram'),
+            data: {}, options: joinOptions())
+        .then((Response value) {
+      return PersonalizedDjListWrap.fromJson(value.data);
+    });
+  }
 }

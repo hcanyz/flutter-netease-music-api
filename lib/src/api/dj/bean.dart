@@ -70,12 +70,49 @@ class DjProgram {
 
 @JsonSerializable()
 class DjListWrap extends ServerStatusBean {
-  DjListWrap();
-
   List<DjProgram> programs;
+
+  DjListWrap();
 
   factory DjListWrap.fromJson(Map<String, dynamic> json) =>
       _$DjListWrapFromJson(json);
 
   Map<String, dynamic> toJson() => _$DjListWrapToJson(this);
+}
+
+@JsonSerializable()
+class PersonalizedDjItem {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  String name;
+  String copywriter;
+  String picUrl;
+
+  bool canDislike;
+
+  int type;
+
+  DjProgram program;
+
+  PersonalizedDjItem();
+
+  factory PersonalizedDjItem.fromJson(Map<String, dynamic> json) =>
+      _$PersonalizedDjItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PersonalizedDjItemToJson(this);
+}
+
+@JsonSerializable()
+class PersonalizedDjListWrap extends ServerStatusBean {
+  int category;
+
+  List<PersonalizedDjItem> result;
+
+  PersonalizedDjListWrap();
+
+  factory PersonalizedDjListWrap.fromJson(Map<String, dynamic> json) =>
+      _$PersonalizedDjListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PersonalizedDjListWrapToJson(this);
 }

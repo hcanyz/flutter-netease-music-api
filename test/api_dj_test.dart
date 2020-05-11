@@ -35,4 +35,9 @@ void main() {
         .userDjList(NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
+
+  test('test personalized dj list', () async {
+    var result = await api.personalizedDjList();
+    expect(result.code, RET_CODE_OK);
+  });
 }

@@ -102,3 +102,51 @@ Map<String, dynamic> _$DjListWrapToJson(DjListWrap instance) =>
       'msg': instance.msg,
       'programs': instance.programs,
     };
+
+PersonalizedDjItem _$PersonalizedDjItemFromJson(Map<String, dynamic> json) {
+  return PersonalizedDjItem()
+    ..id = dynamicToString(json['id'])
+    ..name = json['name'] as String
+    ..copywriter = json['copywriter'] as String
+    ..picUrl = json['picUrl'] as String
+    ..canDislike = json['canDislike'] as bool
+    ..type = json['type'] as int
+    ..program = json['program'] == null
+        ? null
+        : DjProgram.fromJson(json['program'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$PersonalizedDjItemToJson(PersonalizedDjItem instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'copywriter': instance.copywriter,
+      'picUrl': instance.picUrl,
+      'canDislike': instance.canDislike,
+      'type': instance.type,
+      'program': instance.program,
+    };
+
+PersonalizedDjListWrap _$PersonalizedDjListWrapFromJson(
+    Map<String, dynamic> json) {
+  return PersonalizedDjListWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..category = json['category'] as int
+    ..result = (json['result'] as List)
+        ?.map((e) => e == null
+            ? null
+            : PersonalizedDjItem.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$PersonalizedDjListWrapToJson(
+        PersonalizedDjListWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'category': instance.category,
+      'result': instance.result,
+    };
