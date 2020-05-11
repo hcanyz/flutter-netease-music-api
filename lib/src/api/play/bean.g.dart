@@ -1101,8 +1101,8 @@ Map<String, dynamic> _$MvListWrapToJson(MvListWrap instance) =>
       'mvs': instance.mvs,
     };
 
-AllMvListWrap _$AllMvListWrapFromJson(Map<String, dynamic> json) {
-  return AllMvListWrap()
+MvListWrap2 _$MvListWrap2FromJson(Map<String, dynamic> json) {
+  return MvListWrap2()
     ..code = json['code'] as int
     ..message = json['message'] as String
     ..msg = json['msg'] as String
@@ -1114,7 +1114,7 @@ AllMvListWrap _$AllMvListWrapFromJson(Map<String, dynamic> json) {
         ?.toList();
 }
 
-Map<String, dynamic> _$AllMvListWrapToJson(AllMvListWrap instance) =>
+Map<String, dynamic> _$MvListWrap2ToJson(MvListWrap2 instance) =>
     <String, dynamic>{
       'code': instance.code,
       'message': instance.message,

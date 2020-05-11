@@ -418,11 +418,11 @@ mixin ApiPlay {
     });
   }
 
-  /// 全部 mv
+  /// 全部MV
   /// [area] 全部,内地,港台,欧美,日本,韩国  默认全部
   /// [type] 全部,官方版,原生,现场版,网易出品  默认全部
   /// [order] 上升最快,最热,最新  默认上升最快
-  Future<AllMvListWrap> allMvList(
+  Future<MvListWrap2> allMvList(
       {String area = '全部',
       String type = '全部',
       String order = '上升最快',
@@ -439,7 +439,25 @@ mixin ApiPlay {
         .postUri(Uri.parse('https://interface.music.163.com/api/mv/all'),
             data: params, options: joinOptions())
         .then((Response value) {
-      return AllMvListWrap.fromJson(value.data);
+      return MvListWrap2.fromJson(value.data);
+    });
+  }
+
+  /// 最新MV
+  /// [area] 全部:'',内地,港台,欧美,日本,韩国  默认全部
+  Future<MvListWrap2> newestMvList(
+      {String area = '', int offset = 0, int limit = 30, bool total = true}) {
+    var params = {
+      'area': area,
+      'total': total,
+      'limit': limit,
+      'offset': offset
+    };
+    return Https.dio
+        .postUri(Uri.parse('https://interface.music.163.com/weapi/mv/first'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return MvListWrap2.fromJson(value.data);
     });
   }
 

@@ -865,15 +865,15 @@ class MvListWrap extends ServerStatusListBean {
 }
 
 @JsonSerializable()
-class AllMvListWrap extends ServerStatusListBean {
+class MvListWrap2 extends ServerStatusListBean {
   List<Mv> data;
 
-  AllMvListWrap();
+  MvListWrap2();
 
-  factory AllMvListWrap.fromJson(Map<String, dynamic> json) =>
-      _$AllMvListWrapFromJson(json);
+  factory MvListWrap2.fromJson(Map<String, dynamic> json) =>
+      _$MvListWrap2FromJson(json);
 
-  Map<String, dynamic> toJson() => _$AllMvListWrapToJson(this);
+  Map<String, dynamic> toJson() => _$MvListWrap2ToJson(this);
 }
 
 @JsonSerializable()
