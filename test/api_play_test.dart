@@ -202,6 +202,11 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test top mv list', () async {
+    var result = await api.topMvList();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test newest mv list', () async {
     var result = await api.newestMvList();
     expect(result.code, RET_CODE_OK);

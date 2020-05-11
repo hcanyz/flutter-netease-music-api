@@ -466,6 +466,24 @@ mixin ApiPlay {
     });
   }
 
+  /// MV排行
+  /// [area] 全部:'',内地,港台,欧美,日本,韩国  默认全部
+  Future<MvListWrap2> topMvList(
+      {String area = '', int offset = 0, int limit = 30, bool total = true}) {
+    var params = {
+      'area': area,
+      'total': total,
+      'limit': limit,
+      'offset': offset
+    };
+    return Https.dio
+        .postUri(joinUri('/weapi/mv/toplist'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return MvListWrap2.fromJson(value.data);
+    });
+  }
+
   /// 最新MV
   /// [area] 全部:'',内地,港台,欧美,日本,韩国  默认全部
   Future<MvListWrap2> newestMvList(

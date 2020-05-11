@@ -922,6 +922,8 @@ class MvListWrap extends ServerStatusListBean {
 class MvListWrap2 extends ServerStatusListBean {
   List<Mv> data;
 
+  int updateTime;
+
   MvListWrap2();
 
   factory MvListWrap2.fromJson(Map<String, dynamic> json) =>

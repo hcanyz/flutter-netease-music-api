@@ -1187,7 +1187,8 @@ MvListWrap2 _$MvListWrap2FromJson(Map<String, dynamic> json) {
     ..total = json['total'] as int
     ..data = (json['data'] as List)
         ?.map((e) => e == null ? null : Mv.fromJson(e as Map<String, dynamic>))
-        ?.toList();
+        ?.toList()
+    ..updateTime = json['updateTime'] as int;
 }
 
 Map<String, dynamic> _$MvListWrap2ToJson(MvListWrap2 instance) =>
@@ -1199,6 +1200,7 @@ Map<String, dynamic> _$MvListWrap2ToJson(MvListWrap2 instance) =>
       'count': instance.count,
       'total': instance.total,
       'data': instance.data,
+      'updateTime': instance.updateTime,
     };
 
 PersonalizedMvListWrap _$PersonalizedMvListWrapFromJson(
