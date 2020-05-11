@@ -38,6 +38,19 @@ mixin ApiDj {
     });
   }
 
+  /// 电台节目排行榜
+  /// !需要登录
+  Future<DjProgramsTopListListWrap> djProgramsTopList(
+      {int offset = 0, int limit = 100}) {
+    var params = {'limit': limit, 'offset': offset};
+    return Https.dio
+        .postUri(joinUri('/api/program/toplist/v1'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return DjProgramsTopListListWrap.fromJson(value.data);
+    });
+  }
+
   Future<DjProgramsListWrap> userDjProgramsList(String userId,
       {int offset = 0, int limit = 30}) {
     var params = {'limit': limit, 'offset': offset};

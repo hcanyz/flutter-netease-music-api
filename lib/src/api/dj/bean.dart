@@ -56,6 +56,41 @@ class DjProgram {
   @JsonKey(fromJson: dynamicToString)
   String id;
 
+  String name;
+  String programDesc;
+
+  String coverUrl;
+  String blurCoverUrl;
+  String description;
+  String alg;
+  String commentThreadId;
+
+  int mainTrackId;
+  int pubStatus;
+  int bdAuditStatus;
+  int serialNum;
+  int duration;
+  int auditStatus;
+  int score;
+  int createTime;
+  int feeScope;
+  int listenerCount;
+  int subscribedCount;
+  int programFeeType;
+  int trackCount;
+  int smallLanguageAuditStatus;
+  int shareCount;
+  int likedCount;
+  int commentCount;
+
+  bool buyed;
+  bool isPublish;
+  bool subscribed;
+  bool canReward;
+  bool reward;
+
+  Dj radio;
+
   Song mainSong;
 
   NeteaseAccountProfile dj;
@@ -95,6 +130,37 @@ class DjProgramsListWrap extends ServerStatusListBean {
       _$DjProgramsListWrapFromJson(json);
 
   Map<String, dynamic> toJson() => _$DjProgramsListWrapToJson(this);
+}
+
+@JsonSerializable()
+class DjProgramsTopListItem {
+  DjProgram program;
+
+  int rank;
+  int lastRank;
+  int score;
+  int programFeeType;
+
+  DjProgramsTopListItem();
+
+  factory DjProgramsTopListItem.fromJson(Map<String, dynamic> json) =>
+      _$DjProgramsTopListItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DjProgramsTopListItemToJson(this);
+}
+
+@JsonSerializable()
+class DjProgramsTopListListWrap extends ServerStatusBean {
+  List<DjProgramsTopListItem> toplist;
+
+  int updateTime;
+
+  DjProgramsTopListListWrap();
+
+  factory DjProgramsTopListListWrap.fromJson(Map<String, dynamic> json) =>
+      _$DjProgramsTopListListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DjProgramsTopListListWrapToJson(this);
 }
 
 @JsonSerializable()
