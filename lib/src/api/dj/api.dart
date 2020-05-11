@@ -7,7 +7,7 @@ import 'bean.dart';
 
 mixin ApiDj {
   /// 电台banner
-  Future<BannerListWrap2> djBanner() {
+  Future<BannerListWrap2> djRadioBanner() {
     return Https.dio
         .postUri(joinUri('/weapi/djradio/banner/get'),
             data: {}, options: joinOptions(cookies: {'os': 'pc'}))
@@ -17,82 +17,104 @@ mixin ApiDj {
   }
 
   /// 用户创建的电台
-  Future<DjListWrap> userDjList(String userId) {
+  Future<DjRadioListWrap> userDjRadioList(String userId) {
     var params = {'userId': userId};
     return Https.dio
         .postUri(joinUri('/weapi/djradio/get/byuser'),
             data: params, options: joinOptions(cookies: {'os': 'pc'}))
         .then((Response value) {
-      return DjListWrap.fromJson(value.data);
+      return DjRadioListWrap.fromJson(value.data);
     });
   }
 
   /// 热门电台
-  Future<DjListWrap> hotDjList({int offset = 0, int limit = 30}) {
+  Future<DjRadioListWrap> hotDjRadioList({int offset = 0, int limit = 30}) {
     var params = {'limit': limit, 'offset': offset};
     return Https.dio
         .postUri(joinUri('/weapi/djradio/hot/v1'),
             data: params, options: joinOptions(cookies: {'os': 'pc'}))
         .then((Response value) {
-      return DjListWrap.fromJson(value.data);
+      return DjRadioListWrap.fromJson(value.data);
     });
   }
 
   /// 付费精品电台
-  Future<DjPayTopListListWrapX> djPayTopList({int limit = 100}) {
+  Future<DjRadioTopListListWrapX> djRadioPayTopList({int limit = 100}) {
     var params = {'limit': limit};
     return Https.dio
         .postUri(joinUri('/api/djradio/toplist/pay'),
             data: params, options: joinOptions())
         .then((Response value) {
-      return DjPayTopListListWrapX.fromJson(value.data);
+      return DjRadioTopListListWrapX.fromJson(value.data);
     });
   }
 
-  /// 电台节目排行榜
-  /// !需要登录
-  Future<DjProgramsTopListListWrap> djProgramsTopList(
-      {int offset = 0, int limit = 100}) {
-    var params = {'limit': limit, 'offset': offset};
+  /// 电台 - 24小时主播榜
+  Future<DjTopListListWrapX> djHoursTopList({int limit = 100}) {
+    var params = {'limit': limit};
     return Https.dio
-        .postUri(joinUri('/api/program/toplist/v1'),
+        .postUri(joinUri('/api/dj/toplist/hours'),
             data: params, options: joinOptions())
         .then((Response value) {
-      return DjProgramsTopListListWrap.fromJson(value.data);
+      return DjTopListListWrapX.fromJson(value.data);
+    });
+  }
+
+  /// 电台 - 24小时节目榜
+  Future<DjProgramTopListListWrapX> djProgramHoursTopList({int limit = 100}) {
+    var params = {'limit': limit};
+    return Https.dio
+        .postUri(joinUri('/api/djprogram/toplist/hours'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return DjProgramTopListListWrapX.fromJson(value.data);
     });
   }
 
   /// 用户电台节目列表
-  Future<DjProgramsListWrap> userDjProgramsList(String userId,
+  Future<DjProgramListWrap> userDjProgramsList(String userId,
       {int offset = 0, int limit = 30}) {
     var params = {'limit': limit, 'offset': offset};
     return Https.dio
         .postUri(joinUri('/weapi/dj/program/$userId'),
             data: params, options: joinOptions())
         .then((Response value) {
-      return DjProgramsListWrap.fromJson(value.data);
+      return DjProgramListWrap.fromJson(value.data);
     });
   }
 
-  /// 推荐电台
-  Future<PersonalizedDjListWrap> personalizedDjList() {
+  /// 电台节目排行榜
+  /// !需要登录
+  Future<DjProgramTopListListWrap2> djProgramsTopList(
+      {int offset = 0, int limit = 100}) {
+    var params = {'limit': limit, 'offset': offset};
+    return Https.dio
+        .postUri(joinUri('/api/program/toplist/v1'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return DjProgramTopListListWrap2.fromJson(value.data);
+    });
+  }
+
+  /// 推荐电台节目
+  Future<PersonalizedDjProgramListWrap> personalizedProgramDjList() {
     return Https.dio
         .postUri(joinUri('/weapi/personalized/djprogram'),
             data: {}, options: joinOptions())
         .then((Response value) {
-      return PersonalizedDjListWrap.fromJson(value.data);
+      return PersonalizedDjProgramListWrap.fromJson(value.data);
     });
   }
 
   /// 推荐节目
-  Future<DjProgramsListWrap> personalizedDjProgramList(
+  Future<DjProgramListWrap> recommendDjProgramList(
       {String cateId = '', int offset = 0, int limit = 30}) {
     var params = {'cateId': cateId, 'limit': limit, 'offset': offset};
     return Https.dio
         .postUri(joinUri('/weapi/program/recommend/v1'),
             data: params, options: joinOptions())
         .then((Response value) {
-      return DjProgramsListWrap.fromJson(value.data);
+      return DjProgramListWrap.fromJson(value.data);
     });
   }
 }

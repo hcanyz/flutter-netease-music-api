@@ -104,22 +104,70 @@ class DjProgram {
 }
 
 @JsonSerializable()
-class DjListWrap extends ServerStatusListBean {
+class DjRadioListWrap extends ServerStatusListBean {
   List<Dj> djRadios;
 
   int subCount;
   int count;
 
-  DjListWrap();
+  DjRadioListWrap();
 
-  factory DjListWrap.fromJson(Map<String, dynamic> json) =>
-      _$DjListWrapFromJson(json);
+  factory DjRadioListWrap.fromJson(Map<String, dynamic> json) =>
+      _$DjRadioListWrapFromJson(json);
 
-  Map<String, dynamic> toJson() => _$DjListWrapToJson(this);
+  Map<String, dynamic> toJson() => _$DjRadioListWrapToJson(this);
 }
 
 @JsonSerializable()
-class DjPayTopListItem {
+class DjTopListItem {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  String nickName;
+  String avatarUrl;
+  int userType;
+
+  int rank;
+  int lastRank;
+  int score;
+
+  DjTopListItem();
+
+  factory DjTopListItem.fromJson(Map<String, dynamic> json) =>
+      _$DjTopListItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DjTopListItemToJson(this);
+}
+
+@JsonSerializable()
+class DjTopListListWrap {
+  List<DjTopListItem> list;
+
+  int total;
+  int updateTime;
+
+  DjTopListListWrap();
+
+  factory DjTopListListWrap.fromJson(Map<String, dynamic> json) =>
+      _$DjTopListListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DjTopListListWrapToJson(this);
+}
+
+@JsonSerializable()
+class DjTopListListWrapX extends ServerStatusBean {
+  DjTopListListWrap data;
+
+  DjTopListListWrapX();
+
+  factory DjTopListListWrapX.fromJson(Map<String, dynamic> json) =>
+      _$DjTopListListWrapXFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DjTopListListWrapXToJson(this);
+}
+
+@JsonSerializable()
+class DjRadioTopListItem {
   @JsonKey(fromJson: dynamicToString)
   String id;
   String name;
@@ -130,57 +178,57 @@ class DjPayTopListItem {
   int lastRank;
   int score;
 
-  DjPayTopListItem();
+  DjRadioTopListItem();
 
-  factory DjPayTopListItem.fromJson(Map<String, dynamic> json) =>
-      _$DjPayTopListItemFromJson(json);
+  factory DjRadioTopListItem.fromJson(Map<String, dynamic> json) =>
+      _$DjRadioTopListItemFromJson(json);
 
-  Map<String, dynamic> toJson() => _$DjPayTopListItemToJson(this);
+  Map<String, dynamic> toJson() => _$DjRadioTopListItemToJson(this);
 }
 
 @JsonSerializable()
-class DjPayTopListListWrap {
-  List<DjPayTopListItem> list;
+class DjRadioTopListListWrap {
+  List<DjRadioTopListItem> list;
 
   int total;
   int updateTime;
 
-  DjPayTopListListWrap();
+  DjRadioTopListListWrap();
 
-  factory DjPayTopListListWrap.fromJson(Map<String, dynamic> json) =>
-      _$DjPayTopListListWrapFromJson(json);
+  factory DjRadioTopListListWrap.fromJson(Map<String, dynamic> json) =>
+      _$DjRadioTopListListWrapFromJson(json);
 
-  Map<String, dynamic> toJson() => _$DjPayTopListListWrapToJson(this);
+  Map<String, dynamic> toJson() => _$DjRadioTopListListWrapToJson(this);
 }
 
 @JsonSerializable()
-class DjPayTopListListWrapX extends ServerStatusBean {
-  DjPayTopListListWrap data;
+class DjRadioTopListListWrapX extends ServerStatusBean {
+  DjRadioTopListListWrap data;
 
-  DjPayTopListListWrapX();
+  DjRadioTopListListWrapX();
 
-  factory DjPayTopListListWrapX.fromJson(Map<String, dynamic> json) =>
-      _$DjPayTopListListWrapXFromJson(json);
+  factory DjRadioTopListListWrapX.fromJson(Map<String, dynamic> json) =>
+      _$DjRadioTopListListWrapXFromJson(json);
 
-  Map<String, dynamic> toJson() => _$DjPayTopListListWrapXToJson(this);
+  Map<String, dynamic> toJson() => _$DjRadioTopListListWrapXToJson(this);
 }
 
 @JsonSerializable()
-class DjProgramsListWrap extends ServerStatusListBean {
+class DjProgramListWrap extends ServerStatusListBean {
   List<DjProgram> programs;
 
   String name;
 
-  DjProgramsListWrap();
+  DjProgramListWrap();
 
-  factory DjProgramsListWrap.fromJson(Map<String, dynamic> json) =>
-      _$DjProgramsListWrapFromJson(json);
+  factory DjProgramListWrap.fromJson(Map<String, dynamic> json) =>
+      _$DjProgramListWrapFromJson(json);
 
-  Map<String, dynamic> toJson() => _$DjProgramsListWrapToJson(this);
+  Map<String, dynamic> toJson() => _$DjProgramListWrapToJson(this);
 }
 
 @JsonSerializable()
-class DjProgramsTopListItem {
+class DjProgramTopListItem {
   DjProgram program;
 
   int rank;
@@ -188,30 +236,30 @@ class DjProgramsTopListItem {
   int score;
   int programFeeType;
 
-  DjProgramsTopListItem();
+  DjProgramTopListItem();
 
-  factory DjProgramsTopListItem.fromJson(Map<String, dynamic> json) =>
-      _$DjProgramsTopListItemFromJson(json);
+  factory DjProgramTopListItem.fromJson(Map<String, dynamic> json) =>
+      _$DjProgramTopListItemFromJson(json);
 
-  Map<String, dynamic> toJson() => _$DjProgramsTopListItemToJson(this);
+  Map<String, dynamic> toJson() => _$DjProgramTopListItemToJson(this);
 }
 
 @JsonSerializable()
-class DjProgramsTopListListWrap extends ServerStatusBean {
-  List<DjProgramsTopListItem> toplist;
+class DjProgramTopListListWrap2 extends ServerStatusBean {
+  List<DjProgramTopListItem> toplist;
 
   int updateTime;
 
-  DjProgramsTopListListWrap();
+  DjProgramTopListListWrap2();
 
-  factory DjProgramsTopListListWrap.fromJson(Map<String, dynamic> json) =>
-      _$DjProgramsTopListListWrapFromJson(json);
+  factory DjProgramTopListListWrap2.fromJson(Map<String, dynamic> json) =>
+      _$DjProgramTopListListWrap2FromJson(json);
 
-  Map<String, dynamic> toJson() => _$DjProgramsTopListListWrapToJson(this);
+  Map<String, dynamic> toJson() => _$DjProgramTopListListWrap2ToJson(this);
 }
 
 @JsonSerializable()
-class PersonalizedDjItem {
+class PersonalizedDjProgramItem {
   @JsonKey(fromJson: dynamicToString)
   String id;
 
@@ -225,24 +273,51 @@ class PersonalizedDjItem {
 
   DjProgram program;
 
-  PersonalizedDjItem();
+  PersonalizedDjProgramItem();
 
-  factory PersonalizedDjItem.fromJson(Map<String, dynamic> json) =>
-      _$PersonalizedDjItemFromJson(json);
+  factory PersonalizedDjProgramItem.fromJson(Map<String, dynamic> json) =>
+      _$PersonalizedDjProgramItemFromJson(json);
 
-  Map<String, dynamic> toJson() => _$PersonalizedDjItemToJson(this);
+  Map<String, dynamic> toJson() => _$PersonalizedDjProgramItemToJson(this);
 }
 
 @JsonSerializable()
-class PersonalizedDjListWrap extends ServerStatusBean {
+class DjProgramTopListListWrap {
+  List<DjProgramTopListItem> list;
+
+  int total;
+  int updateTime;
+
+  DjProgramTopListListWrap();
+
+  factory DjProgramTopListListWrap.fromJson(Map<String, dynamic> json) =>
+      _$DjProgramTopListListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DjProgramTopListListWrapToJson(this);
+}
+
+@JsonSerializable()
+class DjProgramTopListListWrapX extends ServerStatusBean {
+  DjProgramTopListListWrap data;
+
+  DjProgramTopListListWrapX();
+
+  factory DjProgramTopListListWrapX.fromJson(Map<String, dynamic> json) =>
+      _$DjProgramTopListListWrapXFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DjProgramTopListListWrapXToJson(this);
+}
+
+@JsonSerializable()
+class PersonalizedDjProgramListWrap extends ServerStatusBean {
   int category;
 
-  List<PersonalizedDjItem> result;
+  List<PersonalizedDjProgramItem> result;
 
-  PersonalizedDjListWrap();
+  PersonalizedDjProgramListWrap();
 
-  factory PersonalizedDjListWrap.fromJson(Map<String, dynamic> json) =>
-      _$PersonalizedDjListWrapFromJson(json);
+  factory PersonalizedDjProgramListWrap.fromJson(Map<String, dynamic> json) =>
+      _$PersonalizedDjProgramListWrapFromJson(json);
 
-  Map<String, dynamic> toJson() => _$PersonalizedDjListWrapToJson(this);
+  Map<String, dynamic> toJson() => _$PersonalizedDjProgramListWrapToJson(this);
 }

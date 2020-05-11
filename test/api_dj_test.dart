@@ -30,28 +30,33 @@ void main() {
     }
   });
 
-  test('test dj banner', () async {
-    var result = await api.djBanner();
+  test('test dj radio banner', () async {
+    var result = await api.djRadioBanner();
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test user dj list', () async {
-    var result = await api.userDjList(defaultUserId);
+  test('test user dj radio list', () async {
+    var result = await api.userDjRadioList(defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test hot dj list', () async {
-    var result = await api.hotDjList();
+  test('test hot dj tadio list', () async {
+    var result = await api.hotDjRadioList();
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test dj top list', () async {
-    var result = await api.djProgramsTopList();
+  test('test pay dj radio top list', () async {
+    var result = await api.djRadioPayTopList();
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test dj pay top list', () async {
-    var result = await api.djPayTopList();
+  test('test dj hours top list', () async {
+    var result = await api.djHoursTopList();
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test dj program hours top list', () async {
+    var result = await api.djProgramHoursTopList();
     expect(result.code, RET_CODE_OK);
   });
 
@@ -61,13 +66,18 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test dj program top list', () async {
+    var result = await api.djProgramsTopList();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test personalized dj list', () async {
-    var result = await api.personalizedDjList();
+    var result = await api.personalizedProgramDjList();
     expect(result.code, RET_CODE_OK);
   });
 
   test('test personalized dj program list', () async {
-    var result = await api.personalizedDjProgramList();
+    var result = await api.recommendDjProgramList();
     expect(result.code, RET_CODE_OK);
   });
 }
