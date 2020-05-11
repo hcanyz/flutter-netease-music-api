@@ -398,6 +398,23 @@ mixin ApiPlay {
     });
   }
 
+  /// 歌手排行榜
+  Future<ArtistsTopListWrapX> artistTopList(
+      {int offset = 0, int limit = 30, bool total = true}) {
+    var params = {
+      'type': '1',
+      'total': total,
+      'limit': limit,
+      'offset': offset
+    };
+    return Https.dio
+        .postUri(joinUri('/weapi/toplist/artist'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return ArtistsTopListWrapX.fromJson(value.data);
+    });
+  }
+
   /// 相似歌手
   Future<ArtistsListWrap> artistSimiList(String artistId) {
     var params = {'artistid': artistId};

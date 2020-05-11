@@ -1308,6 +1308,42 @@ Map<String, dynamic> _$ArtistsListWrapToJson(ArtistsListWrap instance) =>
       'artists': instance.artists,
     };
 
+ArtistsTopListWrap _$ArtistsTopListWrapFromJson(Map<String, dynamic> json) {
+  return ArtistsTopListWrap()
+    ..artists = (json['artists'] as List)
+        ?.map((e) =>
+            e == null ? null : Artists.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..type = json['type'] as int
+    ..updateTime = json['updateTime'] as int;
+}
+
+Map<String, dynamic> _$ArtistsTopListWrapToJson(ArtistsTopListWrap instance) =>
+    <String, dynamic>{
+      'artists': instance.artists,
+      'type': instance.type,
+      'updateTime': instance.updateTime,
+    };
+
+ArtistsTopListWrapX _$ArtistsTopListWrapXFromJson(Map<String, dynamic> json) {
+  return ArtistsTopListWrapX()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..list = json['list'] == null
+        ? null
+        : ArtistsTopListWrap.fromJson(json['list'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$ArtistsTopListWrapXToJson(
+        ArtistsTopListWrapX instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'list': instance.list,
+    };
+
 ArtistIntroduction _$ArtistIntroductionFromJson(Map<String, dynamic> json) {
   return ArtistIntroduction()
     ..ti = json['ti'] as String

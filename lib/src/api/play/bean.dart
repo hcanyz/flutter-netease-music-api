@@ -941,6 +941,33 @@ class ArtistsListWrap extends ServerStatusBean {
 }
 
 @JsonSerializable()
+class ArtistsTopListWrap {
+  List<Artists> artists;
+
+  int type;
+  int updateTime;
+
+  ArtistsTopListWrap();
+
+  factory ArtistsTopListWrap.fromJson(Map<String, dynamic> json) =>
+      _$ArtistsTopListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ArtistsTopListWrapToJson(this);
+}
+
+@JsonSerializable()
+class ArtistsTopListWrapX extends ServerStatusBean {
+  ArtistsTopListWrap list;
+
+  ArtistsTopListWrapX();
+
+  factory ArtistsTopListWrapX.fromJson(Map<String, dynamic> json) =>
+      _$ArtistsTopListWrapXFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ArtistsTopListWrapXToJson(this);
+}
+
+@JsonSerializable()
 class ArtistIntroduction {
   String ti;
   String txt;
