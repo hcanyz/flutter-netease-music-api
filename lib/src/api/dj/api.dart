@@ -164,6 +164,23 @@ mixin ApiDj {
     });
   }
 
+  /// 电台 - 节目列表
+  Future<DjProgramListWrap> djProgramList(String djId,
+      {int offset = 0, int limit = 30, bool asc = true}) {
+    var params = {
+      'radioId': djId,
+      'limit': limit,
+      'offset': offset,
+      'asc': asc
+    };
+    return Https.dio
+        .postUri(joinUri('/weapi/dj/program/byradio'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return DjProgramListWrap.fromJson(value.data);
+    });
+  }
+
   /// 电台 - 24小时节目榜
   Future<DjProgramTopListListWrapX> djProgramHoursTopList({int limit = 100}) {
     var params = {'limit': limit};
