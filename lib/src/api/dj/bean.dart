@@ -69,15 +69,17 @@ class DjProgram {
 }
 
 @JsonSerializable()
-class DjListWrap extends ServerStatusBean {
+class DjProgramsListWrap extends ServerStatusListBean {
   List<DjProgram> programs;
 
-  DjListWrap();
+  String name;
 
-  factory DjListWrap.fromJson(Map<String, dynamic> json) =>
-      _$DjListWrapFromJson(json);
+  DjProgramsListWrap();
 
-  Map<String, dynamic> toJson() => _$DjListWrapToJson(this);
+  factory DjProgramsListWrap.fromJson(Map<String, dynamic> json) =>
+      _$DjProgramsListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DjProgramsListWrapToJson(this);
 }
 
 @JsonSerializable()

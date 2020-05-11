@@ -32,12 +32,17 @@ void main() {
 
   test('test user dj list', () async {
     var result = await api
-        .userDjList(NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId);
+        .userDjProgramsList(NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 
   test('test personalized dj list', () async {
     var result = await api.personalizedDjList();
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test personalized dj program list', () async {
+    var result = await api.personalizedDjProgramList();
     expect(result.code, RET_CODE_OK);
   });
 }

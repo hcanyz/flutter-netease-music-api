@@ -5,14 +5,14 @@ import 'package:netease_music_api/src/netease_handler.dart';
 import 'bean.dart';
 
 mixin ApiDj {
-  Future<DjListWrap> userDjList(String userId,
+  Future<DjProgramsListWrap> userDjProgramsList(String userId,
       {int offset = 0, int limit = 30}) {
     var params = {'limit': limit, 'offset': offset};
     return Https.dio
         .postUri(joinUri('/weapi/dj/program/$userId'),
             data: params, options: joinOptions())
         .then((Response value) {
-      return DjListWrap.fromJson(value.data);
+      return DjProgramsListWrap.fromJson(value.data);
     });
   }
 
@@ -23,6 +23,18 @@ mixin ApiDj {
             data: {}, options: joinOptions())
         .then((Response value) {
       return PersonalizedDjListWrap.fromJson(value.data);
+    });
+  }
+
+  /// 推荐节目
+  Future<DjProgramsListWrap> personalizedDjProgramList(
+      {String cateId = '', int offset = 0, int limit = 30}) {
+    var params = {'cateId': cateId, 'limit': limit, 'offset': offset};
+    return Https.dio
+        .postUri(joinUri('/weapi/program/recommend/v1'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return DjProgramsListWrap.fromJson(value.data);
     });
   }
 }
