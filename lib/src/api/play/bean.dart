@@ -994,6 +994,41 @@ class MvDetailInfoWrap extends ServerStatusBean {
 }
 
 @JsonSerializable()
+class MvUrl {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  String url;
+  String md5;
+  String msg;
+
+  int r;
+  int size;
+  int expi;
+  int fee;
+  int mvFee;
+  int st;
+
+  MvUrl();
+
+  factory MvUrl.fromJson(Map<String, dynamic> json) => _$MvUrlFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MvUrlToJson(this);
+}
+
+@JsonSerializable()
+class MvUrlWrap extends ServerStatusBean {
+  MvUrl data;
+
+  MvUrlWrap();
+
+  factory MvUrlWrap.fromJson(Map<String, dynamic> json) =>
+      _$MvUrlWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MvUrlWrapToJson(this);
+}
+
+@JsonSerializable()
 class AlbumListWrap extends ServerStatusListBean {
   List<Album> albums;
 

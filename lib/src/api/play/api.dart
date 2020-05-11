@@ -576,6 +576,17 @@ mixin ApiPlay {
     });
   }
 
+  /// MV链接
+  Future<MvUrlWrap> mvUrl(String mvId, {int res = 1080}) {
+    var params = {'id': mvId, 'r': res};
+    return Https.dio
+        .postUri(joinUri('/weapi/song/enhance/play/mv/url'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return MvUrlWrap.fromJson(value.data);
+    });
+  }
+
   /// 歌手专辑列表
   Future<ArtistAlbumListWrap> artistAlbumList(String artistId,
       {int offset = 0, int limit = 30, bool total = true}) {

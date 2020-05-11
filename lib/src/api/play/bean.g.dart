@@ -1301,6 +1301,50 @@ Map<String, dynamic> _$MvDetailInfoWrapToJson(MvDetailInfoWrap instance) =>
       'liked': instance.liked,
     };
 
+MvUrl _$MvUrlFromJson(Map<String, dynamic> json) {
+  return MvUrl()
+    ..id = dynamicToString(json['id'])
+    ..url = json['url'] as String
+    ..md5 = json['md5'] as String
+    ..msg = json['msg'] as String
+    ..r = json['r'] as int
+    ..size = json['size'] as int
+    ..expi = json['expi'] as int
+    ..fee = json['fee'] as int
+    ..mvFee = json['mvFee'] as int
+    ..st = json['st'] as int;
+}
+
+Map<String, dynamic> _$MvUrlToJson(MvUrl instance) => <String, dynamic>{
+      'id': instance.id,
+      'url': instance.url,
+      'md5': instance.md5,
+      'msg': instance.msg,
+      'r': instance.r,
+      'size': instance.size,
+      'expi': instance.expi,
+      'fee': instance.fee,
+      'mvFee': instance.mvFee,
+      'st': instance.st,
+    };
+
+MvUrlWrap _$MvUrlWrapFromJson(Map<String, dynamic> json) {
+  return MvUrlWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..data = json['data'] == null
+        ? null
+        : MvUrl.fromJson(json['data'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$MvUrlWrapToJson(MvUrlWrap instance) => <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
 AlbumListWrap _$AlbumListWrapFromJson(Map<String, dynamic> json) {
   return AlbumListWrap()
     ..code = json['code'] as int
