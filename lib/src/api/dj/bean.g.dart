@@ -6,6 +6,27 @@ part of 'bean.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+Dj _$DjFromJson(Map<String, dynamic> json) {
+  return Dj()
+    ..id = dynamicToString(json['id'])
+    ..nickName = json['nickName'] as String
+    ..avatarUrl = json['avatarUrl'] as String
+    ..userType = json['userType'] as int
+    ..rank = json['rank'] as int
+    ..lastRank = json['lastRank'] as int
+    ..score = json['score'] as int;
+}
+
+Map<String, dynamic> _$DjToJson(Dj instance) => <String, dynamic>{
+      'id': instance.id,
+      'nickName': instance.nickName,
+      'avatarUrl': instance.avatarUrl,
+      'userType': instance.userType,
+      'rank': instance.rank,
+      'lastRank': instance.lastRank,
+      'score': instance.score,
+    };
+
 DjRadio _$DjRadioFromJson(Map<String, dynamic> json) {
   return DjRadio()
     ..id = dynamicToString(json['id'])
@@ -146,6 +167,57 @@ Map<String, dynamic> _$DjProgramToJson(DjProgram instance) => <String, dynamic>{
       'dj': instance.dj,
     };
 
+DjRadioCategory _$DjRadioCategoryFromJson(Map<String, dynamic> json) {
+  return DjRadioCategory()
+    ..id = dynamicToString(json['id'])
+    ..name = json['name'] as String
+    ..picMacUrl = json['picMacUrl'] as String
+    ..picWebUrl = json['picWebUrl'] as String
+    ..picUWPUrl = json['picUWPUrl'] as String
+    ..picIPadUrl = json['picIPadUrl'] as String
+    ..picPCBlackUrl = json['picPCBlackUrl'] as String
+    ..picPCWhiteUrl = json['picPCWhiteUrl'] as String
+    ..pic56x56Url = json['pic56x56Url'] as String
+    ..pic84x84IdUrl = json['pic84x84IdUrl'] as String
+    ..pic96x96Url = json['pic96x96Url'] as String;
+}
+
+Map<String, dynamic> _$DjRadioCategoryToJson(DjRadioCategory instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'picMacUrl': instance.picMacUrl,
+      'picWebUrl': instance.picWebUrl,
+      'picUWPUrl': instance.picUWPUrl,
+      'picIPadUrl': instance.picIPadUrl,
+      'picPCBlackUrl': instance.picPCBlackUrl,
+      'picPCWhiteUrl': instance.picPCWhiteUrl,
+      'pic56x56Url': instance.pic56x56Url,
+      'pic84x84IdUrl': instance.pic84x84IdUrl,
+      'pic96x96Url': instance.pic96x96Url,
+    };
+
+DjRadioCategoryWrap _$DjRadioCategoryWrapFromJson(Map<String, dynamic> json) {
+  return DjRadioCategoryWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..categories = (json['categories'] as List)
+        ?.map((e) => e == null
+            ? null
+            : DjRadioCategory.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$DjRadioCategoryWrapToJson(
+        DjRadioCategoryWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'categories': instance.categories,
+    };
+
 DjRadioListWrap _$DjRadioListWrapFromJson(Map<String, dynamic> json) {
   return DjRadioListWrap()
     ..code = json['code'] as int
@@ -171,27 +243,6 @@ Map<String, dynamic> _$DjRadioListWrapToJson(DjRadioListWrap instance) =>
       'djRadios': instance.djRadios,
       'subCount': instance.subCount,
       'count': instance.count,
-    };
-
-Dj _$DjFromJson(Map<String, dynamic> json) {
-  return Dj()
-    ..id = dynamicToString(json['id'])
-    ..nickName = json['nickName'] as String
-    ..avatarUrl = json['avatarUrl'] as String
-    ..userType = json['userType'] as int
-    ..rank = json['rank'] as int
-    ..lastRank = json['lastRank'] as int
-    ..score = json['score'] as int;
-}
-
-Map<String, dynamic> _$DjToJson(Dj instance) => <String, dynamic>{
-      'id': instance.id,
-      'nickName': instance.nickName,
-      'avatarUrl': instance.avatarUrl,
-      'userType': instance.userType,
-      'rank': instance.rank,
-      'lastRank': instance.lastRank,
-      'score': instance.score,
     };
 
 DjTopListListWrap _$DjTopListListWrapFromJson(Map<String, dynamic> json) {

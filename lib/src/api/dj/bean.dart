@@ -5,6 +5,26 @@ import 'package:netease_music_api/src/netease_bean.dart';
 part 'bean.g.dart';
 
 @JsonSerializable()
+class Dj {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  String nickName;
+  String avatarUrl;
+  int userType;
+
+  int rank;
+  int lastRank;
+  int score;
+
+  Dj();
+
+  factory Dj.fromJson(Map<String, dynamic> json) => _$DjFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DjToJson(this);
+}
+
+@JsonSerializable()
 class DjRadio {
   @JsonKey(fromJson: dynamicToString)
   String id;
@@ -105,8 +125,46 @@ class DjProgram {
 }
 
 @JsonSerializable()
+class DjRadioCategory {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+  String name;
+
+  String picMacUrl;
+  String picWebUrl;
+  String picUWPUrl;
+  String picIPadUrl;
+  String picPCBlackUrl;
+  String picPCWhiteUrl;
+  String pic56x56Url;
+  String pic84x84IdUrl;
+  String pic96x96Url;
+
+  DjRadioCategory();
+
+  factory DjRadioCategory.fromJson(Map<String, dynamic> json) =>
+      _$DjRadioCategoryFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DjRadioCategoryToJson(this);
+}
+
+@JsonSerializable()
+class DjRadioCategoryWrap extends ServerStatusBean {
+  List<DjRadioCategory> categories;
+
+  DjRadioCategoryWrap();
+
+  factory DjRadioCategoryWrap.fromJson(Map<String, dynamic> json) =>
+      _$DjRadioCategoryWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DjRadioCategoryWrapToJson(this);
+}
+
+@JsonSerializable()
 class DjRadioListWrap extends ServerStatusListBean {
   List<DjRadio> djRadios;
+
+  String name;
 
   int subCount;
   int count;
@@ -117,26 +175,6 @@ class DjRadioListWrap extends ServerStatusListBean {
       _$DjRadioListWrapFromJson(json);
 
   Map<String, dynamic> toJson() => _$DjRadioListWrapToJson(this);
-}
-
-@JsonSerializable()
-class Dj {
-  @JsonKey(fromJson: dynamicToString)
-  String id;
-
-  String nickName;
-  String avatarUrl;
-  int userType;
-
-  int rank;
-  int lastRank;
-  int score;
-
-  Dj();
-
-  factory Dj.fromJson(Map<String, dynamic> json) => _$DjFromJson(json);
-
-  Map<String, dynamic> toJson() => _$DjToJson(this);
 }
 
 @JsonSerializable()

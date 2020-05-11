@@ -16,6 +16,16 @@ mixin ApiDj {
     });
   }
 
+  /// 电台 - 分类
+  Future<DjRadioCategoryWrap> djRadioCategory() {
+    return Https.dio
+        .postUri(joinUri('/weapi/djradio/category/get'),
+            data: {}, options: joinOptions())
+        .then((Response value) {
+      return DjRadioCategoryWrap.fromJson(value.data);
+    });
+  }
+
   /// 用户创建的电台
   Future<DjRadioListWrap> userDjRadioList(String userId) {
     var params = {'userId': userId};
@@ -27,12 +37,35 @@ mixin ApiDj {
     });
   }
 
+  /// 精选电台
+  Future<DjRadioListWrap> recommendDjRadioList(
+      {int offset = 0, int limit = 30}) {
+    return Https.dio
+        .postUri(joinUri('/weapi/djradio/recommend/v1'),
+            data: {}, options: joinOptions())
+        .then((Response value) {
+      return DjRadioListWrap.fromJson(value.data);
+    });
+  }
+
   /// 热门电台
   Future<DjRadioListWrap> hotDjRadioList({int offset = 0, int limit = 30}) {
     var params = {'limit': limit, 'offset': offset};
     return Https.dio
         .postUri(joinUri('/weapi/djradio/hot/v1'),
             data: params, options: joinOptions(cookies: {'os': 'pc'}))
+        .then((Response value) {
+      return DjRadioListWrap.fromJson(value.data);
+    });
+  }
+
+  /// 热门电台（类别）
+  Future<DjRadioListWrap> hotDjRadioListByCategory(String cateId,
+      {int offset = 0, int limit = 30}) {
+    var params = {'cateId': cateId, 'limit': limit, 'offset': offset};
+    return Https.dio
+        .postUri(joinUri('/api/djradio/hot'),
+            data: params, options: joinOptions())
         .then((Response value) {
       return DjRadioListWrap.fromJson(value.data);
     });

@@ -35,14 +35,36 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test dj radio category', () async {
+    var result = await api.djRadioCategory();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test user dj radio list', () async {
     var result = await api.userDjRadioList(defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test hot dj tadio list', () async {
+  test('test recommend dj radio list', () async {
+    var result = await api.recommendDjRadioList();
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test hot dj radio list', () async {
     var result = await api.hotDjRadioList();
     expect(result.code, RET_CODE_OK);
+  });
+
+  test('test hot category dj radio list', () async {
+    var result = await api.djRadioCategory();
+    expect(result.code, RET_CODE_OK);
+
+    if (result.categories.isEmpty) {
+      return;
+    }
+
+    var result2 = await api.hotDjRadioListByCategory(result.categories[0].id);
+    expect(result2.code, RET_CODE_OK);
   });
 
   test('test dj radio top list', () async {
