@@ -58,11 +58,21 @@ mixin ApiDj {
   }
 
   /// 精选电台
-  Future<DjRadioListWrap> recommendDjRadioList(
-      {int offset = 0, int limit = 30}) {
+  Future<DjRadioListWrap> recommendDjRadioList() {
     return Https.dio
         .postUri(joinUri('/weapi/djradio/recommend/v1'),
             data: {}, options: joinOptions())
+        .then((Response value) {
+      return DjRadioListWrap.fromJson(value.data);
+    });
+  }
+
+  /// 精选电台(分类)
+  Future<DjRadioListWrap> recommendDjRadioListByCategory(String cateId) {
+    var params = {'cateId': cateId};
+    return Https.dio
+        .postUri(joinUri('/weapi/djradio/recommend'),
+            data: params, options: joinOptions())
         .then((Response value) {
       return DjRadioListWrap.fromJson(value.data);
     });

@@ -55,9 +55,21 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test recommend dj radio list', () async {
+  test('test recommend dj radio list x', () async {
     var result = await api.recommendDjRadioList();
     expect(result.code, RET_CODE_OK);
+  });
+
+  test('test recommend dj radio list by category', () async {
+    var result = await api.excludeHotDjRadioCategory();
+    expect(result.code, RET_CODE_OK);
+
+    if (result.data.isEmpty) {
+      return;
+    }
+
+    var result2 = await api.recommendDjRadioListByCategory(result.data[0].id);
+    expect(result2.code, RET_CODE_OK);
   });
 
   test('test hot dj radio list', () async {
