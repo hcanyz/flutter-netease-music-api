@@ -51,6 +51,18 @@ mixin ApiDj {
     });
   }
 
+  /// 付费精品电台
+  Future<DjProgramsPayTopListListWrapX> djProgramsPayTopList(
+      {int limit = 100}) {
+    var params = {'limit': limit};
+    return Https.dio
+        .postUri(joinUri('/api/djradio/toplist/pay'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return DjProgramsPayTopListListWrapX.fromJson(value.data);
+    });
+  }
+
   Future<DjProgramsListWrap> userDjProgramsList(String userId,
       {int offset = 0, int limit = 30}) {
     var params = {'limit': limit, 'offset': offset};

@@ -164,6 +164,53 @@ class DjProgramsTopListListWrap extends ServerStatusBean {
 }
 
 @JsonSerializable()
+class DjProgramsPayTopListItem {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+  String name;
+  String picUrl;
+  String creatorName;
+
+  int rank;
+  int lastRank;
+  int score;
+
+  DjProgramsPayTopListItem();
+
+  factory DjProgramsPayTopListItem.fromJson(Map<String, dynamic> json) =>
+      _$DjProgramsPayTopListItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DjProgramsPayTopListItemToJson(this);
+}
+
+@JsonSerializable()
+class DjProgramsPayTopListListWrap {
+  List<DjProgramsPayTopListItem> list;
+
+  int total;
+  int updateTime;
+
+  DjProgramsPayTopListListWrap();
+
+  factory DjProgramsPayTopListListWrap.fromJson(Map<String, dynamic> json) =>
+      _$DjProgramsPayTopListListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DjProgramsPayTopListListWrapToJson(this);
+}
+
+@JsonSerializable()
+class DjProgramsPayTopListListWrapX extends ServerStatusBean {
+  DjProgramsPayTopListListWrap data;
+
+  DjProgramsPayTopListListWrapX();
+
+  factory DjProgramsPayTopListListWrapX.fromJson(Map<String, dynamic> json) =>
+      _$DjProgramsPayTopListListWrapXFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DjProgramsPayTopListListWrapXToJson(this);
+}
+
+@JsonSerializable()
 class PersonalizedDjItem {
   @JsonKey(fromJson: dynamicToString)
   String id;

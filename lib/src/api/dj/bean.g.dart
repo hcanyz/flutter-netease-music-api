@@ -245,6 +245,71 @@ Map<String, dynamic> _$DjProgramsTopListListWrapToJson(
       'updateTime': instance.updateTime,
     };
 
+DjProgramsPayTopListItem _$DjProgramsPayTopListItemFromJson(
+    Map<String, dynamic> json) {
+  return DjProgramsPayTopListItem()
+    ..id = dynamicToString(json['id'])
+    ..name = json['name'] as String
+    ..picUrl = json['picUrl'] as String
+    ..creatorName = json['creatorName'] as String
+    ..rank = json['rank'] as int
+    ..lastRank = json['lastRank'] as int
+    ..score = json['score'] as int;
+}
+
+Map<String, dynamic> _$DjProgramsPayTopListItemToJson(
+        DjProgramsPayTopListItem instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'picUrl': instance.picUrl,
+      'creatorName': instance.creatorName,
+      'rank': instance.rank,
+      'lastRank': instance.lastRank,
+      'score': instance.score,
+    };
+
+DjProgramsPayTopListListWrap _$DjProgramsPayTopListListWrapFromJson(
+    Map<String, dynamic> json) {
+  return DjProgramsPayTopListListWrap()
+    ..list = (json['list'] as List)
+        ?.map((e) => e == null
+            ? null
+            : DjProgramsPayTopListItem.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..total = json['total'] as int
+    ..updateTime = json['updateTime'] as int;
+}
+
+Map<String, dynamic> _$DjProgramsPayTopListListWrapToJson(
+        DjProgramsPayTopListListWrap instance) =>
+    <String, dynamic>{
+      'list': instance.list,
+      'total': instance.total,
+      'updateTime': instance.updateTime,
+    };
+
+DjProgramsPayTopListListWrapX _$DjProgramsPayTopListListWrapXFromJson(
+    Map<String, dynamic> json) {
+  return DjProgramsPayTopListListWrapX()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..data = json['data'] == null
+        ? null
+        : DjProgramsPayTopListListWrap.fromJson(
+            json['data'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$DjProgramsPayTopListListWrapXToJson(
+        DjProgramsPayTopListListWrapX instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
 PersonalizedDjItem _$PersonalizedDjItemFromJson(Map<String, dynamic> json) {
   return PersonalizedDjItem()
     ..id = dynamicToString(json['id'])
