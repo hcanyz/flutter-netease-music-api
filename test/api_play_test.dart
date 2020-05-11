@@ -132,9 +132,21 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test cloud get', () async {
-    var result = await api.cloudGet();
+  test('test cloud', () async {
+    var result = await api.cloudSong();
     expect(result.code, RET_CODE_OK);
+
+    List<String> ids = result.data.map((e) => e.songId).toList();
+
+    var result2 = await api.cloudSongDetail(ids);
+    expect(result2.code, RET_CODE_OK);
+
+    if (ids.isEmpty) {
+      return;
+    }
+
+    var result3 = await api.cloudSongDelete([ids.first]);
+    expect(result3.code, RET_CODE_OK);
   });
 
   test('test song like x', () async {

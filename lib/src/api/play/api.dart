@@ -281,10 +281,35 @@ mixin ApiPlay {
   }
 
   /// 获取云盘?音乐?
-  Future<CloudSongListWrap> cloudGet({int offset = 0, int limit = 30}) {
+  /// !需要登录
+  Future<CloudSongListWrap> cloudSong({int offset = 0, int limit = 30}) {
     var params = {'limit': limit, 'offset': offset};
     return Https.dio
         .postUri(joinUri('/weapi/v1/cloud/get'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return CloudSongListWrap.fromJson(value.data);
+    });
+  }
+
+  /// 获取云盘?音乐?详情
+  /// !需要登录
+  Future<ServerStatusBean> cloudSongDetail(List<String> songIds) {
+    var params = {'songIds': songIds};
+    return Https.dio
+        .postUri(joinUri('/weapi/v1/cloud/get/byids'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
+  }
+
+  /// 删除云盘?音乐?
+  /// !需要登录
+  Future<CloudSongListWrap> cloudSongDelete(List<String> songIds) {
+    var params = {'songIds': songIds};
+    return Https.dio
+        .postUri(joinUri('/weapi/cloud/del'),
             data: params, options: joinOptions())
         .then((Response value) {
       return CloudSongListWrap.fromJson(value.data);
