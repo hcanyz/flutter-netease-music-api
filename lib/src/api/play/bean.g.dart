@@ -922,6 +922,7 @@ PersonalizedSongItem _$PersonalizedSongItemFromJson(Map<String, dynamic> json) {
     ..id = dynamicToString(json['id'])
     ..name = json['name'] as String
     ..picUrl = json['picUrl'] as String
+    ..copywriter = json['copywriter'] as String
     ..canDislike = json['canDislike'] as bool
     ..alg = json['alg'] as String
     ..type = json['type'] as int
@@ -936,6 +937,7 @@ Map<String, dynamic> _$PersonalizedSongItemToJson(
       'id': instance.id,
       'name': instance.name,
       'picUrl': instance.picUrl,
+      'copywriter': instance.copywriter,
       'canDislike': instance.canDislike,
       'alg': instance.alg,
       'type': instance.type,

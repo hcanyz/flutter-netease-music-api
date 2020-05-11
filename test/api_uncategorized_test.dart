@@ -32,4 +32,9 @@ void main() {
     var result = await api.homeBannerList();
     expect(result.code, RET_CODE_OK);
   });
+
+  test('test personalized private content', () async {
+    var result = await api.personalizedPrivateContent();
+    expect(result.code, RET_CODE_OK);
+  });
 }

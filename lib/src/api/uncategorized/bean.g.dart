@@ -64,3 +64,50 @@ Map<String, dynamic> _$BannerListWrapToJson(BannerListWrap instance) =>
       'msg': instance.msg,
       'banners': instance.banners,
     };
+
+PersonalizedPrivateContentItem _$PersonalizedPrivateContentItemFromJson(
+    Map<String, dynamic> json) {
+  return PersonalizedPrivateContentItem()
+    ..id = dynamicToString(json['id'])
+    ..name = json['name'] as String
+    ..picUrl = json['picUrl'] as String
+    ..sPicUrl = json['sPicUrl'] as String
+    ..copywriter = json['copywriter'] as String
+    ..alg = json['alg'] as String
+    ..type = json['type'] as int;
+}
+
+Map<String, dynamic> _$PersonalizedPrivateContentItemToJson(
+        PersonalizedPrivateContentItem instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'picUrl': instance.picUrl,
+      'sPicUrl': instance.sPicUrl,
+      'copywriter': instance.copywriter,
+      'alg': instance.alg,
+      'type': instance.type,
+    };
+
+PersonalizedPrivateContentListWrap _$PersonalizedPrivateContentListWrapFromJson(
+    Map<String, dynamic> json) {
+  return PersonalizedPrivateContentListWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..result = (json['result'] as List)
+        ?.map((e) => e == null
+            ? null
+            : PersonalizedPrivateContentItem.fromJson(
+                e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$PersonalizedPrivateContentListWrapToJson(
+        PersonalizedPrivateContentListWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'result': instance.result,
+    };

@@ -49,3 +49,38 @@ class BannerListWrap extends ServerStatusBean {
 
   Map<String, dynamic> toJson() => _$BannerListWrapToJson(this);
 }
+
+@JsonSerializable()
+class PersonalizedPrivateContentItem {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+  String name;
+  String picUrl;
+  String sPicUrl;
+  String copywriter;
+
+  String alg;
+
+  int type;
+
+  PersonalizedPrivateContentItem();
+
+  factory PersonalizedPrivateContentItem.fromJson(Map<String, dynamic> json) =>
+      _$PersonalizedPrivateContentItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PersonalizedPrivateContentItemToJson(this);
+}
+
+@JsonSerializable()
+class PersonalizedPrivateContentListWrap extends ServerStatusBean {
+  List<PersonalizedPrivateContentItem> result;
+
+  PersonalizedPrivateContentListWrap();
+
+  factory PersonalizedPrivateContentListWrap.fromJson(
+          Map<String, dynamic> json) =>
+      _$PersonalizedPrivateContentListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() =>
+      _$PersonalizedPrivateContentListWrapToJson(this);
+}

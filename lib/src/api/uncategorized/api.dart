@@ -20,6 +20,16 @@ mixin ApiUncategorized {
     });
   }
 
+  /// 独家放送
+  Future<PersonalizedPrivateContentListWrap> personalizedPrivateContent() {
+    return Https.dio
+        .postUri(joinUri('/weapi/personalized/privatecontent'),
+            data: {}, options: joinOptions())
+        .then((Response value) {
+      return PersonalizedPrivateContentListWrap.fromJson(value.data);
+    });
+  }
+
   /// 操作记录
   /// [action] 'play'
   Future<ServerStatusBean> weblog(

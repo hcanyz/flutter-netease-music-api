@@ -748,6 +748,7 @@ class PersonalizedSongItem {
   String id;
   String name;
   String picUrl;
+  String copywriter;
 
   bool canDislike;
 
