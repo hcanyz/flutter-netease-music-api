@@ -188,7 +188,8 @@ Map<String, dynamic> _$SearchLyricsWrapXToJson(SearchLyricsWrapX instance) =>
 SearchDjradiorap _$SearchDjradiorapFromJson(Map<String, dynamic> json) {
   return SearchDjradiorap()
     ..djRadios = (json['djRadios'] as List)
-        ?.map((e) => e == null ? null : Dj.fromJson(e as Map<String, dynamic>))
+        ?.map((e) =>
+            e == null ? null : DjRadio.fromJson(e as Map<String, dynamic>))
         ?.toList();
 }
 

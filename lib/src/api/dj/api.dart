@@ -38,6 +38,23 @@ mixin ApiDj {
     });
   }
 
+  /// 新晋电台榜/热门电台榜
+  /// [type] 新晋:'new'  热门:'hot'
+  Future<DjRadioTopListListWrapX2> djRadioTopList(
+      {String type = 'new', int offset = 0, int limit = 100}) {
+    var params = {
+      'type': type == 'new' ? 0 : 1,
+      'limit': limit,
+      'offset': offset
+    };
+    return Https.dio
+        .postUri(joinUri('/api/djradio/toplist'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return DjRadioTopListListWrapX2.fromJson(value.data);
+    });
+  }
+
   /// 付费精品电台
   Future<DjRadioTopListListWrapX> djRadioPayTopList({int limit = 100}) {
     var params = {'limit': limit};

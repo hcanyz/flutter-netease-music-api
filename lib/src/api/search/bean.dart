@@ -140,7 +140,7 @@ class SearchLyricsWrapX extends ServerStatusBean {
 
 @JsonSerializable()
 class SearchDjradiorap {
-  List<Dj> djRadios;
+  List<DjRadio> djRadios;
 
   SearchDjradiorap();
 

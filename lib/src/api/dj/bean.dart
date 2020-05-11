@@ -5,7 +5,7 @@ import 'package:netease_music_api/src/netease_bean.dart';
 part 'bean.g.dart';
 
 @JsonSerializable()
-class Dj {
+class DjRadio {
   @JsonKey(fromJson: dynamicToString)
   String id;
 
@@ -44,11 +44,12 @@ class Dj {
 
   String alg;
 
-  Dj();
+  DjRadio();
 
-  factory Dj.fromJson(Map<String, dynamic> json) => _$DjFromJson(json);
+  factory DjRadio.fromJson(Map<String, dynamic> json) =>
+      _$DjRadioFromJson(json);
 
-  Map<String, dynamic> toJson() => _$DjToJson(this);
+  Map<String, dynamic> toJson() => _$DjRadioToJson(this);
 }
 
 @JsonSerializable()
@@ -89,7 +90,7 @@ class DjProgram {
   bool canReward;
   bool reward;
 
-  Dj radio;
+  DjRadio radio;
 
   Song mainSong;
 
@@ -105,7 +106,7 @@ class DjProgram {
 
 @JsonSerializable()
 class DjRadioListWrap extends ServerStatusListBean {
-  List<Dj> djRadios;
+  List<DjRadio> djRadios;
 
   int subCount;
   int count;
@@ -119,7 +120,7 @@ class DjRadioListWrap extends ServerStatusListBean {
 }
 
 @JsonSerializable()
-class DjTopListItem {
+class Dj {
   @JsonKey(fromJson: dynamicToString)
   String id;
 
@@ -131,17 +132,16 @@ class DjTopListItem {
   int lastRank;
   int score;
 
-  DjTopListItem();
+  Dj();
 
-  factory DjTopListItem.fromJson(Map<String, dynamic> json) =>
-      _$DjTopListItemFromJson(json);
+  factory Dj.fromJson(Map<String, dynamic> json) => _$DjFromJson(json);
 
-  Map<String, dynamic> toJson() => _$DjTopListItemToJson(this);
+  Map<String, dynamic> toJson() => _$DjToJson(this);
 }
 
 @JsonSerializable()
 class DjTopListListWrap {
-  List<DjTopListItem> list;
+  List<Dj> list;
 
   int total;
   int updateTime;
@@ -211,6 +211,20 @@ class DjRadioTopListListWrapX extends ServerStatusBean {
       _$DjRadioTopListListWrapXFromJson(json);
 
   Map<String, dynamic> toJson() => _$DjRadioTopListListWrapXToJson(this);
+}
+
+@JsonSerializable()
+class DjRadioTopListListWrapX2 extends ServerStatusBean {
+  List<DjRadio> toplist;
+
+  int updateTime;
+
+  DjRadioTopListListWrapX2();
+
+  factory DjRadioTopListListWrapX2.fromJson(Map<String, dynamic> json) =>
+      _$DjRadioTopListListWrapX2FromJson(json);
+
+  Map<String, dynamic> toJson() => _$DjRadioTopListListWrapX2ToJson(this);
 }
 
 @JsonSerializable()
