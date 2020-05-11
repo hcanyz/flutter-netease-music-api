@@ -131,7 +131,7 @@ mixin ApiPlay {
     });
   }
 
-  /// 歌单详情
+  /// 相似歌单
   /// [songId] 歌曲 id
   Future<MultiPlayListWrap> playListSimiList(String songId,
       {int offset = 0, int limit = 30}) {

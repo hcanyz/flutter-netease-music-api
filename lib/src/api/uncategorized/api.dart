@@ -30,6 +30,27 @@ mixin ApiUncategorized {
     });
   }
 
+  /// 所有榜单内容摘要
+  Future<TopListWrap> topList() {
+    return Https.dio
+        .postUri(joinUri('/weapi/toplist'),
+            data: {},
+            options: joinOptions(encryptType: EncryptType.LinuxForward))
+        .then((Response value) {
+      return TopListWrap.fromJson(value.data);
+    });
+  }
+
+  /// 所有榜单详情
+  Future<TopListDetailWrap> topListDetail() {
+    return Https.dio
+        .postUri(joinUri('/weapi/toplist/detail'),
+            data: {}, options: joinOptions())
+        .then((Response value) {
+      return TopListDetailWrap.fromJson(value.data);
+    });
+  }
+
   /// 操作记录
   /// [action] 'play'
   Future<ServerStatusBean> weblog(

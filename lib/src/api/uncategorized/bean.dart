@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:netease_music_api/src/api/bean.dart';
 import 'package:netease_music_api/src/api/play/bean.dart';
+import 'package:netease_music_api/src/api/user/bean.dart';
 
 part 'bean.g.dart';
 
@@ -83,4 +84,148 @@ class PersonalizedPrivateContentListWrap extends ServerStatusBean {
 
   Map<String, dynamic> toJson() =>
       _$PersonalizedPrivateContentListWrapToJson(this);
+}
+
+@JsonSerializable()
+class TopListTrack {
+  String first;
+  String second;
+
+  TopListTrack();
+
+  factory TopListTrack.fromJson(Map<String, dynamic> json) =>
+      _$TopListTrackFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TopListTrackToJson(this);
+}
+
+@JsonSerializable()
+class TopList {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  @JsonKey(fromJson: dynamicToString)
+  String userId;
+
+  List<NeteaseUserInfo> subscribers;
+
+  List<TopListTrack> tracks;
+
+  String name;
+  String englishTitle;
+  String titleImageUrl;
+  String updateFrequency;
+  String backgroundCoverUrl;
+  String coverImgUrl;
+  String description;
+  String commentThreadId;
+  String ToplistType;
+
+  int adType;
+  int status;
+  int privacy;
+  int subscribedCount;
+  int playCount;
+  int createTime;
+  int updateTime;
+  int totalDuration;
+  int specialType;
+
+  int cloudTrackCount;
+  int trackNumberUpdateTime;
+  int trackUpdateTime;
+  int trackCount;
+
+  bool opRecommend;
+  String recommendInfo;
+  bool ordered;
+  bool highQuality;
+  bool newImported;
+  bool anonimous;
+
+  List<String> tags;
+
+  TopList();
+
+  factory TopList.fromJson(Map<String, dynamic> json) =>
+      _$TopListFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TopListToJson(this);
+}
+
+@JsonSerializable()
+class ArtistTopListArtists {
+  String first;
+  String second;
+
+  int third;
+
+  ArtistTopListArtists();
+
+  factory ArtistTopListArtists.fromJson(Map<String, dynamic> json) =>
+      _$ArtistTopListArtistsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ArtistTopListArtistsToJson(this);
+}
+
+@JsonSerializable()
+class ArtistTopList {
+  int position;
+
+  String coverUrl;
+  String name;
+  String upateFrequency;
+  String updateFrequency;
+
+  List<ArtistTopListArtists> artists;
+
+  ArtistTopList();
+
+  factory ArtistTopList.fromJson(Map<String, dynamic> json) =>
+      _$ArtistTopListFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ArtistTopListToJson(this);
+}
+
+@JsonSerializable()
+class RewardTopList {
+  int position;
+
+  String coverUrl;
+
+  List<Song> songs;
+
+  RewardTopList();
+
+  factory RewardTopList.fromJson(Map<String, dynamic> json) =>
+      _$RewardTopListFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RewardTopListToJson(this);
+}
+
+@JsonSerializable()
+class TopListWrap extends ServerStatusBean {
+  List<TopList> list;
+  ArtistTopList artistToplist;
+
+  TopListWrap();
+
+  factory TopListWrap.fromJson(Map<String, dynamic> json) =>
+      _$TopListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TopListWrapToJson(this);
+}
+
+@JsonSerializable()
+class TopListDetailWrap extends ServerStatusBean {
+  List<TopList> list;
+  ArtistTopList artistToplist;
+  RewardTopList rewardToplist;
+
+  TopListDetailWrap();
+
+  factory TopListDetailWrap.fromJson(Map<String, dynamic> json) =>
+      _$TopListDetailWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TopListDetailWrapToJson(this);
 }

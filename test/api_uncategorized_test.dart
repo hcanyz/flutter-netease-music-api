@@ -37,4 +37,14 @@ void main() {
     var result = await api.personalizedPrivateContent();
     expect(result.code, RET_CODE_OK);
   });
+
+  test('test toplist x', () async {
+    var result = await api.topList();
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test toplist detail', () async {
+    var result = await api.topListDetail();
+    expect(result.code, RET_CODE_OK);
+  });
 }
