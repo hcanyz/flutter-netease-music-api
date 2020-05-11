@@ -475,6 +475,16 @@ mixin ApiPlay {
     });
   }
 
+  /// 推荐MV
+  Future<PersonalizedListWrap> personalizedMvList() {
+    return Https.dio
+        .postUri(joinUri('/weapi/personalized/mv'),
+            data: {}, options: joinOptions())
+        .then((Response value) {
+      return PersonalizedListWrap.fromJson(value.data);
+    });
+  }
+
   /// 歌手MV列表
   Future<ArtistMvListWrap> artistMvList(String artistId,
       {int offset = 0, int limit = 30, bool total = true}) {

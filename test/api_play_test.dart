@@ -202,6 +202,11 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test personalized mv list', () async {
+    var result = await api.personalizedMvList();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test artist mv list ', () async {
     var result = await api.artistMvList(defaultArtistId);
     expect(result.code, RET_CODE_OK);

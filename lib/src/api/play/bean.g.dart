@@ -1125,6 +1125,27 @@ Map<String, dynamic> _$MvListWrap2ToJson(MvListWrap2 instance) =>
       'data': instance.data,
     };
 
+PersonalizedListWrap _$PersonalizedListWrapFromJson(Map<String, dynamic> json) {
+  return PersonalizedListWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..result = (json['result'] as List)
+        ?.map((e) => e == null ? null : Mv.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..category = json['category'] as int;
+}
+
+Map<String, dynamic> _$PersonalizedListWrapToJson(
+        PersonalizedListWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'result': instance.result,
+      'category': instance.category,
+    };
+
 ArtistMvListWrap _$ArtistMvListWrapFromJson(Map<String, dynamic> json) {
   return ArtistMvListWrap()
     ..code = json['code'] as int
