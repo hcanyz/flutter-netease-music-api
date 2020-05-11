@@ -50,11 +50,6 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test dj hours top list', () async {
-    var result = await api.djHoursTopList();
-    expect(result.code, RET_CODE_OK);
-  });
-
   test('test dj program hours top list', () async {
     var result = await api.djProgramHoursTopList();
     expect(result.code, RET_CODE_OK);
@@ -71,13 +66,28 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test personalized dj list', () async {
+  test('test personalized dj program list', () async {
     var result = await api.personalizedProgramDjList();
     expect(result.code, RET_CODE_OK);
   });
 
   test('test personalized dj program list', () async {
     var result = await api.recommendDjProgramList();
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test dj hours top list', () async {
+    var result = await api.djHoursTopList();
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test dj newcomer top list', () async {
+    var result = await api.djNewcomerTopList();
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test dj popular top list', () async {
+    var result = await api.djPopularTopList();
     expect(result.code, RET_CODE_OK);
   });
 }

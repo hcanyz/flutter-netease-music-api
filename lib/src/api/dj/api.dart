@@ -49,17 +49,6 @@ mixin ApiDj {
     });
   }
 
-  /// 电台 - 24小时主播榜
-  Future<DjTopListListWrapX> djHoursTopList({int limit = 100}) {
-    var params = {'limit': limit};
-    return Https.dio
-        .postUri(joinUri('/api/dj/toplist/hours'),
-            data: params, options: joinOptions())
-        .then((Response value) {
-      return DjTopListListWrapX.fromJson(value.data);
-    });
-  }
-
   /// 电台 - 24小时节目榜
   Future<DjProgramTopListListWrapX> djProgramHoursTopList({int limit = 100}) {
     var params = {'limit': limit};
@@ -115,6 +104,40 @@ mixin ApiDj {
             data: params, options: joinOptions())
         .then((Response value) {
       return DjProgramListWrap.fromJson(value.data);
+    });
+  }
+
+  /// 电台 - 24小时主播榜
+  Future<DjTopListListWrapX> djHoursTopList({int limit = 100}) {
+    var params = {'limit': limit};
+    return Https.dio
+        .postUri(joinUri('/api/dj/toplist/hours'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return DjTopListListWrapX.fromJson(value.data);
+    });
+  }
+
+  /// 电台 - 新人榜
+  Future<DjTopListListWrapX> djNewcomerTopList(
+      {int offset = 0, int limit = 100}) {
+    var params = {'limit': limit, 'offset': offset};
+    return Https.dio
+        .postUri(joinUri('/api/dj/toplist/newcomer'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return DjTopListListWrapX.fromJson(value.data);
+    });
+  }
+
+  /// 电台 - 最热主播榜
+  Future<DjTopListListWrapX> djPopularTopList({int limit = 100}) {
+    var params = {'limit': limit};
+    return Https.dio
+        .postUri(joinUri('/api/dj/toplist/popular'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return DjTopListListWrapX.fromJson(value.data);
     });
   }
 }
