@@ -189,6 +189,18 @@ class DjRadioCategoryWrap2 extends ServerStatusBean {
 }
 
 @JsonSerializable()
+class DjRadioCategoryWrap3 extends ServerStatusBean {
+  List<DjRadioCategory> data;
+
+  DjRadioCategoryWrap3();
+
+  factory DjRadioCategoryWrap3.fromJson(Map<String, dynamic> json) =>
+      _$DjRadioCategoryWrap3FromJson(json);
+
+  Map<String, dynamic> toJson() => _$DjRadioCategoryWrap3ToJson(this);
+}
+
+@JsonSerializable()
 class DjRadioListWrap extends ServerStatusListBean {
   List<DjRadio> djRadios;
 

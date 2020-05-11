@@ -36,6 +36,16 @@ mixin ApiDj {
     });
   }
 
+  /// 电台 - 非热门分类
+  Future<DjRadioCategoryWrap3> excludeHotDjRadioCategory() {
+    return Https.dio
+        .postUri(joinUri('/weapi/djradio/category/excludehot'),
+            data: {}, options: joinOptions())
+        .then((Response value) {
+      return DjRadioCategoryWrap3.fromJson(value.data);
+    });
+  }
+
   /// 用户创建的电台
   Future<DjRadioListWrap> userDjRadioList(String userId) {
     var params = {'userId': userId};
@@ -98,7 +108,7 @@ mixin ApiDj {
     });
   }
 
-  /// 付费精品电台
+  /// 电台 - 付费精品电台
   Future<DjRadioTopListListWrapX> djRadioPayTopList({int limit = 100}) {
     var params = {'limit': limit};
     return Https.dio
@@ -109,7 +119,7 @@ mixin ApiDj {
     });
   }
 
-  /// 付费电台
+  /// 电台 - 付费精选
   Future<DjRadioTopListListWrapX> djRadioPayGiftTopList(
       {int offset = 0, int limit = 30}) {
     var params = {'limit': limit, 'offset': offset};

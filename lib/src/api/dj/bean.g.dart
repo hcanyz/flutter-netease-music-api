@@ -256,6 +256,27 @@ Map<String, dynamic> _$DjRadioCategoryWrap2ToJson(
       'data': instance.data,
     };
 
+DjRadioCategoryWrap3 _$DjRadioCategoryWrap3FromJson(Map<String, dynamic> json) {
+  return DjRadioCategoryWrap3()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..data = (json['data'] as List)
+        ?.map((e) => e == null
+            ? null
+            : DjRadioCategory.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$DjRadioCategoryWrap3ToJson(
+        DjRadioCategoryWrap3 instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
 DjRadioListWrap _$DjRadioListWrapFromJson(Map<String, dynamic> json) {
   return DjRadioListWrap()
     ..code = json['code'] as int

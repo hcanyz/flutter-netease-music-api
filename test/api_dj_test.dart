@@ -45,6 +45,11 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test exclude hot dj radio category', () async {
+    var result = await api.excludeHotDjRadioCategory();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test user dj radio list', () async {
     var result = await api.userDjRadioList(defaultUserId);
     expect(result.code, RET_CODE_OK);
