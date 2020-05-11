@@ -195,7 +195,6 @@ class DjRadioListWrap extends ServerStatusListBean {
   String name;
 
   int subCount;
-  int count;
 
   DjRadioListWrap();
 

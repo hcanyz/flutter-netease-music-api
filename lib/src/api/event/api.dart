@@ -170,7 +170,7 @@ mixin ApiEvent {
   }
 
   /// 电台评论
-  Future<CommentListWrap> djCommentList(String djId,
+  Future<CommentListWrap> djRadioCommentList(String djId,
       {int offset = 0, int limit = 20, int beforeTime = 0}) {
     var params = {
       'rid': djId,

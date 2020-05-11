@@ -97,7 +97,7 @@ void main() {
   });
 
   test('test dj comment list', () async {
-    var result = await api.djCommentList('526230592');
+    var result = await api.djRadioCommentList('526230592');
     expect(result.code, RET_CODE_OK);
   });
 

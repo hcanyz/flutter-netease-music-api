@@ -146,6 +146,21 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test user dj radio sub or unSub', () async {
+    var result = await api.djRadioSub('526230592', true);
+    expect(result.code, anyOf(RET_CODE_ILLEGAL, RET_CODE_OK));
+
+    sleep(Duration(seconds: 2));
+
+    var result2 = await api.djRadioSub('526230592', false);
+    expect(result2.code, anyOf(RET_CODE_ILLEGAL, RET_CODE_OK));
+  });
+
+  test('test user dj radio sub list', () async {
+    var result = await api.djRadioSubList();
+    expect(result.code, anyOf(RET_CODE_ILLEGAL, RET_CODE_OK));
+  });
+
   test('test user video sub or unSub', () async {
     var result = await api.videoSub('84107D4616B72B929C8AEB7D1E6CC904', false);
     expect(result.code, anyOf(RET_CODE_ILLEGAL, RET_CODE_OK));

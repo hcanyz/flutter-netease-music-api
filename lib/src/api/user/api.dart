@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:netease_music_api/src/api/bean.dart';
+import 'package:netease_music_api/src/api/dj/bean.dart';
 import 'package:netease_music_api/src/api/play/bean.dart';
 import 'package:netease_music_api/src/api/user/bean.dart';
 import 'package:netease_music_api/src/dio_ext.dart';
@@ -222,7 +223,32 @@ mixin ApiUser {
     });
   }
 
-  /// 收藏视频
+  /// 订阅与取消电台
+  /// !需要登录
+  Future<ServerStatusBean> djRadioSub(String djId, bool sub) {
+    var params = {'id': djId};
+    return Https.dio
+        .postUri(joinUri('/weapi/djradio/${sub ? 'sub' : 'unsub'}'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
+  }
+
+  /// 收藏的电台列表
+  /// !需要登录
+  Future<DjRadioListWrap> djRadioSubList(
+      {bool total = true, int offset = 0, int limit = 30}) {
+    var params = {'total': total, 'limit': limit, 'offset': offset};
+    return Https.dio
+        .postUri(joinUri('/weapi/djradio/get/subed'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return DjRadioListWrap.fromJson(value.data);
+    });
+  }
+
+  /// 收藏/取消视频
   /// !需要登录
   Future<ServerStatusBean> videoSub(String videoId, bool sub) {
     var params = {'id': videoId};
