@@ -197,6 +197,23 @@ Map<String, dynamic> _$DjRadioCategoryToJson(DjRadioCategory instance) =>
       'pic96x96Url': instance.pic96x96Url,
     };
 
+DjRadioCategory2 _$DjRadioCategory2FromJson(Map<String, dynamic> json) {
+  return DjRadioCategory2()
+    ..categoryId = dynamicToString(json['categoryId'])
+    ..categoryName = json['categoryName'] as String
+    ..radios = (json['radios'] as List)
+        ?.map((e) =>
+            e == null ? null : DjRadio.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$DjRadioCategory2ToJson(DjRadioCategory2 instance) =>
+    <String, dynamic>{
+      'categoryId': instance.categoryId,
+      'categoryName': instance.categoryName,
+      'radios': instance.radios,
+    };
+
 DjRadioCategoryWrap _$DjRadioCategoryWrapFromJson(Map<String, dynamic> json) {
   return DjRadioCategoryWrap()
     ..code = json['code'] as int
@@ -218,6 +235,27 @@ Map<String, dynamic> _$DjRadioCategoryWrapToJson(
       'categories': instance.categories,
     };
 
+DjRadioCategoryWrap2 _$DjRadioCategoryWrap2FromJson(Map<String, dynamic> json) {
+  return DjRadioCategoryWrap2()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..data = (json['data'] as List)
+        ?.map((e) => e == null
+            ? null
+            : DjRadioCategory2.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$DjRadioCategoryWrap2ToJson(
+        DjRadioCategoryWrap2 instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
 DjRadioListWrap _$DjRadioListWrapFromJson(Map<String, dynamic> json) {
   return DjRadioListWrap()
     ..code = json['code'] as int
@@ -229,6 +267,7 @@ DjRadioListWrap _$DjRadioListWrapFromJson(Map<String, dynamic> json) {
         ?.map((e) =>
             e == null ? null : DjRadio.fromJson(e as Map<String, dynamic>))
         ?.toList()
+    ..name = json['name'] as String
     ..subCount = json['subCount'] as int
     ..count = json['count'] as int;
 }
@@ -241,6 +280,7 @@ Map<String, dynamic> _$DjRadioListWrapToJson(DjRadioListWrap instance) =>
       'more': instance.more,
       'total': instance.total,
       'djRadios': instance.djRadios,
+      'name': instance.name,
       'subCount': instance.subCount,
       'count': instance.count,
     };

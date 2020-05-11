@@ -40,6 +40,11 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test recommend dj radio category', () async {
+    var result = await api.recommendDjRadioCategory();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test user dj radio list', () async {
     var result = await api.userDjRadioList(defaultUserId);
     expect(result.code, RET_CODE_OK);

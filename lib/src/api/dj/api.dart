@@ -26,6 +26,16 @@ mixin ApiDj {
     });
   }
 
+  /// 电台 - 推荐分类
+  Future<DjRadioCategoryWrap2> recommendDjRadioCategory() {
+    return Https.dio
+        .postUri(joinUri('/weapi/djradio/home/category/recommend'),
+            data: {}, options: joinOptions())
+        .then((Response value) {
+      return DjRadioCategoryWrap2.fromJson(value.data);
+    });
+  }
+
   /// 用户创建的电台
   Future<DjRadioListWrap> userDjRadioList(String userId) {
     var params = {'userId': userId};

@@ -149,6 +149,22 @@ class DjRadioCategory {
 }
 
 @JsonSerializable()
+class DjRadioCategory2 {
+  @JsonKey(fromJson: dynamicToString)
+  String categoryId;
+  String categoryName;
+
+  List<DjRadio> radios;
+
+  DjRadioCategory2();
+
+  factory DjRadioCategory2.fromJson(Map<String, dynamic> json) =>
+      _$DjRadioCategory2FromJson(json);
+
+  Map<String, dynamic> toJson() => _$DjRadioCategory2ToJson(this);
+}
+
+@JsonSerializable()
 class DjRadioCategoryWrap extends ServerStatusBean {
   List<DjRadioCategory> categories;
 
@@ -158,6 +174,18 @@ class DjRadioCategoryWrap extends ServerStatusBean {
       _$DjRadioCategoryWrapFromJson(json);
 
   Map<String, dynamic> toJson() => _$DjRadioCategoryWrapToJson(this);
+}
+
+@JsonSerializable()
+class DjRadioCategoryWrap2 extends ServerStatusBean {
+  List<DjRadioCategory2> data;
+
+  DjRadioCategoryWrap2();
+
+  factory DjRadioCategoryWrap2.fromJson(Map<String, dynamic> json) =>
+      _$DjRadioCategoryWrap2FromJson(json);
+
+  Map<String, dynamic> toJson() => _$DjRadioCategoryWrap2ToJson(this);
 }
 
 @JsonSerializable()
