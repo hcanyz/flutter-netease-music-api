@@ -587,6 +587,33 @@ mixin ApiPlay {
     });
   }
 
+  /// 视频标签列表
+  Future<VideoGroupListWrap> videoGroupList() {
+    return Https.dio
+        .postUri(joinUri('/api/cloudvideo/group/list'),
+            data: {}, options: joinOptions())
+        .then((Response value) {
+      return VideoGroupListWrap.fromJson(value.data);
+    });
+  }
+
+  /// 视频标签下的视频
+  Future<VideoListWrapX> videoListByGroup(String groupId,
+      {int offset = 0, int res = 1080}) {
+    var params = {
+      'groupId': groupId,
+      'offset': offset,
+      'needUrl': true,
+      'resolution': res
+    };
+    return Https.dio
+        .postUri(joinUri('/weapi/videotimeline/videogroup/get'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return VideoListWrapX.fromJson(value.data);
+    });
+  }
+
   /// 歌手专辑列表
   Future<ArtistAlbumListWrap> artistAlbumList(String artistId,
       {int offset = 0, int limit = 30, bool total = true}) {

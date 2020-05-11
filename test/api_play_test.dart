@@ -247,6 +247,18 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test video group list video list', () async {
+    var result = await api.videoGroupList();
+    expect(result.code, RET_CODE_OK);
+
+    if (result.data.isEmpty) {
+      return;
+    }
+
+    var result2 = await api.videoListByGroup(result.data[0].id);
+    expect(result2.code, RET_CODE_OK);
+  });
+
   test('test artist album list ', () async {
     var result = await api.artistAlbumList(defaultArtistId);
     expect(result.code, RET_CODE_OK);
