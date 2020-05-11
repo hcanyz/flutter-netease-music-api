@@ -1251,6 +1251,34 @@ Map<String, dynamic> _$ArtistMvListWrapToJson(ArtistMvListWrap instance) =>
       'time': instance.time,
     };
 
+MvDetailWrap _$MvDetailWrapFromJson(Map<String, dynamic> json) {
+  return MvDetailWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..loadingPic = json['loadingPic'] as String
+    ..bufferPic = json['bufferPic'] as String
+    ..loadingPicFS = json['loadingPicFS'] as String
+    ..bufferPicFS = json['bufferPicFS'] as String
+    ..subed = json['subed'] as bool
+    ..data = json['data'] == null
+        ? null
+        : Mv.fromJson(json['data'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$MvDetailWrapToJson(MvDetailWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'loadingPic': instance.loadingPic,
+      'bufferPic': instance.bufferPic,
+      'loadingPicFS': instance.loadingPicFS,
+      'bufferPicFS': instance.bufferPicFS,
+      'subed': instance.subed,
+      'data': instance.data,
+    };
+
 AlbumListWrap _$AlbumListWrapFromJson(Map<String, dynamic> json) {
   return AlbumListWrap()
     ..code = json['code'] as int

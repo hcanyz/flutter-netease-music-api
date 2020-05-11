@@ -959,6 +959,25 @@ class ArtistMvListWrap extends MvListWrap {
 }
 
 @JsonSerializable()
+class MvDetailWrap extends ServerStatusBean {
+  String loadingPic;
+  String bufferPic;
+  String loadingPicFS;
+  String bufferPicFS;
+
+  bool subed;
+
+  Mv data;
+
+  MvDetailWrap();
+
+  factory MvDetailWrap.fromJson(Map<String, dynamic> json) =>
+      _$MvDetailWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MvDetailWrapToJson(this);
+}
+
+@JsonSerializable()
 class AlbumListWrap extends ServerStatusListBean {
   List<Album> albums;
 

@@ -543,7 +543,7 @@ mixin ApiPlay {
     });
   }
 
-  /// 相似mv
+  /// 相似MV
   Future<MvListWrap> mvSimiList(String mvId) {
     var params = {'mvid': mvId};
     return Https.dio
@@ -551,6 +551,17 @@ mixin ApiPlay {
             data: params, options: joinOptions())
         .then((Response value) {
       return MvListWrap.fromJson(value.data);
+    });
+  }
+
+  /// MV详情
+  Future<MvDetailWrap> mvDetail(String mvId) {
+    var params = {'id': mvId};
+    return Https.dio
+        .postUri(joinUri('/weapi/mv/detail'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return MvDetailWrap.fromJson(value.data);
     });
   }
 
