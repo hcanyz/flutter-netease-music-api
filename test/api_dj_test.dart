@@ -55,6 +55,11 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test today preferred dj radio list', () async {
+    var result = await api.todayPreferredDjRadioList();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test recommend dj radio list x', () async {
     var result = await api.recommendDjRadioList();
     expect(result.code, RET_CODE_OK);

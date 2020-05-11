@@ -306,6 +306,25 @@ Map<String, dynamic> _$DjRadioListWrapToJson(DjRadioListWrap instance) =>
       'subCount': instance.subCount,
     };
 
+DjRadioListWrap2 _$DjRadioListWrap2FromJson(Map<String, dynamic> json) {
+  return DjRadioListWrap2()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..data = (json['data'] as List)
+        ?.map((e) =>
+            e == null ? null : DjRadio.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$DjRadioListWrap2ToJson(DjRadioListWrap2 instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
 DjTopListListWrap _$DjTopListListWrapFromJson(Map<String, dynamic> json) {
   return DjTopListListWrap()
     ..list = (json['list'] as List)

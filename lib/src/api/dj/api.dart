@@ -57,6 +57,18 @@ mixin ApiDj {
     });
   }
 
+  /// 今日优选电台
+  /// Preferred perfered = =
+  Future<DjRadioListWrap2> todayPreferredDjRadioList({int page = 0}) {
+    var params = {'page': page};
+    return Https.dio
+        .postUri(joinUri('/weapi/djradio/home/today/perfered'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return DjRadioListWrap2.fromJson(value.data);
+    });
+  }
+
   /// 精选电台
   Future<DjRadioListWrap> recommendDjRadioList() {
     return Https.dio
