@@ -259,6 +259,11 @@ void main() {
     expect(result2.code, RET_CODE_OK);
   });
 
+  test('test related video list', () async {
+    var result = await api.relatedVideoList('84107D4616B72B929C8AEB7D1E6CC904');
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test artist album list ', () async {
     var result = await api.artistAlbumList(defaultArtistId);
     expect(result.code, RET_CODE_OK);

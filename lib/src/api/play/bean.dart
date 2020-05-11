@@ -247,7 +247,7 @@ class VideoUrlInfo {
 }
 
 @JsonSerializable()
-class Video {
+class VideoBase {
   String vid;
   String title;
   String description;
@@ -273,16 +273,38 @@ class Video {
 
   List<VideoResolution> resolutions;
 
-  NeteaseUserInfo creator;
   VideoUrlInfo urlInfo;
   List<VideoGroupItem> videoGroup;
   List<Song> relateSong;
+
+  VideoBase();
+
+  factory VideoBase.fromJson(Map<String, dynamic> json) =>
+      _$VideoBaseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$VideoBaseToJson(this);
+}
+
+@JsonSerializable()
+class Video extends VideoBase {
+  NeteaseUserInfo creator;
 
   Video();
 
   factory Video.fromJson(Map<String, dynamic> json) => _$VideoFromJson(json);
 
   Map<String, dynamic> toJson() => _$VideoToJson(this);
+}
+
+@JsonSerializable()
+class Video2 extends VideoBase {
+  List<NeteaseUserInfo> creator;
+
+  Video2();
+
+  factory Video2.fromJson(Map<String, dynamic> json) => _$Video2FromJson(json);
+
+  Map<String, dynamic> toJson() => _$Video2ToJson(this);
 }
 
 @JsonSerializable()
@@ -1128,7 +1150,7 @@ class VideoGroupListWrap extends ServerStatusBean {
 }
 
 @JsonSerializable()
-class VideoListWrap {
+class VideoWrap {
   int type;
   bool displayed;
   String alg;
@@ -1136,17 +1158,17 @@ class VideoListWrap {
 
   Video data;
 
-  VideoListWrap();
+  VideoWrap();
 
-  factory VideoListWrap.fromJson(Map<String, dynamic> json) =>
-      _$VideoListWrapFromJson(json);
+  factory VideoWrap.fromJson(Map<String, dynamic> json) =>
+      _$VideoWrapFromJson(json);
 
-  Map<String, dynamic> toJson() => _$VideoListWrapToJson(this);
+  Map<String, dynamic> toJson() => _$VideoWrapToJson(this);
 }
 
 @JsonSerializable()
 class VideoListWrapX extends ServerStatusListBean {
-  List<VideoListWrap> datas;
+  List<VideoWrap> datas;
 
   int rcmdLimit;
 
@@ -1156,6 +1178,18 @@ class VideoListWrapX extends ServerStatusListBean {
       _$VideoListWrapXFromJson(json);
 
   Map<String, dynamic> toJson() => _$VideoListWrapXToJson(this);
+}
+
+@JsonSerializable()
+class VideoListWrap extends ServerStatusBean {
+  List<Video2> data;
+
+  VideoListWrap();
+
+  factory VideoListWrap.fromJson(Map<String, dynamic> json) =>
+      _$VideoListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$VideoListWrapToJson(this);
 }
 
 @JsonSerializable()

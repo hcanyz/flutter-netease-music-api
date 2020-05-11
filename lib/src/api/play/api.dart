@@ -614,6 +614,20 @@ mixin ApiPlay {
     });
   }
 
+  /// 相关视频
+  Future<VideoListWrap> relatedVideoList(String videoId) {
+    var params = {
+      'id': videoId,
+      'type': RegExp(r'^\d+$').hasMatch(videoId) ? 0 : 1
+    };
+    return Https.dio
+        .postUri(joinUri('/weapi/cloudvideo/v1/allvideo/rcmd'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return VideoListWrap.fromJson(value.data);
+    });
+  }
+
   /// 歌手专辑列表
   Future<ArtistAlbumListWrap> artistAlbumList(String artistId,
       {int offset = 0, int limit = 30, bool total = true}) {
