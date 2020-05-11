@@ -153,6 +153,17 @@ mixin ApiDj {
     });
   }
 
+  /// 电台 - 详情
+  Future<DjRadioDetail> djRadioDetail(String djId) {
+    var params = {'id': djId};
+    return Https.dio
+        .postUri(joinUri('/weapi/djradio/get'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return DjRadioDetail.fromJson(value.data);
+    });
+  }
+
   /// 电台 - 24小时节目榜
   Future<DjProgramTopListListWrapX> djProgramHoursTopList({int limit = 100}) {
     var params = {'limit': limit};

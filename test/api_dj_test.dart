@@ -109,6 +109,11 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test dj detail', () async {
+    var result = await api.djRadioDetail('526230592');
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test dj program hours top list', () async {
     var result = await api.djProgramHoursTopList();
     expect(result.code, RET_CODE_OK);
