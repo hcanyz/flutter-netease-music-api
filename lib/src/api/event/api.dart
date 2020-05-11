@@ -170,16 +170,16 @@ mixin ApiEvent {
   }
 
   /// 电台评论
-  Future<CommentListWrap> djRadioCommentList(String djId,
+  Future<CommentListWrap> djRadioCommentList(String radioId,
       {int offset = 0, int limit = 20, int beforeTime = 0}) {
     var params = {
-      'rid': djId,
+      'rid': radioId,
       'limit': limit,
       'offset': offset,
       'beforeTime': beforeTime
     };
     return Https.dio
-        .postUri(joinUri('/weapi/v1/resource/comments/A_DJ_1_$djId'),
+        .postUri(joinUri('/weapi/v1/resource/comments/A_DJ_1_$radioId'),
             data: params, options: joinOptions(cookies: {'os': 'pc'}))
         .then((Response value) {
       return CommentListWrap.fromJson(value.data);

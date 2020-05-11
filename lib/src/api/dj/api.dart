@@ -154,8 +154,8 @@ mixin ApiDj {
   }
 
   /// 电台 - 详情
-  Future<DjRadioDetail> djRadioDetail(String djId) {
-    var params = {'id': djId};
+  Future<DjRadioDetail> djRadioDetail(String radioId) {
+    var params = {'id': radioId};
     return Https.dio
         .postUri(joinUri('/weapi/djradio/get'),
             data: params, options: joinOptions())
@@ -165,10 +165,10 @@ mixin ApiDj {
   }
 
   /// 电台 - 节目列表
-  Future<DjProgramListWrap> djProgramList(String djId,
+  Future<DjProgramListWrap> djProgramList(String radioId,
       {int offset = 0, int limit = 30, bool asc = true}) {
     var params = {
-      'radioId': djId,
+      'radioId': radioId,
       'limit': limit,
       'offset': offset,
       'asc': asc

@@ -225,8 +225,8 @@ mixin ApiUser {
 
   /// 订阅与取消电台
   /// !需要登录
-  Future<ServerStatusBean> djRadioSub(String djId, bool sub) {
-    var params = {'id': djId};
+  Future<ServerStatusBean> djRadioSub(String radioId, bool sub) {
+    var params = {'id': radioId};
     return Https.dio
         .postUri(joinUri('/weapi/djradio/${sub ? 'sub' : 'unsub'}'),
             data: params, options: joinOptions())
