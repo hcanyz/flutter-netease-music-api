@@ -327,7 +327,14 @@ DjRadioTopListItem _$DjRadioTopListItemFromJson(Map<String, dynamic> json) {
     ..creatorName = json['creatorName'] as String
     ..rank = json['rank'] as int
     ..lastRank = json['lastRank'] as int
-    ..score = json['score'] as int;
+    ..score = json['score'] as int
+    ..rcmdText = json['rcmdText'] as String
+    ..radioFeeType = json['radioFeeType'] as int
+    ..feeScope = json['feeScope'] as int
+    ..programCount = json['programCount'] as int
+    ..originalPrice = json['originalPrice'] as int
+    ..alg = json['alg'] as String
+    ..lastProgramName = json['lastProgramName'] as String;
 }
 
 Map<String, dynamic> _$DjRadioTopListItemToJson(DjRadioTopListItem instance) =>
@@ -339,6 +346,13 @@ Map<String, dynamic> _$DjRadioTopListItemToJson(DjRadioTopListItem instance) =>
       'rank': instance.rank,
       'lastRank': instance.lastRank,
       'score': instance.score,
+      'rcmdText': instance.rcmdText,
+      'radioFeeType': instance.radioFeeType,
+      'feeScope': instance.feeScope,
+      'programCount': instance.programCount,
+      'originalPrice': instance.originalPrice,
+      'alg': instance.alg,
+      'lastProgramName': instance.lastProgramName,
     };
 
 DjRadioTopListListWrap _$DjRadioTopListListWrapFromJson(

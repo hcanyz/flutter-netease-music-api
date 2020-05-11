@@ -243,6 +243,15 @@ class DjRadioTopListItem {
   int lastRank;
   int score;
 
+  // [djRadioPayGiftTopList] 这个api独有数据
+  String rcmdText;
+  int radioFeeType;
+  int feeScope;
+  int programCount;
+  int originalPrice;
+  String alg;
+  String lastProgramName;
+
   DjRadioTopListItem();
 
   factory DjRadioTopListItem.fromJson(Map<String, dynamic> json) =>

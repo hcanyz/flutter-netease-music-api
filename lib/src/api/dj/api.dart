@@ -109,6 +109,18 @@ mixin ApiDj {
     });
   }
 
+  /// 付费电台
+  Future<DjRadioTopListListWrapX> djRadioPayGiftTopList(
+      {int offset = 0, int limit = 30}) {
+    var params = {'limit': limit, 'offset': offset};
+    return Https.dio
+        .postUri(joinUri('/weapi/djradio/home/paygift/list?_nmclfl=1'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return DjRadioTopListListWrapX.fromJson(value.data);
+    });
+  }
+
   /// 电台 - 24小时节目榜
   Future<DjProgramTopListListWrapX> djProgramHoursTopList({int limit = 100}) {
     var params = {'limit': limit};
