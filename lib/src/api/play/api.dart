@@ -461,6 +461,20 @@ mixin ApiPlay {
     });
   }
 
+  /// 网易出品MV
+  Future<MvListWrap2> neteaseMvList(
+      {int offset = 0, int limit = 30, bool total = true}) {
+    var params = {'total': total, 'limit': limit, 'offset': offset};
+    return Https.dio
+        .postUri(
+            Uri.parse('https://interface.music.163.com/api/mv/exclusive/rcmd'),
+            data: params,
+            options: joinOptions())
+        .then((Response value) {
+      return MvListWrap2.fromJson(value.data);
+    });
+  }
+
   /// 歌手MV列表
   Future<ArtistMvListWrap> artistMvList(String artistId,
       {int offset = 0, int limit = 30, bool total = true}) {

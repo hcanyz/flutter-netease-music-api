@@ -197,6 +197,11 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test netease mv list', () async {
+    var result = await api.neteaseMvList();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test artist mv list ', () async {
     var result = await api.artistMvList(defaultArtistId);
     expect(result.code, RET_CODE_OK);
