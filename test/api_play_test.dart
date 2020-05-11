@@ -106,6 +106,11 @@ void main() {
     expect(result2.code, RET_CODE_OK);
   });
 
+  test('test personalized song list', () async {
+    var result = await api.personalizedSongList();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test new song list', () async {
     var result = await api.newSongList();
     expect(result.code, RET_CODE_OK);

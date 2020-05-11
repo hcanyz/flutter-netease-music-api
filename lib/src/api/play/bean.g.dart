@@ -917,6 +917,55 @@ Map<String, dynamic> _$SongListWrap2ToJson(SongListWrap2 instance) =>
       'data': instance.data,
     };
 
+PersonalizedSongItem _$PersonalizedSongItemFromJson(Map<String, dynamic> json) {
+  return PersonalizedSongItem()
+    ..id = dynamicToString(json['id'])
+    ..name = json['name'] as String
+    ..picUrl = json['picUrl'] as String
+    ..canDislike = json['canDislike'] as bool
+    ..alg = json['alg'] as String
+    ..type = json['type'] as int
+    ..song = json['song'] == null
+        ? null
+        : Song.fromJson(json['song'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$PersonalizedSongItemToJson(
+        PersonalizedSongItem instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'picUrl': instance.picUrl,
+      'canDislike': instance.canDislike,
+      'alg': instance.alg,
+      'type': instance.type,
+      'song': instance.song,
+    };
+
+PersonalizedSongListWrap _$PersonalizedSongListWrapFromJson(
+    Map<String, dynamic> json) {
+  return PersonalizedSongListWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..result = (json['result'] as List)
+        ?.map((e) => e == null
+            ? null
+            : PersonalizedSongItem.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..category = json['category'] as int;
+}
+
+Map<String, dynamic> _$PersonalizedSongListWrapToJson(
+        PersonalizedSongListWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'result': instance.result,
+      'category': instance.category,
+    };
+
 LikeSongListWrap _$LikeSongListWrapFromJson(Map<String, dynamic> json) {
   return LikeSongListWrap()
     ..code = json['code'] as int

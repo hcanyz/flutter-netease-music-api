@@ -223,6 +223,17 @@ mixin ApiPlay {
     });
   }
 
+  /// 推荐新歌
+  Future<PersonalizedSongListWrap> personalizedSongList() {
+    var params = {'type': 'recommend'};
+    return Https.dio
+        .postUri(joinUri('/weapi/personalized/newsong'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return PersonalizedSongListWrap.fromJson(value.data);
+    });
+  }
+
   /// 新歌速递
   /// [areaId] 全部:0 华语:7 欧美:96 日本:8 韩国:16 默认0
   Future<SongListWrap2> newSongList({String areaId = '0'}) {

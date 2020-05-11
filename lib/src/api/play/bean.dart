@@ -743,6 +743,43 @@ class SongListWrap2 extends ServerStatusBean {
 }
 
 @JsonSerializable()
+class PersonalizedSongItem {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+  String name;
+  String picUrl;
+
+  bool canDislike;
+
+  String alg;
+
+  int type;
+
+  Song song;
+
+  PersonalizedSongItem();
+
+  factory PersonalizedSongItem.fromJson(Map<String, dynamic> json) =>
+      _$PersonalizedSongItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PersonalizedSongItemToJson(this);
+}
+
+@JsonSerializable()
+class PersonalizedSongListWrap extends ServerStatusBean {
+  List<PersonalizedSongItem> result;
+
+  int category;
+
+  PersonalizedSongListWrap();
+
+  factory PersonalizedSongListWrap.fromJson(Map<String, dynamic> json) =>
+      _$PersonalizedSongListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PersonalizedSongListWrapToJson(this);
+}
+
+@JsonSerializable()
 class LikeSongListWrap extends ServerStatusBean {
   int checkPoint;
 
