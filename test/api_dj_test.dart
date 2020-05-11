@@ -40,6 +40,11 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test hot dj list', () async {
+    var result = await api.hotDjList();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test user dj programs list', () async {
     var result = await api.userDjProgramsList(
         NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId);

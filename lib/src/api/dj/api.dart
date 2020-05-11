@@ -27,6 +27,17 @@ mixin ApiDj {
     });
   }
 
+  /// 热门电台
+  Future<DjListWrap> hotDjList({int offset = 0, int limit = 30}) {
+    var params = {'limit': limit, 'offset': offset};
+    return Https.dio
+        .postUri(joinUri('/weapi/djradio/hot/v1'),
+            data: params, options: joinOptions(cookies: {'os': 'pc'}))
+        .then((Response value) {
+      return DjListWrap.fromJson(value.data);
+    });
+  }
+
   Future<DjProgramsListWrap> userDjProgramsList(String userId,
       {int offset = 0, int limit = 30}) {
     var params = {'limit': limit, 'offset': offset};
