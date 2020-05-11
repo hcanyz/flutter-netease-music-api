@@ -640,3 +640,21 @@ Map<String, dynamic> _$PersonalizedDjProgramListWrapToJson(
       'category': instance.category,
       'result': instance.result,
     };
+
+DjProgramDetail _$DjProgramDetailFromJson(Map<String, dynamic> json) {
+  return DjProgramDetail()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..program = json['program'] == null
+        ? null
+        : DjProgram.fromJson(json['program'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$DjProgramDetailToJson(DjProgramDetail instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'program': instance.program,
+    };

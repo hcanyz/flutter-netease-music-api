@@ -239,6 +239,17 @@ mixin ApiDj {
     });
   }
 
+  /// 节目详情
+  Future<DjProgramDetail> djProgramDetail(String programId) {
+    var params = {'id': programId};
+    return Https.dio
+        .postUri(joinUri('/weapi/dj/program/detail'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return DjProgramDetail.fromJson(value.data);
+    });
+  }
+
   /// 电台 - 24小时主播榜
   Future<DjTopListListWrapX> djHoursTopList({int limit = 100}) {
     var params = {'limit': limit};

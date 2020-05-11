@@ -145,6 +145,11 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test dj program detail', () async {
+    var result = await api.djProgramDetail('8368032');
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test dj hours top list', () async {
     var result = await api.djHoursTopList();
     expect(result.code, RET_CODE_OK);

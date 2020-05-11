@@ -447,3 +447,15 @@ class PersonalizedDjProgramListWrap extends ServerStatusBean {
 
   Map<String, dynamic> toJson() => _$PersonalizedDjProgramListWrapToJson(this);
 }
+
+@JsonSerializable()
+class DjProgramDetail extends ServerStatusBean {
+  DjProgram program;
+
+  DjProgramDetail();
+
+  factory DjProgramDetail.fromJson(Map<String, dynamic> json) =>
+      _$DjProgramDetailFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DjProgramDetailToJson(this);
+}
