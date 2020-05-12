@@ -253,4 +253,14 @@ void main() {
     var result = await api.playlistSubscribers('2819660572');
     expect(result.code, RET_CODE_OK);
   });
+
+  test('test ordering digital album', () async {
+    var result = await api.orderingDigitalAlbum('10888');
+    expect(result.code, anyOf(RET_CODE_OK, RET_CODE_ILLEGAL));
+  });
+
+  test('test purchased digital album', () async {
+    var result = await api.purchasedDigitalAlbum();
+    expect(result.code, anyOf(RET_CODE_OK, RET_CODE_ILLEGAL));
+  });
 }

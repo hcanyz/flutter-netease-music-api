@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:netease_music_api/src/api/bean.dart';
 import 'package:netease_music_api/src/api/dj/bean.dart';
@@ -403,6 +405,44 @@ mixin ApiUser {
             data: params, options: joinOptions())
         .then((Response value) {
       return PlaylistSubscribersWrap.fromJson(value.data);
+    });
+  }
+
+  /// 购买数字专辑
+  /// [payment] 支付方式，0 为支付宝 3 为微信
+  /// TODO 账号没有这类数据，补充数据结构
+  Future<ServerStatusBean> orderingDigitalAlbum(String albumId,
+      {int payment = 3, int quantity = 1}) {
+    var params = {
+      'business': 'Album',
+      'paymentMethod': payment,
+      'digitalResources': jsonEncode([
+        {
+          'business': 'Album',
+          'resourceID': albumId,
+          'quantity': quantity,
+        }
+      ]),
+      'from': 'web'
+    };
+    return Https.dio
+        .postUri(joinUri('/api/ordering/web/digital'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
+  }
+
+  /// 我的数字专辑
+  /// TODO 账号没有这类数据，补充数据结构  paidAlbums
+  Future<ServerStatusBean> purchasedDigitalAlbum(
+      {bool total = true, int offset = 0, int limit = 30}) {
+    var params = {'total': total, 'limit': limit, 'offset': offset};
+    return Https.dio
+        .postUri(joinUri('/api/digitalAlbum/purchased'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
     });
   }
 }
