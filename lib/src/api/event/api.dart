@@ -234,6 +234,7 @@ mixin ApiEvent {
   }
 
   /// 评论点赞
+  /// !需要登录
   /// [id] 资源id
   /// [commentId 评论id
   /// 注意： 动态点赞不需要传入 id 参数，需要传入动态的 threadId 参数,
@@ -307,6 +308,7 @@ mixin ApiEvent {
   }
 
   /// 点赞与取消点赞资源
+  /// !需要登录
   /// [id] 资源id
   /// 注意： 动态点赞不需要传入 id 参数，需要传入动态的 threadId 参数,
   /// 如：/comment/like?type=6&cid=1419532712&threadId=A_EV_2_6559519868_32953014&t=0，
@@ -355,5 +357,18 @@ mixin ApiEvent {
         break;
     }
     return typeKey;
+  }
+
+  /// 私信会话列表
+  /// !需要登录
+  Future<ConversationListWrap> privateMsgConversationList(
+      {int offset = 0, int limit = 30, bool total = true}) {
+    var params = {'limit': limit, 'offset': offset, 'total': total};
+    return Https.dio
+        .postUri(joinUri('/api/msg/private/users'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return ConversationListWrap.fromJson(value.data);
+    });
   }
 }

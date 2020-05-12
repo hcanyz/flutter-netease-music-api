@@ -171,4 +171,13 @@ void main() {
     var result3 = await api.likeResource('2819660572', 'playlist', true);
     expect(result3.code, RET_CODE_OK);
   });
+
+  test('test private msg conversation list', () async {
+    var result = await api.privateMsgConversationList();
+    expect(result.code, RET_CODE_OK);
+
+    result.msgs.forEach((element) {
+      element.msgObj;
+    });
+  });
 }

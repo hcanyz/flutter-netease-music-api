@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:json_annotation/json_annotation.dart';
 import 'package:netease_music_api/netease_music_api.dart';
 import 'package:netease_music_api/src/api/bean.dart';
@@ -448,4 +450,113 @@ class CommentWrap extends ServerStatusBean {
       _$CommentWrapFromJson(json);
 
   Map<String, dynamic> toJson() => _$CommentWrapToJson(this);
+}
+
+@JsonSerializable()
+class MsgPromotion {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  String title;
+  String coverUrl;
+  String text;
+  String url;
+
+  int addTime;
+
+  MsgPromotion();
+
+  factory MsgPromotion.fromJson(Map<String, dynamic> json) =>
+      _$MsgPromotionFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MsgPromotionToJson(this);
+}
+
+@JsonSerializable()
+class MsgGeneral {
+  String title;
+  String subTitle;
+  String tag;
+  String subTag;
+  String noticeMsg;
+  String inboxBriefContent;
+  String webUrl;
+  String nativeUrl;
+  String cover;
+  String resName;
+
+  int channel;
+  int subType;
+  bool canPlay;
+
+  MsgGeneral();
+
+  factory MsgGeneral.fromJson(Map<String, dynamic> json) =>
+      _$MsgGeneralFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MsgGeneralToJson(this);
+}
+
+@JsonSerializable()
+class Msg {
+  String msg;
+  String title;
+  String pushMsg;
+  int type;
+  int resType;
+
+  bool newPub;
+
+  // type={6} ~
+
+  //type={12}
+  MsgPromotion promotionUrl;
+
+  //type={23}
+  MsgGeneral generalMsg;
+
+  //type={7}
+  Mv3 mv;
+
+  Msg();
+
+  factory Msg.fromJson(Map<String, dynamic> json) => _$MsgFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MsgToJson(this);
+}
+
+@JsonSerializable()
+class Conversation {
+  NeteaseUserInfo fromUser;
+  NeteaseUserInfo toUser;
+
+  String lastMsg;
+
+  bool noticeAccountFlag;
+
+  int lastMsgTime;
+  int newMsgCount;
+
+  Msg get msgObj {
+    return Msg.fromJson(jsonDecode(lastMsg));
+  }
+
+  Conversation();
+
+  factory Conversation.fromJson(Map<String, dynamic> json) =>
+      _$ConversationFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ConversationToJson(this);
+}
+
+@JsonSerializable()
+class ConversationListWrap extends ServerStatusBean {
+  List<Conversation> msgs;
+
+  ConversationListWrap();
+
+  factory ConversationListWrap.fromJson(Map<String, dynamic> json) =>
+      _$ConversationListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ConversationListWrapToJson(this);
 }

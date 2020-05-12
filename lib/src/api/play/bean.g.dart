@@ -243,6 +243,29 @@ Map<String, dynamic> _$Mv2ToJson(Mv2 instance) => <String, dynamic>{
       'creator': instance.creator,
     };
 
+Mv3 _$Mv3FromJson(Map<String, dynamic> json) {
+  return Mv3()
+    ..id = dynamicToString(json['id'])
+    ..name = json['name'] as String
+    ..artistName = json['artistName'] as String
+    ..imgurl = json['imgurl'] as String
+    ..imgurl16v9 = json['imgurl16v9'] as String
+    ..status = json['status'] as int
+    ..artist = json['artist'] == null
+        ? null
+        : Artists.fromJson(json['artist'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$Mv3ToJson(Mv3 instance) => <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'artistName': instance.artistName,
+      'imgurl': instance.imgurl,
+      'imgurl16v9': instance.imgurl16v9,
+      'status': instance.status,
+      'artist': instance.artist,
+    };
+
 VideoResolution _$VideoResolutionFromJson(Map<String, dynamic> json) {
   return VideoResolution()
     ..resolution = json['resolution'] as int

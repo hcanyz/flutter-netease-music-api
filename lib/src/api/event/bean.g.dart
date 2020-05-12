@@ -570,3 +570,132 @@ Map<String, dynamic> _$CommentWrapToJson(CommentWrap instance) =>
       'msg': instance.msg,
       'comment': instance.comment,
     };
+
+MsgPromotion _$MsgPromotionFromJson(Map<String, dynamic> json) {
+  return MsgPromotion()
+    ..id = dynamicToString(json['id'])
+    ..title = json['title'] as String
+    ..coverUrl = json['coverUrl'] as String
+    ..text = json['text'] as String
+    ..url = json['url'] as String
+    ..addTime = json['addTime'] as int;
+}
+
+Map<String, dynamic> _$MsgPromotionToJson(MsgPromotion instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'title': instance.title,
+      'coverUrl': instance.coverUrl,
+      'text': instance.text,
+      'url': instance.url,
+      'addTime': instance.addTime,
+    };
+
+MsgGeneral _$MsgGeneralFromJson(Map<String, dynamic> json) {
+  return MsgGeneral()
+    ..title = json['title'] as String
+    ..subTitle = json['subTitle'] as String
+    ..tag = json['tag'] as String
+    ..subTag = json['subTag'] as String
+    ..noticeMsg = json['noticeMsg'] as String
+    ..inboxBriefContent = json['inboxBriefContent'] as String
+    ..webUrl = json['webUrl'] as String
+    ..nativeUrl = json['nativeUrl'] as String
+    ..cover = json['cover'] as String
+    ..resName = json['resName'] as String
+    ..channel = json['channel'] as int
+    ..subType = json['subType'] as int
+    ..canPlay = json['canPlay'] as bool;
+}
+
+Map<String, dynamic> _$MsgGeneralToJson(MsgGeneral instance) =>
+    <String, dynamic>{
+      'title': instance.title,
+      'subTitle': instance.subTitle,
+      'tag': instance.tag,
+      'subTag': instance.subTag,
+      'noticeMsg': instance.noticeMsg,
+      'inboxBriefContent': instance.inboxBriefContent,
+      'webUrl': instance.webUrl,
+      'nativeUrl': instance.nativeUrl,
+      'cover': instance.cover,
+      'resName': instance.resName,
+      'channel': instance.channel,
+      'subType': instance.subType,
+      'canPlay': instance.canPlay,
+    };
+
+Msg _$MsgFromJson(Map<String, dynamic> json) {
+  return Msg()
+    ..msg = json['msg'] as String
+    ..title = json['title'] as String
+    ..pushMsg = json['pushMsg'] as String
+    ..type = json['type'] as int
+    ..resType = json['resType'] as int
+    ..newPub = json['newPub'] as bool
+    ..promotionUrl = json['promotionUrl'] == null
+        ? null
+        : MsgPromotion.fromJson(json['promotionUrl'] as Map<String, dynamic>)
+    ..generalMsg = json['generalMsg'] == null
+        ? null
+        : MsgGeneral.fromJson(json['generalMsg'] as Map<String, dynamic>)
+    ..mv = json['mv'] == null
+        ? null
+        : Mv3.fromJson(json['mv'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$MsgToJson(Msg instance) => <String, dynamic>{
+      'msg': instance.msg,
+      'title': instance.title,
+      'pushMsg': instance.pushMsg,
+      'type': instance.type,
+      'resType': instance.resType,
+      'newPub': instance.newPub,
+      'promotionUrl': instance.promotionUrl,
+      'generalMsg': instance.generalMsg,
+      'mv': instance.mv,
+    };
+
+Conversation _$ConversationFromJson(Map<String, dynamic> json) {
+  return Conversation()
+    ..fromUser = json['fromUser'] == null
+        ? null
+        : NeteaseUserInfo.fromJson(json['fromUser'] as Map<String, dynamic>)
+    ..toUser = json['toUser'] == null
+        ? null
+        : NeteaseUserInfo.fromJson(json['toUser'] as Map<String, dynamic>)
+    ..lastMsg = json['lastMsg'] as String
+    ..noticeAccountFlag = json['noticeAccountFlag'] as bool
+    ..lastMsgTime = json['lastMsgTime'] as int
+    ..newMsgCount = json['newMsgCount'] as int;
+}
+
+Map<String, dynamic> _$ConversationToJson(Conversation instance) =>
+    <String, dynamic>{
+      'fromUser': instance.fromUser,
+      'toUser': instance.toUser,
+      'lastMsg': instance.lastMsg,
+      'noticeAccountFlag': instance.noticeAccountFlag,
+      'lastMsgTime': instance.lastMsgTime,
+      'newMsgCount': instance.newMsgCount,
+    };
+
+ConversationListWrap _$ConversationListWrapFromJson(Map<String, dynamic> json) {
+  return ConversationListWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..msgs = (json['msgs'] as List)
+        ?.map((e) =>
+            e == null ? null : Conversation.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$ConversationListWrapToJson(
+        ConversationListWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'msgs': instance.msgs,
+    };

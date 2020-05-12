@@ -217,6 +217,27 @@ class Mv2 {
 }
 
 @JsonSerializable()
+class Mv3 {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  String name;
+  String artistName;
+  String imgurl;
+  String imgurl16v9;
+
+  int status;
+
+  Artists artist;
+
+  Mv3();
+
+  factory Mv3.fromJson(Map<String, dynamic> json) => _$Mv3FromJson(json);
+
+  Map<String, dynamic> toJson() => _$Mv3ToJson(this);
+}
+
+@JsonSerializable()
 class VideoResolution {
   int resolution;
   int size;
