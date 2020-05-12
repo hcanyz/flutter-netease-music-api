@@ -6,6 +6,118 @@ part of 'bean.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+UserSetting _$UserSettingFromJson(Map<String, dynamic> json) {
+  return UserSetting()
+    ..userId = dynamicToString(json['userId'])
+    ..profileSetting = json['profileSetting'] as int
+    ..ageSetting = json['ageSetting'] as int
+    ..areaSetting = json['areaSetting'] as int
+    ..collegeSetting = json['collegeSetting'] as int
+    ..villageAgeSetting = json['villageAgeSetting'] as int
+    ..followSingerSetting = json['followSingerSetting'] as int
+    ..personalServiceSetting = json['personalServiceSetting'] as int
+    ..concertSetting = json['concertSetting'] as int
+    ..socialSetting = json['socialSetting'] as int
+    ..shareSetting = json['shareSetting'] as int
+    ..playRecordSetting = json['playRecordSetting'] as int
+    ..broadcastSetting = json['broadcastSetting'] as int
+    ..commentSetting = json['commentSetting'] as int
+    ..phoneFriendSetting = json['phoneFriendSetting'] as bool
+    ..allowFollowedCanSeeMyPlayRecord =
+        json['allowFollowedCanSeeMyPlayRecord'] as bool
+    ..finishedFollowGuide = json['finishedFollowGuide'] as bool
+    ..allowOfflinePrivateMessageNotify =
+        json['allowOfflinePrivateMessageNotify'] as bool
+    ..allowOfflineForwardNotify = json['allowOfflineForwardNotify'] as bool
+    ..allowOfflineCommentNotify = json['allowOfflineCommentNotify'] as bool
+    ..allowOfflineCommentReplyNotify =
+        json['allowOfflineCommentReplyNotify'] as bool
+    ..allowOfflineNotify = json['allowOfflineNotify'] as bool
+    ..allowVideoSubscriptionNotify =
+        json['allowVideoSubscriptionNotify'] as bool
+    ..sendMiuiMsg = json['sendMiuiMsg'] as bool
+    ..allowImportDoubanPlaylist = json['allowImportDoubanPlaylist'] as bool
+    ..importedDoubanPlaylist = json['importedDoubanPlaylist'] as bool
+    ..importedXiamiPlaylist = json['importedXiamiPlaylist'] as bool
+    ..allowImportXiamiPlaylist = json['allowImportXiamiPlaylist'] as bool
+    ..allowSubscriptionNotify = json['allowSubscriptionNotify'] as bool
+    ..allowLikedNotify = json['allowLikedNotify'] as bool
+    ..allowNewFollowerNotify = json['allowNewFollowerNotify'] as bool
+    ..needRcmdEvent = json['needRcmdEvent'] as bool
+    ..allowPlaylistShareNotify = json['allowPlaylistShareNotify'] as bool
+    ..allowDJProgramShareNotify = json['allowDJProgramShareNotify'] as bool
+    ..allowDJRadioSubscriptionNotify =
+        json['allowDJRadioSubscriptionNotify'] as bool
+    ..allowPeopleCanSeeMyPlaynNotify =
+        json['allowPeopleCanSeeMyPlaynNotify'] as bool
+    ..peopleNearbyCanSeeMe = json['peopleNearbyCanSeeMe'] as bool
+    ..allowDJProgramSubscriptionNotify =
+        json['allowDJProgramSubscriptionNotify'] as bool;
+}
+
+Map<String, dynamic> _$UserSettingToJson(UserSetting instance) =>
+    <String, dynamic>{
+      'userId': instance.userId,
+      'profileSetting': instance.profileSetting,
+      'ageSetting': instance.ageSetting,
+      'areaSetting': instance.areaSetting,
+      'collegeSetting': instance.collegeSetting,
+      'villageAgeSetting': instance.villageAgeSetting,
+      'followSingerSetting': instance.followSingerSetting,
+      'personalServiceSetting': instance.personalServiceSetting,
+      'concertSetting': instance.concertSetting,
+      'socialSetting': instance.socialSetting,
+      'shareSetting': instance.shareSetting,
+      'playRecordSetting': instance.playRecordSetting,
+      'broadcastSetting': instance.broadcastSetting,
+      'commentSetting': instance.commentSetting,
+      'phoneFriendSetting': instance.phoneFriendSetting,
+      'allowFollowedCanSeeMyPlayRecord':
+          instance.allowFollowedCanSeeMyPlayRecord,
+      'finishedFollowGuide': instance.finishedFollowGuide,
+      'allowOfflinePrivateMessageNotify':
+          instance.allowOfflinePrivateMessageNotify,
+      'allowOfflineForwardNotify': instance.allowOfflineForwardNotify,
+      'allowOfflineCommentNotify': instance.allowOfflineCommentNotify,
+      'allowOfflineCommentReplyNotify': instance.allowOfflineCommentReplyNotify,
+      'allowOfflineNotify': instance.allowOfflineNotify,
+      'allowVideoSubscriptionNotify': instance.allowVideoSubscriptionNotify,
+      'sendMiuiMsg': instance.sendMiuiMsg,
+      'allowImportDoubanPlaylist': instance.allowImportDoubanPlaylist,
+      'importedDoubanPlaylist': instance.importedDoubanPlaylist,
+      'importedXiamiPlaylist': instance.importedXiamiPlaylist,
+      'allowImportXiamiPlaylist': instance.allowImportXiamiPlaylist,
+      'allowSubscriptionNotify': instance.allowSubscriptionNotify,
+      'allowLikedNotify': instance.allowLikedNotify,
+      'allowNewFollowerNotify': instance.allowNewFollowerNotify,
+      'needRcmdEvent': instance.needRcmdEvent,
+      'allowPlaylistShareNotify': instance.allowPlaylistShareNotify,
+      'allowDJProgramShareNotify': instance.allowDJProgramShareNotify,
+      'allowDJRadioSubscriptionNotify': instance.allowDJRadioSubscriptionNotify,
+      'allowPeopleCanSeeMyPlaynNotify': instance.allowPeopleCanSeeMyPlaynNotify,
+      'peopleNearbyCanSeeMe': instance.peopleNearbyCanSeeMe,
+      'allowDJProgramSubscriptionNotify':
+          instance.allowDJProgramSubscriptionNotify,
+    };
+
+UserSettingWrap _$UserSettingWrapFromJson(Map<String, dynamic> json) {
+  return UserSettingWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..setting = json['setting'] == null
+        ? null
+        : UserSetting.fromJson(json['setting'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$UserSettingWrapToJson(UserSettingWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'setting': instance.setting,
+    };
+
 NeteaseSimpleUserInfo _$NeteaseSimpleUserInfoFromJson(
     Map<String, dynamic> json) {
   return NeteaseSimpleUserInfo()

@@ -721,27 +721,6 @@ Map<String, dynamic> _$UsersMsgListWrapToJson(UsersMsgListWrap instance) =>
       'msgs': instance.msgs,
     };
 
-UserMsgListWrap2 _$UserMsgListWrap2FromJson(Map<String, dynamic> json) {
-  return UserMsgListWrap2()
-    ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
-    ..id = dynamicToString(json['id'])
-    ..newMsgs = (json['newMsgs'] as List)
-        ?.map(
-            (e) => e == null ? null : Msg2.fromJson(e as Map<String, dynamic>))
-        ?.toList();
-}
-
-Map<String, dynamic> _$UserMsgListWrap2ToJson(UserMsgListWrap2 instance) =>
-    <String, dynamic>{
-      'code': instance.code,
-      'message': instance.message,
-      'msg': instance.msg,
-      'id': instance.id,
-      'newMsgs': instance.newMsgs,
-    };
-
 UserMsgListWrap _$UserMsgListWrapFromJson(Map<String, dynamic> json) {
   return UserMsgListWrap()
     ..code = json['code'] as int
@@ -765,4 +744,25 @@ Map<String, dynamic> _$UserMsgListWrapToJson(UserMsgListWrap instance) =>
       'isArtist': instance.isArtist,
       'isSubed': instance.isSubed,
       'more': instance.more,
+    };
+
+UserMsgListWrap2 _$UserMsgListWrap2FromJson(Map<String, dynamic> json) {
+  return UserMsgListWrap2()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..id = dynamicToString(json['id'])
+    ..newMsgs = (json['newMsgs'] as List)
+        ?.map(
+            (e) => e == null ? null : Msg2.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$UserMsgListWrap2ToJson(UserMsgListWrap2 instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'id': instance.id,
+      'newMsgs': instance.newMsgs,
     };

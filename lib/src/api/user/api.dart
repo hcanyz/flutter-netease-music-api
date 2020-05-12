@@ -7,6 +7,15 @@ import 'package:netease_music_api/src/dio_ext.dart';
 import 'package:netease_music_api/src/netease_handler.dart';
 
 mixin ApiUser {
+  /// 用户设置
+  Future<UserSettingWrap> userSetting() {
+    return Https.dio
+        .postUri(joinUri('/api/user/setting'), data: {}, options: joinOptions())
+        .then((Response value) {
+      return UserSettingWrap.fromJson(value.data);
+    });
+  }
+
   /// 获取用户详情
   /// !需要登录
   Future<NeteaseUserDetail> userDetail(String userId) {

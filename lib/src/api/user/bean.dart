@@ -6,6 +6,72 @@ import 'package:netease_music_api/src/api/play/bean.dart';
 part 'bean.g.dart';
 
 @JsonSerializable()
+class UserSetting {
+  @JsonKey(fromJson: dynamicToString)
+  String userId;
+
+  int profileSetting;
+  int ageSetting;
+  int areaSetting;
+  int collegeSetting;
+  int villageAgeSetting;
+  int followSingerSetting;
+  int personalServiceSetting;
+  int concertSetting;
+  int socialSetting;
+  int shareSetting;
+  int playRecordSetting;
+  int broadcastSetting;
+  int commentSetting;
+
+  //newSongDiskSetting
+
+  bool phoneFriendSetting;
+  bool allowFollowedCanSeeMyPlayRecord;
+  bool finishedFollowGuide;
+  bool allowOfflinePrivateMessageNotify;
+  bool allowOfflineForwardNotify;
+  bool allowOfflineCommentNotify;
+  bool allowOfflineCommentReplyNotify;
+  bool allowOfflineNotify;
+  bool allowVideoSubscriptionNotify;
+  bool sendMiuiMsg;
+  bool allowImportDoubanPlaylist;
+  bool importedDoubanPlaylist;
+  bool importedXiamiPlaylist;
+  bool allowImportXiamiPlaylist;
+  bool allowSubscriptionNotify;
+  bool allowLikedNotify;
+  bool allowNewFollowerNotify;
+  bool needRcmdEvent;
+  bool allowPlaylistShareNotify;
+  bool allowDJProgramShareNotify;
+  bool allowDJRadioSubscriptionNotify;
+  bool allowPeopleCanSeeMyPlaynNotify;
+  bool peopleNearbyCanSeeMe;
+  bool allowDJProgramSubscriptionNotify;
+
+  UserSetting();
+
+  factory UserSetting.fromJson(Map<String, dynamic> json) =>
+      _$UserSettingFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserSettingToJson(this);
+}
+
+@JsonSerializable()
+class UserSettingWrap extends ServerStatusBean {
+  UserSetting setting;
+
+  UserSettingWrap();
+
+  factory UserSettingWrap.fromJson(Map<String, dynamic> json) =>
+      _$UserSettingWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserSettingWrapToJson(this);
+}
+
+@JsonSerializable()
 class NeteaseSimpleUserInfo {
   @JsonKey(fromJson: dynamicToString)
   String userId;

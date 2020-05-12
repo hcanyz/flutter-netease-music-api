@@ -35,6 +35,11 @@ void main() {
     }
   });
 
+  test('test user setting', () async {
+    var result = await api.userSetting();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test userDetail', () async {
     var result = await api
         .userDetail(NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId);
