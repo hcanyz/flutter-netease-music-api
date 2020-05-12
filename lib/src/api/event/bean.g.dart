@@ -680,6 +680,30 @@ Map<String, dynamic> _$ConversationToJson(Conversation instance) =>
       'newMsgCount': instance.newMsgCount,
     };
 
+Conversation2 _$Conversation2FromJson(Map<String, dynamic> json) {
+  return Conversation2()
+    ..id = dynamicToString(json['id'])
+    ..fromUser = json['fromUser'] == null
+        ? null
+        : NeteaseUserInfo.fromJson(json['fromUser'] as Map<String, dynamic>)
+    ..toUser = json['toUser'] == null
+        ? null
+        : NeteaseUserInfo.fromJson(json['toUser'] as Map<String, dynamic>)
+    ..msg = json['msg'] as String
+    ..time = json['time'] as int
+    ..batchId = json['batchId'] as int;
+}
+
+Map<String, dynamic> _$Conversation2ToJson(Conversation2 instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'fromUser': instance.fromUser,
+      'toUser': instance.toUser,
+      'msg': instance.msg,
+      'time': instance.time,
+      'batchId': instance.batchId,
+    };
+
 ConversationListWrap _$ConversationListWrapFromJson(Map<String, dynamic> json) {
   return ConversationListWrap()
     ..code = json['code'] as int
@@ -698,4 +722,28 @@ Map<String, dynamic> _$ConversationListWrapToJson(
       'message': instance.message,
       'msg': instance.msg,
       'msgs': instance.msgs,
+    };
+
+ConversationListWrap2 _$ConversationListWrap2FromJson(
+    Map<String, dynamic> json) {
+  return ConversationListWrap2()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..id = dynamicToString(json['id'])
+    ..newMsgs = (json['newMsgs'] as List)
+        ?.map((e) => e == null
+            ? null
+            : Conversation2.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$ConversationListWrap2ToJson(
+        ConversationListWrap2 instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'id': instance.id,
+      'newMsgs': instance.newMsgs,
     };

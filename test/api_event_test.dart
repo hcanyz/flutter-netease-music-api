@@ -180,4 +180,14 @@ void main() {
       element.msgObj;
     });
   });
+
+  test('test send private msg', () async {
+    var result =
+        await api.sendPrivateMsg('test', ['3251549719'], playlist: '117666725');
+    expect(result.code, RET_CODE_OK);
+
+    result.newMsgs.forEach((element) {
+      element.msgObj;
+    });
+  });
 }

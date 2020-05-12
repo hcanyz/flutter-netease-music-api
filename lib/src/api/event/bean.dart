@@ -550,6 +550,31 @@ class Conversation {
 }
 
 @JsonSerializable()
+class Conversation2 {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  NeteaseUserInfo fromUser;
+  NeteaseUserInfo toUser;
+
+  String msg;
+
+  int time;
+  int batchId;
+
+  Msg get msgObj {
+    return Msg.fromJson(jsonDecode(msg));
+  }
+
+  Conversation2();
+
+  factory Conversation2.fromJson(Map<String, dynamic> json) =>
+      _$Conversation2FromJson(json);
+
+  Map<String, dynamic> toJson() => _$Conversation2ToJson(this);
+}
+
+@JsonSerializable()
 class ConversationListWrap extends ServerStatusBean {
   List<Conversation> msgs;
 
@@ -559,4 +584,22 @@ class ConversationListWrap extends ServerStatusBean {
       _$ConversationListWrapFromJson(json);
 
   Map<String, dynamic> toJson() => _$ConversationListWrapToJson(this);
+}
+
+@JsonSerializable()
+class ConversationListWrap2 extends ServerStatusBean {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  List<Conversation2> newMsgs;
+
+  //sendblacklist
+  //blacklist
+
+  ConversationListWrap2();
+
+  factory ConversationListWrap2.fromJson(Map<String, dynamic> json) =>
+      _$ConversationListWrap2FromJson(json);
+
+  Map<String, dynamic> toJson() => _$ConversationListWrap2ToJson(this);
 }

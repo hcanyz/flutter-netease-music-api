@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:netease_music_api/src/api/bean.dart';
 import 'package:netease_music_api/src/api/event/bean.dart';
@@ -369,6 +371,24 @@ mixin ApiEvent {
             data: params, options: joinOptions())
         .then((Response value) {
       return ConversationListWrap.fromJson(value.data);
+    });
+  }
+
+  /// 发送私信
+  /// !需要登录
+  Future<ConversationListWrap2> sendPrivateMsg(String msg, List<String> userIds,
+      {String type = 'text', String playlist = ''}) {
+    var params = {
+      'userIds': jsonEncode(userIds),
+      'id': playlist,
+      'msg': msg,
+      'type': type
+    };
+    return Https.dio
+        .postUri(joinUri('/weapi/msg/private/send'),
+            data: params, options: joinOptions(cookies: {'os': 'pc'}))
+        .then((Response value) {
+      return ConversationListWrap2.fromJson(value.data);
     });
   }
 }
