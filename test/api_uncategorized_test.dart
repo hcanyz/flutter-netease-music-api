@@ -47,4 +47,12 @@ void main() {
     var result = await api.topListDetail();
     expect(result.code, RET_CODE_OK);
   });
+
+  test('test toplist detail', () async {
+    var result = await api.batchApi({
+      '/api/v2/banner/get': r'{"clientType": "pc"}',
+      '/api/user/setting': ''
+    });
+    expect(result, isNotNull);
+  });
 }

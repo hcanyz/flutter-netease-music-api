@@ -51,6 +51,23 @@ mixin ApiUncategorized {
     });
   }
 
+  /// batch批量请求接口
+  /// 登陆后调用此接口 ,传入接口和对应原始参数(原始参数非文档里写的参数,需参考源码),可批量请求接口
+  Future<Object> batchApi(Map<String, String> apis) {
+    Map<String, dynamic> params = {'e_r': true};
+    apis.forEach((key, value) {
+      params[key] = value;
+    });
+    return Https.dio
+        .postUri(joinUri('/eapi/batch'),
+            data: params,
+            options: joinOptions(
+                encryptType: EncryptType.EApi, eApiUrl: '/api/batch'))
+        .then((Response value) {
+      return value.data;
+    });
+  }
+
   /// 操作记录
   /// [action] 'play'
   Future<ServerStatusBean> weblog(
