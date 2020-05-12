@@ -3,11 +3,17 @@ Netease cloud music api for flutter ,reference https://github.com/Binaryify/Nete
 欢迎star、pull request
 
 ### 使用方法
+添加依赖
 ```yaml
 dependencies:
   netease_music_api:
     git:
       url: git://github.com/hcanyz/flutter-netease-music-api.git
+```
+使用
+```dart
+var api = NeteaseMusicApi();
+api.doSome ...
 ```
 
 ### 注意事项
@@ -23,6 +29,7 @@ dependencies:
 
 ### TODO
 - [x] 搬运 NeteaseCloudMusicApi库 所有api
+- [ ] 用户登录数据存储及变化通知
 - [ ] 完善 api unit test
 - [ ] 补齐 api bean 字段
 - [ ] 代码结构优化、模块重新划分
