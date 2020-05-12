@@ -173,7 +173,7 @@ void main() {
   });
 
   test('test private msg conversation list', () async {
-    var result = await api.privateMsgConversationList();
+    var result = await api.privateMsgListUsers();
     expect(result.code, RET_CODE_OK);
 
     result.msgs.forEach((element) {
@@ -183,10 +183,19 @@ void main() {
 
   test('test send private msg', () async {
     var result =
-        await api.sendPrivateMsg('test', ['3251549719'], playlist: '117666725');
+        await api.sendPrivateMsg('test', '3251549719', playlist: '117666725');
     expect(result.code, RET_CODE_OK);
 
     result.newMsgs.forEach((element) {
+      element.msgObj;
+    });
+  });
+
+  test('test private msg history', () async {
+    var result = await api.privateMsgListUser(defaultUserId);
+    expect(result.code, RET_CODE_OK);
+
+    result.msgs.forEach((element) {
       element.msgObj;
     });
   });

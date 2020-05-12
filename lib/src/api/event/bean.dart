@@ -498,7 +498,7 @@ class MsgGeneral {
 }
 
 @JsonSerializable()
-class Msg {
+class MsgContent {
   String msg;
   String title;
   String pushMsg;
@@ -518,15 +518,16 @@ class Msg {
   //type={7}
   Mv3 mv;
 
-  Msg();
+  MsgContent();
 
-  factory Msg.fromJson(Map<String, dynamic> json) => _$MsgFromJson(json);
+  factory MsgContent.fromJson(Map<String, dynamic> json) =>
+      _$MsgContentFromJson(json);
 
-  Map<String, dynamic> toJson() => _$MsgToJson(this);
+  Map<String, dynamic> toJson() => _$MsgContentToJson(this);
 }
 
 @JsonSerializable()
-class Conversation {
+class Msg {
   NeteaseUserInfo fromUser;
   NeteaseUserInfo toUser;
 
@@ -537,20 +538,19 @@ class Conversation {
   int lastMsgTime;
   int newMsgCount;
 
-  Msg get msgObj {
-    return Msg.fromJson(jsonDecode(lastMsg));
+  MsgContent get msgObj {
+    return MsgContent.fromJson(jsonDecode(lastMsg));
   }
 
-  Conversation();
+  Msg();
 
-  factory Conversation.fromJson(Map<String, dynamic> json) =>
-      _$ConversationFromJson(json);
+  factory Msg.fromJson(Map<String, dynamic> json) => _$MsgFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ConversationToJson(this);
+  Map<String, dynamic> toJson() => _$MsgToJson(this);
 }
 
 @JsonSerializable()
-class Conversation2 {
+class Msg2 {
   @JsonKey(fromJson: dynamicToString)
   String id;
 
@@ -562,44 +562,59 @@ class Conversation2 {
   int time;
   int batchId;
 
-  Msg get msgObj {
-    return Msg.fromJson(jsonDecode(msg));
+  MsgContent get msgObj {
+    return MsgContent.fromJson(jsonDecode(msg));
   }
 
-  Conversation2();
+  Msg2();
 
-  factory Conversation2.fromJson(Map<String, dynamic> json) =>
-      _$Conversation2FromJson(json);
+  factory Msg2.fromJson(Map<String, dynamic> json) => _$Msg2FromJson(json);
 
-  Map<String, dynamic> toJson() => _$Conversation2ToJson(this);
+  Map<String, dynamic> toJson() => _$Msg2ToJson(this);
 }
 
 @JsonSerializable()
-class ConversationListWrap extends ServerStatusBean {
-  List<Conversation> msgs;
+class UsersMsgListWrap extends ServerStatusBean {
+  List<Msg> msgs;
 
-  ConversationListWrap();
+  UsersMsgListWrap();
 
-  factory ConversationListWrap.fromJson(Map<String, dynamic> json) =>
-      _$ConversationListWrapFromJson(json);
+  factory UsersMsgListWrap.fromJson(Map<String, dynamic> json) =>
+      _$UsersMsgListWrapFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ConversationListWrapToJson(this);
+  Map<String, dynamic> toJson() => _$UsersMsgListWrapToJson(this);
 }
 
 @JsonSerializable()
-class ConversationListWrap2 extends ServerStatusBean {
+class UserMsgListWrap extends ServerStatusBean {
+  List<Msg2> msgs;
+
+  bool isArtist;
+  bool isSubed;
+  bool more;
+
+  UserMsgListWrap();
+
+  factory UserMsgListWrap.fromJson(Map<String, dynamic> json) =>
+      _$UserMsgListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserMsgListWrapToJson(this);
+}
+
+@JsonSerializable()
+class UserMsgListWrap2 extends ServerStatusBean {
   @JsonKey(fromJson: dynamicToString)
   String id;
 
-  List<Conversation2> newMsgs;
+  List<Msg2> newMsgs;
 
   //sendblacklist
   //blacklist
 
-  ConversationListWrap2();
+  UserMsgListWrap2();
 
-  factory ConversationListWrap2.fromJson(Map<String, dynamic> json) =>
-      _$ConversationListWrap2FromJson(json);
+  factory UserMsgListWrap2.fromJson(Map<String, dynamic> json) =>
+      _$UserMsgListWrap2FromJson(json);
 
-  Map<String, dynamic> toJson() => _$ConversationListWrap2ToJson(this);
+  Map<String, dynamic> toJson() => _$UserMsgListWrap2ToJson(this);
 }

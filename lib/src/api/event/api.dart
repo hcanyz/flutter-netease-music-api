@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:netease_music_api/src/api/bean.dart';
 import 'package:netease_music_api/src/api/event/bean.dart';
@@ -363,23 +361,23 @@ mixin ApiEvent {
 
   /// 私信会话列表
   /// !需要登录
-  Future<ConversationListWrap> privateMsgConversationList(
+  Future<UsersMsgListWrap> privateMsgListUsers(
       {int offset = 0, int limit = 30, bool total = true}) {
     var params = {'limit': limit, 'offset': offset, 'total': total};
     return Https.dio
         .postUri(joinUri('/api/msg/private/users'),
             data: params, options: joinOptions())
         .then((Response value) {
-      return ConversationListWrap.fromJson(value.data);
+      return UsersMsgListWrap.fromJson(value.data);
     });
   }
 
-  /// 发送私信
+  /// 发送私信（返回与这个用户的历史信息）
   /// !需要登录
-  Future<ConversationListWrap2> sendPrivateMsg(String msg, List<String> userIds,
+  Future<UserMsgListWrap2> sendPrivateMsg(String msg, String userId,
       {String type = 'text', String playlist = ''}) {
     var params = {
-      'userIds': jsonEncode(userIds),
+      'userIds': '[$userId]',
       'id': playlist,
       'msg': msg,
       'type': type
@@ -388,7 +386,25 @@ mixin ApiEvent {
         .postUri(joinUri('/weapi/msg/private/send'),
             data: params, options: joinOptions(cookies: {'os': 'pc'}))
         .then((Response value) {
-      return ConversationListWrap2.fromJson(value.data);
+      return UserMsgListWrap2.fromJson(value.data);
+    });
+  }
+
+  /// 私信内容(与某个用户的私信)
+  /// !需要登录
+  Future<UserMsgListWrap> privateMsgListUser(String userId,
+      {int offset = 0, int limit = 30, bool total = true}) {
+    var params = {
+      'userId': userId,
+      'limit': limit,
+      'offset': offset,
+      'total': total
+    };
+    return Https.dio
+        .postUri(joinUri('/api/msg/private/history'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return UserMsgListWrap.fromJson(value.data);
     });
   }
 }
