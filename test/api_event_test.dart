@@ -12,7 +12,7 @@ void main() {
 
   // PersistCookieJar 会存储cookie，登录完成后可以将doSetUp置为false,
   // TODO 登录接口需要验证本地是否登录只类的场景，不需要每次都去调用
-  const bool doSetUp = false;
+  const bool doSetUp = true;
 
   const defaultUserId = '3375937';
 
@@ -117,6 +117,17 @@ void main() {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test user comments', () async {
+    var result = await api.userComments(
+        NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId);
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test forwards', () async {
+    var result = await api.forwards();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test like comment', () async {
     var result = await api.playlistCommentList('2819660572');
     expect(result.code, RET_CODE_OK);
@@ -198,5 +209,10 @@ void main() {
     result.msgs.forEach((element) {
       element.msgObj;
     });
+  });
+
+  test('test msg notices', () async {
+    var result = await api.msgNotices();
+    expect(result.code, RET_CODE_OK);
   });
 }

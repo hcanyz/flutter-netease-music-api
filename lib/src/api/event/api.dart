@@ -233,6 +233,38 @@ mixin ApiEvent {
     });
   }
 
+  /// 通知 - 评论
+  /// !需要登录
+  Future<CommentListWrap> userComments(String userId,
+      {int beforeTime = -1, int limit = 30, bool total = true}) {
+    var params = {
+      'uid': userId,
+      'limit': limit,
+      'beforeTime': beforeTime,
+      'total': total
+    };
+    return Https.dio
+        .postUri(joinUri('/api/v1/user/comments/$userId'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return CommentListWrap.fromJson(value.data);
+    });
+  }
+
+  /// 通知 - @我
+  /// !需要登录
+  /// TODO 账号没有这类数据，补充数据结构  forwards
+  Future<ServerStatusBean> forwards(
+      {int offset = 0, int limit = 30, bool total = true}) {
+    var params = {'limit': limit, 'offset': offset, 'total': total};
+    return Https.dio
+        .postUri(joinUri('/api/forwards/get'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
+  }
+
   /// 评论点赞
   /// !需要登录
   /// [id] 资源id
@@ -405,6 +437,20 @@ mixin ApiEvent {
             data: params, options: joinOptions())
         .then((Response value) {
       return UserMsgListWrap.fromJson(value.data);
+    });
+  }
+
+  /// 通知
+  /// !需要登录
+  /// TODO 账号没有这类数据，补充数据结构  notices
+  Future<ServerStatusBean> msgNotices(
+      {int offset = 0, int limit = 30, bool total = true}) {
+    var params = {'limit': limit, 'offset': offset, 'total': total};
+    return Https.dio
+        .postUri(joinUri('/api/msg/notices'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
     });
   }
 }
