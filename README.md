@@ -56,4 +56,4 @@ api.doSome ...
 
 250: 可能是cookie中缺少 'os':'pc'
 
-如果你想知道更多如何使用这个库，可以参考我的另外一个项目。https://github.com/hcanyz/flutter-zmusic
+如果你想知道更多如何使用这个库，可以参考我的另外一个项目。https://github.com/hcanyz/flutter-zmusic ~
