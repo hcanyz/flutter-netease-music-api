@@ -368,10 +368,10 @@ mixin ApiUser {
 
   /// 删除歌单
   /// !需要登录
-  Future<ServerStatusBean> playlistDelete(String pid) {
-    var params = {'pid': pid};
+  Future<ServerStatusBean> playlistDelete(List<String> pids) {
+    var params = {'ids': jsonEncode(pids)};
     return Https.dio
-        .postUri(joinUri('/weapi/playlist/delete'),
+        .postUri(joinUri('/weapi/playlist/remove'),
             data: params, options: joinOptions(cookies: {'os': 'pc'}))
         .then((Response value) {
       return ServerStatusBean.fromJson(value.data);

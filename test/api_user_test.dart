@@ -228,7 +228,7 @@ void main() {
 
     sleep(Duration(seconds: 2));
 
-    var result2 = await api.playlistDelete(result.id);
+    var result2 = await api.playlistDelete([result.id]);
     expect(result2.code, RET_CODE_OK);
   });
 
@@ -245,7 +245,7 @@ void main() {
 
     sleep(Duration(seconds: 2));
 
-    var result4 = await api.playlistDelete(result.id);
+    var result4 = await api.playlistDelete([result.id]);
     expect(result4.code, RET_CODE_OK);
   });
 
