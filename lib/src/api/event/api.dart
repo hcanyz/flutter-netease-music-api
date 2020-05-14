@@ -443,9 +443,8 @@ mixin ApiEvent {
   /// 通知
   /// !需要登录
   /// TODO 账号没有这类数据，补充数据结构  notices
-  Future<ServerStatusBean> msgNotices(
-      {int offset = 0, int limit = 30, bool total = true}) {
-    var params = {'limit': limit, 'offset': offset, 'total': total};
+  Future<ServerStatusBean> msgNotices({int limit = 30, int lasttime = -1}) {
+    var params = {'limit': limit, 'lasttime ': lasttime};
     return Https.dio
         .postUri(joinUri('/api/msg/notices'),
             data: params, options: joinOptions())
