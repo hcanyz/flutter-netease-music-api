@@ -3,12 +3,13 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:netease_music_api/netease_music_api.dart';
 
+import 'MockNeteaseMusicApi.dart';
 import 'private_config.dart';
 
 void main() {
   NeteaseMusicApi.debug = true;
 
-  var api = NeteaseMusicApi();
+  var api = NeteaseMusicApi(provider: MockCookiePathProvider());
 
   // PersistCookieJar 会存储cookie，登录完成后可以将doSetUp置为false,
   // TODO 登录接口需要验证本地是否登录只类的场景，不需要每次都去调用

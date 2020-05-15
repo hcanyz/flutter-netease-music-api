@@ -2,12 +2,13 @@ import 'package:cookie_jar/cookie_jar.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:netease_music_api/netease_music_api.dart';
 
+import 'MockNeteaseMusicApi.dart';
 import 'private_config.dart';
 
 void main() {
   NeteaseMusicApi.debug = true;
 
-  var api = NeteaseMusicApi();
+  var api = NeteaseMusicApi(provider: MockCookiePathProvider());
 
   //是否测试发验证码
   const bool doSendCaptcha = false;

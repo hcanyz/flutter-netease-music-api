@@ -3,12 +3,14 @@ import 'dart:convert';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:netease_music_api/netease_music_api.dart';
 import 'package:netease_music_api/src/api/dj/api.dart';
 import 'package:netease_music_api/src/api/event/api.dart';
 import 'package:netease_music_api/src/api/search/api.dart';
 import 'package:netease_music_api/src/api/uncategorized/api.dart';
 import 'package:netease_music_api/src/api/user/api.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import 'api/login/api.dart';
@@ -39,12 +41,19 @@ class NeteaseMusicApi
     _accountInfo = infoWrap;
   }
 
-  NeteaseMusicApi._internal() {
+  NeteaseMusicApi._internal(CookiePathProvider provider) {
     if (_hasInit) {
       return;
     }
     _hasInit = true;
-    Https.dio.interceptors.add(CookieManager(PersistCookieJar()));
+
+    provider.getCookieSavedPath().then(
+        (value) => Https.dio.interceptors
+            .add(CookieManager(PersistCookieJar(dir: value))),
+        onError: (error) {
+      debugPrint(error);
+    });
+
     Https.dio.interceptors
         .add(InterceptorsWrapper(onRequest: (RequestOptions option) async {
       neteaseInterceptor(option);
@@ -75,7 +84,17 @@ class NeteaseMusicApi
     }
   }
 
-  factory NeteaseMusicApi() {
-    return NeteaseMusicApi._internal();
+  factory NeteaseMusicApi({CookiePathProvider provider}) {
+    if (provider == null) {
+      provider = CookiePathProvider();
+    }
+    return NeteaseMusicApi._internal(provider);
+  }
+}
+
+class CookiePathProvider {
+  Future<String> getCookieSavedPath() async {
+    return (await getApplicationSupportDirectory()).absolute.path +
+        "/znetease/cookies";
   }
 }
