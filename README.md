@@ -13,7 +13,7 @@ dependencies:
 使用
 
 ```dart
-final success = await NeteaseMusicApi.init(provider: CookiePathProvider(), debug: true);
+final success = await NeteaseMusicApi.init(debug: true);
 ```
 
 ```dart
