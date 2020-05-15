@@ -3,11 +3,11 @@ import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
 
-import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:encrypt/encrypt.dart';
 import 'package:flutter/cupertino.dart' hide Key;
+import 'package:netease_music_api/netease_music_api.dart';
 import 'package:pointycastle/digests/md5.dart';
 
 import 'encrypt_ext.dart';
@@ -30,7 +30,8 @@ void neteaseInterceptor(RequestOptions option) {
       option.headers[HttpHeaders.userAgentHeader] =
           _chooseUserAgent(option.extra['userAgent']);
 
-      var cookies = PersistCookieJar().loadForRequest(option.uri);
+      var cookies =
+          NeteaseMusicApi.cookieManager.cookieJar.loadForRequest(option.uri);
 
       var cookiesSb = new StringBuffer(CookieManager.getCookies(cookies) ?? '');
       option.extra['cookies'].forEach((key, value) {

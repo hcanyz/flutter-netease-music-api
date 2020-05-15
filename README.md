@@ -11,6 +11,11 @@ dependencies:
       url: git://github.com/hcanyz/flutter-netease-music-api.git
 ```
 使用
+
+```dart
+final success = await NeteaseMusicApi.init(provider: CookiePathProvider(), debug: true);
+```
+
 ```dart
 var api = NeteaseMusicApi();
 api.doSome ...

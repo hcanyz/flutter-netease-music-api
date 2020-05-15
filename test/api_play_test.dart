@@ -6,10 +6,10 @@ import 'package:netease_music_api/netease_music_api.dart';
 import 'MockNeteaseMusicApi.dart';
 import 'private_config.dart';
 
-void main() {
-  NeteaseMusicApi.debug = true;
+void main() async {
+  await NeteaseMusicApi.init(provider: MockCookiePathProvider(), debug: true);
 
-  var api = NeteaseMusicApi(provider: MockCookiePathProvider());
+  var api = NeteaseMusicApi();
 
   // PersistCookieJar 会存储cookie，登录完成后可以将doSetUp置为false,
   // TODO 登录接口需要验证本地是否登录只类的场景，不需要每次都去调用
@@ -161,7 +161,7 @@ void main() {
   });
 
   test('test punch song', () async {
-    var result = await api.punchSong(api, '167975', '2819660572');
+    var result = await api.punchSong('167975', '2819660572');
     expect(result.code, RET_CODE_OK);
   });
 

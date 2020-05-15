@@ -5,10 +5,10 @@ import 'package:netease_music_api/netease_music_api.dart';
 import 'MockNeteaseMusicApi.dart';
 import 'private_config.dart';
 
-void main() {
-  NeteaseMusicApi.debug = true;
+void main() async {
+  await NeteaseMusicApi.init(provider: MockCookiePathProvider(), debug: true);
 
-  var api = NeteaseMusicApi(provider: MockCookiePathProvider());
+  var api = NeteaseMusicApi();
 
   //是否测试发验证码
   const bool doSendCaptcha = false;
@@ -19,7 +19,7 @@ void main() {
   });
 
   test('test login email', () async {
-    PersistCookieJar().deleteAll();
+    (NeteaseMusicApi.cookieManager.cookieJar as PersistCookieJar).deleteAll();
 
     var result = await api.loginEmail(login_email, login_email_password);
     expect(result.code, RET_CODE_OK);
