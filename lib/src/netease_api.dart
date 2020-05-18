@@ -27,7 +27,7 @@ class NeteaseMusicApi
         ApiSearch,
         ApiUncategorized {
   static bool _hasInit = false;
-  static bool debug = false;
+  static bool _debug = false;
 
   //FIXME 先简单这么做，后面设计一下登录数据使用流程（使用、更新）
   static NeteaseAccountInfoWrap _accountInfo;
@@ -51,6 +51,8 @@ class NeteaseMusicApi
     final path = await provider.getCookieSavedPath();
     cookieManager = CookieManager(PersistCookieJar(dir: path));
 
+    _debug = debug;
+
     return true;
   }
 
@@ -68,14 +70,14 @@ class NeteaseMusicApi
     }, onResponse: (Response response) {
       //Headers.jsonContentType.contains(
       //response.headers.value(HttpHeaders.contentTypeHeader))
+      //Response content-type: [text/plain;charset=UTF-8]
       if (response.data is String) {
-        //Response content-type: [text/plain;charset=UTF-8]
         try {
           response.data = jsonDecode(response.data);
         } catch (e) {}
       }
     }));
-    if (debug) {
+    if (_debug) {
       Https.dio.interceptors.add(PrettyDioLogger(
           requestHeader: true,
           requestBody: true,
@@ -100,6 +102,6 @@ class NeteaseMusicApi
 class CookiePathProvider {
   Future<String> getCookieSavedPath() async {
     return (await getApplicationSupportDirectory()).absolute.path +
-        "/znetease/cookies";
+        "/zmusic/cookies";
   }
 }
