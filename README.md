@@ -18,7 +18,24 @@ final success = await NeteaseMusicApi.init(debug: true);
 
 ```dart
 var api = NeteaseMusicApi();
-api.doSome ...
+api.useSomeApi
+
+// 登录态变化
+var subscription = api.usc.listenerLoginState((event, accountInfoWrap) {
+    switch (event) {
+    case LoginState.Logined:
+      //do some
+      print(accountInfoWrap);
+      break;
+    case LoginState.Logout:
+      //do some
+      break;
+    }
+});
+
+
+// dispose
+subscription.cancel();
 ```
 
 ### 注意事项
