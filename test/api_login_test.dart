@@ -14,15 +14,58 @@ void main() async {
   const bool doSendCaptcha = false;
 
   test('test login cellPhone', () async {
+    var loginStateChange = [];
+
+    var subscription =
+        NeteaseMusicApi().usc.listenerLoginState((event, accountInfoWrap) {
+      loginStateChange
+          .add({'event': event, 'accountInfoWrap': accountInfoWrap});
+    });
+
     var result = await api.loginCellPhone(login_phone, login_phone_password);
     expect(result.code, RET_CODE_OK);
+
+    assert((NeteaseMusicApi.cookieManager.cookieJar as PersistCookieJar)
+            .loadForRequest(Uri.parse("https://music.163.com"))
+            ?.isNotEmpty ??
+        false);
+
+    var result2 = await api.logout();
+    expect(result2.code, RET_CODE_OK);
+
+    assert(loginStateChange[0]['event'] == LoginState.Logined);
+    assert(loginStateChange[0]['accountInfoWrap'] != null);
+
+    assert(loginStateChange[1]['event'] == LoginState.Logout);
+    assert(loginStateChange[1]['accountInfoWrap'] == null);
+
+    subscription.cancel();
   });
 
   test('test login email', () async {
+    var loginStateChange = [];
+
+    var subscription =
+        NeteaseMusicApi().usc.listenerLoginState((event, accountInfoWrap) {
+      loginStateChange
+          .add({'event': event, 'accountInfoWrap': accountInfoWrap});
+    });
+
     (NeteaseMusicApi.cookieManager.cookieJar as PersistCookieJar).deleteAll();
 
     var result = await api.loginEmail(login_email, login_email_password);
     expect(result.code, RET_CODE_OK);
+
+    var result2 = await api.logout();
+    expect(result2.code, RET_CODE_OK);
+
+    assert(loginStateChange[0]['event'] == LoginState.Logined);
+    assert(loginStateChange[0]['accountInfoWrap'] != null);
+
+    assert(loginStateChange[1]['event'] == LoginState.Logout);
+    assert(loginStateChange[1]['accountInfoWrap'] == null);
+
+    subscription.cancel();
   });
 
   test('test loginStatus', () async {
@@ -59,10 +102,28 @@ void main() async {
   });
 
   test('test verify logout', () async {
+    var loginStateChange = [];
+
+    var subscription =
+        NeteaseMusicApi().usc.listenerLoginState((event, accountInfoWrap) {
+      loginStateChange
+          .add({'event': event, 'accountInfoWrap': accountInfoWrap});
+    });
+
     var result = await api.logout();
     expect(result.code, RET_CODE_OK);
 
     result = await api.loginStatus();
     expect(result.code, RET_CODE_NEED_LOGIN);
+
+    assert(loginStateChange[0]['event'] == LoginState.Logout);
+    assert(loginStateChange[0]['accountInfoWrap'] == null);
+
+    assert((NeteaseMusicApi.cookieManager.cookieJar as PersistCookieJar)
+            .loadForRequest(Uri.parse("https://music.163.com"))
+            ?.isEmpty ??
+        true);
+
+    subscription.cancel();
   });
 }

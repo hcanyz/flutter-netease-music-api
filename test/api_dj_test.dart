@@ -127,7 +127,7 @@ void main() async {
 
   test('test user dj programs list', () async {
     var result = await api.userDjProgramsList(
-        NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId);
+        NeteaseMusicApi().usc.accountInfo?.account?.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 

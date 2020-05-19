@@ -31,7 +31,7 @@ mixin ApiLogin {
                 joinOptions(userAgent: UserAgent.Pc, cookies: {'os': 'pc'}))
         .then((Response value) {
       var info = NeteaseAccountInfoWrap.fromJson(value.data);
-      NeteaseMusicApi.accountInfo = info;
+      NeteaseMusicApi().usc.onLogined(info);
       return info;
     });
   }
@@ -51,7 +51,7 @@ mixin ApiLogin {
                 joinOptions(userAgent: UserAgent.Pc, cookies: {'os': 'pc'}))
         .then((Response value) {
       var info = NeteaseAccountInfoWrap.fromJson(value.data);
-      NeteaseMusicApi.accountInfo = info;
+      NeteaseMusicApi().usc.onLogined(info);
       return info;
     });
   }
@@ -191,7 +191,7 @@ mixin ApiLogin {
     return Https.dio
         .postUri(joinUri('/weapi/logout'), data: {}, options: joinOptions())
         .then((Response value) {
-      NeteaseMusicApi.accountInfo = null;
+      NeteaseMusicApi().usc.onLogout();
       return ServerStatusBean.fromJson(value.data);
     });
   }

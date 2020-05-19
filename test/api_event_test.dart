@@ -120,7 +120,7 @@ void main() async {
 
   test('test user comments', () async {
     var result = await api.userComments(
-        NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId);
+        NeteaseMusicApi().usc?.accountInfo?.account?.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 

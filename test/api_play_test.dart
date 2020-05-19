@@ -129,7 +129,7 @@ void main() async {
 
   test('test song like list', () async {
     var result = await api.likeSongList(
-        NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId);
+        NeteaseMusicApi().usc?.accountInfo?.account?.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 

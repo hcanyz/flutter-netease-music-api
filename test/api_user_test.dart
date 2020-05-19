@@ -42,8 +42,8 @@ void main() async {
   });
 
   test('test userDetail', () async {
-    var result = await api
-        .userDetail(NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId);
+    var result = await api.userDetail(
+        NeteaseMusicApi().usc?.accountInfo?.account?.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 
@@ -53,7 +53,7 @@ void main() async {
   });
 
   test('test user update profile', () async {
-    var info = NeteaseMusicApi.accountInfo;
+    var info = NeteaseMusicApi().usc.accountInfo;
     if (info == null) {
       return;
     }
@@ -71,14 +71,14 @@ void main() async {
 
   test('test user playlist', () async {
     var result = await api.userPlayList(
-        NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId);
+        NeteaseMusicApi().usc?.accountInfo?.account?.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
     expect(result.playlist, isNotNull);
   });
 
   test('test user update playlist info', () async {
     var result = await api.userPlayList(
-        NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId);
+        NeteaseMusicApi().usc?.accountInfo?.account?.id ?? defaultUserId);
     expect(result.playlist, isNotNull);
     expect(result.playlist, isNotEmpty);
 
@@ -194,7 +194,8 @@ void main() async {
 
   test('test user play record list', () async {
     var result = await api.userPlayRecordList(
-        NeteaseMusicApi?.accountInfo?.account?.id ?? defaultUserId, false);
+        NeteaseMusicApi().usc?.accountInfo?.account?.id ?? defaultUserId,
+        false);
     expect(result.code, RET_CODE_OK);
   });
 

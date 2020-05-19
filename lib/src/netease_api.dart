@@ -1,11 +1,12 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
-import 'package:netease_music_api/netease_music_api.dart';
 import 'package:netease_music_api/src/api/dj/api.dart';
 import 'package:netease_music_api/src/api/event/api.dart';
+import 'package:netease_music_api/src/api/login/bean.dart';
 import 'package:netease_music_api/src/api/search/api.dart';
 import 'package:netease_music_api/src/api/uncategorized/api.dart';
 import 'package:netease_music_api/src/api/user/api.dart';
@@ -26,19 +27,9 @@ class NeteaseMusicApi
         ApiEvent,
         ApiSearch,
         ApiUncategorized {
-  static bool _hasInit = false;
   static bool _debug = false;
 
-  //FIXME 先简单这么做，后面设计一下登录数据使用流程（使用、更新）
-  static NeteaseAccountInfoWrap _accountInfo;
-
-  static NeteaseAccountInfoWrap get accountInfo {
-    return _accountInfo;
-  }
-
-  static set accountInfo(NeteaseAccountInfoWrap infoWrap) {
-    _accountInfo = infoWrap;
-  }
+  static NeteaseMusicApi _neteaseMusicApi;
 
   static CookieManager cookieManager;
 
@@ -56,12 +47,9 @@ class NeteaseMusicApi
     return true;
   }
 
-  NeteaseMusicApi._internal() {
-    if (_hasInit) {
-      return;
-    }
-    _hasInit = true;
+  UserLoginStateController usc = UserLoginStateController();
 
+  NeteaseMusicApi._internal() {
     Https.dio.interceptors.add(cookieManager);
 
     Https.dio.interceptors
@@ -95,8 +83,55 @@ class NeteaseMusicApi
   }
 
   factory NeteaseMusicApi() {
-    return NeteaseMusicApi._internal();
+    if (_neteaseMusicApi == null) {
+      _neteaseMusicApi = NeteaseMusicApi._internal();
+    }
+    return _neteaseMusicApi;
   }
+}
+
+class UserLoginStateController {
+  StreamController _controller;
+
+  NeteaseAccountInfoWrap _accountInfo;
+
+  NeteaseAccountInfoWrap get accountInfo {
+    return _accountInfo;
+  }
+
+  StreamSubscription listenerLoginState(
+      void onChange(LoginState event, NeteaseAccountInfoWrap accountInfoWrap)) {
+    if (_controller == null) {
+      _controller = StreamController(sync: true);
+    }
+    return _controller.stream.listen((t) {
+      onChange(t, accountInfo);
+    });
+  }
+
+  void onLogined(NeteaseAccountInfoWrap infoWrap) {
+    _accountInfo = infoWrap;
+    if (_controller != null) {
+      _controller.add(LoginState.Logined);
+    }
+  }
+
+  void onLogout() {
+    _accountInfo = null;
+    (NeteaseMusicApi.cookieManager.cookieJar as PersistCookieJar).deleteAll();
+    if (_controller != null) {
+      _controller.add(LoginState.Logout);
+    }
+  }
+
+  void destroy() {
+    _controller.close();
+  }
+}
+
+enum LoginState {
+  Logined,
+  Logout,
 }
 
 class CookiePathProvider {
