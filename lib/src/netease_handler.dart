@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
 
+import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:encrypt/encrypt.dart';
@@ -12,7 +13,7 @@ import 'package:pointycastle/digests/md5.dart';
 
 import 'encrypt_ext.dart';
 
-/// [option.extra] 'hookRequestDate' [bool] 是否对request body加密
+/// [option.extra] 'hookRequestData' [bool] 是否对request body加密
 /// [option.extra] 'userAgent' [UserAgent]
 /// [option.extra] 'cookies' [Map<String,String>]
 /// [option.extra] 'encryptType' [EncryptType]
@@ -20,38 +21,37 @@ import 'encrypt_ext.dart';
 void neteaseInterceptor(RequestOptions option) {
   if (option.method == 'POST' &&
       HOSTS.contains(option.uri.host) &&
-      option.extra['hookRequestDate']) {
-    if (option.extra['hookRequestDate']) {
-      debugPrint('$TAG   interceptor before: ${option.uri}   ${option.data}');
+      option.extra['hookRequestData'] &&
+      !(option.extra['hookRequestDataSuccess'] ?? false)) {
+    debugPrint('$TAG   interceptor before: ${option.uri}   ${option.data}');
 
-      option.contentType = Headers.formUrlEncodedContentType;
-      option.headers[HttpHeaders.refererHeader] = HOST;
-      //option.headers['X-Real-IP'] = '118.88.88.88';
-      option.headers[HttpHeaders.userAgentHeader] =
-          _chooseUserAgent(option.extra['userAgent']);
+    option.contentType = Headers.formUrlEncodedContentType;
+    option.headers[HttpHeaders.refererHeader] = HOST;
+    //option.headers['X-Real-IP'] = '118.88.88.88';
+    option.headers[HttpHeaders.userAgentHeader] =
+        _chooseUserAgent(option.extra['userAgent']);
 
-      var cookies =
-          NeteaseMusicApi.cookieManager.cookieJar.loadForRequest(option.uri);
+    var cookies = loadCookies(host: option.uri);
 
-      var cookiesSb = new StringBuffer(CookieManager.getCookies(cookies) ?? '');
-      option.extra['cookies'].forEach((key, value) {
-        cookiesSb.write(
-            ' ;${Uri.encodeComponent(key)}=${Uri.encodeComponent(value)}');
-      });
-      option.headers[HttpHeaders.cookieHeader] = cookiesSb.toString();
+    var cookiesSb = new StringBuffer(CookieManager.getCookies(cookies) ?? '');
+    option.extra['cookies'].forEach((key, value) {
+      cookiesSb
+          .write(' ;${Uri.encodeComponent(key)}=${Uri.encodeComponent(value)}');
+    });
+    option.headers[HttpHeaders.cookieHeader] = cookiesSb.toString();
 
-      switch (option.extra['encryptType']) {
-        case EncryptType.LinuxForward:
-          _handleLinuxForward(option);
-          break;
-        case EncryptType.WeApi:
-          _handleWeApi(option);
-          break;
-        case EncryptType.EApi:
-          _handleEApi(option, cookies);
-          break;
-      }
+    switch (option.extra['encryptType']) {
+      case EncryptType.LinuxForward:
+        _handleLinuxForward(option);
+        break;
+      case EncryptType.WeApi:
+        _handleWeApi(option);
+        break;
+      case EncryptType.EApi:
+        _handleEApi(option, cookies);
+        break;
     }
+    option.extra['hookRequestDataSuccess'] = true;
   }
 }
 
@@ -244,7 +244,7 @@ Options joinOptions(
         Map<String, String> cookies = const {},
         String eApiUrl = ''}) =>
     Options(contentType: ContentType.json.value, extra: {
-      'hookRequestDate': hookRequestDate,
+      'hookRequestData': hookRequestDate,
       'encryptType': encryptType,
       'userAgent': userAgent,
       'cookies': cookies,
@@ -253,4 +253,15 @@ Options joinOptions(
 
 Uri joinUri(String path) {
   return Uri.parse('$HOST$path');
+}
+
+List<Cookie> loadCookies({Uri host}) {
+  if (host == null) {
+    host = Uri.parse(HOST);
+  }
+  return (NeteaseMusicApi.cookieManager.cookieJar).loadForRequest(host);
+}
+
+void deleteAllCookie() {
+  (NeteaseMusicApi.cookieManager.cookieJar as PersistCookieJar).deleteAll();
 }

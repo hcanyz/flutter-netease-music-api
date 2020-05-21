@@ -1,6 +1,11 @@
-import 'package:cookie_jar/cookie_jar.dart';
+import 'dart:convert';
+
+import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:netease_music_api/netease_music_api.dart';
+import 'package:netease_music_api/src/api/bean.dart';
+import 'package:netease_music_api/src/dio_ext.dart';
+import 'package:netease_music_api/src/netease_handler.dart';
 
 import 'MockNeteaseMusicApi.dart';
 import 'private_config.dart';
@@ -22,13 +27,12 @@ void main() async {
           .add({'event': event, 'accountInfoWrap': accountInfoWrap});
     });
 
+    deleteAllCookie();
+
     var result = await api.loginCellPhone(login_phone, login_phone_password);
     expect(result.code, RET_CODE_OK);
 
-    assert((NeteaseMusicApi.cookieManager.cookieJar as PersistCookieJar)
-            .loadForRequest(Uri.parse("https://music.163.com"))
-            ?.isNotEmpty ??
-        false);
+    assert(loadCookies()?.isNotEmpty ?? false);
 
     var result2 = await api.logout();
     expect(result2.code, RET_CODE_OK);
@@ -42,6 +46,27 @@ void main() async {
     subscription.cancel();
   });
 
+  test('test RET_CODE_NEED_LOGIN refresh token', () async {
+    var result = await api.loginCellPhone(login_phone, login_phone_password);
+    expect(result.code, RET_CODE_OK);
+
+    var setUp = 0;
+    Response result2 = await Https.dio
+        .postUri(joinUri('/weapi/subcount'),
+            data: {},
+            options: joinOptions().merge(responseDecoder:
+                (List<int> responseBytes, RequestOptions options,
+                    ResponseBody responseBody) {
+              if (setUp++ < 3) {
+                return jsonEncode({'code': RET_CODE_NEED_LOGIN});
+              }
+              return utf8.decode(responseBytes, allowMalformed: true);
+            }))
+        .timeout(Duration(seconds: 10));
+
+    expect(ServerStatusBean.fromJson(result2.data).code, RET_CODE_OK);
+  });
+
   test('test login email', () async {
     var loginStateChange = [];
 
@@ -51,7 +76,7 @@ void main() async {
           .add({'event': event, 'accountInfoWrap': accountInfoWrap});
     });
 
-    (NeteaseMusicApi.cookieManager.cookieJar as PersistCookieJar).deleteAll();
+    deleteAllCookie();
 
     var result = await api.loginEmail(login_email, login_email_password);
     expect(result.code, RET_CODE_OK);
@@ -119,10 +144,7 @@ void main() async {
     assert(loginStateChange[0]['event'] == LoginState.Logout);
     assert(loginStateChange[0]['accountInfoWrap'] == null);
 
-    assert((NeteaseMusicApi.cookieManager.cookieJar as PersistCookieJar)
-            .loadForRequest(Uri.parse("https://music.163.com"))
-            ?.isEmpty ??
-        true);
+    assert(loadCookies() ?? true);
 
     subscription.cancel();
   });
