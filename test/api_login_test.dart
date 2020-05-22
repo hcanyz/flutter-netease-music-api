@@ -18,7 +18,9 @@ void main() async {
   //是否测试发验证码
   const bool doSendCaptcha = false;
 
-  test('test login cellPhone', () async {
+  test('test login cellPhone then logout', () async {
+    deleteAllCookie();
+
     var loginStateChange = [];
 
     var subscription =
@@ -26,8 +28,6 @@ void main() async {
       loginStateChange
           .add({'event': event, 'accountInfoWrap': accountInfoWrap});
     });
-
-    deleteAllCookie();
 
     var result = await api.loginCellPhone(login_phone, login_phone_password);
     expect(result.code, RET_CODE_OK);
@@ -99,7 +99,9 @@ void main() async {
     });
   });
 
-  test('test login email', () async {
+  test('test login email then logout', () async {
+    deleteAllCookie();
+
     var loginStateChange = [];
 
     var subscription =
@@ -107,8 +109,6 @@ void main() async {
       loginStateChange
           .add({'event': event, 'accountInfoWrap': accountInfoWrap});
     });
-
-    deleteAllCookie();
 
     var result = await api.loginEmail(login_email, login_email_password);
     expect(result.code, RET_CODE_OK);
@@ -131,8 +131,11 @@ void main() async {
   });
 
   test('test refresh login', () async {
-    var result = await api.loginRefresh();
+    var result = await api.loginCellPhone(login_phone, login_phone_password);
     expect(result.code, RET_CODE_OK);
+
+    var result2 = await api.loginRefresh();
+    expect(result2.code, RET_CODE_OK);
   });
 
   test('test send captcha', () async {
@@ -149,35 +152,18 @@ void main() async {
   });
 
   test('test check cellPhone existence', () async {
-    var result = await api.checkCellPhoneExistence(login_phone);
-    expect(result.code, RET_CODE_OK);
-  });
-
-  test('test check cellPhone existence', () async {
-    var result = await api.initNickname('hcanyz');
-    expect(result.code, anyOf(RET_CODE_OK, RET_CODE_HAS_INIT));
-  });
-
-  test('test verify logout', () async {
-    var loginStateChange = [];
-
-    var subscription =
-        NeteaseMusicApi().usc.listenerLoginState((event, accountInfoWrap) {
-      loginStateChange
-          .add({'event': event, 'accountInfoWrap': accountInfoWrap});
-    });
-
-    var result = await api.logout();
+    var result = await api.loginCellPhone(login_phone, login_phone_password);
     expect(result.code, RET_CODE_OK);
 
-    result = await api.loginStatus();
-    expect(result.code, RET_CODE_NEED_LOGIN);
+    var result2 = await api.checkCellPhoneExistence(login_phone);
+    expect(result2.code, RET_CODE_OK);
+  });
 
-    assert(loginStateChange[0]['event'] == LoginState.Logout);
-    assert(loginStateChange[0]['accountInfoWrap'] == null);
+  test('test init nickname', () async {
+    var result = await api.loginCellPhone(login_phone, login_phone_password);
+    expect(result.code, RET_CODE_OK);
 
-    assert(loadCookies() ?? true);
-
-    subscription.cancel();
+    var result2 = await api.initNickname('hcanyz');
+    expect(result2.code, anyOf(RET_CODE_OK, RET_CODE_HAS_INIT));
   });
 }

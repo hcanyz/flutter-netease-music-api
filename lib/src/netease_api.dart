@@ -146,7 +146,7 @@ class UserLoginStateController {
   StreamSubscription listenerLoginState(
       void onChange(LoginState event, NeteaseAccountInfoWrap accountInfoWrap)) {
     if (_controller == null) {
-      _controller = StreamController(sync: true);
+      _controller = StreamController.broadcast(sync: true);
     }
     return _controller.stream.listen((t) {
       onChange(t, accountInfo);
