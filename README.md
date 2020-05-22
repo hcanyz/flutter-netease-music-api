@@ -51,9 +51,9 @@ subscription.cancel();
 
 ### TODO
 - [x] 搬运 NeteaseCloudMusicApi库 所有api
-- [ ] 用户登录数据存储及变化通知
+- [x] 用户登录数据存储及变化通知
+- [ ] 补齐 api bean 字段 80%
 - [ ] 完善 api unit test
-- [ ] 补齐 api bean 字段
 - [ ] 代码结构优化、模块重新划分
 - [ ] 文档
 - [ ] 持续同步api...

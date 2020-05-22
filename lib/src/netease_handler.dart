@@ -18,11 +18,10 @@ import 'encrypt_ext.dart';
 /// [option.extra] 'cookies' [Map<String,String>]
 /// [option.extra] 'encryptType' [EncryptType]
 /// [option.extra] 'eApiUrl' [String] eApi请求方式请求url 只能eApi方式使用
-void neteaseInterceptor(RequestOptions option) {
+dynamic neteaseInterceptor(RequestOptions option) {
   if (option.method == 'POST' &&
       HOSTS.contains(option.uri.host) &&
-      option.extra['hookRequestData'] &&
-      !(option.extra['hookRequestDataSuccess'] ?? false)) {
+      option.extra['hookRequestData']) {
     debugPrint('$TAG   interceptor before: ${option.uri}   ${option.data}');
 
     option.contentType = Headers.formUrlEncodedContentType;
@@ -39,19 +38,23 @@ void neteaseInterceptor(RequestOptions option) {
           .write(' ;${Uri.encodeComponent(key)}=${Uri.encodeComponent(value)}');
     });
     option.headers[HttpHeaders.cookieHeader] = cookiesSb.toString();
+    option.extra['cookiesHash'] =
+        loadCookiesHash(cookies) + NeteaseMusicApi().loginRefreshVersion;
 
-    switch (option.extra['encryptType']) {
-      case EncryptType.LinuxForward:
-        _handleLinuxForward(option);
-        break;
-      case EncryptType.WeApi:
-        _handleWeApi(option);
-        break;
-      case EncryptType.EApi:
-        _handleEApi(option, cookies);
-        break;
+    if (!(option.extra['hookRequestDataSuccess'] ?? false)) {
+      switch (option.extra['encryptType']) {
+        case EncryptType.LinuxForward:
+          _handleLinuxForward(option);
+          break;
+        case EncryptType.WeApi:
+          _handleWeApi(option);
+          break;
+        case EncryptType.EApi:
+          _handleEApi(option, cookies);
+          break;
+      }
+      option.extra['hookRequestDataSuccess'] = true;
     }
-    option.extra['hookRequestDataSuccess'] = true;
   }
 }
 
@@ -260,6 +263,11 @@ List<Cookie> loadCookies({Uri host}) {
     host = Uri.parse(HOST);
   }
   return (NeteaseMusicApi.cookieManager.cookieJar).loadForRequest(host);
+}
+
+int loadCookiesHash(List<Cookie> cookies) {
+  return hashList(cookies.map((e) => e.toString())) +
+      NeteaseMusicApi().loginRefreshVersion;
 }
 
 void deleteAllCookie() {

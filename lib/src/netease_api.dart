@@ -50,43 +50,51 @@ class NeteaseMusicApi
   static Dio _initDio(Dio dio, bool debug, bool refreshToken) {
     dio.interceptors.add(cookieManager);
 
-    dio.interceptors
-        .add(InterceptorsWrapper(onRequest: (RequestOptions option) async {
-      neteaseInterceptor(option);
-    }, onResponse: (Response response) async {
-      if (response.data is String) {
-        try {
-          response.data = jsonDecode(response.data);
-        } catch (e) {}
-      }
-      if (refreshToken && NeteaseMusicApi().usc.isLogined) {
-        try {
-          var result = ServerStatusBean.fromJson(response.data);
-          if (result.code == RET_CODE_NEED_LOGIN) {
-            // 刷新token
-            // 1. 刷新成功，请求重试
-            // 2. 刷新失败，登录态切换
+    dio.interceptors.add(InterceptorsWrapper(
+        onRequest: neteaseInterceptor,
+        onResponse: (Response response) async {
+          if (response.data is String) {
             try {
-              var request = response.request;
-              dio.lock();
-              var refreshResult = await NeteaseMusicApi()
-                  .loginRefresh(dio: _initDio(Dio(), debug, false));
-              dio.unlock();
-              if (refreshResult.code == RET_CODE_OK) {
-                return dio.request(
-                  request.path,
-                  options: request,
-                );
-              }
-            } catch (e) {} finally {
-              dio.unlock();
-            }
-            NeteaseMusicApi().usc.onLogout();
+              response.data = jsonDecode(response.data);
+            } catch (e) {}
           }
-        } catch (e) {}
-      }
-      return null;
-    }));
+          if (refreshToken && NeteaseMusicApi().usc.isLogined) {
+            try {
+              var result = ServerStatusBean.fromJson(response.data);
+              // 1. token已经更新，请求重试
+              // 2. token未更新
+              //    刷新token
+              //    1. 刷新成功，请求重试
+              //    2. 刷新失败，登录态切换
+              if (result.code == RET_CODE_NEED_LOGIN) {
+                try {
+                  var request = response.request;
+                  if (request.extra['cookiesHash'] !=
+                      loadCookiesHash(loadCookies())) {
+                    return dio.request(
+                      request.path,
+                      options: request,
+                    );
+                  }
+                  dio.lock();
+                  var refreshResult = await NeteaseMusicApi()
+                      .loginRefresh(dio: _initDio(Dio(), debug, false));
+                  dio.unlock();
+                  if (refreshResult.code == RET_CODE_OK) {
+                    return dio.request(
+                      request.path,
+                      options: request,
+                    );
+                  }
+                } catch (e) {} finally {
+                  dio.unlock();
+                }
+                NeteaseMusicApi().usc.onLogout();
+              }
+            } catch (e) {}
+          }
+          return null;
+        }));
 
     if (debug) {
       dio.interceptors.add(PrettyDioLogger(

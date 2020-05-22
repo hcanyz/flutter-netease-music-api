@@ -75,6 +75,12 @@ mixin ApiLogin {
     });
   }
 
+  var _loginRefreshVersion = 0;
+
+  get loginRefreshVersion {
+    return _loginRefreshVersion;
+  }
+
   /// 刷新token
   /// !需要登录
   /// [ServerStatusBean] code [RetCode]
@@ -86,7 +92,12 @@ mixin ApiLogin {
         .postUri(joinUri('/weapi/login/token/refresh'),
             data: {}, options: joinOptions(userAgent: UserAgent.Pc))
         .then((Response value) {
-      return ServerStatusBean.fromJson(value.data);
+      // 刷新token接口set-cookie并不会返回最新token. 所以需要记录一个版本号，避免多次刷新
+      var result = ServerStatusBean.fromJson(value.data);
+      if (result.code == RET_CODE_OK) {
+        _loginRefreshVersion++;
+      }
+      return result;
     });
   }
 

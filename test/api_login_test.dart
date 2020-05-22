@@ -46,25 +46,57 @@ void main() async {
     subscription.cancel();
   });
 
-  test('test RET_CODE_NEED_LOGIN refresh token', () async {
+  test('test RET_CODE_NEED_LOGIN refresh token x', () async {
     var result = await api.loginCellPhone(login_phone, login_phone_password);
     expect(result.code, RET_CODE_OK);
 
+    var oldCookiesHash = loadCookiesHash(loadCookies());
+    const mockNeedLoginCount = 1;
     var setUp = 0;
-    Response result2 = await Https.dio
-        .postUri(joinUri('/weapi/subcount'),
-            data: {},
-            options: joinOptions().merge(responseDecoder:
-                (List<int> responseBytes, RequestOptions options,
-                    ResponseBody responseBody) {
-              if (setUp++ < 3) {
-                return jsonEncode({'code': RET_CODE_NEED_LOGIN});
-              }
-              return utf8.decode(responseBytes, allowMalformed: true);
-            }))
-        .timeout(Duration(seconds: 10));
+    Response result2 = await Https.dio.postUri(joinUri('/weapi/subcount'),
+        data: {},
+        options: joinOptions().merge(responseDecoder: (List<int> responseBytes,
+            RequestOptions options, ResponseBody responseBody) {
+          if (setUp++ < mockNeedLoginCount) {
+            return jsonEncode({'code': RET_CODE_NEED_LOGIN});
+          }
+          return utf8.decode(responseBytes, allowMalformed: true);
+        }));
 
+    expect(setUp, mockNeedLoginCount + 1);
+    expect(oldCookiesHash, isNot(loadCookiesHash(loadCookies())));
     expect(ServerStatusBean.fromJson(result2.data).code, RET_CODE_OK);
+  });
+
+  test('test RET_CODE_NEED_LOGIN refresh token mutil', () async {
+    var result = await api.loginCellPhone(login_phone, login_phone_password);
+    expect(result.code, RET_CODE_OK);
+
+    var oldCookiesHash = loadCookiesHash(loadCookies());
+
+    var reqFun = () {
+      var mocked = false;
+      return Https.dio.postUri(joinUri('/weapi/subcount'),
+          data: {},
+          options: joinOptions().merge(responseDecoder:
+              (List<int> responseBytes, RequestOptions options,
+                  ResponseBody responseBody) {
+            if (!mocked) {
+              mocked = true;
+              return jsonEncode({'code': RET_CODE_NEED_LOGIN});
+            }
+            return utf8.decode(responseBytes, allowMalformed: true);
+          }));
+    };
+
+    List<Response> result2 =
+        await Future.wait([reqFun(), reqFun(), reqFun(), reqFun()]);
+
+    expect(oldCookiesHash, isNot(loadCookiesHash(loadCookies())));
+
+    result2.forEach((element) {
+      expect(ServerStatusBean.fromJson(element.data).code, RET_CODE_OK);
+    });
   });
 
   test('test login email', () async {
