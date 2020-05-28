@@ -21,7 +21,7 @@ var api = NeteaseMusicApi();
 api.useSomeApi
 
 // 登录态变化
-var subscription = api.usc.listenerLoginState((event, accountInfoWrap) {
+var subscription = api.usc.listenLoginState((event, accountInfoWrap) {
     switch (event) {
     case LoginState.Logined:
       //do some

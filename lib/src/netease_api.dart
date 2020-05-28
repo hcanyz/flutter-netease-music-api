@@ -149,7 +149,7 @@ class UserLoginStateController {
     return _curLoginState == LoginState.Logined;
   }
 
-  StreamSubscription listenerLoginState(
+  StreamSubscription listenLoginState(
       void onChange(LoginState event, NeteaseAccountInfoWrap accountInfoWrap)) {
     if (_controller == null) {
       _controller = StreamController.broadcast(sync: true);

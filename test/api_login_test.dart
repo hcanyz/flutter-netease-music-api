@@ -24,7 +24,7 @@ void main() async {
     var loginStateChange = [];
 
     var subscription =
-        NeteaseMusicApi().usc.listenerLoginState((event, accountInfoWrap) {
+        NeteaseMusicApi().usc.listenLoginState((event, accountInfoWrap) {
       loginStateChange
           .add({'event': event, 'accountInfoWrap': accountInfoWrap});
     });
@@ -107,7 +107,7 @@ void main() async {
     var loginStateChange = [];
 
     var subscription =
-        NeteaseMusicApi().usc.listenerLoginState((event, accountInfoWrap) {
+        NeteaseMusicApi().usc.listenLoginState((event, accountInfoWrap) {
       loginStateChange
           .add({'event': event, 'accountInfoWrap': accountInfoWrap});
     });
