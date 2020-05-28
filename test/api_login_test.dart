@@ -7,11 +7,11 @@ import 'package:netease_music_api/src/api/bean.dart';
 import 'package:netease_music_api/src/dio_ext.dart';
 import 'package:netease_music_api/src/netease_handler.dart';
 
-import 'MockNeteaseMusicApi.dart';
 import 'private_config.dart';
+import 'test_helper.dart';
 
 void main() async {
-  await NeteaseMusicApi.init(provider: MockCookiePathProvider(), debug: true);
+  await NeteaseMusicApi.init(provider: MockPathProvider(), debug: true);
 
   var api = NeteaseMusicApi();
 
@@ -19,7 +19,7 @@ void main() async {
   const bool doSendCaptcha = false;
 
   test('test login cellPhone then logout', () async {
-    deleteAllCookie();
+    api.usc.onLogout();
 
     var loginStateChange = [];
 
@@ -69,6 +69,8 @@ void main() async {
   });
 
   test('test RET_CODE_NEED_LOGIN refresh token mutil', () async {
+    api.usc.onLogout();
+
     var result = await api.loginCellPhone(login_phone, login_phone_password);
     expect(result.code, RET_CODE_OK);
 
@@ -100,7 +102,7 @@ void main() async {
   });
 
   test('test login email then logout', () async {
-    deleteAllCookie();
+    api.usc.onLogout();
 
     var loginStateChange = [];
 

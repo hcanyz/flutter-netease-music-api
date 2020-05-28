@@ -25,6 +25,9 @@ const int RET_CODE_UPDATE_PROFILE_OCCUPY = 505;
 const int RET_CODE_CAPTCHA_VERIFY_FAIL = 503;
 const int RET_CODE_CAPTCHA_VERIFY_FREQUENTLY = 405;
 
+//未付费歌曲无法收藏
+const int RET_CODE_UNPAID = 512;
+
 enum RetCode {
   Ok,
   NeedLogin,

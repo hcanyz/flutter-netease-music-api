@@ -4,36 +4,19 @@ import 'dart:math';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:netease_music_api/netease_music_api.dart';
 
-import 'MockNeteaseMusicApi.dart';
-import 'private_config.dart';
+import 'test_helper.dart';
 
 void main() async {
-  await NeteaseMusicApi.init(provider: MockCookiePathProvider(), debug: true);
+  await NeteaseMusicApi.init(provider: MockPathProvider(), debug: true);
 
   var api = NeteaseMusicApi();
-
-  // PersistCookieJar 会存储cookie，登录完成后可以将doSetUp置为false,
-  // TODO 登录接口需要验证本地是否登录只类的场景，不需要每次都去调用
-  const bool doSetUp = true;
 
   const defaultUserId = '3375937';
   // ~
   const defaultArtistId = '5770';
 
   setUp(() async {
-    if (!doSetUp) return;
-    try {
-      var result = await api.loginCellPhone(login_phone, login_phone_password);
-      if (result.code == RET_CODE_OK) {
-        return;
-      }
-      result = await api.loginEmail(login_email, login_email_password);
-      if (result.code == RET_CODE_OK) {
-        return;
-      }
-    } catch (e) {
-      //前置条件允许出错
-    }
+    await needLogin(api);
   });
 
   test('test user setting', () async {
@@ -239,7 +222,7 @@ void main() async {
     expect(result.code, RET_CODE_OK);
 
     var result2 = await api.playlistManipulateTracks(result.id, '167975', true);
-    expect(result2.code, RET_CODE_OK);
+    expect(result2.code, anyOf(RET_CODE_UNPAID, RET_CODE_OK));
 
     var result3 =
         await api.playlistManipulateTracks(result.id, '167975', false);

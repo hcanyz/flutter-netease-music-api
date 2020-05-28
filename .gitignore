@@ -4,6 +4,9 @@ test/private_config.dart
 # dio
 .cookies
 
+# data
+.zmusic
+
 # Miscellaneous
 *.class
 *.log

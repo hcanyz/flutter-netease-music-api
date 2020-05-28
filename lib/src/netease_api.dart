@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
@@ -32,15 +33,18 @@ class NeteaseMusicApi
   static NeteaseMusicApi _neteaseMusicApi;
 
   static CookieManager cookieManager;
+  static PathProvider pathProvider;
 
-  static Future<bool> init(
-      {CookiePathProvider provider, bool debug = false}) async {
+  static Future<bool> init({PathProvider provider, bool debug = false}) async {
     if (provider == null) {
-      provider = CookiePathProvider();
+      provider = PathProvider();
     }
+    pathProvider = provider;
 
-    final path = await provider.getCookieSavedPath();
-    cookieManager = CookieManager(PersistCookieJar(dir: path));
+    await provider.init();
+
+    cookieManager =
+        CookieManager(PersistCookieJar(dir: provider.getCookieSavedPath()));
 
     _initDio(Https.dio, debug, true);
 
@@ -129,6 +133,8 @@ class UserLoginStateController {
   StreamController _controller;
 
   UserLoginStateController() {
+    _checkCreateSavePath();
+    _readAccountInfo();
     _refreshLoginState(
         loadCookies().isNotEmpty ? LoginState.Logined : LoginState.Logout);
   }
@@ -156,12 +162,39 @@ class UserLoginStateController {
   void onLogined(NeteaseAccountInfoWrap infoWrap) {
     _accountInfo = infoWrap;
     _refreshLoginState(LoginState.Logined);
+    _saveAccountInfo(infoWrap);
   }
 
   void onLogout() {
     _accountInfo = null;
     deleteAllCookie();
     _refreshLoginState(LoginState.Logout);
+    _saveAccountInfo(null);
+  }
+
+  void _saveAccountInfo(NeteaseAccountInfoWrap infoWrap) {
+    _saveFile().writeAsString(jsonEncode(infoWrap), flush: true);
+  }
+
+  void _readAccountInfo() {
+    try {
+      var accountInfo = _saveFile().readAsStringSync();
+
+      _accountInfo = NeteaseAccountInfoWrap.fromJson(jsonDecode(accountInfo));
+    } catch (e) {
+      print('login info error');
+      onLogout();
+    }
+  }
+
+  File _saveFile() => File(
+      NeteaseMusicApi.pathProvider.getDataSavedPath() + "_accountInfo.json");
+
+  _checkCreateSavePath() {
+    var file = _saveFile();
+    if (!file.existsSync()) {
+      file.createSync(recursive: true);
+    }
   }
 
   void _refreshLoginState(LoginState state) {
@@ -181,9 +214,22 @@ enum LoginState {
   Logout,
 }
 
-class CookiePathProvider {
-  Future<String> getCookieSavedPath() async {
-    return (await getApplicationSupportDirectory()).absolute.path +
-        "/zmusic/cookies";
+class PathProvider {
+  var _cookiePath;
+  var _dataPath;
+
+  init() async {
+    _cookiePath = (await getApplicationSupportDirectory()).absolute.path +
+        "/zmusic/.cookies/";
+    _dataPath = (await getApplicationSupportDirectory()).absolute.path +
+        "/zmusic/.data/";
+  }
+
+  String getCookieSavedPath() {
+    return _cookiePath;
+  }
+
+  String getDataSavedPath() {
+    return _dataPath;
   }
 }
