@@ -150,7 +150,8 @@ class Song {
   Music lMusic;
   Music bMusic;
 
-  String noCopyrightRcmd;
+  // {type: 2, typeDesc: 其它版本可播, songId: null}
+  // String noCopyrightRcmd;
 
   Song();
 

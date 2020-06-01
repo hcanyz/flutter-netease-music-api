@@ -153,8 +153,7 @@ Song _$SongFromJson(Map<String, dynamic> json) {
         : Music.fromJson(json['lMusic'] as Map<String, dynamic>)
     ..bMusic = json['bMusic'] == null
         ? null
-        : Music.fromJson(json['bMusic'] as Map<String, dynamic>)
-    ..noCopyrightRcmd = json['noCopyrightRcmd'] as String;
+        : Music.fromJson(json['bMusic'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$SongToJson(Song instance) => <String, dynamic>{
@@ -191,7 +190,6 @@ Map<String, dynamic> _$SongToJson(Song instance) => <String, dynamic>{
       'mMusic': instance.mMusic,
       'lMusic': instance.lMusic,
       'bMusic': instance.bMusic,
-      'noCopyrightRcmd': instance.noCopyrightRcmd,
     };
 
 Song2 _$Song2FromJson(Map<String, dynamic> json) {
