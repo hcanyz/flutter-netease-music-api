@@ -10,6 +10,7 @@ import 'package:netease_music_api/src/netease_handler.dart';
 
 mixin ApiUser {
   /// 用户设置
+  /// !需要登录
   Future<UserSettingWrap> userSetting() {
     return Https.dio
         .postUri(joinUri('/api/user/setting'), data: {}, options: joinOptions())
@@ -393,18 +394,6 @@ mixin ApiUser {
             data: params, options: joinOptions())
         .then((Response value) {
       return ServerStatusBean.fromJson(value.data);
-    });
-  }
-
-  /// 歌单收藏者
-  Future<PlaylistSubscribersWrap> playlistSubscribers(String pid,
-      {int offset = 0, int limit = 30}) {
-    var params = {'id': pid, 'limit': limit, 'offset': offset};
-    return Https.dio
-        .postUri(joinUri('/weapi/playlist/subscribers'),
-            data: params, options: joinOptions())
-        .then((Response value) {
-      return PlaylistSubscribersWrap.fromJson(value.data);
     });
   }
 

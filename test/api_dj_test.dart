@@ -10,10 +10,6 @@ void main() async {
 
   const defaultUserId = '3375937';
 
-  setUp(() async {
-    await needLogin(api);
-  });
-
   test('test dj radio banner', () async {
     var result = await api.djRadioBanner();
     expect(result.code, RET_CODE_OK);
@@ -109,8 +105,8 @@ void main() async {
   });
 
   test('test user dj programs list', () async {
-    var result = await api.userDjProgramsList(
-        NeteaseMusicApi().usc.accountInfo?.account?.id ?? defaultUserId);
+    var result = await api
+        .userDjProgramsList(api.usc.accountInfo?.account?.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 

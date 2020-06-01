@@ -18,6 +18,11 @@ void main() async {
     await needLogin(api);
   });
 
+  test('test user playlist subscribers', () async {
+    var result = await api.playlistSubscribers('2819660572');
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test playlist catalogue', () async {
     var result = await api.playlistCatalogue();
     expect(result.code, RET_CODE_OK);

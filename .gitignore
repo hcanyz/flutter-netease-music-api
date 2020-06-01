@@ -1,10 +1,7 @@
 # private ~
 test/private_config.dart
 
-# dio
-.cookies
-
-# data
+# unit test data
 .zmusic
 
 # Miscellaneous

@@ -205,7 +205,6 @@ mixin ApiDj {
   }
 
   /// 电台节目排行榜
-  /// !需要登录
   Future<DjProgramTopListListWrap2> djProgramsTopList(
       {int offset = 0, int limit = 100}) {
     var params = {'limit': limit, 'offset': offset};

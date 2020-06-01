@@ -38,6 +38,8 @@ var subscription = api.usc.listenLoginState((event, accountInfoWrap) {
 subscription.cancel();
 ```
 
+如果你想知道更多如何使用这个库，可以参考我的另外一个项目。https://github.com/hcanyz/flutter-zmusic ~
+
 ### 注意事项
 - unit test 需要在test/目录下添加 private_config.dart
     ```dart
@@ -79,5 +81,3 @@ subscription.cancel();
 | 512  | 未付费歌曲无法收藏                 |
 
 250: 可能是cookie中缺少 'os':'pc'
-
-如果你想知道更多如何使用这个库，可以参考我的另外一个项目。https://github.com/hcanyz/flutter-zmusic ~

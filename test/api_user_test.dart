@@ -15,6 +15,7 @@ void main() async {
   // ~
   const defaultArtistId = '5770';
 
+  // api_user 都需要登录
   setUp(() async {
     await needLogin(api);
   });
@@ -25,8 +26,8 @@ void main() async {
   });
 
   test('test userDetail', () async {
-    var result = await api.userDetail(
-        NeteaseMusicApi().usc?.accountInfo?.account?.id ?? defaultUserId);
+    var result = await api
+        .userDetail(api.usc?.accountInfo?.account?.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 
@@ -36,7 +37,7 @@ void main() async {
   });
 
   test('test user update profile', () async {
-    var info = NeteaseMusicApi().usc.accountInfo;
+    var info = api.usc.accountInfo;
     if (info == null) {
       return;
     }
@@ -53,15 +54,15 @@ void main() async {
   });
 
   test('test user playlist', () async {
-    var result = await api.userPlayList(
-        NeteaseMusicApi().usc?.accountInfo?.account?.id ?? defaultUserId);
+    var result = await api
+        .userPlayList(api.usc?.accountInfo?.account?.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
     expect(result.playlist, isNotNull);
   });
 
   test('test user update playlist info', () async {
-    var result = await api.userPlayList(
-        NeteaseMusicApi().usc?.accountInfo?.account?.id ?? defaultUserId);
+    var result = await api
+        .userPlayList(api.usc?.accountInfo?.account?.id ?? defaultUserId);
     expect(result.playlist, isNotNull);
     expect(result.playlist, isNotEmpty);
 
@@ -232,11 +233,6 @@ void main() async {
 
     var result4 = await api.playlistDelete([result.id]);
     expect(result4.code, RET_CODE_OK);
-  });
-
-  test('test user playlist subscribers', () async {
-    var result = await api.playlistSubscribers('2819660572');
-    expect(result.code, RET_CODE_OK);
   });
 
   test('test ordering digital album', () async {

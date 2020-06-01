@@ -9,6 +9,18 @@ import 'package:netease_music_api/src/netease_handler.dart';
 import 'bean.dart';
 
 mixin ApiPlay {
+  /// 歌单收藏者
+  Future<PlaylistSubscribersWrap> playlistSubscribers(String pid,
+      {int offset = 0, int limit = 30}) {
+    var params = {'id': pid, 'limit': limit, 'offset': offset};
+    return Https.dio
+        .postUri(joinUri('/weapi/playlist/subscribers'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return PlaylistSubscribersWrap.fromJson(value.data);
+    });
+  }
+
   /// 歌单分类
   Future<PlaylistCatalogueWrap> playlistCatalogue() {
     return Https.dio
