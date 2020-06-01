@@ -145,12 +145,11 @@ void main() async {
 
     sleep(Duration(seconds: 1));
 
-    //    fixme 回复评论 code 400
-    //    var result3 = await api.comment('2819660572', 'playlist', 'replay',
-    //        content: '321', commentId: result2.comment.commentId);
-    //    expect(result3.code, RET_CODE_OK);
-    //
-    //    sleep(Duration(seconds: 1));
+    var result3 = await api.comment('2819660572', 'playlist', 'reply',
+        content: '321', commentId: result2.comment.commentId);
+    expect(result3.code, RET_CODE_OK);
+
+    sleep(Duration(seconds: 1));
 
     var result4 = await api.comment('2819660572', 'playlist', 'delete',
         commentId: result2.comment.commentId);
