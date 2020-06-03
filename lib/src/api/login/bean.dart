@@ -59,11 +59,15 @@ class NeteaseAccountInfoWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class CellPhoneCheckExistenceRet extends ServerStatusBean {
+  // 1: 存在   -1: 不存在
   int exist;
 
   String nickname;
 
   bool hasPassword;
+
+  /// 账号不存在 或者 没有密码 需要短信登录
+  bool get needUseSms => exist != 1 || !hasPassword;
 
   CellPhoneCheckExistenceRet();
 
