@@ -61,7 +61,6 @@ subscription.cancel();
 - [ ] 持续同步api...
 
 ### errorCode
-
 | code | desc                               |
 |------|--------------------                |
 | -460 | Cheating                           |
@@ -81,3 +80,11 @@ subscription.cancel();
 | 512  | 未付费歌曲无法收藏                 |
 
 250: 可能是cookie中缺少 'os':'pc'
+
+### flutter version
+```text
+Flutter 1.19.0-4.0.pre.43 • channel master • https://github.com/flutter/flutter.git
+Framework • revision 95edf28150 (59 minutes ago) • 2020-06-03 17:41:15 -0700
+Engine • revision 859d892f1f
+Tools • Dart 2.9.0 (build 2.9.0-13.0.dev 54adfeb93f)
+```
