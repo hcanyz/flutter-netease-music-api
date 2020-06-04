@@ -160,11 +160,19 @@ mixin ApiPlay {
   /// https://binaryify.github.io/NeteaseCloudMusicApi/#/?id=%e8%8e%b7%e5%8f%96%e6%ad%8c%e5%8d%95%e8%af%a6%e6%83%85
   /// [categoryId] 可从歌单分类接口获取[playlistCatalogue]
   Future<SinglePlayListWrap> playListDetail(String categoryId,
-      {int subCount = 8}) {
-    var params = {'id': categoryId, 'n': 1000, 's': subCount};
+      {int subCount = 5}) {
+    var params = {
+      'id': categoryId,
+      'n': 1000,
+      's': '$subCount',
+      'shareUserId': '0'
+    };
     return Https.dio
-        .postUri(joinUri('/weapi/v3/playlist/detail'),
-            data: params, options: joinOptions())
+        .postUri(
+            Uri.parse(
+                'https://interface3.music.163.com/api/playlist/v4/detail'),
+            data: params,
+            options: joinOptions())
         .then((Response value) {
       return SinglePlayListWrap.fromJson(value.data);
     });

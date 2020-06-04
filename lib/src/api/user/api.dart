@@ -379,6 +379,18 @@ mixin ApiUser {
     });
   }
 
+  /// 编辑歌单顺序
+  /// !需要登录
+  Future<ServerStatusBean> playlistUpdateOrder(List<String> pids) {
+    var params = {'ids': jsonEncode(pids)};
+    return Https.dio
+        .postUri(joinUri('/api/playlist/order/update'),
+            data: params, options: joinOptions(cookies: {'os': 'pc'}))
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
+  }
+
   /// 收藏单曲到歌单 从歌单删除歌曲
   /// !需要登录
   Future<ServerStatusBean> playlistManipulateTracks(

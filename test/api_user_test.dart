@@ -218,6 +218,11 @@ void main() async {
     expect(result2.code, RET_CODE_OK);
   });
 
+  test('test playlist update order', () async {
+    var result = await api.playlistUpdateOrder(['2819660572']);
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test user playlist manipulate tracks', () async {
     var result = await api.playlistCreate('老白涮肉铺', true);
     expect(result.code, RET_CODE_OK);

@@ -33,7 +33,7 @@ mixin ApiUncategorized {
   /// 所有榜单内容摘要
   Future<TopListWrap> topList() {
     return Https.dio
-        .postUri(joinUri('/weapi/toplist'),
+        .postUri(joinUri('/api/toplist'),
             data: {},
             options: joinOptions(encryptType: EncryptType.LinuxForward))
         .then((Response value) {
