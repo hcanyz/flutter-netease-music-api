@@ -1,6 +1,6 @@
 name: netease_music_api
 description: Netease cloud music api for flutter ,reference https://github.com/Binaryify/NeteaseCloudMusicApi.
-version: 0.0.1
+version: 0.0.2
 author: hcanyz
 homepage: https://github.com/hcanyz/flutter-netease-music-api
 
