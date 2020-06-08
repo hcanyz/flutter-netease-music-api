@@ -13,8 +13,13 @@ void main() async {
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test personalized private content', () async {
+  test('test personalized private content x', () async {
     var result = await api.personalizedPrivateContent();
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test personalized private content list', () async {
+    var result = await api.personalizedPrivateContentList();
     expect(result.code, RET_CODE_OK);
   });
 

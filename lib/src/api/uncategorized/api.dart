@@ -20,11 +20,23 @@ mixin ApiUncategorized {
     });
   }
 
-  /// 独家放送
+  /// 独家放送推荐
   Future<PersonalizedPrivateContentListWrap> personalizedPrivateContent() {
     return Https.dio
         .postUri(joinUri('/weapi/personalized/privatecontent'),
             data: {}, options: joinOptions())
+        .then((Response value) {
+      return PersonalizedPrivateContentListWrap.fromJson(value.data);
+    });
+  }
+
+  /// 独家放送列表
+  Future<PersonalizedPrivateContentListWrap> personalizedPrivateContentList(
+      {int offset = 0, int limit = 60, bool total = true}) {
+    var params = {'total': total, 'limit': limit, 'offset': offset};
+    return Https.dio
+        .postUri(joinUri('/api/v2/privatecontent/list'),
+            data: params, options: joinOptions())
         .then((Response value) {
       return PersonalizedPrivateContentListWrap.fromJson(value.data);
     });
