@@ -1208,7 +1208,7 @@ class VideoBase {
   List<VideoResolution> resolutions;
 
   VideoUrlInfo urlInfo;
-  List<VideoGroupItem> videoGroup;
+  List<VideoMetaItem> videoGroup;
   List<Song> relateSong;
 
   VideoBase();
@@ -1242,33 +1242,34 @@ class Video2 extends VideoBase {
 }
 
 @JsonSerializable()
-class VideoGroupItem {
+class VideoMetaItem {
   @JsonKey(fromJson: dynamicToString)
   String id;
 
   String name;
   String url;
+  String relatedVideoType;
 
   bool selectTab;
 
-  VideoGroupItem();
+  VideoMetaItem();
 
-  factory VideoGroupItem.fromJson(Map<String, dynamic> json) =>
-      _$VideoGroupItemFromJson(json);
+  factory VideoMetaItem.fromJson(Map<String, dynamic> json) =>
+      _$VideoMetaItemFromJson(json);
 
-  Map<String, dynamic> toJson() => _$VideoGroupItemToJson(this);
+  Map<String, dynamic> toJson() => _$VideoMetaItemToJson(this);
 }
 
 @JsonSerializable()
-class VideoGroupListWrap extends ServerStatusBean {
-  List<VideoGroupItem> data;
+class VideoMetaListWrap extends ServerStatusBean {
+  List<VideoMetaItem> data;
 
-  VideoGroupListWrap();
+  VideoMetaListWrap();
 
-  factory VideoGroupListWrap.fromJson(Map<String, dynamic> json) =>
-      _$VideoGroupListWrapFromJson(json);
+  factory VideoMetaListWrap.fromJson(Map<String, dynamic> json) =>
+      _$VideoMetaListWrapFromJson(json);
 
-  Map<String, dynamic> toJson() => _$VideoGroupListWrapToJson(this);
+  Map<String, dynamic> toJson() => _$VideoMetaListWrapToJson(this);
 }
 
 @JsonSerializable()

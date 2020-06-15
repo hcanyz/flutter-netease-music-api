@@ -1591,7 +1591,7 @@ VideoBase _$VideoBaseFromJson(Map<String, dynamic> json) {
     ..videoGroup = (json['videoGroup'] as List)
         ?.map((e) => e == null
             ? null
-            : VideoGroupItem.fromJson(e as Map<String, dynamic>))
+            : VideoMetaItem.fromJson(e as Map<String, dynamic>))
         ?.toList()
     ..relateSong = (json['relateSong'] as List)
         ?.map(
@@ -1657,7 +1657,7 @@ Video _$VideoFromJson(Map<String, dynamic> json) {
     ..videoGroup = (json['videoGroup'] as List)
         ?.map((e) => e == null
             ? null
-            : VideoGroupItem.fromJson(e as Map<String, dynamic>))
+            : VideoMetaItem.fromJson(e as Map<String, dynamic>))
         ?.toList()
     ..relateSong = (json['relateSong'] as List)
         ?.map(
@@ -1727,7 +1727,7 @@ Video2 _$Video2FromJson(Map<String, dynamic> json) {
     ..videoGroup = (json['videoGroup'] as List)
         ?.map((e) => e == null
             ? null
-            : VideoGroupItem.fromJson(e as Map<String, dynamic>))
+            : VideoMetaItem.fromJson(e as Map<String, dynamic>))
         ?.toList()
     ..relateSong = (json['relateSong'] as List)
         ?.map(
@@ -1767,35 +1767,37 @@ Map<String, dynamic> _$Video2ToJson(Video2 instance) => <String, dynamic>{
       'creator': instance.creator,
     };
 
-VideoGroupItem _$VideoGroupItemFromJson(Map<String, dynamic> json) {
-  return VideoGroupItem()
+VideoMetaItem _$VideoMetaItemFromJson(Map<String, dynamic> json) {
+  return VideoMetaItem()
     ..id = dynamicToString(json['id'])
     ..name = json['name'] as String
     ..url = json['url'] as String
+    ..relatedVideoType = json['relatedVideoType'] as String
     ..selectTab = json['selectTab'] as bool;
 }
 
-Map<String, dynamic> _$VideoGroupItemToJson(VideoGroupItem instance) =>
+Map<String, dynamic> _$VideoMetaItemToJson(VideoMetaItem instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'url': instance.url,
+      'relatedVideoType': instance.relatedVideoType,
       'selectTab': instance.selectTab,
     };
 
-VideoGroupListWrap _$VideoGroupListWrapFromJson(Map<String, dynamic> json) {
-  return VideoGroupListWrap()
+VideoMetaListWrap _$VideoMetaListWrapFromJson(Map<String, dynamic> json) {
+  return VideoMetaListWrap()
     ..code = json['code'] as int
     ..message = json['message'] as String
     ..msg = json['msg'] as String
     ..data = (json['data'] as List)
         ?.map((e) => e == null
             ? null
-            : VideoGroupItem.fromJson(e as Map<String, dynamic>))
+            : VideoMetaItem.fromJson(e as Map<String, dynamic>))
         ?.toList();
 }
 
-Map<String, dynamic> _$VideoGroupListWrapToJson(VideoGroupListWrap instance) =>
+Map<String, dynamic> _$VideoMetaListWrapToJson(VideoMetaListWrap instance) =>
     <String, dynamic>{
       'code': instance.code,
       'message': instance.message,

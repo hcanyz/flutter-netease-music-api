@@ -9,6 +9,7 @@ dependencies:
   netease_music_api:
     git:
       url: git://github.com/hcanyz/flutter-netease-music-api.git
+      #url: git://gitee.com/hcanyz/flutter-netease-music-api.git
 ```
 使用
 

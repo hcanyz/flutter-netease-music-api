@@ -453,10 +453,11 @@ mixin ApiPlay {
   }
 
   /// 歌手排行榜
+  /// type : 地区 1: 华语   2: 欧美   3: 韩国  4: 日本
   Future<ArtistsTopListWrapX> artistTopList(
-      {int offset = 0, int limit = 30, bool total = true}) {
+      {int type = 1, int offset = 0, int limit = 30, bool total = true}) {
     var params = {
-      'type': '1',
+      'type': type,
       'total': total,
       'limit': limit,
       'offset': offset
@@ -658,27 +659,74 @@ mixin ApiPlay {
     });
   }
 
+  /// 视频分类列表
+  Future<VideoMetaListWrap> videoCategoryList(
+      {int offset = 0, int limit = 99, bool total = true}) {
+    var params = {'total': total, 'limit': limit, 'offset': offset};
+    return Https.dio
+        .postUri(joinUri('/api/cloudvideo/category/list'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return VideoMetaListWrap.fromJson(value.data);
+    });
+  }
+
   /// 视频标签列表
-  Future<VideoGroupListWrap> videoGroupList() {
+  Future<VideoMetaListWrap> videoGroupList() {
     return Https.dio
         .postUri(joinUri('/api/cloudvideo/group/list'),
             data: {}, options: joinOptions())
         .then((Response value) {
-      return VideoGroupListWrap.fromJson(value.data);
+      return VideoMetaListWrap.fromJson(value.data);
     });
   }
 
   /// 视频标签下的视频
+  /// groupId 从[videoGroupList]获取
   Future<VideoListWrapX> videoListByGroup(String groupId,
-      {int offset = 0, int resolution = 1080}) {
+      {int offset = 0, bool total = true}) {
     var params = {
       'groupId': groupId,
       'offset': offset,
-      'needUrl': true,
-      'resolution': resolution
+      'need_preview_url': true,
+      'total': total
     };
     return Https.dio
-        .postUri(joinUri('/weapi/videotimeline/videogroup/get'),
+        .postUri(joinUri('/api/videotimeline/videogroup/otherclient/get'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return VideoListWrapX.fromJson(value.data);
+    });
+  }
+
+  /// 视频列表
+  Future<VideoListWrapX> videoListOther(String groupId,
+      {int offset = 0, bool total = true}) {
+    var params = {
+      "groupId": 0,
+      "offset": offset,
+      "need_preview_url": 'true',
+      "total": total
+    };
+    return Https.dio
+        .postUri(joinUri('/api/videotimeline/otherclient/get'),
+            data: params, options: joinOptions())
+        .then((Response value) {
+      return VideoListWrapX.fromJson(value.data);
+    });
+  }
+
+  /// 视频列表
+  Future<VideoListWrapX> videoList({int offset = 0}) {
+    var params = {
+      "offset": offset,
+      "filterLives": '[]',
+      "withProgramInfo": 'true',
+      "needUrl": '1',
+      "resolution": '480'
+    };
+    return Https.dio
+        .postUri(joinUri('/api/videotimeline/get'),
             data: params, options: joinOptions())
         .then((Response value) {
       return VideoListWrapX.fromJson(value.data);

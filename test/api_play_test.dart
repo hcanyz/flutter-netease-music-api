@@ -184,7 +184,7 @@ void main() async {
   });
 
   test('test artist top list', () async {
-    var result = await api.artistTopList();
+    var result = await api.artistTopList(type: 1);
     expect(result.code, RET_CODE_OK);
   });
 
@@ -258,7 +258,12 @@ void main() async {
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test video group list video list', () async {
+  test('test video category list', () async {
+    var result = await api.videoCategoryList();
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test video group list & video list', () async {
     var result = await api.videoGroupList();
     expect(result.code, RET_CODE_OK);
 
@@ -268,6 +273,12 @@ void main() async {
 
     var result2 = await api.videoListByGroup(result.data[0].id);
     expect(result2.code, RET_CODE_OK);
+
+    var result3 = await api.videoList();
+    expect(result3.code, RET_CODE_OK);
+
+    var result4 = await api.videoListOther(result.data[0].id);
+    expect(result4.code, RET_CODE_OK);
   });
 
   test('test related video list', () async {
