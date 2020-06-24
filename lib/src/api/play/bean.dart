@@ -401,8 +401,25 @@ class CloudSongListWrap extends ServerStatusListBean {
 }
 
 @JsonSerializable()
-class RecommendSongListWrap extends ServerStatusBean {
-  List<Song> recommend;
+class RecommendSongReason {
+  @JsonKey(fromJson: dynamicToString)
+  String songId;
+
+  String reason;
+
+  RecommendSongReason();
+
+  factory RecommendSongReason.fromJson(Map<String, dynamic> json) =>
+      _$RecommendSongReasonFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RecommendSongReasonToJson(this);
+}
+
+@JsonSerializable()
+class RecommendSongListWrap {
+  List<Song2> dailySongs;
+  List<Song2> orderSongs;
+  List<RecommendSongReason> recommendReasons;
 
   RecommendSongListWrap();
 
@@ -410,6 +427,18 @@ class RecommendSongListWrap extends ServerStatusBean {
       _$RecommendSongListWrapFromJson(json);
 
   Map<String, dynamic> toJson() => _$RecommendSongListWrapToJson(this);
+}
+
+@JsonSerializable()
+class RecommendSongListWrapX extends ServerStatusBean {
+  RecommendSongListWrap data;
+
+  RecommendSongListWrapX();
+
+  factory RecommendSongListWrapX.fromJson(Map<String, dynamic> json) =>
+      _$RecommendSongListWrapXFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RecommendSongListWrapXToJson(this);
 }
 
 @JsonSerializable()

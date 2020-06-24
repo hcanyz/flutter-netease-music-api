@@ -543,25 +543,63 @@ Map<String, dynamic> _$CloudSongListWrapToJson(CloudSongListWrap instance) =>
       'data': instance.data,
     };
 
+RecommendSongReason _$RecommendSongReasonFromJson(Map<String, dynamic> json) {
+  return RecommendSongReason()
+    ..songId = dynamicToString(json['songId'])
+    ..reason = json['reason'] as String;
+}
+
+Map<String, dynamic> _$RecommendSongReasonToJson(
+        RecommendSongReason instance) =>
+    <String, dynamic>{
+      'songId': instance.songId,
+      'reason': instance.reason,
+    };
+
 RecommendSongListWrap _$RecommendSongListWrapFromJson(
     Map<String, dynamic> json) {
   return RecommendSongListWrap()
-    ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
-    ..recommend = (json['recommend'] as List)
+    ..dailySongs = (json['dailySongs'] as List)
         ?.map(
-            (e) => e == null ? null : Song.fromJson(e as Map<String, dynamic>))
+            (e) => e == null ? null : Song2.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..orderSongs = (json['orderSongs'] as List)
+        ?.map(
+            (e) => e == null ? null : Song2.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..recommendReasons = (json['recommendReasons'] as List)
+        ?.map((e) => e == null
+            ? null
+            : RecommendSongReason.fromJson(e as Map<String, dynamic>))
         ?.toList();
 }
 
 Map<String, dynamic> _$RecommendSongListWrapToJson(
         RecommendSongListWrap instance) =>
     <String, dynamic>{
+      'dailySongs': instance.dailySongs,
+      'orderSongs': instance.orderSongs,
+      'recommendReasons': instance.recommendReasons,
+    };
+
+RecommendSongListWrapX _$RecommendSongListWrapXFromJson(
+    Map<String, dynamic> json) {
+  return RecommendSongListWrapX()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..data = json['data'] == null
+        ? null
+        : RecommendSongListWrap.fromJson(json['data'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$RecommendSongListWrapXToJson(
+        RecommendSongListWrapX instance) =>
+    <String, dynamic>{
       'code': instance.code,
       'message': instance.message,
       'msg': instance.msg,
-      'recommend': instance.recommend,
+      'data': instance.data,
     };
 
 ArtistTopSongListWrap _$ArtistTopSongListWrapFromJson(

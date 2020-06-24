@@ -205,14 +205,12 @@ mixin ApiPlay {
 
   /// 推荐音乐列表
   /// !需要登录
-  Future<RecommendSongListWrap> recommendSongList(
-      {int offset = 0, int limit = 30}) {
-    var params = {'limit': limit, 'offset': offset};
+  Future<RecommendSongListWrapX> recommendSongList() {
     return Https.dio
-        .postUri(joinUri('/weapi/v1/discovery/recommend/songs'),
-            data: params, options: joinOptions())
+        .postUri(joinUri('/api/v3/discovery/recommend/songs'),
+            data: {}, options: joinOptions(cookies: {'os': 'ios'}))
         .then((Response value) {
-      return RecommendSongListWrap.fromJson(value.data);
+      return RecommendSongListWrapX.fromJson(value.data);
     });
   }
 
