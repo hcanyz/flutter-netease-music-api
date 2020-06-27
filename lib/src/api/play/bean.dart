@@ -533,7 +533,7 @@ class Play {
 
   String alg;
 
-  // 歌单类型: TODO 待补充
+  // 歌单类型:
   // 0: 自建?
   // 5: 我喜欢的音乐
   int specialType;

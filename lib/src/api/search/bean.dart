@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:netease_music_api/src/api/bean.dart';
 import 'package:netease_music_api/src/api/dj/bean.dart';
+import 'package:netease_music_api/src/api/event/bean.dart';
 import 'package:netease_music_api/src/api/play/bean.dart';
 import 'package:netease_music_api/src/api/user/bean.dart';
 
@@ -188,7 +189,7 @@ class SearchVideoWrapX extends ServerStatusBean {
 
 @JsonSerializable()
 class SearchComplexSong {
-  List<Song> songs;
+  List<Song2> songs;
 
   String moreText;
 
@@ -208,7 +209,7 @@ class SearchComplexSong {
 
 @JsonSerializable()
 class SearchComplexMlog {
-  //? mlogs;
+  List<MyLog> mlogs;
 
   String moreText;
 
@@ -285,13 +286,100 @@ class SearchComplexAlbum {
 }
 
 @JsonSerializable()
+class SearchComplexVideo {
+  List<Video2> videos;
+
+  String moreText;
+
+  String highText;
+
+  bool more;
+
+  List<int> resourceIds;
+
+  SearchComplexVideo();
+
+  factory SearchComplexVideo.fromJson(Map<String, dynamic> json) =>
+      _$SearchComplexVideoFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SearchComplexVideoToJson(this);
+}
+
+@JsonSerializable()
+class SearchComplexSimQueryItem {
+  String keyword;
+  String alg;
+
+  SearchComplexSimQueryItem();
+
+  factory SearchComplexSimQueryItem.fromJson(Map<String, dynamic> json) =>
+      _$SearchComplexSimQueryItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SearchComplexSimQueryItemToJson(this);
+}
+
+@JsonSerializable()
+class SearchComplexSimQuery {
+  List<SearchComplexSimQueryItem> sim_querys;
+  bool more;
+
+  SearchComplexSimQuery();
+
+  factory SearchComplexSimQuery.fromJson(Map<String, dynamic> json) =>
+      _$SearchComplexSimQueryFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SearchComplexSimQueryToJson(this);
+}
+
+@JsonSerializable()
+class SearchComplexTalk {
+  List<NeteaseUserInfo> users;
+
+  String moreText;
+
+  bool more;
+
+  List<int> resourceIds;
+
+  SearchComplexTalk();
+
+  factory SearchComplexTalk.fromJson(Map<String, dynamic> json) =>
+      _$SearchComplexTalkFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SearchComplexTalkToJson(this);
+}
+
+@JsonSerializable()
+class SearchComplexUser {
+  List<NeteaseUserInfo> users;
+
+  String moreText;
+
+  bool more;
+
+  List<int> resourceIds;
+
+  SearchComplexUser();
+
+  factory SearchComplexUser.fromJson(Map<String, dynamic> json) =>
+      _$SearchComplexUserFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SearchComplexUserToJson(this);
+}
+
+@JsonSerializable()
 class SearchComplexWrap {
-  //TODO
   SearchComplexSong song;
   SearchComplexMlog mlog;
   SearchComplexPlaylist playList;
   SearchComplexArtist artist;
   SearchComplexAlbum album;
+  SearchComplexVideo video;
+  SearchComplexSimQuery sim_query;
+  SearchComplexTalk talk;
+  SearchComplexUser user;
+
+  List<String> order;
 
   SearchComplexWrap();
 

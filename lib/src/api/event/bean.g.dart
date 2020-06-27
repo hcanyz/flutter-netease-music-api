@@ -766,3 +766,139 @@ Map<String, dynamic> _$UserMsgListWrap2ToJson(UserMsgListWrap2 instance) =>
       'id': instance.id,
       'newMsgs': instance.newMsgs,
     };
+
+Cover _$CoverFromJson(Map<String, dynamic> json) {
+  return Cover()
+    ..width = json['width'] as int
+    ..height = json['height'] as int
+    ..url = json['url'] as String;
+}
+
+Map<String, dynamic> _$CoverToJson(Cover instance) => <String, dynamic>{
+      'width': instance.width,
+      'height': instance.height,
+      'url': instance.url,
+    };
+
+Talk _$TalkFromJson(Map<String, dynamic> json) {
+  return Talk()
+    ..talkId = dynamicToString(json['talkId'])
+    ..talkName = json['talkName'] as String
+    ..talkDes = json['talkDes'] as String
+    ..shareCover = json['shareCover'] == null
+        ? null
+        : Cover.fromJson(json['shareCover'] as Map<String, dynamic>)
+    ..showCover = json['showCover'] == null
+        ? null
+        : Cover.fromJson(json['showCover'] as Map<String, dynamic>)
+    ..status = json['status'] as int
+    ..mlogCount = json['mlogCount'] as int
+    ..follows = json['follows'] as int
+    ..participations = json['participations'] as int
+    ..showParticipations = json['showParticipations'] as int
+    ..isFollow = json['isFollow'] as bool
+    ..alg = json['alg'] as String;
+}
+
+Map<String, dynamic> _$TalkToJson(Talk instance) => <String, dynamic>{
+      'talkId': instance.talkId,
+      'talkName': instance.talkName,
+      'talkDes': instance.talkDes,
+      'shareCover': instance.shareCover,
+      'showCover': instance.showCover,
+      'status': instance.status,
+      'mlogCount': instance.mlogCount,
+      'follows': instance.follows,
+      'participations': instance.participations,
+      'showParticipations': instance.showParticipations,
+      'isFollow': instance.isFollow,
+      'alg': instance.alg,
+    };
+
+MyLogBaseData _$MyLogBaseDataFromJson(Map<String, dynamic> json) {
+  return MyLogBaseData()
+    ..id = dynamicToString(json['id'])
+    ..pubTime = json['pubTime'] as int
+    ..type = json['type'] as int
+    ..coverUrl = json['coverUrl'] as String
+    ..coverWidth = json['coverWidth'] as int
+    ..coverHeight = json['coverHeight'] as int
+    ..coverColor = json['coverColor'] as int
+    ..talk = json['talk'] == null
+        ? null
+        : Talk.fromJson(json['talk'] as Map<String, dynamic>)
+    ..text = json['text'] as String;
+}
+
+Map<String, dynamic> _$MyLogBaseDataToJson(MyLogBaseData instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'pubTime': instance.pubTime,
+      'type': instance.type,
+      'coverUrl': instance.coverUrl,
+      'coverWidth': instance.coverWidth,
+      'coverHeight': instance.coverHeight,
+      'coverColor': instance.coverColor,
+      'talk': instance.talk,
+      'text': instance.text,
+    };
+
+MyLogResourceExt _$MyLogResourceExtFromJson(Map<String, dynamic> json) {
+  return MyLogResourceExt()
+    ..likedCount = json['likedCount'] as int
+    ..commentCount = json['commentCount'] as int;
+}
+
+Map<String, dynamic> _$MyLogResourceExtToJson(MyLogResourceExt instance) =>
+    <String, dynamic>{
+      'likedCount': instance.likedCount,
+      'commentCount': instance.commentCount,
+    };
+
+MyLogResource _$MyLogResourceFromJson(Map<String, dynamic> json) {
+  return MyLogResource()
+    ..mlogBaseData = json['mlogBaseData'] == null
+        ? null
+        : MyLogBaseData.fromJson(json['mlogBaseData'] as Map<String, dynamic>)
+    ..mlogExtVO = json['mlogExtVO'] == null
+        ? null
+        : MyLogResourceExt.fromJson(json['mlogExtVO'] as Map<String, dynamic>)
+    ..userProfile = json['userProfile'] == null
+        ? null
+        : NeteaseAccountProfile.fromJson(
+            json['userProfile'] as Map<String, dynamic>)
+    ..shareUrl = json['shareUrl'] as String;
+}
+
+Map<String, dynamic> _$MyLogResourceToJson(MyLogResource instance) =>
+    <String, dynamic>{
+      'mlogBaseData': instance.mlogBaseData,
+      'mlogExtVO': instance.mlogExtVO,
+      'userProfile': instance.userProfile,
+      'shareUrl': instance.shareUrl,
+    };
+
+MyLog _$MyLogFromJson(Map<String, dynamic> json) {
+  return MyLog()
+    ..id = dynamicToString(json['id'])
+    ..type = json['type'] as int
+    ..resource = json['resource'] == null
+        ? null
+        : MyLogResource.fromJson(json['resource'] as Map<String, dynamic>)
+    ..alg = json['alg'] as String
+    ..reason = json['reason'] as String
+    ..matchField = json['matchField'] as int
+    ..matchFieldContent = json['matchFieldContent'] as String
+    ..sameCity = json['sameCity'] as bool;
+}
+
+Map<String, dynamic> _$MyLogToJson(MyLog instance) => <String, dynamic>{
+      'id': instance.id,
+      'type': instance.type,
+      'resource': instance.resource,
+      'alg': instance.alg,
+      'reason': instance.reason,
+      'matchField': instance.matchField,
+      'matchFieldContent': instance.matchFieldContent,
+      'sameCity': instance.sameCity,
+    };

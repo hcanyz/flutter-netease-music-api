@@ -618,3 +618,117 @@ class UserMsgListWrap2 extends ServerStatusBean {
 
   Map<String, dynamic> toJson() => _$UserMsgListWrap2ToJson(this);
 }
+
+@JsonSerializable()
+class Cover {
+  int width;
+  int height;
+  String url;
+
+  Cover();
+
+  factory Cover.fromJson(Map<String, dynamic> json) => _$CoverFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CoverToJson(this);
+}
+
+@JsonSerializable()
+class Talk {
+  @JsonKey(fromJson: dynamicToString)
+  String talkId;
+  String talkName;
+  String talkDes;
+  Cover shareCover;
+  Cover showCover;
+
+  int status;
+  int mlogCount;
+  int follows;
+  int participations;
+  int showParticipations;
+  bool isFollow;
+
+  String alg;
+
+  Talk();
+
+  factory Talk.fromJson(Map<String, dynamic> json) => _$TalkFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TalkToJson(this);
+}
+
+@JsonSerializable()
+class MyLogBaseData {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  int pubTime;
+  int type;
+
+  String coverUrl;
+  int coverWidth;
+  int coverHeight;
+  int coverColor;
+
+  Talk talk;
+
+  String text;
+
+  MyLogBaseData();
+
+  factory MyLogBaseData.fromJson(Map<String, dynamic> json) =>
+      _$MyLogBaseDataFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MyLogBaseDataToJson(this);
+}
+
+@JsonSerializable()
+class MyLogResourceExt {
+  int likedCount;
+  int commentCount;
+
+  MyLogResourceExt();
+
+  factory MyLogResourceExt.fromJson(Map<String, dynamic> json) =>
+      _$MyLogResourceExtFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MyLogResourceExtToJson(this);
+}
+
+@JsonSerializable()
+class MyLogResource {
+  MyLogBaseData mlogBaseData;
+  MyLogResourceExt mlogExtVO;
+  NeteaseAccountProfile userProfile;
+
+  String shareUrl;
+
+  MyLogResource();
+
+  factory MyLogResource.fromJson(Map<String, dynamic> json) =>
+      _$MyLogResourceFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MyLogResourceToJson(this);
+}
+
+@JsonSerializable()
+class MyLog {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  int type;
+
+  MyLogResource resource;
+
+  String alg;
+  String reason;
+  int matchField;
+  String matchFieldContent;
+  bool sameCity;
+
+  MyLog();
+
+  factory MyLog.fromJson(Map<String, dynamic> json) => _$MyLogFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MyLogToJson(this);
+}

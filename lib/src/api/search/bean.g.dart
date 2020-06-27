@@ -250,7 +250,7 @@ SearchComplexSong _$SearchComplexSongFromJson(Map<String, dynamic> json) {
   return SearchComplexSong()
     ..songs = (json['songs'] as List)
         ?.map(
-            (e) => e == null ? null : Song.fromJson(e as Map<String, dynamic>))
+            (e) => e == null ? null : Song2.fromJson(e as Map<String, dynamic>))
         ?.toList()
     ..moreText = json['moreText'] as String
     ..highText = json['highText'] as String
@@ -270,6 +270,10 @@ Map<String, dynamic> _$SearchComplexSongToJson(SearchComplexSong instance) =>
 
 SearchComplexMlog _$SearchComplexMlogFromJson(Map<String, dynamic> json) {
   return SearchComplexMlog()
+    ..mlogs = (json['mlogs'] as List)
+        ?.map(
+            (e) => e == null ? null : MyLog.fromJson(e as Map<String, dynamic>))
+        ?.toList()
     ..moreText = json['moreText'] as String
     ..more = json['more'] as bool
     ..resourceIds =
@@ -278,6 +282,7 @@ SearchComplexMlog _$SearchComplexMlogFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$SearchComplexMlogToJson(SearchComplexMlog instance) =>
     <String, dynamic>{
+      'mlogs': instance.mlogs,
       'moreText': instance.moreText,
       'more': instance.more,
       'resourceIds': instance.resourceIds,
@@ -352,6 +357,102 @@ Map<String, dynamic> _$SearchComplexAlbumToJson(SearchComplexAlbum instance) =>
       'resourceIds': instance.resourceIds,
     };
 
+SearchComplexVideo _$SearchComplexVideoFromJson(Map<String, dynamic> json) {
+  return SearchComplexVideo()
+    ..videos = (json['videos'] as List)
+        ?.map((e) =>
+            e == null ? null : Video2.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..moreText = json['moreText'] as String
+    ..highText = json['highText'] as String
+    ..more = json['more'] as bool
+    ..resourceIds =
+        (json['resourceIds'] as List)?.map((e) => e as int)?.toList();
+}
+
+Map<String, dynamic> _$SearchComplexVideoToJson(SearchComplexVideo instance) =>
+    <String, dynamic>{
+      'videos': instance.videos,
+      'moreText': instance.moreText,
+      'highText': instance.highText,
+      'more': instance.more,
+      'resourceIds': instance.resourceIds,
+    };
+
+SearchComplexSimQueryItem _$SearchComplexSimQueryItemFromJson(
+    Map<String, dynamic> json) {
+  return SearchComplexSimQueryItem()
+    ..keyword = json['keyword'] as String
+    ..alg = json['alg'] as String;
+}
+
+Map<String, dynamic> _$SearchComplexSimQueryItemToJson(
+        SearchComplexSimQueryItem instance) =>
+    <String, dynamic>{
+      'keyword': instance.keyword,
+      'alg': instance.alg,
+    };
+
+SearchComplexSimQuery _$SearchComplexSimQueryFromJson(
+    Map<String, dynamic> json) {
+  return SearchComplexSimQuery()
+    ..sim_querys = (json['sim_querys'] as List)
+        ?.map((e) => e == null
+            ? null
+            : SearchComplexSimQueryItem.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..more = json['more'] as bool;
+}
+
+Map<String, dynamic> _$SearchComplexSimQueryToJson(
+        SearchComplexSimQuery instance) =>
+    <String, dynamic>{
+      'sim_querys': instance.sim_querys,
+      'more': instance.more,
+    };
+
+SearchComplexTalk _$SearchComplexTalkFromJson(Map<String, dynamic> json) {
+  return SearchComplexTalk()
+    ..users = (json['users'] as List)
+        ?.map((e) => e == null
+            ? null
+            : NeteaseUserInfo.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..moreText = json['moreText'] as String
+    ..more = json['more'] as bool
+    ..resourceIds =
+        (json['resourceIds'] as List)?.map((e) => e as int)?.toList();
+}
+
+Map<String, dynamic> _$SearchComplexTalkToJson(SearchComplexTalk instance) =>
+    <String, dynamic>{
+      'users': instance.users,
+      'moreText': instance.moreText,
+      'more': instance.more,
+      'resourceIds': instance.resourceIds,
+    };
+
+SearchComplexUser _$SearchComplexUserFromJson(Map<String, dynamic> json) {
+  return SearchComplexUser()
+    ..users = (json['users'] as List)
+        ?.map((e) => e == null
+            ? null
+            : NeteaseUserInfo.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..moreText = json['moreText'] as String
+    ..more = json['more'] as bool
+    ..resourceIds =
+        (json['resourceIds'] as List)?.map((e) => e as int)?.toList();
+}
+
+Map<String, dynamic> _$SearchComplexUserToJson(SearchComplexUser instance) =>
+    <String, dynamic>{
+      'users': instance.users,
+      'moreText': instance.moreText,
+      'more': instance.more,
+      'resourceIds': instance.resourceIds,
+    };
+
 SearchComplexWrap _$SearchComplexWrapFromJson(Map<String, dynamic> json) {
   return SearchComplexWrap()
     ..song = json['song'] == null
@@ -369,7 +470,21 @@ SearchComplexWrap _$SearchComplexWrapFromJson(Map<String, dynamic> json) {
         : SearchComplexArtist.fromJson(json['artist'] as Map<String, dynamic>)
     ..album = json['album'] == null
         ? null
-        : SearchComplexAlbum.fromJson(json['album'] as Map<String, dynamic>);
+        : SearchComplexAlbum.fromJson(json['album'] as Map<String, dynamic>)
+    ..video = json['video'] == null
+        ? null
+        : SearchComplexVideo.fromJson(json['video'] as Map<String, dynamic>)
+    ..sim_query = json['sim_query'] == null
+        ? null
+        : SearchComplexSimQuery.fromJson(
+            json['sim_query'] as Map<String, dynamic>)
+    ..talk = json['talk'] == null
+        ? null
+        : SearchComplexTalk.fromJson(json['talk'] as Map<String, dynamic>)
+    ..user = json['user'] == null
+        ? null
+        : SearchComplexUser.fromJson(json['user'] as Map<String, dynamic>)
+    ..order = (json['order'] as List)?.map((e) => e as String)?.toList();
 }
 
 Map<String, dynamic> _$SearchComplexWrapToJson(SearchComplexWrap instance) =>
@@ -379,6 +494,11 @@ Map<String, dynamic> _$SearchComplexWrapToJson(SearchComplexWrap instance) =>
       'playList': instance.playList,
       'artist': instance.artist,
       'album': instance.album,
+      'video': instance.video,
+      'sim_query': instance.sim_query,
+      'talk': instance.talk,
+      'user': instance.user,
+      'order': instance.order,
     };
 
 SearchComplexWrapX _$SearchComplexWrapXFromJson(Map<String, dynamic> json) {
