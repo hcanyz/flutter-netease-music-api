@@ -73,9 +73,22 @@ void main() async {
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test recommend song list', () async {
+  test('test recommend song list x', () async {
     var result = await api.recommendSongList();
     expect(result.code, RET_CODE_OK);
+  });
+
+  test('test recommend song list history detail', () async {
+    var result = await api.recommendSongListHistory();
+    expect(result.code, RET_CODE_OK);
+
+    if (result.data.dates.isEmpty) {
+      return;
+    }
+
+    var result2 =
+        await api.recommendSongListHistoryDetail(date: result.data.dates[0]);
+    expect(result2.code, RET_CODE_OK);
   });
 
   test('test user radio x', () async {

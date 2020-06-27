@@ -230,6 +230,7 @@ Song2 _$Song2FromJson(Map<String, dynamic> json) {
     ..mst = json['mst'] as int
     ..cp = json['cp'] as int
     ..publishTime = json['publishTime'] as int
+    ..reason = json['reason'] as String
     ..privilege = json['privilege'] == null
         ? null
         : Privilege.fromJson(json['privilege'] as Map<String, dynamic>);
@@ -259,6 +260,7 @@ Map<String, dynamic> _$Song2ToJson(Song2 instance) => <String, dynamic>{
       'mst': instance.mst,
       'cp': instance.cp,
       'publishTime': instance.publishTime,
+      'reason': instance.reason,
       'privilege': instance.privilege,
     };
 
@@ -595,6 +597,50 @@ RecommendSongListWrapX _$RecommendSongListWrapXFromJson(
 
 Map<String, dynamic> _$RecommendSongListWrapXToJson(
         RecommendSongListWrapX instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
+RecommendSongListHistoryWrap _$RecommendSongListHistoryWrapFromJson(
+    Map<String, dynamic> json) {
+  return RecommendSongListHistoryWrap()
+    ..dates = (json['dates'] as List)?.map((e) => e as String)?.toList()
+    ..purchaseUrl = json['purchaseUrl'] as String
+    ..description = json['description'] as String
+    ..noHistoryMessage = json['noHistoryMessage'] as String
+    ..songs = (json['songs'] as List)
+        ?.map(
+            (e) => e == null ? null : Song2.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$RecommendSongListHistoryWrapToJson(
+        RecommendSongListHistoryWrap instance) =>
+    <String, dynamic>{
+      'dates': instance.dates,
+      'purchaseUrl': instance.purchaseUrl,
+      'description': instance.description,
+      'noHistoryMessage': instance.noHistoryMessage,
+      'songs': instance.songs,
+    };
+
+RecommendSongListHistoryWrapX _$RecommendSongListHistoryWrapXFromJson(
+    Map<String, dynamic> json) {
+  return RecommendSongListHistoryWrapX()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..data = json['data'] == null
+        ? null
+        : RecommendSongListHistoryWrap.fromJson(
+            json['data'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$RecommendSongListHistoryWrapXToJson(
+        RecommendSongListHistoryWrapX instance) =>
     <String, dynamic>{
       'code': instance.code,
       'message': instance.message,

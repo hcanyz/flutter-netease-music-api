@@ -214,6 +214,30 @@ mixin ApiPlay {
     });
   }
 
+  /// 历史推荐音乐列表 可用日期列表
+  /// !需要登录
+  Future<RecommendSongListHistoryWrapX> recommendSongListHistory() {
+    return Https.dio
+        .postUri(joinUri('/api/discovery/recommend/songs/history/recent'),
+            data: {}, options: joinOptions(cookies: {'os': 'ios'}))
+        .then((Response value) {
+      return RecommendSongListHistoryWrapX.fromJson(value.data);
+    });
+  }
+
+  /// 历史推荐音乐列表 详细音乐列表数据
+  /// !需要登录
+  Future<RecommendSongListHistoryWrapX> recommendSongListHistoryDetail(
+      {String date = ''}) {
+    var params = {'date': date};
+    return Https.dio
+        .postUri(joinUri('/api/discovery/recommend/songs/history/detail'),
+            data: params, options: joinOptions(cookies: {'os': 'ios'}))
+        .then((Response value) {
+      return RecommendSongListHistoryWrapX.fromJson(value.data);
+    });
+  }
+
   /// 私人FM
   /// !需要登录
   Future<SongListWrap2> userRadio() {

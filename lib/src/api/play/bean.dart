@@ -196,6 +196,7 @@ class Song2 {
   int mst;
   int cp;
   int publishTime;
+  String reason;
 
   Privilege privilege;
 
@@ -439,6 +440,38 @@ class RecommendSongListWrapX extends ServerStatusBean {
       _$RecommendSongListWrapXFromJson(json);
 
   Map<String, dynamic> toJson() => _$RecommendSongListWrapXToJson(this);
+}
+
+@JsonSerializable()
+class RecommendSongListHistoryWrap {
+  List<String> dates;
+
+  String purchaseUrl;
+
+  String description;
+
+  String noHistoryMessage;
+
+  List<Song2> songs;
+
+  RecommendSongListHistoryWrap();
+
+  factory RecommendSongListHistoryWrap.fromJson(Map<String, dynamic> json) =>
+      _$RecommendSongListHistoryWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RecommendSongListHistoryWrapToJson(this);
+}
+
+@JsonSerializable()
+class RecommendSongListHistoryWrapX extends ServerStatusBean {
+  RecommendSongListHistoryWrap data;
+
+  RecommendSongListHistoryWrapX();
+
+  factory RecommendSongListHistoryWrapX.fromJson(Map<String, dynamic> json) =>
+      _$RecommendSongListHistoryWrapXFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RecommendSongListHistoryWrapXToJson(this);
 }
 
 @JsonSerializable()
