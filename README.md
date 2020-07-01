@@ -1,8 +1,10 @@
 Netease cloud music api for flutter ,reference https://github.com/Binaryify/NeteaseCloudMusicApi.   
 
-欢迎star、pull request
+欢迎star、pr、issues
 
 ### 使用方法
+***如果你想知道更多如何使用这个库，可以参考我的另外一个项目。https://github.com/hcanyz/flutter-zmusic ~***
+
 添加依赖
 ```yaml
 dependencies:
@@ -38,8 +40,6 @@ var subscription = api.usc.listenLoginState((event, accountInfoWrap) {
 // dispose
 subscription.cancel();
 ```
-
-如果你想知道更多如何使用这个库，可以参考我的另外一个项目。https://github.com/hcanyz/flutter-zmusic ~
 
 ### 注意事项
 - unit test 需要在test/目录下添加 private_config.dart
