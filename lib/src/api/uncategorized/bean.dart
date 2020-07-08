@@ -64,6 +64,46 @@ class BannerListWrap2 extends ServerStatusBean {
 }
 
 @JsonSerializable()
+class CountriesCodeItem {
+  String zh;
+  String en;
+  String locale;
+  String code;
+
+  CountriesCodeItem();
+
+  factory CountriesCodeItem.fromJson(Map<String, dynamic> json) =>
+      _$CountriesCodeItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CountriesCodeItemToJson(this);
+}
+
+@JsonSerializable()
+class CountriesCodeIndex {
+  String label;
+  List<CountriesCodeItem> countryList;
+
+  CountriesCodeIndex();
+
+  factory CountriesCodeIndex.fromJson(Map<String, dynamic> json) =>
+      _$CountriesCodeIndexFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CountriesCodeIndexToJson(this);
+}
+
+@JsonSerializable()
+class CountriesCodeListWrap extends ServerStatusBean {
+  List<CountriesCodeIndex> data;
+
+  CountriesCodeListWrap();
+
+  factory CountriesCodeListWrap.fromJson(Map<String, dynamic> json) =>
+      _$CountriesCodeListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CountriesCodeListWrapToJson(this);
+}
+
+@JsonSerializable()
 class PersonalizedPrivateContentItem {
   @JsonKey(fromJson: dynamicToString)
   String id;

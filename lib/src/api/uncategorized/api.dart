@@ -20,6 +20,20 @@ mixin ApiUncategorized {
     });
   }
 
+  /// 国家编码列表
+  Future<CountriesCodeListWrap> countriesCodeList() {
+    return Https.dio
+        .postUri(
+            Uri.parse('http://interface3.music.163.com/eapi/lbs/countries/v1'),
+            data: {},
+            options: joinOptions(
+                encryptType: EncryptType.EApi,
+                eApiUrl: '/api/lbs/countries/v1'))
+        .then((Response value) {
+      return CountriesCodeListWrap.fromJson(value.data);
+    });
+  }
+
   /// 独家放送推荐
   Future<PersonalizedPrivateContentListWrap> personalizedPrivateContent() {
     return Https.dio

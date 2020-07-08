@@ -84,8 +84,8 @@ subscription.cancel();
 
 ### flutter version
 ```text
-Flutter 1.19.0-4.0.pre.43 • channel master • https://github.com/flutter/flutter.git
-Framework • revision 95edf28150 (59 minutes ago) • 2020-06-03 17:41:15 -0700
-Engine • revision 859d892f1f
-Tools • Dart 2.9.0 (build 2.9.0-13.0.dev 54adfeb93f)
+Flutter 1.20.0-3.0.pre.142 • channel master • https://github.com/flutter/flutter.git
+Framework • revision cfc0082db7 (5 hours ago) • 2020-07-06 23:59:01 -0400
+Engine • revision 0e9b250843
+Tools • Dart 2.9.0 (build 2.9.0-20.0.dev 69aba23371)
 ```

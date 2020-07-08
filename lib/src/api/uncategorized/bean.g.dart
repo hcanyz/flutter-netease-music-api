@@ -84,6 +84,60 @@ Map<String, dynamic> _$BannerListWrap2ToJson(BannerListWrap2 instance) =>
       'data': instance.data,
     };
 
+CountriesCodeItem _$CountriesCodeItemFromJson(Map<String, dynamic> json) {
+  return CountriesCodeItem()
+    ..zh = json['zh'] as String
+    ..en = json['en'] as String
+    ..locale = json['locale'] as String
+    ..code = json['code'] as String;
+}
+
+Map<String, dynamic> _$CountriesCodeItemToJson(CountriesCodeItem instance) =>
+    <String, dynamic>{
+      'zh': instance.zh,
+      'en': instance.en,
+      'locale': instance.locale,
+      'code': instance.code,
+    };
+
+CountriesCodeIndex _$CountriesCodeIndexFromJson(Map<String, dynamic> json) {
+  return CountriesCodeIndex()
+    ..label = json['label'] as String
+    ..countryList = (json['countryList'] as List)
+        ?.map((e) => e == null
+            ? null
+            : CountriesCodeItem.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$CountriesCodeIndexToJson(CountriesCodeIndex instance) =>
+    <String, dynamic>{
+      'label': instance.label,
+      'countryList': instance.countryList,
+    };
+
+CountriesCodeListWrap _$CountriesCodeListWrapFromJson(
+    Map<String, dynamic> json) {
+  return CountriesCodeListWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..data = (json['data'] as List)
+        ?.map((e) => e == null
+            ? null
+            : CountriesCodeIndex.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$CountriesCodeListWrapToJson(
+        CountriesCodeListWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
 PersonalizedPrivateContentItem _$PersonalizedPrivateContentItemFromJson(
     Map<String, dynamic> json) {
   return PersonalizedPrivateContentItem()
