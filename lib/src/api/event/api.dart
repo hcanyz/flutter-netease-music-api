@@ -5,31 +5,47 @@ import 'package:netease_music_api/src/dio_ext.dart';
 import 'package:netease_music_api/src/netease_handler.dart';
 
 mixin ApiEvent {
+  DioMetaData eventListDioMetaData(String userId,
+      {int limit = 30, int lastTime = -1}) {
+    var params = {'userId': userId, 'time': lastTime, 'limit': limit};
+    return DioMetaData(joinUri('/weapi/event/get/$userId'),
+        data: params, options: joinOptions());
+  }
+
   /// 获取用户动态
   /// !需要登录
   /// [lastTime] 传入上一次返回结果的 lasttime,将会返回下一页的数据,默认-1
   Future<EventListWrap> eventList(String userId,
       {int limit = 30, int lastTime = -1}) {
-    var params = {'userId': userId, 'time': lastTime, 'limit': limit};
-    return Https.dio
-        .postUri(joinUri('/weapi/event/get/$userId'),
-            data: params, options: joinOptions())
+    return Https.dioProxy
+        .postUri(eventListDioMetaData(userId, limit: limit, lastTime: lastTime))
         .then((Response value) {
       return EventListWrap.fromJson(value.data);
     });
+  }
+
+  DioMetaData eventMyListDioMetaData({int limit = 30, int lastTime = -1}) {
+    var params = {'lasttime': lastTime, 'pagesize': limit};
+    return DioMetaData(joinUri('/weapi/v1/event/get'),
+        data: params, options: joinOptions());
   }
 
   /// 获取自己动态 对应网页版网易云，朋友界面里的各种动态消息 ，如分享的视频，音乐，照片等！
   /// !需要登录
   /// [lastTime] 传入上一次返回结果的 lasttime,将会返回下一页的数据,默认-1
   Future<EventListWrap2> eventMyList({int limit = 30, int lastTime = -1}) {
-    var params = {'lasttime': lastTime, 'pagesize': limit};
-    return Https.dio
-        .postUri(joinUri('/weapi/v1/event/get'),
-            data: params, options: joinOptions())
+    return Https.dioProxy
+        .postUri(eventMyListDioMetaData(limit: limit, lastTime: lastTime))
         .then((Response value) {
       return EventListWrap2.fromJson(value.data);
     });
+  }
+
+  DioMetaData eventForwardDioMetaData(String userId, String evId,
+      {String forwards = ''}) {
+    var params = {'eventUserId': userId, 'id': evId, 'forwards': forwards};
+    return DioMetaData(joinUri('/weapi/event/forward'),
+        data: params, options: joinOptions(cookies: {'os': 'pc'}));
   }
 
   /// 转发用户动态
@@ -38,26 +54,35 @@ mixin ApiEvent {
   /// [forwards] 转发的评论
   Future<EventForwardRetWrap> eventForward(String userId, String evId,
       {String forwards = ''}) {
-    var params = {'eventUserId': userId, 'id': evId, 'forwards': forwards};
-    return Https.dio
-        .postUri(joinUri('/weapi/event/forward'),
-            data: params, options: joinOptions(cookies: {'os': 'pc'}))
+    return Https.dioProxy
+        .postUri(eventForwardDioMetaData(userId, evId, forwards: forwards))
         .then((Response value) {
       return EventForwardRetWrap.fromJson(value.data);
     });
+  }
+
+  DioMetaData eventDeleteDioMetaData(String evId) {
+    var params = {'id': evId};
+    return DioMetaData(joinUri('/weapi/event/delete'),
+        data: params, options: joinOptions());
   }
 
   /// 删除用户动态
   /// !需要登录
   /// [evId] 动态 id
   Future<ServerStatusBean> eventDelete(String evId) {
-    var params = {'id': evId};
-    return Https.dio
-        .postUri(joinUri('/weapi/event/delete'),
-            data: params, options: joinOptions())
+    return Https.dioProxy
+        .postUri(eventDeleteDioMetaData(evId))
         .then((Response value) {
       return ServerStatusBean.fromJson(value.data);
     });
+  }
+
+  DioMetaData shareResourceDioMetaData(String id,
+      {String type = 'song', String msg = ''}) {
+    var params = {'id': id, 'type': type, 'msg': msg};
+    return DioMetaData(joinUri('/weapi/share/friends/resource'),
+        data: params, options: joinOptions());
   }
 
   /// 分享歌曲、歌单、mv、电台、电台节目到动态
@@ -67,13 +92,18 @@ mixin ApiEvent {
   /// [msg] 内容，140 字限制，支持 emoji，@用户名（/user/follows接口获取的用户名，用户名后和内容应该有空格），图片暂不支持
   Future<EventSingleWrap> shareResource(String id,
       {String type = 'song', String msg = ''}) {
-    var params = {'id': id, 'type': type, 'msg': msg};
-    return Https.dio
-        .postUri(joinUri('/weapi/share/friends/resource'),
-            data: params, options: joinOptions())
+    return Https.dioProxy
+        .postUri(shareResourceDioMetaData(id, type: type, msg: msg))
         .then((Response value) {
       return EventSingleWrap.fromJson(value.data);
     });
+  }
+
+  DioMetaData eventCommentListDioMetaData(String threadId,
+      {int offset = 0, int limit = 30, int beforeTime = 0}) {
+    var params = {'limit': limit, 'offset': offset, 'beforeTime': beforeTime};
+    return DioMetaData(joinUri('/weapi/v1/resource/comments/$threadId'),
+        data: params, options: joinOptions());
   }
 
   /// 分享歌曲、歌单、mv、电台、电台节目到动态
@@ -81,28 +111,30 @@ mixin ApiEvent {
   /// [threadId] 资源 id （歌曲，歌单，mv，电台，电台节目对应 id）
   Future<CommentListWrap> eventCommentList(String threadId,
       {int offset = 0, int limit = 30, int beforeTime = 0}) {
-    var params = {'limit': limit, 'offset': offset, 'beforeTime': beforeTime};
-    return Https.dio
-        .postUri(joinUri('/weapi/v1/resource/comments/$threadId'),
-            data: params, options: joinOptions())
+    return Https.dioProxy
+        .postUri(eventCommentListDioMetaData(threadId,
+            offset: offset, limit: limit, beforeTime: beforeTime))
         .then((Response value) {
       return CommentListWrap.fromJson(value.data);
     });
   }
 
+  DioMetaData topicHotListDioMetaData({int offset = 0, int limit = 20}) {
+    var params = {'limit': limit, 'offset': offset};
+    return DioMetaData(joinUri('/weapi/act/hot'),
+        data: params, options: joinOptions());
+  }
+
   /// 获取热门话题
   Future<TopicHotListWrap> topicHotList({int offset = 0, int limit = 20}) {
-    var params = {'limit': limit, 'offset': offset};
-    return Https.dio
-        .postUri(joinUri('/weapi/act/hot'),
-            data: params, options: joinOptions())
+    return Https.dioProxy
+        .postUri(topicHotListDioMetaData(offset: offset, limit: limit))
         .then((Response value) {
       return TopicHotListWrap.fromJson(value.data);
     });
   }
 
-  /// 歌曲评论
-  Future<CommentListWrap> songCommentList(String songId,
+  DioMetaData songCommentListDioMetaData(String songId,
       {int offset = 0, int limit = 20, int beforeTime = 0}) {
     var params = {
       'rid': songId,
@@ -110,16 +142,22 @@ mixin ApiEvent {
       'offset': offset,
       'beforeTime': beforeTime
     };
-    return Https.dio
-        .postUri(joinUri('/api/v1/resource/comments/R_SO_4_$songId'),
-            data: params, options: joinOptions(cookies: {'os': 'pc'}))
+    return DioMetaData(joinUri('/api/v1/resource/comments/R_SO_4_$songId'),
+        data: params, options: joinOptions(cookies: {'os': 'pc'}));
+  }
+
+  /// 歌曲评论
+  Future<CommentListWrap> songCommentList(String songId,
+      {int offset = 0, int limit = 20, int beforeTime = 0}) {
+    return Https.dioProxy
+        .postUri(songCommentListDioMetaData(songId,
+            offset: offset, limit: limit, beforeTime: beforeTime))
         .then((Response value) {
       return CommentListWrap.fromJson(value.data);
     });
   }
 
-  /// 专辑评论
-  Future<CommentListWrap> albumCommentList(String albumId,
+  DioMetaData albumCommentListDioMetaData(String albumId,
       {int offset = 0, int limit = 20, int beforeTime = 0}) {
     var params = {
       'rid': albumId,
@@ -127,16 +165,22 @@ mixin ApiEvent {
       'offset': offset,
       'beforeTime': beforeTime
     };
-    return Https.dio
-        .postUri(joinUri('/weapi/v1/resource/comments/R_AL_3_$albumId'),
-            data: params, options: joinOptions(cookies: {'os': 'pc'}))
+    return DioMetaData(joinUri('/weapi/v1/resource/comments/R_AL_3_$albumId'),
+        data: params, options: joinOptions(cookies: {'os': 'pc'}));
+  }
+
+  /// 专辑评论
+  Future<CommentListWrap> albumCommentList(String albumId,
+      {int offset = 0, int limit = 20, int beforeTime = 0}) {
+    return Https.dioProxy
+        .postUri(albumCommentListDioMetaData(albumId,
+            offset: offset, limit: limit, beforeTime: beforeTime))
         .then((Response value) {
       return CommentListWrap.fromJson(value.data);
     });
   }
 
-  /// 歌单评论
-  Future<CommentListWrap> playlistCommentList(String pid,
+  DioMetaData playlistCommentListDioMetaData(String pid,
       {int offset = 0, int limit = 20, int beforeTime = 0}) {
     var params = {
       'rid': pid,
@@ -144,16 +188,22 @@ mixin ApiEvent {
       'offset': offset,
       'beforeTime': beforeTime
     };
-    return Https.dio
-        .postUri(joinUri('/weapi/v1/resource/comments/A_PL_0_$pid'),
-            data: params, options: joinOptions(cookies: {'os': 'pc'}))
+    return DioMetaData(joinUri('/weapi/v1/resource/comments/A_PL_0_$pid'),
+        data: params, options: joinOptions(cookies: {'os': 'pc'}));
+  }
+
+  /// 歌单评论
+  Future<CommentListWrap> playlistCommentList(String pid,
+      {int offset = 0, int limit = 20, int beforeTime = 0}) {
+    return Https.dioProxy
+        .postUri(playlistCommentListDioMetaData(pid,
+            offset: offset, limit: limit, beforeTime: beforeTime))
         .then((Response value) {
       return CommentListWrap.fromJson(value.data);
     });
   }
 
-  /// mv评论
-  Future<CommentListWrap> mvCommentList(String mvId,
+  DioMetaData mvCommentListDioMetaData(String mvId,
       {int offset = 0, int limit = 20, int beforeTime = 0}) {
     var params = {
       'rid': mvId,
@@ -161,16 +211,22 @@ mixin ApiEvent {
       'offset': offset,
       'beforeTime': beforeTime
     };
-    return Https.dio
-        .postUri(joinUri('/weapi/v1/resource/comments/R_MV_5_$mvId'),
-            data: params, options: joinOptions(cookies: {'os': 'pc'}))
+    return DioMetaData(joinUri('/weapi/v1/resource/comments/R_MV_5_$mvId'),
+        data: params, options: joinOptions(cookies: {'os': 'pc'}));
+  }
+
+  /// mv评论
+  Future<CommentListWrap> mvCommentList(String mvId,
+      {int offset = 0, int limit = 20, int beforeTime = 0}) {
+    return Https.dioProxy
+        .postUri(mvCommentListDioMetaData(mvId,
+            offset: offset, limit: limit, beforeTime: beforeTime))
         .then((Response value) {
       return CommentListWrap.fromJson(value.data);
     });
   }
 
-  /// 电台评论
-  Future<CommentListWrap> djRadioCommentList(String radioId,
+  DioMetaData djRadioCommentListDioMetaData(String radioId,
       {int offset = 0, int limit = 20, int beforeTime = 0}) {
     var params = {
       'rid': radioId,
@@ -178,16 +234,22 @@ mixin ApiEvent {
       'offset': offset,
       'beforeTime': beforeTime
     };
-    return Https.dio
-        .postUri(joinUri('/weapi/v1/resource/comments/A_DJ_1_$radioId'),
-            data: params, options: joinOptions(cookies: {'os': 'pc'}))
+    return DioMetaData(joinUri('/weapi/v1/resource/comments/A_DJ_1_$radioId'),
+        data: params, options: joinOptions(cookies: {'os': 'pc'}));
+  }
+
+  /// 电台评论
+  Future<CommentListWrap> djRadioCommentList(String radioId,
+      {int offset = 0, int limit = 20, int beforeTime = 0}) {
+    return Https.dioProxy
+        .postUri(djRadioCommentListDioMetaData(radioId,
+            offset: offset, limit: limit, beforeTime: beforeTime))
         .then((Response value) {
       return CommentListWrap.fromJson(value.data);
     });
   }
 
-  /// 视频评论
-  Future<CommentListWrap> videoCommentList(String videoId,
+  DioMetaData videoCommentListDioMetaData(String videoId,
       {int offset = 0, int limit = 20, int beforeTime = 0}) {
     var params = {
       'rid': videoId,
@@ -195,18 +257,22 @@ mixin ApiEvent {
       'offset': offset,
       'beforeTime': beforeTime
     };
-    return Https.dio
-        .postUri(joinUri('/weapi/v1/resource/comments/R_VI_62_$videoId'),
-            data: params, options: joinOptions(cookies: {'os': 'pc'}))
+    return DioMetaData(joinUri('/weapi/v1/resource/comments/R_VI_62_$videoId'),
+        data: params, options: joinOptions(cookies: {'os': 'pc'}));
+  }
+
+  /// 视频评论
+  Future<CommentListWrap> videoCommentList(String videoId,
+      {int offset = 0, int limit = 20, int beforeTime = 0}) {
+    return Https.dioProxy
+        .postUri(videoCommentListDioMetaData(videoId,
+            offset: offset, limit: limit, beforeTime: beforeTime))
         .then((Response value) {
       return CommentListWrap.fromJson(value.data);
     });
   }
 
-  /// 热门评论
-  /// [id] 资源id
-  /// [type] 'song':歌曲 'mv':mv 'playlist':歌单 'album':专辑 'dj':电台 'video':视频
-  Future<CommentListWrap> hotCommentList(String id, String type,
+  DioMetaData hotCommentListDioMetaData(String id, String type,
       {int offset = 0, int limit = 20, int beforeTime = 0}) {
     String typeKey = _type2key(type);
     var params = {
@@ -215,27 +281,38 @@ mixin ApiEvent {
       'offset': offset,
       'beforeTime': beforeTime
     };
-    return Https.dio
-        .postUri(joinUri('/weapi/v1/resource/hotcomments/$typeKey$id'),
-            data: params, options: joinOptions(cookies: {'os': 'pc'}))
+    return DioMetaData(joinUri('/weapi/v1/resource/hotcomments/$typeKey$id'),
+        data: params, options: joinOptions(cookies: {'os': 'pc'}));
+  }
+
+  /// 热门评论
+  /// [id] 资源id
+  /// [type] 'song':歌曲 'mv':mv 'playlist':歌单 'album':专辑 'dj':电台 'video':视频
+  Future<CommentListWrap> hotCommentList(String id, String type,
+      {int offset = 0, int limit = 20, int beforeTime = 0}) {
+    return Https.dioProxy
+        .postUri(hotCommentListDioMetaData(id, type,
+            offset: offset, limit: limit, beforeTime: beforeTime))
         .then((Response value) {
       return CommentListWrap.fromJson(value.data);
     });
   }
 
+  DioMetaData hotwallCommentListDioMetaData() {
+    return DioMetaData(joinUri('/api/comment/hotwall/list/get'),
+        data: {}, options: joinOptions());
+  }
+
   /// 获取云村热评
   Future<HotwallCommentListWrap> hotwallCommentList() {
-    return Https.dio
-        .postUri(joinUri('/api/comment/hotwall/list/get'),
-            data: {}, options: joinOptions())
+    return Https.dioProxy
+        .postUri(hotwallCommentListDioMetaData())
         .then((Response value) {
       return HotwallCommentListWrap.fromJson(value.data);
     });
   }
 
-  /// 通知 - 评论
-  /// !需要登录
-  Future<CommentListWrap> userComments(String userId,
+  DioMetaData userCommentsDioMetaData(String userId,
       {int beforeTime = -1, int limit = 30, bool total = true}) {
     var params = {
       'uid': userId,
@@ -243,12 +320,27 @@ mixin ApiEvent {
       'beforeTime': beforeTime,
       'total': total
     };
-    return Https.dio
-        .postUri(joinUri('/api/v1/user/comments/$userId'),
-            data: params, options: joinOptions())
+    return DioMetaData(joinUri('/api/v1/user/comments/$userId'),
+        data: params, options: joinOptions());
+  }
+
+  /// 通知 - 评论
+  /// !需要登录
+  Future<CommentListWrap> userComments(String userId,
+      {int beforeTime = -1, int limit = 30, bool total = true}) {
+    return Https.dioProxy
+        .postUri(userCommentsDioMetaData(userId,
+            beforeTime: beforeTime, limit: limit, total: total))
         .then((Response value) {
       return CommentListWrap.fromJson(value.data);
     });
+  }
+
+  DioMetaData forwardsDioMetaData(
+      {int offset = 0, int limit = 30, bool total = true}) {
+    var params = {'limit': limit, 'offset': offset, 'total': total};
+    return DioMetaData(joinUri('/api/forwards/get'),
+        data: params, options: joinOptions());
   }
 
   /// 通知 - @我
@@ -256,13 +348,28 @@ mixin ApiEvent {
   /// TODO 账号没有这类数据，补充数据结构  forwards
   Future<ServerStatusBean> forwards(
       {int offset = 0, int limit = 30, bool total = true}) {
-    var params = {'limit': limit, 'offset': offset, 'total': total};
-    return Https.dio
-        .postUri(joinUri('/api/forwards/get'),
-            data: params, options: joinOptions())
+    return Https.dioProxy
+        .postUri(
+            forwardsDioMetaData(offset: offset, limit: limit, total: total))
         .then((Response value) {
       return ServerStatusBean.fromJson(value.data);
     });
+  }
+
+  DioMetaData likeCommentDioMetaData(
+      String id, String commentId, String type, bool like,
+      {String threadId}) {
+    String typeKey = _type2key(type);
+    var params = {'commentId': commentId, 'threadId': typeKey + id};
+    if (type == 'event') {
+      if (threadId == null) {
+        return DioMetaData.error(
+            ArgumentError('event type, threadId not null'));
+      }
+      params['threadId'] = threadId;
+    }
+    return DioMetaData(joinUri('/weapi/v1/comment/${like ? 'like' : 'unlike'}'),
+        data: params, options: joinOptions(cookies: {'os': 'pc'}));
   }
 
   /// 评论点赞
@@ -275,20 +382,53 @@ mixin ApiEvent {
   Future<ServerStatusBean> likeComment(
       String id, String commentId, String type, bool like,
       {String threadId}) {
-    String typeKey = _type2key(type);
-    var params = {'commentId': commentId, 'threadId': typeKey + id};
-    if (type == 'event') {
-      if (threadId == null) {
-        return Future.error(ArgumentError('event type, threadId not null'));
-      }
-      params['threadId'] = threadId;
-    }
-    return Https.dio
-        .postUri(joinUri('/weapi/v1/comment/${like ? 'like' : 'unlike'}'),
-            data: params, options: joinOptions(cookies: {'os': 'pc'}))
+    return Https.dioProxy
+        .postUri(likeCommentDioMetaData(id, commentId, type, like,
+            threadId: threadId))
         .then((Response value) {
       return ServerStatusBean.fromJson(value.data);
     });
+  }
+
+  DioMetaData commentDioMetaData(String id, String type, String op,
+      {String commentId, String threadId, String content}) {
+    String typeKey = _type2key(type);
+    var params = {'threadId': typeKey + id};
+    if (type == 'event') {
+      if (threadId == null) {
+        return DioMetaData.error(
+            ArgumentError('event type, threadId not null'));
+      }
+      params['threadId'] = threadId;
+    }
+    switch (op) {
+      case 'add':
+        if (content == null) {
+          return DioMetaData.error(ArgumentError('add op, content not null'));
+        }
+        params['content'] = content;
+        break;
+      case 'delete':
+        if (commentId == null) {
+          return DioMetaData.error(
+              ArgumentError('delete op, commentId not null'));
+        }
+        params['commentId'] = commentId;
+        break;
+      case 'reply':
+        if (commentId == null) {
+          return DioMetaData.error(
+              ArgumentError('reply op, commentId not null'));
+        }
+        if (content == null) {
+          return DioMetaData.error(ArgumentError('reply op, content not null'));
+        }
+        params['commentId'] = commentId;
+        params['content'] = content;
+        break;
+    }
+    return DioMetaData(joinUri('/weapi/resource/comments/$op'),
+        data: params, options: joinOptions(cookies: {'os': 'pc'}));
   }
 
   /// 发表/删除/回复评论
@@ -299,44 +439,27 @@ mixin ApiEvent {
   /// threadId 可通过 /event，/user/event 接口获取
   Future<CommentWrap> comment(String id, String type, String op,
       {String commentId, String threadId, String content}) {
+    return Https.dioProxy
+        .postUri(commentDioMetaData(id, type, op,
+            commentId: commentId, threadId: threadId, content: content))
+        .then((Response value) {
+      return CommentWrap.fromJson(value.data);
+    });
+  }
+
+  DioMetaData likeResourceDioMetaData(String id, String type, bool like,
+      {String commentId, String threadId, String content}) {
     String typeKey = _type2key(type);
     var params = {'threadId': typeKey + id};
     if (type == 'event') {
       if (threadId == null) {
-        return Future.error(ArgumentError('event type, threadId not null'));
+        return DioMetaData.error(
+            ArgumentError('event type, threadId not null'));
       }
       params['threadId'] = threadId;
     }
-    switch (op) {
-      case 'add':
-        if (content == null) {
-          return Future.error(ArgumentError('add op, content not null'));
-        }
-        params['content'] = content;
-        break;
-      case 'delete':
-        if (commentId == null) {
-          return Future.error(ArgumentError('delete op, commentId not null'));
-        }
-        params['commentId'] = commentId;
-        break;
-      case 'reply':
-        if (commentId == null) {
-          return Future.error(ArgumentError('reply op, commentId not null'));
-        }
-        if (content == null) {
-          return Future.error(ArgumentError('reply op, content not null'));
-        }
-        params['commentId'] = commentId;
-        params['content'] = content;
-        break;
-    }
-    return Https.dio
-        .postUri(joinUri('/weapi/resource/comments/$op'),
-            data: params, options: joinOptions(cookies: {'os': 'pc'}))
-        .then((Response value) {
-      return CommentWrap.fromJson(value.data);
-    });
+    return DioMetaData(joinUri('/weapi/resource/${like ? 'like' : 'unlike'}'),
+        data: params, options: joinOptions(cookies: {'os': 'pc'}));
   }
 
   /// 点赞与取消点赞资源
@@ -347,17 +470,9 @@ mixin ApiEvent {
   /// threadId 可通过 /event，/user/event 接口获取
   Future<ServerStatusBean> likeResource(String id, String type, bool like,
       {String commentId, String threadId, String content}) {
-    String typeKey = _type2key(type);
-    var params = {'threadId': typeKey + id};
-    if (type == 'event') {
-      if (threadId == null) {
-        return Future.error(ArgumentError('event type, threadId not null'));
-      }
-      params['threadId'] = threadId;
-    }
-    return Https.dio
-        .postUri(joinUri('/weapi/resource/${like ? 'like' : 'unlike'}'),
-            data: params, options: joinOptions(cookies: {'os': 'pc'}))
+    return Https.dioProxy
+        .postUri(likeResourceDioMetaData(id, type, like,
+            commentId: commentId, threadId: threadId, content: content))
         .then((Response value) {
       return ServerStatusBean.fromJson(value.data);
     });
@@ -391,22 +506,26 @@ mixin ApiEvent {
     return typeKey;
   }
 
+  DioMetaData privateMsgListUsersDioMetaData(
+      {int offset = 0, int limit = 30, bool total = true}) {
+    var params = {'limit': limit, 'offset': offset, 'total': total};
+    return DioMetaData(joinUri('/api/msg/private/users'),
+        data: params, options: joinOptions());
+  }
+
   /// 私信会话列表
   /// !需要登录
   Future<UsersMsgListWrap> privateMsgListUsers(
       {int offset = 0, int limit = 30, bool total = true}) {
-    var params = {'limit': limit, 'offset': offset, 'total': total};
-    return Https.dio
-        .postUri(joinUri('/api/msg/private/users'),
-            data: params, options: joinOptions())
+    return Https.dioProxy
+        .postUri(privateMsgListUsersDioMetaData(
+            offset: offset, limit: limit, total: total))
         .then((Response value) {
       return UsersMsgListWrap.fromJson(value.data);
     });
   }
 
-  /// 发送私信（返回与这个用户的历史信息）
-  /// !需要登录
-  Future<UserMsgListWrap2> sendPrivateMsg(String msg, String userId,
+  DioMetaData sendPrivateMsgDioMetaData(String msg, String userId,
       {String type = 'text', String playlist = ''}) {
     var params = {
       'userIds': '[$userId]',
@@ -414,17 +533,23 @@ mixin ApiEvent {
       'msg': msg,
       'type': type
     };
-    return Https.dio
-        .postUri(joinUri('/weapi/msg/private/send'),
-            data: params, options: joinOptions(cookies: {'os': 'pc'}))
+    return DioMetaData(joinUri('/weapi/msg/private/send'),
+        data: params, options: joinOptions(cookies: {'os': 'pc'}));
+  }
+
+  /// 发送私信（返回与这个用户的历史信息）
+  /// !需要登录
+  Future<UserMsgListWrap2> sendPrivateMsg(String msg, String userId,
+      {String type = 'text', String playlist = ''}) {
+    return Https.dioProxy
+        .postUri(sendPrivateMsgDioMetaData(msg, userId,
+            type: type, playlist: playlist))
         .then((Response value) {
       return UserMsgListWrap2.fromJson(value.data);
     });
   }
 
-  /// 私信内容(与某个用户的私信)
-  /// !需要登录
-  Future<UserMsgListWrap> privateMsgListUser(String userId,
+  DioMetaData privateMsgListUserDioMetaData(String userId,
       {int offset = 0, int limit = 30, bool total = true}) {
     var params = {
       'userId': userId,
@@ -432,22 +557,34 @@ mixin ApiEvent {
       'offset': offset,
       'total': total
     };
-    return Https.dio
-        .postUri(joinUri('/api/msg/private/history'),
-            data: params, options: joinOptions())
+    return DioMetaData(joinUri('/api/msg/private/history'),
+        data: params, options: joinOptions());
+  }
+
+  /// 私信内容(与某个用户的私信)
+  /// !需要登录
+  Future<UserMsgListWrap> privateMsgListUser(String userId,
+      {int offset = 0, int limit = 30, bool total = true}) {
+    return Https.dioProxy
+        .postUri(privateMsgListUserDioMetaData(userId,
+            offset: offset, limit: limit, total: total))
         .then((Response value) {
       return UserMsgListWrap.fromJson(value.data);
     });
+  }
+
+  DioMetaData msgNoticesDioMetaData({int limit = 30, int lasttime = -1}) {
+    var params = {'limit': limit, 'lasttime ': lasttime};
+    return DioMetaData(joinUri('/api/msg/notices'),
+        data: params, options: joinOptions());
   }
 
   /// 通知
   /// !需要登录
   /// TODO 账号没有这类数据，补充数据结构  notices
   Future<ServerStatusBean> msgNotices({int limit = 30, int lasttime = -1}) {
-    var params = {'limit': limit, 'lasttime ': lasttime};
-    return Https.dio
-        .postUri(joinUri('/api/msg/notices'),
-            data: params, options: joinOptions())
+    return Https.dioProxy
+        .postUri(msgNoticesDioMetaData(limit: limit, lasttime: lasttime))
         .then((Response value) {
       return ServerStatusBean.fromJson(value.data);
     });
