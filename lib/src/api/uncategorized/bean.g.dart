@@ -84,6 +84,269 @@ Map<String, dynamic> _$BannerListWrap2ToJson(BannerListWrap2 instance) =>
       'data': instance.data,
     };
 
+PageConfig _$PageConfigFromJson(Map<String, dynamic> json) {
+  return PageConfig()
+    ..title = json['title'] as String
+    ..refreshToast = json['refreshToast'] as String
+    ..nodataToast = json['nodataToast'] as String
+    ..refreshInterval = json['refreshInterval'] as int
+    ..songLabelMarkLimit = json['songLabelMarkLimit'] as int
+    ..fullscreen = json['fullscreen'] as bool
+    ..songLabelMarkPriority = (json['songLabelMarkPriority'] as List)
+        ?.map((e) => e as String)
+        ?.toList()
+    ..abtest = (json['abtest'] as List)?.map((e) => e as String)?.toList();
+}
+
+Map<String, dynamic> _$PageConfigToJson(PageConfig instance) =>
+    <String, dynamic>{
+      'title': instance.title,
+      'refreshToast': instance.refreshToast,
+      'nodataToast': instance.nodataToast,
+      'refreshInterval': instance.refreshInterval,
+      'songLabelMarkLimit': instance.songLabelMarkLimit,
+      'fullscreen': instance.fullscreen,
+      'songLabelMarkPriority': instance.songLabelMarkPriority,
+      'abtest': instance.abtest,
+    };
+
+HomeBlockPageUiElementTitle _$HomeBlockPageUiElementTitleFromJson(
+    Map<String, dynamic> json) {
+  return HomeBlockPageUiElementTitle()..title = json['title'] as String;
+}
+
+Map<String, dynamic> _$HomeBlockPageUiElementTitleToJson(
+        HomeBlockPageUiElementTitle instance) =>
+    <String, dynamic>{
+      'title': instance.title,
+    };
+
+HomeBlockPageUiElementButton _$HomeBlockPageUiElementButtonFromJson(
+    Map<String, dynamic> json) {
+  return HomeBlockPageUiElementButton()
+    ..action = json['action'] as String
+    ..actionType = json['actionType'] as String
+    ..text = json['text'] as String
+    ..iconUrl = json['iconUrl'] as String;
+}
+
+Map<String, dynamic> _$HomeBlockPageUiElementButtonToJson(
+        HomeBlockPageUiElementButton instance) =>
+    <String, dynamic>{
+      'action': instance.action,
+      'actionType': instance.actionType,
+      'text': instance.text,
+      'iconUrl': instance.iconUrl,
+    };
+
+HomeBlockPageUiElementImage _$HomeBlockPageUiElementImageFromJson(
+    Map<String, dynamic> json) {
+  return HomeBlockPageUiElementImage()..imageUrl = json['imageUrl'] as String;
+}
+
+Map<String, dynamic> _$HomeBlockPageUiElementImageToJson(
+        HomeBlockPageUiElementImage instance) =>
+    <String, dynamic>{
+      'imageUrl': instance.imageUrl,
+    };
+
+HomeBlockPageUiElement _$HomeBlockPageUiElementFromJson(
+    Map<String, dynamic> json) {
+  return HomeBlockPageUiElement()
+    ..mainTitle = json['mainTitle'] == null
+        ? null
+        : HomeBlockPageUiElementTitle.fromJson(
+            json['mainTitle'] as Map<String, dynamic>)
+    ..subTitle = json['subTitle'] == null
+        ? null
+        : HomeBlockPageUiElementTitle.fromJson(
+            json['subTitle'] as Map<String, dynamic>)
+    ..button = json['button'] == null
+        ? null
+        : HomeBlockPageUiElementButton.fromJson(
+            json['button'] as Map<String, dynamic>)
+    ..image = json['image'] == null
+        ? null
+        : HomeBlockPageUiElementImage.fromJson(
+            json['image'] as Map<String, dynamic>)
+    ..labelTexts =
+        (json['labelTexts'] as List)?.map((e) => e as String)?.toList();
+}
+
+Map<String, dynamic> _$HomeBlockPageUiElementToJson(
+        HomeBlockPageUiElement instance) =>
+    <String, dynamic>{
+      'mainTitle': instance.mainTitle,
+      'subTitle': instance.subTitle,
+      'button': instance.button,
+      'image': instance.image,
+      'labelTexts': instance.labelTexts,
+    };
+
+HomeBlockPageResourceExt _$HomeBlockPageResourceExtFromJson(
+    Map<String, dynamic> json) {
+  return HomeBlockPageResourceExt()
+    ..artists = (json['artists'] as List)
+        ?.map((e) =>
+            e == null ? null : Artists.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..songData = json['songData'] == null
+        ? null
+        : Song.fromJson(json['songData'] as Map<String, dynamic>)
+    ..songPrivilege = json['songPrivilege'] == null
+        ? null
+        : Privilege.fromJson(json['songPrivilege'] as Map<String, dynamic>)
+    ..commentSimpleData = json['commentSimpleData'] == null
+        ? null
+        : CommentSimple.fromJson(
+            json['commentSimpleData'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$HomeBlockPageResourceExtToJson(
+        HomeBlockPageResourceExt instance) =>
+    <String, dynamic>{
+      'artists': instance.artists,
+      'songData': instance.songData,
+      'songPrivilege': instance.songPrivilege,
+      'commentSimpleData': instance.commentSimpleData,
+    };
+
+HomeBlockPageResource _$HomeBlockPageResourceFromJson(
+    Map<String, dynamic> json) {
+  return HomeBlockPageResource()
+    ..resourceType = json['resourceType'] as String
+    ..resourceId = json['resourceId'] as String
+    ..resourceUrl = json['resourceUrl'] as String
+    ..action = json['action'] as String
+    ..actionType = json['actionType'] as String
+    ..uiElement = json['uiElement'] == null
+        ? null
+        : HomeBlockPageUiElement.fromJson(
+            json['uiElement'] as Map<String, dynamic>)
+    ..resourceExtInfo = json['resourceExtInfo'] == null
+        ? null
+        : HomeBlockPageResourceExt.fromJson(
+            json['resourceExtInfo'] as Map<String, dynamic>)
+    ..alg = json['alg'] as String
+    ..valid = json['valid'] as bool;
+}
+
+Map<String, dynamic> _$HomeBlockPageResourceToJson(
+        HomeBlockPageResource instance) =>
+    <String, dynamic>{
+      'resourceType': instance.resourceType,
+      'resourceId': instance.resourceId,
+      'resourceUrl': instance.resourceUrl,
+      'action': instance.action,
+      'actionType': instance.actionType,
+      'uiElement': instance.uiElement,
+      'resourceExtInfo': instance.resourceExtInfo,
+      'alg': instance.alg,
+      'valid': instance.valid,
+    };
+
+HomeBlockPageCreative _$HomeBlockPageCreativeFromJson(
+    Map<String, dynamic> json) {
+  return HomeBlockPageCreative()
+    ..creativeType = json['creativeType'] as String
+    ..creativeId = json['creativeId'] as String
+    ..action = json['action'] as String
+    ..actionType = json['actionType'] as String
+    ..uiElement = json['uiElement'] == null
+        ? null
+        : HomeBlockPageUiElement.fromJson(
+            json['uiElement'] as Map<String, dynamic>)
+    ..resources = (json['resources'] as List)
+        ?.map((e) => e == null
+            ? null
+            : HomeBlockPageResource.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..alg = json['alg'] as String
+    ..position = json['position'] as int;
+}
+
+Map<String, dynamic> _$HomeBlockPageCreativeToJson(
+        HomeBlockPageCreative instance) =>
+    <String, dynamic>{
+      'creativeType': instance.creativeType,
+      'creativeId': instance.creativeId,
+      'action': instance.action,
+      'actionType': instance.actionType,
+      'uiElement': instance.uiElement,
+      'resources': instance.resources,
+      'alg': instance.alg,
+      'position': instance.position,
+    };
+
+HomeBlockPageItem _$HomeBlockPageItemFromJson(Map<String, dynamic> json) {
+  return HomeBlockPageItem()
+    ..blockCode = json['blockCode'] as String
+    ..showType = json['showType'] as String
+    ..uiElement = json['uiElement'] == null
+        ? null
+        : HomeBlockPageUiElement.fromJson(
+            json['uiElement'] as Map<String, dynamic>)
+    ..creatives = (json['creatives'] as List)
+        ?.map((e) => e == null
+            ? null
+            : HomeBlockPageCreative.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..extInfo = json['extInfo']
+    ..action = json['action'] as String
+    ..actionType = json['actionType'] as String
+    ..canClose = json['canClose'] as bool;
+}
+
+Map<String, dynamic> _$HomeBlockPageItemToJson(HomeBlockPageItem instance) =>
+    <String, dynamic>{
+      'blockCode': instance.blockCode,
+      'showType': instance.showType,
+      'uiElement': instance.uiElement,
+      'creatives': instance.creatives,
+      'extInfo': instance.extInfo,
+      'action': instance.action,
+      'actionType': instance.actionType,
+      'canClose': instance.canClose,
+    };
+
+HomeBlockPage _$HomeBlockPageFromJson(Map<String, dynamic> json) {
+  return HomeBlockPage()
+    ..hasMore = json['hasMore'] as bool
+    ..pageConfig = json['pageConfig'] == null
+        ? null
+        : PageConfig.fromJson(json['pageConfig'] as Map<String, dynamic>)
+    ..blocks = (json['blocks'] as List)
+        ?.map((e) => e == null
+            ? null
+            : HomeBlockPageItem.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$HomeBlockPageToJson(HomeBlockPage instance) =>
+    <String, dynamic>{
+      'hasMore': instance.hasMore,
+      'pageConfig': instance.pageConfig,
+      'blocks': instance.blocks,
+    };
+
+HomeBlockPageWrap _$HomeBlockPageWrapFromJson(Map<String, dynamic> json) {
+  return HomeBlockPageWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..data = json['data'] == null
+        ? null
+        : HomeBlockPage.fromJson(json['data'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$HomeBlockPageWrapToJson(HomeBlockPageWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
 CountriesCodeItem _$CountriesCodeItemFromJson(Map<String, dynamic> json) {
   return CountriesCodeItem()
     ..zh = json['zh'] as String

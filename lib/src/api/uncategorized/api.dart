@@ -24,6 +24,20 @@ mixin ApiUncategorized {
     });
   }
 
+  DioMetaData homeBlockPageDioMetaData({bool refresh = true}) {
+    var params = {"refresh": refresh};
+    return DioMetaData(joinUri('/api/homepage/block/page'),
+        data: params, options: joinOptions());
+  }
+
+  Future<HomeBlockPageWrap> homeBlockPage() {
+    return Https.dioProxy
+        .postUri(homeBlockPageDioMetaData())
+        .then((Response value) {
+      return HomeBlockPageWrap.fromJson(value.data);
+    });
+  }
+
   DioMetaData countriesCodeListDioMetaData() {
     return DioMetaData(
         Uri.parse('http://interface3.music.163.com/eapi/lbs/countries/v1'),

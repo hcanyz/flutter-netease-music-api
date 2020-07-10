@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:netease_music_api/src/api/bean.dart';
+import 'package:netease_music_api/src/api/event/bean.dart';
 import 'package:netease_music_api/src/api/play/bean.dart';
 import 'package:netease_music_api/src/api/user/bean.dart';
 import 'package:netease_music_api/src/dio_ext.dart';
@@ -62,6 +63,208 @@ class BannerListWrap2 extends ServerStatusBean {
       _$BannerListWrap2FromJson(json);
 
   Map<String, dynamic> toJson() => _$BannerListWrap2ToJson(this);
+}
+
+@JsonSerializable()
+class PageConfig {
+  String title;
+
+  String refreshToast;
+  String nodataToast;
+  int refreshInterval;
+  int songLabelMarkLimit;
+
+  bool fullscreen;
+
+  List<String> songLabelMarkPriority;
+  List<String> abtest;
+
+  PageConfig();
+
+  factory PageConfig.fromJson(Map<String, dynamic> json) =>
+      _$PageConfigFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PageConfigToJson(this);
+}
+
+@JsonSerializable()
+class HomeBlockPageUiElementTitle {
+  String title;
+
+  HomeBlockPageUiElementTitle();
+
+  factory HomeBlockPageUiElementTitle.fromJson(Map<String, dynamic> json) =>
+      _$HomeBlockPageUiElementTitleFromJson(json);
+
+  Map<String, dynamic> toJson() => _$HomeBlockPageUiElementTitleToJson(this);
+}
+
+@JsonSerializable()
+class HomeBlockPageUiElementButton {
+  String action;
+  String actionType;
+  String text;
+  String iconUrl;
+
+  HomeBlockPageUiElementButton();
+
+  factory HomeBlockPageUiElementButton.fromJson(Map<String, dynamic> json) =>
+      _$HomeBlockPageUiElementButtonFromJson(json);
+
+  Map<String, dynamic> toJson() => _$HomeBlockPageUiElementButtonToJson(this);
+}
+
+@JsonSerializable()
+class HomeBlockPageUiElementImage {
+  String imageUrl;
+
+  HomeBlockPageUiElementImage();
+
+  factory HomeBlockPageUiElementImage.fromJson(Map<String, dynamic> json) =>
+      _$HomeBlockPageUiElementImageFromJson(json);
+
+  Map<String, dynamic> toJson() => _$HomeBlockPageUiElementImageToJson(this);
+}
+
+@JsonSerializable()
+class HomeBlockPageUiElement {
+  HomeBlockPageUiElementTitle mainTitle;
+  HomeBlockPageUiElementTitle subTitle;
+  HomeBlockPageUiElementButton button;
+  HomeBlockPageUiElementImage image;
+
+  List<String> labelTexts;
+
+  HomeBlockPageUiElement();
+
+  factory HomeBlockPageUiElement.fromJson(Map<String, dynamic> json) =>
+      _$HomeBlockPageUiElementFromJson(json);
+
+  Map<String, dynamic> toJson() => _$HomeBlockPageUiElementToJson(this);
+}
+
+@JsonSerializable()
+class HomeBlockPageResourceExt {
+  List<Artists> artists;
+  Song songData;
+  Privilege songPrivilege;
+  CommentSimple commentSimpleData;
+
+  HomeBlockPageResourceExt();
+
+  factory HomeBlockPageResourceExt.fromJson(Map<String, dynamic> json) =>
+      _$HomeBlockPageResourceExtFromJson(json);
+
+  Map<String, dynamic> toJson() => _$HomeBlockPageResourceExtToJson(this);
+}
+
+@JsonSerializable()
+class HomeBlockPageResource {
+  String resourceType;
+
+  String resourceId;
+
+  String resourceUrl;
+
+  String action;
+  String actionType;
+
+  HomeBlockPageUiElement uiElement;
+
+  HomeBlockPageResourceExt resourceExtInfo;
+
+  String alg;
+
+  bool valid;
+
+  HomeBlockPageResource();
+
+  factory HomeBlockPageResource.fromJson(Map<String, dynamic> json) =>
+      _$HomeBlockPageResourceFromJson(json);
+
+  Map<String, dynamic> toJson() => _$HomeBlockPageResourceToJson(this);
+}
+
+@JsonSerializable()
+class HomeBlockPageCreative {
+  String creativeType;
+
+  String creativeId;
+
+  String action;
+  String actionType;
+
+  HomeBlockPageUiElement uiElement;
+
+  List<HomeBlockPageResource> resources;
+
+  String alg;
+
+  int position;
+
+  HomeBlockPageCreative();
+
+  factory HomeBlockPageCreative.fromJson(Map<String, dynamic> json) =>
+      _$HomeBlockPageCreativeFromJson(json);
+
+  Map<String, dynamic> toJson() => _$HomeBlockPageCreativeToJson(this);
+}
+
+@JsonSerializable()
+class HomeBlockPageItem {
+  String blockCode;
+
+  // HOMEPAGE_SLIDE_PLAYLIST
+  String showType;
+
+  HomeBlockPageUiElement uiElement;
+
+  List<HomeBlockPageCreative> creatives;
+
+  dynamic extInfo;
+
+  // orpheus://playlistCollection?referLog=HOMEPAGE_BLOCK_PLAYLIST_RCMD
+  String action;
+
+  // scheme
+  String actionType;
+
+  bool canClose;
+
+  HomeBlockPageItem();
+
+  factory HomeBlockPageItem.fromJson(Map<String, dynamic> json) =>
+      _$HomeBlockPageItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$HomeBlockPageItemToJson(this);
+}
+
+@JsonSerializable()
+class HomeBlockPage {
+  bool hasMore;
+
+  PageConfig pageConfig;
+
+  List<HomeBlockPageItem> blocks;
+
+  HomeBlockPage();
+
+  factory HomeBlockPage.fromJson(Map<String, dynamic> json) =>
+      _$HomeBlockPageFromJson(json);
+
+  Map<String, dynamic> toJson() => _$HomeBlockPageToJson(this);
+}
+
+@JsonSerializable()
+class HomeBlockPageWrap extends ServerStatusBean {
+  HomeBlockPage data;
+
+  HomeBlockPageWrap();
+
+  factory HomeBlockPageWrap.fromJson(Map<String, dynamic> json) =>
+      _$HomeBlockPageWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$HomeBlockPageWrapToJson(this);
 }
 
 @JsonSerializable()

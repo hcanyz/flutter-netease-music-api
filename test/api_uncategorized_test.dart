@@ -13,6 +13,11 @@ void main() async {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test home block page', () async {
+    var result = await api.homeBlockPage();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test countries code list', () async {
     var result = await api.countriesCodeList();
     expect(result.code, RET_CODE_OK);

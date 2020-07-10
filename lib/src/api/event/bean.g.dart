@@ -527,6 +527,24 @@ Map<String, dynamic> _$HotwallCommentListWrapToJson(
       'data': instance.data,
     };
 
+CommentSimple _$CommentSimpleFromJson(Map<String, dynamic> json) {
+  return CommentSimple()
+    ..commentId = dynamicToString(json['commentId'])
+    ..content = json['content'] as String
+    ..threadId = json['threadId'] as String
+    ..userId = dynamicToString(json['userId'])
+    ..userName = json['userName'] as String;
+}
+
+Map<String, dynamic> _$CommentSimpleToJson(CommentSimple instance) =>
+    <String, dynamic>{
+      'commentId': instance.commentId,
+      'content': instance.content,
+      'threadId': instance.threadId,
+      'userId': instance.userId,
+      'userName': instance.userName,
+    };
+
 Comment _$CommentFromJson(Map<String, dynamic> json) {
   return Comment()
     ..commentId = dynamicToString(json['commentId'])
