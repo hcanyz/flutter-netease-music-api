@@ -2,6 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:netease_music_api/src/api/bean.dart';
 import 'package:netease_music_api/src/api/play/bean.dart';
 import 'package:netease_music_api/src/api/user/bean.dart';
+import 'package:netease_music_api/src/dio_ext.dart';
 
 part 'bean.g.dart';
 
@@ -280,4 +281,22 @@ class TopListDetailWrap extends ServerStatusBean {
       _$TopListDetailWrapFromJson(json);
 
   Map<String, dynamic> toJson() => _$TopListDetailWrapToJson(this);
+}
+
+class BatchApiWrap extends ServerStatusBean {
+  Map<String, dynamic> data;
+
+  BatchApiWrap();
+
+  dynamic findResponseData<T>(DioMetaData metaData) {
+    return data[metaData.uri.path];
+  }
+
+  factory BatchApiWrap.fromJson(Map<String, dynamic> json) {
+    return BatchApiWrap()
+      ..code = json['code'] as int
+      ..message = json['message'] as String
+      ..msg = json['msg'] as String
+      ..data = json;
+  }
 }

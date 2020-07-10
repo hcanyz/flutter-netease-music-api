@@ -99,10 +99,10 @@ mixin ApiUncategorized {
     });
   }
 
-  DioMetaData batchApiDioMetaData(Map<String, String> apis) {
-    Map<String, dynamic> params = {'e_r': true};
-    apis.forEach((key, value) {
-      params[key] = value;
+  DioMetaData batchApiDioMetaData(List<DioMetaData> dioMetaDatas) {
+    Map<String, dynamic> params = {};
+    dioMetaDatas.forEach((element) {
+      params[element.uri.path] = jsonEncode(element.data);
     });
     return DioMetaData(joinUri('/eapi/batch'),
         data: params,
@@ -112,11 +112,11 @@ mixin ApiUncategorized {
 
   /// batch批量请求接口
   /// 登陆后调用此接口 ,传入接口和对应原始参数(原始参数非文档里写的参数,需参考源码),可批量请求接口
-  Future<Object> batchApi(Map<String, String> apis) {
+  Future<BatchApiWrap> batchApi(List<DioMetaData> dioMetaDatas) {
     return Https.dioProxy
-        .postUri(batchApiDioMetaData(apis))
+        .postUri(batchApiDioMetaData(dioMetaDatas))
         .then((Response value) {
-      return value.data;
+      return BatchApiWrap.fromJson(value.data);
     });
   }
 
