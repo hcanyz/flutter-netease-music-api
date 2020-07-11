@@ -30,9 +30,10 @@ mixin ApiUncategorized {
         data: params, options: joinOptions());
   }
 
-  Future<HomeBlockPageWrap> homeBlockPage() {
+  /// 首页-发现 block page
+  Future<HomeBlockPageWrap> homeBlockPage({bool refresh = true}) {
     return Https.dioProxy
-        .postUri(homeBlockPageDioMetaData())
+        .postUri(homeBlockPageDioMetaData(refresh: refresh))
         .then((Response value) {
       return HomeBlockPageWrap.fromJson(value.data);
     });
