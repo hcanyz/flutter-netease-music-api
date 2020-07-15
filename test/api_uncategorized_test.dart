@@ -18,6 +18,11 @@ void main() async {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test home dragon ball static', () async {
+    var result = await api.homeDragonBallStatic();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test countries code list', () async {
     var result = await api.countriesCodeList();
     expect(result.code, RET_CODE_OK);

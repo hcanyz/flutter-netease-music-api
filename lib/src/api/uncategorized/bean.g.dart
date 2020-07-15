@@ -347,6 +347,44 @@ Map<String, dynamic> _$HomeBlockPageWrapToJson(HomeBlockPageWrap instance) =>
       'data': instance.data,
     };
 
+HomeDragonBallItem _$HomeDragonBallItemFromJson(Map<String, dynamic> json) {
+  return HomeDragonBallItem()
+    ..id = json['id'] as int
+    ..name = json['name'] as String
+    ..iconUrl = json['iconUrl'] as String
+    ..url = json['url'] as String
+    ..skinSupport = json['skinSupport'] as bool;
+}
+
+Map<String, dynamic> _$HomeDragonBallItemToJson(HomeDragonBallItem instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'iconUrl': instance.iconUrl,
+      'url': instance.url,
+      'skinSupport': instance.skinSupport,
+    };
+
+HomeDragonBallWrap _$HomeDragonBallWrapFromJson(Map<String, dynamic> json) {
+  return HomeDragonBallWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..data = (json['data'] as List)
+        ?.map((e) => e == null
+            ? null
+            : HomeDragonBallItem.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$HomeDragonBallWrapToJson(HomeDragonBallWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
 CountriesCodeItem _$CountriesCodeItemFromJson(Map<String, dynamic> json) {
   return CountriesCodeItem()
     ..zh = json['zh'] as String

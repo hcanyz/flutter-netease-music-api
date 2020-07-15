@@ -39,6 +39,23 @@ mixin ApiUncategorized {
     });
   }
 
+  DioMetaData homeDragonBallStaticDioMetaData() {
+    return DioMetaData(joinUri('/api/homepage/dragon/ball/static'),
+        data: {},
+        options: joinOptions(
+            eApiUrl: '/api/homepage/dragon/ball/static',
+            encryptType: EncryptType.EApi));
+  }
+
+  /// 首页-发现 dragon ball
+  Future<HomeDragonBallWrap> homeDragonBallStatic() {
+    return Https.dioProxy
+        .postUri(homeDragonBallStaticDioMetaData())
+        .then((Response value) {
+      return HomeDragonBallWrap.fromJson(value.data);
+    });
+  }
+
   DioMetaData countriesCodeListDioMetaData() {
     return DioMetaData(
         Uri.parse('http://interface3.music.163.com/eapi/lbs/countries/v1'),

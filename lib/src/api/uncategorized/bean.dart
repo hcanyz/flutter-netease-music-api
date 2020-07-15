@@ -268,6 +268,37 @@ class HomeBlockPageWrap extends ServerStatusBean {
 }
 
 @JsonSerializable()
+class HomeDragonBallItem {
+  int id;
+  String name;
+
+  String iconUrl;
+
+  String url;
+
+  bool skinSupport;
+
+  HomeDragonBallItem();
+
+  factory HomeDragonBallItem.fromJson(Map<String, dynamic> json) =>
+      _$HomeDragonBallItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$HomeDragonBallItemToJson(this);
+}
+
+@JsonSerializable()
+class HomeDragonBallWrap extends ServerStatusBean {
+  List<HomeDragonBallItem> data;
+
+  HomeDragonBallWrap();
+
+  factory HomeDragonBallWrap.fromJson(Map<String, dynamic> json) =>
+      _$HomeDragonBallWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$HomeDragonBallWrapToJson(this);
+}
+
+@JsonSerializable()
 class CountriesCodeItem {
   String zh;
   String en;
