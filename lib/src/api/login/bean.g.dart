@@ -141,3 +141,19 @@ Map<String, dynamic> _$CellPhoneCheckExistenceRetToJson(
       'nickname': instance.nickname,
       'hasPassword': instance.hasPassword,
     };
+
+AnonimousLoginRet _$AnonimousLoginRetFromJson(Map<String, dynamic> json) {
+  return AnonimousLoginRet()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..userId = dynamicToString(json['userId']);
+}
+
+Map<String, dynamic> _$AnonimousLoginRetToJson(AnonimousLoginRet instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'userId': instance.userId,
+    };

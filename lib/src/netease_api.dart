@@ -145,6 +145,15 @@ class UserLoginStateController {
     return _accountInfo;
   }
 
+  AnonimousLoginRet _anonimousLoginRet;
+
+  AnonimousLoginRet get anonimousLoginInfo {
+    if (accountInfo != null) {
+      _anonimousLoginRet = null;
+    }
+    return _anonimousLoginRet;
+  }
+
   bool get isLogined {
     return _curLoginState == LoginState.Logined;
   }
@@ -163,6 +172,10 @@ class UserLoginStateController {
     _accountInfo = infoWrap;
     _refreshLoginState(LoginState.Logined);
     _saveAccountInfo(infoWrap);
+  }
+
+  void onAnonimousLogined(AnonimousLoginRet anonimousLoginRet) {
+    _anonimousLoginRet = anonimousLoginRet;
   }
 
   void onLogout() {

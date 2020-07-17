@@ -76,3 +76,16 @@ class CellPhoneCheckExistenceRet extends ServerStatusBean {
 
   Map<String, dynamic> toJson() => _$CellPhoneCheckExistenceRetToJson(this);
 }
+
+@JsonSerializable()
+class AnonimousLoginRet extends ServerStatusBean {
+  @JsonKey(fromJson: dynamicToString)
+  String userId;
+
+  AnonimousLoginRet();
+
+  factory AnonimousLoginRet.fromJson(Map<String, dynamic> json) =>
+      _$AnonimousLoginRetFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AnonimousLoginRetToJson(this);
+}

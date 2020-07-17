@@ -13,6 +13,34 @@ import 'package:pointycastle/digests/md5.dart';
 import 'bean.dart';
 
 mixin ApiLogin {
+  DioMetaData loginAnonimousDioMetaData() {
+    var base64 = Base64Encoder();
+    var deviceId = Uri.encodeComponent(base64.convert(utf8
+        .encode('null	a4:50:46:73:3a:57	a5914fdadb9b4cbb	5fe11acbc99b1fac')));
+    var usernameRaw = '$deviceId 0wH6J2J5LpuzoSkpx6Kivg==';
+
+    // TODO 等一个逆向大神~
+    // deviceId = base64('null	a4:50:46:73:3a:57	a5914fdadb9b4cbb	5fe11acbc99b1fac')
+    // username = '${base64(deviceId)} serialurl(deviceId)'
+    // serialurl 为 com.netease.cloudmusic.NeteaseMusicUtils#serialurl native方法
+    String username = base64.convert(utf8.encode(usernameRaw));
+    var params = {'username': username};
+    return DioMetaData(joinUri('/api/register/anonimous'),
+        data: params, options: joinOptions());
+  }
+
+  /// 匿名登录
+  /// [username]
+  Future<AnonimousLoginRet> loginAnonimous() {
+    return Https.dioProxy
+        .postUri(loginAnonimousDioMetaData())
+        .then((Response value) {
+      var ret = AnonimousLoginRet.fromJson(value.data);
+      NeteaseMusicApi().usc.onAnonimousLogined(ret);
+      return ret;
+    });
+  }
+
   DioMetaData loginCellPhoneDioMetaData(String phone, String password,
       {String countryCode = ''}) {
     var params = {

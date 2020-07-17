@@ -18,6 +18,14 @@ void main() async {
   //是否测试发验证码
   const bool doSendCaptcha = false;
 
+  test('test anonimous', () async {
+    api.usc.onLogout();
+
+    var result = await api.loginAnonimous();
+    expect(result.code, RET_CODE_OK);
+    expect(api.usc.anonimousLoginInfo?.userId, isNotNull);
+  });
+
   test('test login cellPhone then logout', () async {
     api.usc.onLogout();
 

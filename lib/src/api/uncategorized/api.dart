@@ -48,6 +48,7 @@ mixin ApiUncategorized {
   }
 
   /// 首页-发现 dragon ball
+  /// !需要登录或者匿名登录
   Future<HomeDragonBallWrap> homeDragonBallStatic() {
     return Https.dioProxy
         .postUri(homeDragonBallStaticDioMetaData())
