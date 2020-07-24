@@ -1007,11 +1007,13 @@ mixin ApiPlay {
       "offset": offset,
       "filterLives": '[]',
       "withProgramInfo": 'true',
-      "needUrl": '1',
+      "needUrl": 'true',
       "resolution": '480'
     };
     return DioMetaData(joinUri('/api/videotimeline/get'),
-        data: params, options: joinOptions());
+        data: params,
+        options: joinOptions(
+            encryptType: EncryptType.EApi, eApiUrl: '/api/videotimeline/get'));
   }
 
   /// 视频列表
