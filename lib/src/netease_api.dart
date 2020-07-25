@@ -135,8 +135,9 @@ class UserLoginStateController {
   UserLoginStateController() {
     _checkCreateSavePath();
     _readAccountInfo();
-    _refreshLoginState(
-        loadCookies().isNotEmpty ? LoginState.Logined : LoginState.Logout);
+    _refreshLoginState(loadCookies().isNotEmpty && _accountInfo != null
+        ? LoginState.Logined
+        : LoginState.Logout);
   }
 
   NeteaseAccountInfoWrap _accountInfo;
