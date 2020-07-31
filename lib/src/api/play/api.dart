@@ -1109,25 +1109,55 @@ mixin ApiPlay {
   }
 
   DioMetaData newAlbumListDioMetaData(
-      {String area = 'ALL',
-      int offset = 0,
-      int limit = 30,
-      bool total = true}) {
+      {int offset = 0, int limit = 30, bool total = true}) {
     var params = {'total': total, 'limit': limit, 'offset': offset};
     return DioMetaData(joinUri('/weapi/album/new'),
         data: params, options: joinOptions());
   }
 
   /// 新碟上架
-  /// [area] ALL,ZH,EA,KR,JP
   Future<AlbumListWrap> newAlbumList(
-      {String area = 'ALL',
-      int offset = 0,
-      int limit = 30,
-      bool total = true}) {
+      {int offset = 0, int limit = 30, bool total = true}) {
     return Https.dioProxy
-        .postUri(newAlbumListDioMetaData(
-            area: area, offset: offset, limit: limit, total: total))
+        .postUri(
+            newAlbumListDioMetaData(offset: offset, limit: limit, total: total))
+        .then((Response value) {
+      return AlbumListWrap.fromJson(value.data);
+    });
+  }
+
+  DioMetaData newAlbumListByAreaDioMetaData(
+      {String area = 'ALL',
+      String type = "new",
+      String year = "",
+      String month = "",
+      int offset = 0,
+      int limit = 30}) {
+    var params = {'limit': limit, 'offset': offset};
+    return DioMetaData(joinUri('api/discovery/new/albums/area'),
+        data: params, options: joinOptions());
+  }
+
+  /// 新碟上架 筛选
+  /// [area] ALL:全部,ZH:华语,EA:欧美,KR:韩国,JP:日本
+  /// [type] new:全部 hot:热门,默认为 new
+  /// [year] 年,默认本年
+  /// [month] 月,默认本月
+  Future<AlbumListWrap> newAlbumListByArea(
+      {String area = 'ALL',
+      String type = "new",
+      String year = "",
+      String month = "",
+      int offset = 0,
+      int limit = 30}) {
+    return Https.dioProxy
+        .postUri(newAlbumListByAreaDioMetaData(
+            area: area,
+            type: type,
+            year: year,
+            month: month,
+            offset: offset,
+            limit: limit))
         .then((Response value) {
       return AlbumListWrap.fromJson(value.data);
     });

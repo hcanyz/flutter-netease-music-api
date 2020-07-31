@@ -327,6 +327,11 @@ void main() async {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test new album area list', () async {
+    var result = await api.newAlbumListByArea();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test newest album list', () async {
     var result = await api.newestAlbumList();
     expect(result.code, RET_CODE_OK);
