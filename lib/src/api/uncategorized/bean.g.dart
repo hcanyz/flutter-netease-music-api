@@ -199,7 +199,9 @@ HomeBlockPageResourceExt _$HomeBlockPageResourceExtFromJson(
     ..commentSimpleData = json['commentSimpleData'] == null
         ? null
         : CommentSimple.fromJson(
-            json['commentSimpleData'] as Map<String, dynamic>);
+            json['commentSimpleData'] as Map<String, dynamic>)
+    ..highQuality = json['highQuality'] as bool
+    ..playCount = json['playCount'] as int;
 }
 
 Map<String, dynamic> _$HomeBlockPageResourceExtToJson(
@@ -209,6 +211,8 @@ Map<String, dynamic> _$HomeBlockPageResourceExtToJson(
       'songData': instance.songData,
       'songPrivilege': instance.songPrivilege,
       'commentSimpleData': instance.commentSimpleData,
+      'highQuality': instance.highQuality,
+      'playCount': instance.playCount,
     };
 
 HomeBlockPageResource _$HomeBlockPageResourceFromJson(

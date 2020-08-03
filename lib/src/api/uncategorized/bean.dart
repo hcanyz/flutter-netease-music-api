@@ -150,6 +150,9 @@ class HomeBlockPageResourceExt {
   Privilege songPrivilege;
   CommentSimple commentSimpleData;
 
+  bool highQuality;
+  int playCount;
+
   HomeBlockPageResourceExt();
 
   factory HomeBlockPageResourceExt.fromJson(Map<String, dynamic> json) =>
@@ -214,7 +217,7 @@ class HomeBlockPageCreative {
 class HomeBlockPageItem {
   String blockCode;
 
-  // HOMEPAGE_SLIDE_PLAYLIST
+  // HOMEPAGE_SLIDE_PLAYLIST  HOMEPAGE_SLIDE_SONGLIST_ALIGN
   String showType;
 
   HomeBlockPageUiElement uiElement;
