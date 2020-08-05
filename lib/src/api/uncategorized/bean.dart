@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:json_annotation/json_annotation.dart';
 import 'package:netease_music_api/src/api/bean.dart';
 import 'package:netease_music_api/src/api/event/bean.dart';
@@ -243,8 +245,25 @@ class HomeBlockPageItem {
 }
 
 @JsonSerializable()
+class HomeBlockPageCursor {
+  int offset;
+
+  List<String> blockCodeOrderList;
+
+  HomeBlockPageCursor();
+
+  factory HomeBlockPageCursor.fromJson(Map<String, dynamic> json) =>
+      _$HomeBlockPageCursorFromJson(json);
+
+  Map<String, dynamic> toJson() => _$HomeBlockPageCursorToJson(this);
+}
+
+@JsonSerializable()
 class HomeBlockPage {
   bool hasMore;
+
+  @JsonKey(fromJson: _stringToHomeBlockPageCursor)
+  HomeBlockPageCursor cursor;
 
   PageConfig pageConfig;
 
@@ -257,6 +276,9 @@ class HomeBlockPage {
 
   Map<String, dynamic> toJson() => _$HomeBlockPageToJson(this);
 }
+
+HomeBlockPageCursor _stringToHomeBlockPageCursor(String value) =>
+    HomeBlockPageCursor?.fromJson(json.decode(value));
 
 @JsonSerializable()
 class HomeBlockPageWrap extends ServerStatusBean {

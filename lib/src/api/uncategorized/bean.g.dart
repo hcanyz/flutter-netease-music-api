@@ -313,9 +313,24 @@ Map<String, dynamic> _$HomeBlockPageItemToJson(HomeBlockPageItem instance) =>
       'canClose': instance.canClose,
     };
 
+HomeBlockPageCursor _$HomeBlockPageCursorFromJson(Map<String, dynamic> json) {
+  return HomeBlockPageCursor()
+    ..offset = json['offset'] as int
+    ..blockCodeOrderList =
+        (json['blockCodeOrderList'] as List)?.map((e) => e as String)?.toList();
+}
+
+Map<String, dynamic> _$HomeBlockPageCursorToJson(
+        HomeBlockPageCursor instance) =>
+    <String, dynamic>{
+      'offset': instance.offset,
+      'blockCodeOrderList': instance.blockCodeOrderList,
+    };
+
 HomeBlockPage _$HomeBlockPageFromJson(Map<String, dynamic> json) {
   return HomeBlockPage()
     ..hasMore = json['hasMore'] as bool
+    ..cursor = _stringToHomeBlockPageCursor(json['cursor'])
     ..pageConfig = json['pageConfig'] == null
         ? null
         : PageConfig.fromJson(json['pageConfig'] as Map<String, dynamic>)
@@ -329,6 +344,7 @@ HomeBlockPage _$HomeBlockPageFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$HomeBlockPageToJson(HomeBlockPage instance) =>
     <String, dynamic>{
       'hasMore': instance.hasMore,
+      'cursor': instance.cursor,
       'pageConfig': instance.pageConfig,
       'blocks': instance.blocks,
     };
