@@ -19,6 +19,9 @@ needLogin(NeteaseMusicApi api) async {
 // Mock class
 class MockPathProvider extends Mock implements PathProvider {
   @override
+  init() {}
+
+  @override
   String getCookieSavedPath() {
     return "./.zmusic/.cookies/";
   }
