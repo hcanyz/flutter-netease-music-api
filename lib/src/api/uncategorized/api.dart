@@ -132,6 +132,41 @@ mixin ApiUncategorized {
     });
   }
 
+  DioMetaData uploadImageAllocDioMetaData(String fileName) {
+    var params = {
+      'bucket': 'yyimgs',
+      'ext': 'jpg',
+      'filename': fileName,
+      'local': false,
+      'nos_product': 0,
+      'return_body': '{"code": 200, "size": "\$(ObjectSize)"}',
+      'type': 'other',
+    };
+    return DioMetaData(joinUri('/weapi/nos/token/alloc'),
+        data: params, options: joinOptions());
+  }
+
+  /// 图片上传
+  /// !需要登录
+  Future<ServerStatusBean> uploadImage(String fileName) async {
+    var res = await Https.dioProxy
+        .postUri(uploadImageAllocDioMetaData(fileName))
+        .then((Response value) {
+      return UploadImageAllocWrap.fromJson(value.data);
+    });
+    return Https.dio
+        .postUri(
+            Uri.parse(
+                'https://nosup-hz1.127.net/yyimgs/${res.result.objectKey}?offset=0&complete=true&version=1.0'),
+            options: Options(headers: {
+              'x-nos-token': res.result.token,
+              'Content-Type': 'image/jpeg'
+            }))
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
+  }
+
   DioMetaData batchApiDioMetaData(List<DioMetaData> dioMetaDatas) {
     Map<String, dynamic> params = {};
     dioMetaDatas.forEach((element) {

@@ -542,6 +542,33 @@ class TopListDetailWrap extends ServerStatusBean {
   Map<String, dynamic> toJson() => _$TopListDetailWrapToJson(this);
 }
 
+@JsonSerializable()
+class UploadImageAlloc {
+  String bucket;
+  String docId;
+  String objectKey;
+  String token;
+
+  UploadImageAlloc();
+
+  factory UploadImageAlloc.fromJson(Map<String, dynamic> json) =>
+      _$UploadImageAllocFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UploadImageAllocToJson(this);
+}
+
+@JsonSerializable()
+class UploadImageAllocWrap extends ServerStatusBean {
+  UploadImageAlloc result;
+
+  UploadImageAllocWrap();
+
+  factory UploadImageAllocWrap.fromJson(Map<String, dynamic> json) =>
+      _$UploadImageAllocWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UploadImageAllocWrapToJson(this);
+}
+
 class BatchApiWrap extends ServerStatusBean {
   Map<String, dynamic> data;
 

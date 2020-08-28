@@ -48,6 +48,13 @@ void main() async {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test upload image', () async {
+    await needLogin(api);
+
+    var result = await api.uploadImage("test123.png");
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test batch api', () async {
     var bannerDioMetaData = api.homeBannerListDioMetaData();
 

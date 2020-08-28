@@ -330,7 +330,7 @@ Map<String, dynamic> _$HomeBlockPageCursorToJson(
 HomeBlockPage _$HomeBlockPageFromJson(Map<String, dynamic> json) {
   return HomeBlockPage()
     ..hasMore = json['hasMore'] as bool
-    ..cursor = _stringToHomeBlockPageCursor(json['cursor'])
+    ..cursor = _stringToHomeBlockPageCursor(json['cursor'] as String)
     ..pageConfig = json['pageConfig'] == null
         ? null
         : PageConfig.fromJson(json['pageConfig'] as Map<String, dynamic>)
@@ -702,4 +702,39 @@ Map<String, dynamic> _$TopListDetailWrapToJson(TopListDetailWrap instance) =>
       'list': instance.list,
       'artistToplist': instance.artistToplist,
       'rewardToplist': instance.rewardToplist,
+    };
+
+UploadImageAlloc _$UploadImageAllocFromJson(Map<String, dynamic> json) {
+  return UploadImageAlloc()
+    ..bucket = json['bucket'] as String
+    ..docId = json['docId'] as String
+    ..objectKey = json['objectKey'] as String
+    ..token = json['token'] as String;
+}
+
+Map<String, dynamic> _$UploadImageAllocToJson(UploadImageAlloc instance) =>
+    <String, dynamic>{
+      'bucket': instance.bucket,
+      'docId': instance.docId,
+      'objectKey': instance.objectKey,
+      'token': instance.token,
+    };
+
+UploadImageAllocWrap _$UploadImageAllocWrapFromJson(Map<String, dynamic> json) {
+  return UploadImageAllocWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..result = json['result'] == null
+        ? null
+        : UploadImageAlloc.fromJson(json['result'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$UploadImageAllocWrapToJson(
+        UploadImageAllocWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'result': instance.result,
     };
