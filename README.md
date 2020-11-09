@@ -86,12 +86,9 @@ subscription.cancel();
 ```text
 flutter doctor
 Doctor summary (to see all details, run flutter doctor -v):
-[√] Flutter (Channel master, 1.21.0-6.0.pre.142, on Microsoft Windows [Version 10.0.18363.959], locale zh-CN)
-
-[√] Android toolchain - develop for Android devices (Android SDK version 29.0.3)
-[√] Chrome - develop for the web
-[√] Android Studio (version 4.0)
-[√] VS Code (version 1.47.3)
-[√] VS Code, 64-bit edition
+[√] Flutter (Channel master, 1.24.0-8.0.pre.149, on Microsoft Windows [Version 10.0.18363.1139], locale zh-CN)
+[√] Android toolchain - develop for Android devices (Android SDK version 30.0.2)
+[√] Android Studio (version 4.1.0)
+[√] VS Code, 64-bit edition (version 1.51.0)
 [√] Connected device (2 available)
 ```
