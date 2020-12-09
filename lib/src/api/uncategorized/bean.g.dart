@@ -738,3 +738,21 @@ Map<String, dynamic> _$UploadImageAllocWrapToJson(
       'msg': instance.msg,
       'result': instance.result,
     };
+
+UploadImageResult _$UploadImageResultFromJson(Map<String, dynamic> json) {
+  return UploadImageResult()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..id = dynamicToString(json['id'])
+    ..url = json['url'] as String;
+}
+
+Map<String, dynamic> _$UploadImageResultToJson(UploadImageResult instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'id': instance.id,
+      'url': instance.url,
+    };

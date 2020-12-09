@@ -569,6 +569,21 @@ class UploadImageAllocWrap extends ServerStatusBean {
   Map<String, dynamic> toJson() => _$UploadImageAllocWrapToJson(this);
 }
 
+@JsonSerializable()
+class UploadImageResult extends ServerStatusBean {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  String url;
+
+  UploadImageResult();
+
+  factory UploadImageResult.fromJson(Map<String, dynamic> json) =>
+      _$UploadImageResultFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UploadImageResultToJson(this);
+}
+
 class BatchApiWrap extends ServerStatusBean {
   Map<String, dynamic> data;
 

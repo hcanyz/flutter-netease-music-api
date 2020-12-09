@@ -51,8 +51,10 @@ void main() async {
   test('test upload image', () async {
     await needLogin(api);
 
-    var result = await api.uploadImage("test123.png");
+    var result = await api.uploadImage('./test/raw/z.png');
+
     expect(result.code, RET_CODE_OK);
+    expect(result.url, isNotNull);
   });
 
   test('test batch api', () async {

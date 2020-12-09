@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:netease_music_api/netease_music_api.dart';
 import 'package:netease_music_api/src/api/bean.dart';
 import 'package:netease_music_api/src/api/dj/bean.dart';
 import 'package:netease_music_api/src/api/play/bean.dart';
@@ -78,7 +79,7 @@ mixin ApiUser {
   /// [province] 省份id !必须
   /// [city] 城市id !必须
   /// [signature] 用户签名 !必须
-  /// [avatarImgId] 头像id TODO 整理上传接口
+  /// [avatarImgId] 头像id
   Future<ServerStatusBean> userUpdateProfile(int gender, int birthday,
       String nickname, int province, int city, String signature,
       {String avatarImgId = '0'}) {
@@ -86,6 +87,26 @@ mixin ApiUser {
         .postUri(userUpdateProfileDioMetaData(
             gender, birthday, nickname, province, city, signature,
             avatarImgId: avatarImgId))
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
+  }
+
+  DioMetaData userUpdateProfileAvatarDioMetaData(String imgid) {
+    var params = {'imgid': imgid};
+    return DioMetaData(joinUri('/weapi/user/avatar/upload/v1'),
+        data: params, options: joinOptions());
+  }
+
+  /// 更新用户信息-头像
+  /// !需要登录
+  Future<ServerStatusBean> userUpdateProfileAvatar(String path,
+      {int imgSize = 300, int imgX = 0, int imgY = 0}) async {
+    var result = await NeteaseMusicApi()
+        .uploadImage(path, imgSize: imgSize, imgX: imgX, imgY: imgY);
+
+    return Https.dioProxy
+        .postUri(userUpdateProfileAvatarDioMetaData(result.id))
         .then((Response value) {
       return ServerStatusBean.fromJson(value.data);
     });
@@ -492,6 +513,26 @@ mixin ApiUser {
     var params = {'ids': jsonEncode(pids)};
     return DioMetaData(joinUri('/weapi/playlist/remove'),
         data: params, options: joinOptions(cookies: {'os': 'pc'}));
+  }
+
+  DioMetaData playlistUpdateCoverDioMetaData(String pid, String coverImgId) {
+    var params = {'id': pid, 'coverImgId': coverImgId};
+    return DioMetaData(joinUri('/weapi/playlist/cover/update'),
+        data: params, options: joinOptions());
+  }
+
+  /// 更新用户信息-头像
+  /// !需要登录
+  Future<ServerStatusBean> playlistUpdateCover(String pid, String path,
+      {int imgSize = 300, int imgX = 0, int imgY = 0}) async {
+    var result = await NeteaseMusicApi()
+        .uploadImage(path, imgSize: imgSize, imgX: imgX, imgY: imgY);
+
+    return Https.dioProxy
+        .postUri(playlistUpdateCoverDioMetaData(pid, result.id))
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
   }
 
   /// 删除歌单

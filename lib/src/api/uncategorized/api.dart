@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:netease_music_api/src/api/bean.dart';
@@ -132,6 +133,7 @@ mixin ApiUncategorized {
     });
   }
 
+  /// 申请图片空间
   DioMetaData uploadImageAllocDioMetaData(String fileName) {
     var params = {
       'bucket': 'yyimgs',
@@ -146,24 +148,42 @@ mixin ApiUncategorized {
         data: params, options: joinOptions());
   }
 
+  /// 生成最终图片地址
+  DioMetaData uploadImageResultDioMetaData(docId,
+      {int imgSize = 300, int imgX = 0, int imgY = 0}) {
+    return DioMetaData(
+        joinUri(
+            '/upload/img/op?id=$docId&op=${imgX}y${imgY}y${imgSize}y$imgSize'),
+        data: {},
+        options: joinOptions());
+  }
+
   /// 图片上传
   /// !需要登录
-  Future<ServerStatusBean> uploadImage(String fileName) async {
+  Future<UploadImageResult> uploadImage(String path,
+      {int imgSize = 300, int imgX = 0, int imgY = 0}) async {
+    String fileName = path.split('/').last;
+
     var res = await Https.dioProxy
         .postUri(uploadImageAllocDioMetaData(fileName))
         .then((Response value) {
       return UploadImageAllocWrap.fromJson(value.data);
     });
-    return Https.dio
-        .postUri(
-            Uri.parse(
-                'https://nosup-hz1.127.net/yyimgs/${res.result.objectKey}?offset=0&complete=true&version=1.0'),
-            options: Options(headers: {
-              'x-nos-token': res.result.token,
-              'Content-Type': 'image/jpeg'
-            }))
+
+    var formData = File(path).openRead();
+
+    await Https.dio.post(
+        "https://nosup-hz1.127.net/yyimgs/${res.result.objectKey}?offset=0&complete=true&version=1.0",
+        data: formData,
+        options: Options(
+            contentType: 'image/jpeg',
+            headers: {'x-nos-token': res.result.token}));
+
+    return Https.dioProxy
+        .postUri(uploadImageResultDioMetaData(res.result.docId,
+            imgSize: imgSize, imgX: imgX, imgY: imgY))
         .then((Response value) {
-      return ServerStatusBean.fromJson(value.data);
+      return UploadImageResult.fromJson(value.data);
     });
   }
 

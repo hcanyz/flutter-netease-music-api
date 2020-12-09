@@ -53,6 +53,11 @@ void main() async {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test user update profile-avatar', () async {
+    var result = await api.userUpdateProfileAvatar('./test/raw/z.png');
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test user playlist', () async {
     var result = await api
         .userPlayList(api.usc?.accountInfo?.account?.id ?? defaultUserId);
@@ -223,7 +228,7 @@ void main() async {
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test user playlist manipulate tracks', () async {
+  test('test user playlist update cover manipulate tracks', () async {
     var result = await api.playlistCreate('老白涮肉铺', true);
     expect(result.code, RET_CODE_OK);
 
@@ -234,10 +239,13 @@ void main() async {
         await api.playlistManipulateTracks(result.id, '167975', false);
     expect(result3.code, RET_CODE_OK);
 
+    var result4 = await api.playlistUpdateCover(result.id, './test/raw/z.png');
+    expect(result4.code, RET_CODE_OK);
+
     sleep(Duration(seconds: 2));
 
-    var result4 = await api.playlistDelete([result.id]);
-    expect(result4.code, RET_CODE_OK);
+    var result5 = await api.playlistDelete([result.id]);
+    expect(result5.code, RET_CODE_OK);
   });
 
   test('test ordering digital album', () async {
