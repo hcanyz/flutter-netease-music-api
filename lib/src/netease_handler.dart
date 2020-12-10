@@ -26,7 +26,11 @@ dynamic neteaseInterceptor(RequestOptions option) {
 
     option.contentType = Headers.formUrlEncodedContentType;
     option.headers[HttpHeaders.refererHeader] = HOST;
-    //option.headers['X-Real-IP'] = '118.88.88.88';
+
+    var realIP = option.extra['realIP'];
+    if (realIP != null) {
+      option.headers['X-Real-IP'] = realIP;
+    }
     option.headers[HttpHeaders.userAgentHeader] =
         _chooseUserAgent(option.extra['userAgent']);
 
@@ -245,13 +249,15 @@ Options joinOptions(
         EncryptType encryptType = EncryptType.WeApi,
         UserAgent userAgent = UserAgent.Random,
         Map<String, String> cookies = const {},
-        String eApiUrl = ''}) =>
+        String eApiUrl = '',
+        String realIP}) =>
     Options(contentType: ContentType.json.value, extra: {
       'hookRequestData': hookRequestDate,
       'encryptType': encryptType,
       'userAgent': userAgent,
       'cookies': cookies,
-      'eApiUrl': eApiUrl
+      'eApiUrl': eApiUrl,
+      'realIP': realIP
     });
 
 Uri joinUri(String path) {
