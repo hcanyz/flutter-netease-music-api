@@ -129,9 +129,7 @@ Song _$SongFromJson(Map<String, dynamic> json) {
     ..album = json['album'] == null
         ? null
         : Album.fromJson(json['album'] as Map<String, dynamic>)
-    ..lyrics = json['lyrics'] == null
-        ? null
-        : Lyrics.fromJson(json['lyrics'] as Map<String, dynamic>)
+    ..lyrics = json['lyrics']
     ..privilege = json['privilege'] == null
         ? null
         : Privilege.fromJson(json['privilege'] as Map<String, dynamic>)

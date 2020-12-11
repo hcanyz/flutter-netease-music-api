@@ -5,175 +5,185 @@ import 'package:netease_music_api/src/netease_handler.dart';
 import 'bean.dart';
 
 mixin ApiSearch {
+  Uri _searchUrl(bool cloudSearch) => cloudSearch
+      ? joinUri('/weapi/cloudsearch/get/web')
+      : joinUri('/weapi/search/get');
+
   DioMetaData searchSongDioMetaData(String keyword,
-      {int offset = 0, int limit = 30}) {
+      {bool cloudSearch = false, int offset = 0, int limit = 30}) {
     var params = {'s': keyword, 'type': 1, 'limit': limit, 'offset': offset};
-    return DioMetaData(joinUri('/weapi/search/get'),
+    return DioMetaData(_searchUrl(cloudSearch),
         data: params, options: joinOptions());
   }
 
   /// [type] 搜索类型 1: 单曲
   Future<SearchSongWrapX> searchSong(String keyword,
-      {int offset = 0, int limit = 30}) {
+      {bool cloudSearch = false, int offset = 0, int limit = 30}) {
     return Https.dioProxy
-        .postUri(searchSongDioMetaData(keyword, offset: offset, limit: limit))
+        .postUri(searchSongDioMetaData(keyword,
+            cloudSearch: cloudSearch, offset: offset, limit: limit))
         .then((Response value) {
       return SearchSongWrapX.fromJson(value.data);
     });
   }
 
   DioMetaData searchAlbumDioMetaData(String keyword,
-      {int offset = 0, int limit = 30}) {
+      {bool cloudSearch = false, int offset = 0, int limit = 30}) {
     var params = {'s': keyword, 'type': 10, 'limit': limit, 'offset': offset};
-    return DioMetaData(joinUri('/weapi/search/get'),
+    return DioMetaData(_searchUrl(cloudSearch),
         data: params, options: joinOptions());
   }
 
   /// [type] 搜索类型  10: 专辑
   Future<SearchAlbumsWrapX> searchAlbum(String keyword,
-      {int offset = 0, int limit = 30}) {
+      {bool cloudSearch = false, int offset = 0, int limit = 30}) {
     return Https.dioProxy
-        .postUri(searchAlbumDioMetaData(keyword, offset: offset, limit: limit))
+        .postUri(searchAlbumDioMetaData(keyword,
+            cloudSearch: cloudSearch, offset: offset, limit: limit))
         .then((Response value) {
       return SearchAlbumsWrapX.fromJson(value.data);
     });
   }
 
   DioMetaData searchArtistsDioMetaData(String keyword,
-      {int offset = 0, int limit = 30}) {
+      {bool cloudSearch = false, int offset = 0, int limit = 30}) {
     var params = {'s': keyword, 'type': 100, 'limit': limit, 'offset': offset};
-    return DioMetaData(joinUri('/weapi/search/get'),
+    return DioMetaData(_searchUrl(cloudSearch),
         data: params, options: joinOptions());
   }
 
   /// [type] 搜索类型 100: 歌手
   Future<SearchArtistsWrapX> searchArtists(String keyword,
-      {int offset = 0, int limit = 30}) {
+      {bool cloudSearch = false, int offset = 0, int limit = 30}) {
     return Https.dioProxy
-        .postUri(
-            searchArtistsDioMetaData(keyword, offset: offset, limit: limit))
+        .postUri(searchArtistsDioMetaData(keyword,
+            cloudSearch: cloudSearch, offset: offset, limit: limit))
         .then((Response value) {
       return SearchArtistsWrapX.fromJson(value.data);
     });
   }
 
   DioMetaData searchPlaylistDioMetaData(String keyword,
-      {int offset = 0, int limit = 30}) {
+      {bool cloudSearch = false, int offset = 0, int limit = 30}) {
     var params = {'s': keyword, 'type': 1000, 'limit': limit, 'offset': offset};
-    return DioMetaData(joinUri('/weapi/search/get'),
+    return DioMetaData(_searchUrl(cloudSearch),
         data: params, options: joinOptions());
   }
 
   /// [type] 搜索类型 1000: 歌单
   Future<SearchPlaylistWrapX> searchPlaylist(String keyword,
-      {int offset = 0, int limit = 30}) {
+      {bool cloudSearch = false, int offset = 0, int limit = 30}) {
     return Https.dioProxy
-        .postUri(
-            searchPlaylistDioMetaData(keyword, offset: offset, limit: limit))
+        .postUri(searchPlaylistDioMetaData(keyword,
+            cloudSearch: cloudSearch, offset: offset, limit: limit))
         .then((Response value) {
       return SearchPlaylistWrapX.fromJson(value.data);
     });
   }
 
   DioMetaData searchUserDioMetaData(String keyword,
-      {int offset = 0, int limit = 30}) {
+      {bool cloudSearch = false, int offset = 0, int limit = 30}) {
     var params = {'s': keyword, 'type': 1002, 'limit': limit, 'offset': offset};
-    return DioMetaData(joinUri('/weapi/search/get'),
+    return DioMetaData(_searchUrl(cloudSearch),
         data: params, options: joinOptions());
   }
 
   /// [type] 1002: 用户
   Future<SearchUserWrapX> searchUser(String keyword,
-      {int offset = 0, int limit = 30}) {
+      {bool cloudSearch = false, int offset = 0, int limit = 30}) {
     return Https.dioProxy
-        .postUri(searchUserDioMetaData(keyword, offset: offset, limit: limit))
+        .postUri(searchUserDioMetaData(keyword,
+            cloudSearch: cloudSearch, offset: offset, limit: limit))
         .then((Response value) {
       return SearchUserWrapX.fromJson(value.data);
     });
   }
 
   DioMetaData searchMvDioMetaData(String keyword,
-      {int offset = 0, int limit = 30}) {
+      {bool cloudSearch = false, int offset = 0, int limit = 30}) {
     var params = {'s': keyword, 'type': 1004, 'limit': limit, 'offset': offset};
-    return DioMetaData(joinUri('/weapi/search/get'),
+    return DioMetaData(_searchUrl(cloudSearch),
         data: params, options: joinOptions());
   }
 
   /// [type] 1004: MV
   Future<SearchMvWrapX> searchMv(String keyword,
-      {int offset = 0, int limit = 30}) {
+      {bool cloudSearch = false, int offset = 0, int limit = 30}) {
     return Https.dioProxy
-        .postUri(searchMvDioMetaData(keyword, offset: offset, limit: limit))
+        .postUri(searchMvDioMetaData(keyword,
+            cloudSearch: cloudSearch, offset: offset, limit: limit))
         .then((Response value) {
       return SearchMvWrapX.fromJson(value.data);
     });
   }
 
   DioMetaData searchLyricsDioMetaData(String keyword,
-      {int offset = 0, int limit = 30}) {
+      {bool cloudSearch = false, int offset = 0, int limit = 30}) {
     var params = {'s': keyword, 'type': 1006, 'limit': limit, 'offset': offset};
-    return DioMetaData(joinUri('/weapi/search/get'),
+    return DioMetaData(_searchUrl(cloudSearch),
         data: params, options: joinOptions());
   }
 
   /// [type] 1006: 歌词
   Future<SearchLyricsWrapX> searchLyrics(String keyword,
-      {int offset = 0, int limit = 30}) {
+      {bool cloudSearch = false, int offset = 0, int limit = 30}) {
     return Https.dioProxy
-        .postUri(searchLyricsDioMetaData(keyword, offset: offset, limit: limit))
+        .postUri(searchLyricsDioMetaData(keyword,
+            cloudSearch: cloudSearch, offset: offset, limit: limit))
         .then((Response value) {
       return SearchLyricsWrapX.fromJson(value.data);
     });
   }
 
   DioMetaData searchDjradioDioMetaData(String keyword,
-      {int offset = 0, int limit = 30}) {
+      {bool cloudSearch = false, int offset = 0, int limit = 30}) {
     var params = {'s': keyword, 'type': 1009, 'limit': limit, 'offset': offset};
-    return DioMetaData(joinUri('/weapi/search/get'),
+    return DioMetaData(_searchUrl(cloudSearch),
         data: params, options: joinOptions());
   }
 
   /// [type] 1009: 电台
   Future<SearchDjradioWrapX> searchDjradio(String keyword,
-      {int offset = 0, int limit = 30}) {
+      {bool cloudSearch = false, int offset = 0, int limit = 30}) {
     return Https.dioProxy
-        .postUri(
-            searchDjradioDioMetaData(keyword, offset: offset, limit: limit))
+        .postUri(searchDjradioDioMetaData(keyword,
+            cloudSearch: cloudSearch, offset: offset, limit: limit))
         .then((Response value) {
       return SearchDjradioWrapX.fromJson(value.data);
     });
   }
 
   DioMetaData searchVideoDioMetaData(String keyword,
-      {int offset = 0, int limit = 30}) {
+      {bool cloudSearch = false, int offset = 0, int limit = 30}) {
     var params = {'s': keyword, 'type': 1014, 'limit': limit, 'offset': offset};
-    return DioMetaData(joinUri('/weapi/search/get'),
+    return DioMetaData(_searchUrl(cloudSearch),
         data: params, options: joinOptions());
   }
 
   /// [type] 1014: 视频
   Future<SearchVideoWrapX> searchVideo(String keyword,
-      {int offset = 0, int limit = 30}) {
+      {bool cloudSearch = false, int offset = 0, int limit = 30}) {
     return Https.dioProxy
-        .postUri(searchVideoDioMetaData(keyword, offset: offset, limit: limit))
+        .postUri(searchVideoDioMetaData(keyword,
+            cloudSearch: cloudSearch, offset: offset, limit: limit))
         .then((Response value) {
       return SearchVideoWrapX.fromJson(value.data);
     });
   }
 
   DioMetaData searchComplexDioMetaData(String keyword,
-      {int offset = 0, int limit = 30}) {
+      {bool cloudSearch = false, int offset = 0, int limit = 30}) {
     var params = {'s': keyword, 'type': 1018, 'limit': limit, 'offset': offset};
-    return DioMetaData(joinUri('/weapi/search/get'),
+    return DioMetaData(_searchUrl(cloudSearch),
         data: params, options: joinOptions());
   }
 
   /// [type] 1018:综合
   Future<SearchComplexWrapX> searchComplex(String keyword,
-      {int offset = 0, int limit = 30}) {
+      {bool cloudSearch = false, int offset = 0, int limit = 30}) {
     return Https.dioProxy
-        .postUri(
-            searchComplexDioMetaData(keyword, offset: offset, limit: limit))
+        .postUri(searchComplexDioMetaData(keyword,
+            cloudSearch: cloudSearch, offset: offset, limit: limit))
         .then((Response value) {
       return SearchComplexWrapX.fromJson(value.data);
     });

@@ -129,7 +129,8 @@ class Song {
 
   Album album;
 
-  Lyrics lyrics;
+  // Lyrics String[]
+  dynamic lyrics;
 
   Privilege privilege;
 

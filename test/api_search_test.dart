@@ -9,53 +9,83 @@ void main() async {
   var api = NeteaseMusicApi();
 
   test('test search song', () async {
-    var result = await api.searchSong("许巍");
+    var result = await api.searchSong("许巍", cloudSearch: false);
     expect(result.code, RET_CODE_OK);
+
+    var result2 = await api.searchSong("许巍", cloudSearch: true);
+    expect(result2.code, RET_CODE_OK);
   });
 
   test('test search album', () async {
-    var result = await api.searchAlbum("许巍");
+    var result = await api.searchAlbum("许巍", cloudSearch: false);
     expect(result.code, RET_CODE_OK);
+
+    var result2 = await api.searchAlbum("许巍", cloudSearch: true);
+    expect(result2.code, RET_CODE_OK);
   });
 
   test('test search artists', () async {
-    var result = await api.searchArtists("许巍");
+    var result = await api.searchArtists("许巍", cloudSearch: false);
     expect(result.code, RET_CODE_OK);
+
+    var result2 = await api.searchArtists("许巍", cloudSearch: true);
+    expect(result2.code, RET_CODE_OK);
   });
 
   test('test search playlist', () async {
-    var result = await api.searchPlaylist("许巍");
+    var result = await api.searchPlaylist("许巍", cloudSearch: false);
     expect(result.code, RET_CODE_OK);
+
+    var result2 = await api.searchPlaylist("许巍", cloudSearch: true);
+    expect(result2.code, RET_CODE_OK);
   });
 
   test('test search user', () async {
-    var result = await api.searchUser("许巍");
+    var result = await api.searchUser("许巍", cloudSearch: false);
     expect(result.code, RET_CODE_OK);
+
+    var result2 = await api.searchUser("许巍", cloudSearch: true);
+    expect(result2.code, RET_CODE_OK);
   });
 
   test('test search mv', () async {
-    var result = await api.searchMv("许巍");
+    var result = await api.searchMv("许巍", cloudSearch: false);
     expect(result.code, RET_CODE_OK);
+
+    var result2 = await api.searchMv("许巍", cloudSearch: true);
+    expect(result2.code, RET_CODE_OK);
   });
 
   test('test search lyrics', () async {
-    var result = await api.searchLyrics("许巍");
+    var result = await api.searchLyrics("许巍", cloudSearch: false);
     expect(result.code, RET_CODE_OK);
+
+    var result2 = await api.searchLyrics("许巍", cloudSearch: true);
+    expect(result2.code, RET_CODE_OK);
   });
 
   test('test search djradio', () async {
-    var result = await api.searchDjradio("许巍");
+    var result = await api.searchDjradio("许巍", cloudSearch: false);
     expect(result.code, RET_CODE_OK);
+
+    var result2 = await api.searchDjradio("许巍", cloudSearch: true);
+    expect(result2.code, RET_CODE_OK);
   });
 
   test('test search video', () async {
-    var result = await api.searchVideo("许巍");
+    var result = await api.searchVideo("许巍", cloudSearch: false);
     expect(result.code, RET_CODE_OK);
+
+    var result2 = await api.searchVideo("许巍", cloudSearch: true);
+    expect(result2.code, RET_CODE_OK);
   });
 
   test('test search complex', () async {
-    var result = await api.searchComplex("许巍");
+    var result = await api.searchComplex("许巍", cloudSearch: false);
     expect(result.code, RET_CODE_OK);
+
+    var result2 = await api.searchComplex("许巍", cloudSearch: true);
+    expect(result2.code, RET_CODE_OK);
   });
 
   test('test search default key', () async {
