@@ -151,6 +151,40 @@ Map<String, dynamic> _$EventSingleWrapToJson(EventSingleWrap instance) =>
       'event': instance.event,
     };
 
+CommentItemBase _$CommentItemBaseFromJson(Map<String, dynamic> json) {
+  return CommentItemBase()
+    ..commentId = dynamicToString(json['commentId'])
+    ..parentCommentId = dynamicToString(json['parentCommentId'])
+    ..user = json['user'] == null
+        ? null
+        : NeteaseUserInfo.fromJson(json['user'] as Map<String, dynamic>)
+    ..beReplied = (json['beReplied'] as List)
+        ?.map((e) => e == null
+            ? null
+            : BeRepliedCommentItem.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..content = json['content'] as String
+    ..time = json['time'] as int
+    ..likedCount = json['likedCount'] as int
+    ..liked = json['liked'] as bool
+    ..status = json['status'] as int
+    ..commentLocationType = json['commentLocationType'] as int;
+}
+
+Map<String, dynamic> _$CommentItemBaseToJson(CommentItemBase instance) =>
+    <String, dynamic>{
+      'commentId': instance.commentId,
+      'parentCommentId': instance.parentCommentId,
+      'user': instance.user,
+      'beReplied': instance.beReplied,
+      'content': instance.content,
+      'time': instance.time,
+      'likedCount': instance.likedCount,
+      'liked': instance.liked,
+      'status': instance.status,
+      'commentLocationType': instance.commentLocationType,
+    };
+
 CommentItem _$CommentItemFromJson(Map<String, dynamic> json) {
   return CommentItem()
     ..commentId = dynamicToString(json['commentId'])
@@ -161,7 +195,14 @@ CommentItem _$CommentItemFromJson(Map<String, dynamic> json) {
     ..content = json['content'] as String
     ..time = json['time'] as int
     ..likedCount = json['likedCount'] as int
-    ..liked = json['liked'] as bool;
+    ..liked = json['liked'] as bool
+    ..status = json['status'] as int
+    ..commentLocationType = json['commentLocationType'] as int
+    ..beReplied = (json['beReplied'] as List)
+        ?.map((e) => e == null
+            ? null
+            : BeRepliedCommentItem.fromJson(e as Map<String, dynamic>))
+        ?.toList();
 }
 
 Map<String, dynamic> _$CommentItemToJson(CommentItem instance) =>
@@ -173,6 +214,46 @@ Map<String, dynamic> _$CommentItemToJson(CommentItem instance) =>
       'time': instance.time,
       'likedCount': instance.likedCount,
       'liked': instance.liked,
+      'status': instance.status,
+      'commentLocationType': instance.commentLocationType,
+      'beReplied': instance.beReplied,
+    };
+
+BeRepliedCommentItem _$BeRepliedCommentItemFromJson(Map<String, dynamic> json) {
+  return BeRepliedCommentItem()
+    ..commentId = dynamicToString(json['commentId'])
+    ..parentCommentId = dynamicToString(json['parentCommentId'])
+    ..user = json['user'] == null
+        ? null
+        : NeteaseUserInfo.fromJson(json['user'] as Map<String, dynamic>)
+    ..beReplied = (json['beReplied'] as List)
+        ?.map((e) => e == null
+            ? null
+            : BeRepliedCommentItem.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..content = json['content'] as String
+    ..time = json['time'] as int
+    ..likedCount = json['likedCount'] as int
+    ..liked = json['liked'] as bool
+    ..status = json['status'] as int
+    ..commentLocationType = json['commentLocationType'] as int
+    ..beRepliedCommentId = dynamicToString(json['beRepliedCommentId']);
+}
+
+Map<String, dynamic> _$BeRepliedCommentItemToJson(
+        BeRepliedCommentItem instance) =>
+    <String, dynamic>{
+      'commentId': instance.commentId,
+      'parentCommentId': instance.parentCommentId,
+      'user': instance.user,
+      'beReplied': instance.beReplied,
+      'content': instance.content,
+      'time': instance.time,
+      'likedCount': instance.likedCount,
+      'liked': instance.liked,
+      'status': instance.status,
+      'commentLocationType': instance.commentLocationType,
+      'beRepliedCommentId': instance.beRepliedCommentId,
     };
 
 CommentListWrap _$CommentListWrapFromJson(Map<String, dynamic> json) {
@@ -216,6 +297,49 @@ Map<String, dynamic> _$CommentListWrapToJson(CommentListWrap instance) =>
       'topComments': instance.topComments,
       'hotComments': instance.hotComments,
       'comments': instance.comments,
+    };
+
+FloorCommentDetail _$FloorCommentDetailFromJson(Map<String, dynamic> json) {
+  return FloorCommentDetail()
+    ..comments = (json['comments'] as List)
+        ?.map((e) =>
+            e == null ? null : CommentItem.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..hasMore = json['hasMore'] as bool
+    ..totalCount = json['totalCount'] as int
+    ..time = json['time'] as int
+    ..ownerComment = json['ownerComment'] == null
+        ? null
+        : CommentItem.fromJson(json['ownerComment'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$FloorCommentDetailToJson(FloorCommentDetail instance) =>
+    <String, dynamic>{
+      'comments': instance.comments,
+      'hasMore': instance.hasMore,
+      'totalCount': instance.totalCount,
+      'time': instance.time,
+      'ownerComment': instance.ownerComment,
+    };
+
+FloorCommentDetailWrap _$FloorCommentDetailWrapFromJson(
+    Map<String, dynamic> json) {
+  return FloorCommentDetailWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..data = json['data'] == null
+        ? null
+        : FloorCommentDetail.fromJson(json['data'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$FloorCommentDetailWrapToJson(
+        FloorCommentDetailWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'data': instance.data,
     };
 
 EventForwardRet _$EventForwardRetFromJson(Map<String, dynamic> json) {

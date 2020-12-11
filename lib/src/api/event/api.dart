@@ -336,6 +336,32 @@ mixin ApiEvent {
     });
   }
 
+  DioMetaData floorCommentsDioMetaData(
+      String id, String type, String parentCommentId,
+      {int time = -1, int limit = 20}) {
+    var params = {
+      'parentCommentId': parentCommentId,
+      'threadId': _type2key(type) + id,
+      'time': time,
+      'limit': limit
+    };
+    return DioMetaData(joinUri('/api/resource/comment/floor/get'),
+        data: params, options: joinOptions());
+  }
+
+  /// 楼层评论
+  /// !需要登录
+  Future<FloorCommentDetailWrap> floorComments(
+      String id, String type, String parentCommentId,
+      {int time = -1, int limit = 20}) {
+    return Https.dioProxy
+        .postUri(floorCommentsDioMetaData(id, type, parentCommentId,
+            time: time, limit: limit))
+        .then((Response value) {
+      return FloorCommentDetailWrap.fromJson(value.data);
+    });
+  }
+
   DioMetaData forwardsDioMetaData(
       {int offset = 0, int limit = 30, bool total = true}) {
     var params = {'limit': limit, 'offset': offset, 'total': total};

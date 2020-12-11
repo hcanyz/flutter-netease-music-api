@@ -123,7 +123,7 @@ class EventSingleWrap extends ServerStatusBean {
 }
 
 @JsonSerializable()
-class CommentItem {
+class CommentItemBase {
   @JsonKey(fromJson: dynamicToString)
   String commentId;
 
@@ -132,6 +132,8 @@ class CommentItem {
 
   NeteaseUserInfo user;
 
+  List<BeRepliedCommentItem> beReplied;
+
   String content;
 
   int time;
@@ -139,12 +141,42 @@ class CommentItem {
   int likedCount;
   bool liked;
 
+  // beReplied
+
+  int status;
+  int commentLocationType;
+
+  CommentItemBase();
+
+  factory CommentItemBase.fromJson(Map<String, dynamic> json) =>
+      _$CommentItemBaseFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CommentItemBaseToJson(this);
+}
+
+@JsonSerializable()
+class CommentItem extends CommentItemBase {
+  List<BeRepliedCommentItem> beReplied;
+
   CommentItem();
 
   factory CommentItem.fromJson(Map<String, dynamic> json) =>
       _$CommentItemFromJson(json);
 
   Map<String, dynamic> toJson() => _$CommentItemToJson(this);
+}
+
+@JsonSerializable()
+class BeRepliedCommentItem extends CommentItemBase {
+  @JsonKey(fromJson: dynamicToString)
+  String beRepliedCommentId;
+
+  BeRepliedCommentItem();
+
+  factory BeRepliedCommentItem.fromJson(Map<String, dynamic> json) =>
+      _$BeRepliedCommentItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$BeRepliedCommentItemToJson(this);
 }
 
 @JsonSerializable()
@@ -166,6 +198,36 @@ class CommentListWrap extends ServerStatusListBean {
       _$CommentListWrapFromJson(json);
 
   Map<String, dynamic> toJson() => _$CommentListWrapToJson(this);
+}
+
+@JsonSerializable()
+class FloorCommentDetail {
+  List<CommentItem> comments;
+
+  bool hasMore;
+  int totalCount;
+  int time;
+
+  CommentItem ownerComment;
+
+  FloorCommentDetail();
+
+  factory FloorCommentDetail.fromJson(Map<String, dynamic> json) =>
+      _$FloorCommentDetailFromJson(json);
+
+  Map<String, dynamic> toJson() => _$FloorCommentDetailToJson(this);
+}
+
+@JsonSerializable()
+class FloorCommentDetailWrap extends ServerStatusBean {
+  FloorCommentDetail data;
+
+  FloorCommentDetailWrap();
+
+  factory FloorCommentDetailWrap.fromJson(Map<String, dynamic> json) =>
+      _$FloorCommentDetailWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$FloorCommentDetailWrapToJson(this);
 }
 
 @JsonSerializable()

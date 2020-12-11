@@ -107,6 +107,20 @@ void main() async {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test user comments', () async {
+    var result = await api.playlistCommentList('2819660572');
+    expect(result.code, RET_CODE_OK);
+
+    if (result.comments.isEmpty) {
+      return;
+    }
+
+    // result.comments[0].commentId parentCommentId
+    var result2 =
+        await api.floorComments('2819660572', 'playlist', '3597827084');
+    expect(result2.code, RET_CODE_OK);
+  });
+
   test('test forwards', () async {
     var result = await api.forwards();
     expect(result.code, RET_CODE_OK);
