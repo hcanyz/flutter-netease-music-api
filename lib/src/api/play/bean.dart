@@ -475,22 +475,8 @@ class RecommendSongListHistoryWrapX extends ServerStatusBean {
 }
 
 @JsonSerializable()
-class ArtistTopSongListWrap extends ServerStatusBean {
-  List<Song2> songs;
-
-  ArtistTopSongListWrap();
-
-  factory ArtistTopSongListWrap.fromJson(Map<String, dynamic> json) =>
-      _$ArtistTopSongListWrapFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ArtistTopSongListWrapToJson(this);
-}
-
-@JsonSerializable()
 class ArtistSongListWrap extends ServerStatusBean {
-  List<Song2> hotSongs;
-
-  Artists artist;
+  List<Song2> songs;
 
   ArtistSongListWrap();
 
@@ -498,6 +484,20 @@ class ArtistSongListWrap extends ServerStatusBean {
       _$ArtistSongListWrapFromJson(json);
 
   Map<String, dynamic> toJson() => _$ArtistSongListWrapToJson(this);
+}
+
+@JsonSerializable()
+class ArtistDetailAndSongListWrap extends ServerStatusBean {
+  List<Song2> hotSongs;
+
+  Artists artist;
+
+  ArtistDetailAndSongListWrap();
+
+  factory ArtistDetailAndSongListWrap.fromJson(Map<String, dynamic> json) =>
+      _$ArtistDetailAndSongListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ArtistDetailAndSongListWrapToJson(this);
 }
 
 @JsonSerializable()

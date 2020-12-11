@@ -693,25 +693,62 @@ mixin ApiPlay {
   }
 
   /// 歌手热门50首歌曲
-  Future<ArtistTopSongListWrap> artistTopSongList(String artistId) {
+  Future<ArtistSongListWrap> artistTopSongList(String artistId) {
     return Https.dioProxy
         .postUri(artistTopSongListDioMetaData(artistId))
         .then((Response value) {
-      return ArtistTopSongListWrap.fromJson(value.data);
+      return ArtistSongListWrap.fromJson(value.data);
     });
   }
 
-  DioMetaData artistSongListDioMetaData(String artistId) {
+  DioMetaData artistALLSongListDioMetaData(
+    String artistId, {
+    bool privateCloud: true,
+    int workType = 1,
+    order = 'hot',
+    int offset = 0,
+    int limit = 100,
+  }) {
+    var params = {
+      'id': artistId,
+      'private_cloud': privateCloud,
+      'work_type': workType,
+      'order': order,
+      'limit': limit,
+      'offset': offset
+    };
+    return DioMetaData(joinUri('/api/v1/artist/songs'),
+        data: params, options: joinOptions());
+  }
+
+  /// 歌手全部歌曲
+  /// [order] hot time
+  Future<ArtistSongListWrap> artistALLSongList(
+    String artistId, {
+    bool privateCloud: true,
+    int workType = 1,
+    order = 'hot',
+    int offset = 0,
+    int limit = 100,
+  }) {
+    return Https.dioProxy
+        .postUri(artistALLSongListDioMetaData(artistId))
+        .then((Response value) {
+      return ArtistSongListWrap.fromJson(value.data);
+    });
+  }
+
+  DioMetaData artistDetailAndSongListDioMetaData(String artistId) {
     return DioMetaData(joinUri('/weapi/v1/artist/$artistId'),
         data: {}, options: joinOptions());
   }
 
   /// 歌手信息+歌曲
-  Future<ArtistSongListWrap> artistSongList(String artistId) {
+  Future<ArtistDetailAndSongListWrap> artistDetailAndSongList(String artistId) {
     return Https.dioProxy
-        .postUri(artistSongListDioMetaData(artistId))
+        .postUri(artistDetailAndSongListDioMetaData(artistId))
         .then((Response value) {
-      return ArtistSongListWrap.fromJson(value.data);
+      return ArtistDetailAndSongListWrap.fromJson(value.data);
     });
   }
 

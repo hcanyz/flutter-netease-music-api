@@ -216,8 +216,13 @@ void main() async {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test artist all song list ', () async {
+    var result = await api.artistALLSongList(defaultArtistId);
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test artist song list ', () async {
-    var result = await api.artistSongList(defaultArtistId);
+    var result = await api.artistDetailAndSongList(defaultArtistId);
     expect(result.code, RET_CODE_OK);
   });
 

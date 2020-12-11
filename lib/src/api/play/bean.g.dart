@@ -648,9 +648,8 @@ Map<String, dynamic> _$RecommendSongListHistoryWrapXToJson(
       'data': instance.data,
     };
 
-ArtistTopSongListWrap _$ArtistTopSongListWrapFromJson(
-    Map<String, dynamic> json) {
-  return ArtistTopSongListWrap()
+ArtistSongListWrap _$ArtistSongListWrapFromJson(Map<String, dynamic> json) {
+  return ArtistSongListWrap()
     ..code = json['code'] as int
     ..message = json['message'] as String
     ..msg = json['msg'] as String
@@ -660,8 +659,7 @@ ArtistTopSongListWrap _$ArtistTopSongListWrapFromJson(
         ?.toList();
 }
 
-Map<String, dynamic> _$ArtistTopSongListWrapToJson(
-        ArtistTopSongListWrap instance) =>
+Map<String, dynamic> _$ArtistSongListWrapToJson(ArtistSongListWrap instance) =>
     <String, dynamic>{
       'code': instance.code,
       'message': instance.message,
@@ -669,8 +667,9 @@ Map<String, dynamic> _$ArtistTopSongListWrapToJson(
       'songs': instance.songs,
     };
 
-ArtistSongListWrap _$ArtistSongListWrapFromJson(Map<String, dynamic> json) {
-  return ArtistSongListWrap()
+ArtistDetailAndSongListWrap _$ArtistDetailAndSongListWrapFromJson(
+    Map<String, dynamic> json) {
+  return ArtistDetailAndSongListWrap()
     ..code = json['code'] as int
     ..message = json['message'] as String
     ..msg = json['msg'] as String
@@ -683,7 +682,8 @@ ArtistSongListWrap _$ArtistSongListWrapFromJson(Map<String, dynamic> json) {
         : Artists.fromJson(json['artist'] as Map<String, dynamic>);
 }
 
-Map<String, dynamic> _$ArtistSongListWrapToJson(ArtistSongListWrap instance) =>
+Map<String, dynamic> _$ArtistDetailAndSongListWrapToJson(
+        ArtistDetailAndSongListWrap instance) =>
     <String, dynamic>{
       'code': instance.code,
       'message': instance.message,
