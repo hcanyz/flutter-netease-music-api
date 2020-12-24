@@ -250,7 +250,7 @@ Map<String, dynamic> _$NeteaseUserSubcountToJson(
 NeteaseUserLevel _$NeteaseUserLevelFromJson(Map<String, dynamic> json) {
   return NeteaseUserLevel()
     ..info = json['info'] as String
-    ..progress = json['progress'] as double
+    ..progress = (json['progress'] as num)?.toDouble()
     ..nextPlayCount = json['nextPlayCount'] as int
     ..nextLoginCount = json['nextLoginCount'] as int
     ..nowPlayCount = json['nowPlayCount'] as int
