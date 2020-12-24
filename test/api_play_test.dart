@@ -33,6 +33,11 @@ void main() async {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test highquality playlist hot tags', () async {
+    var result = await api.highqualityPlaylistHotTags();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test highquality playlist', () async {
     var result = await api.highqualityPlayList();
     expect(result.code, RET_CODE_OK);

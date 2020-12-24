@@ -36,6 +36,11 @@ void main() async {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test user level', () async {
+    var result = await api.userLevel();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test user update profile', () async {
     var info = api.usc.accountInfo;
     if (info == null) {

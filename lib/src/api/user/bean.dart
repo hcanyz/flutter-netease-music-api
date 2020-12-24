@@ -168,6 +168,38 @@ class NeteaseUserSubcount extends ServerStatusBean {
 }
 
 @JsonSerializable()
+class NeteaseUserLevel {
+  String info;
+  double progress;
+  int nextPlayCount;
+  int nextLoginCount;
+  int nowPlayCount;
+  int nowLoginCount;
+  int level;
+
+  NeteaseUserLevel();
+
+  factory NeteaseUserLevel.fromJson(Map<String, dynamic> json) =>
+      _$NeteaseUserLevelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$NeteaseUserLevelToJson(this);
+}
+
+@JsonSerializable()
+class NeteaseUserLevelWrap extends ServerStatusBean {
+  bool full;
+
+  NeteaseUserLevel data;
+
+  NeteaseUserLevelWrap();
+
+  factory NeteaseUserLevelWrap.fromJson(Map<String, dynamic> json) =>
+      _$NeteaseUserLevelWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$NeteaseUserLevelWrapToJson(this);
+}
+
+@JsonSerializable()
 class UserFollowListWrap extends ServerStatusBean {
   List<NeteaseAccountProfile> follow;
 

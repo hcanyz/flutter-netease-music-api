@@ -55,6 +55,22 @@ mixin ApiUser {
     });
   }
 
+  DioMetaData userLevelDioMetaData() {
+    return DioMetaData(joinUri('/weapi/user/level'),
+        data: {}, options: joinOptions());
+  }
+
+  /// 用户等级信息
+  /// 可以获取用户等级信息,包含当前登陆天数,听歌次数,下一等级需要的登录天数和听歌次数,当前等级进度,对应 https://music.163.com/#/user/level
+  /// !需要登录
+  Future<NeteaseUserLevelWrap> userLevel() {
+    return Https.dioProxy
+        .postUri(userLevelDioMetaData())
+        .then((Response value) {
+      return NeteaseUserLevelWrap.fromJson(value.data);
+    });
+  }
+
   DioMetaData userUpdateProfileDioMetaData(int gender, int birthday,
       String nickname, int province, int city, String signature,
       {String avatarImgId = '0'}) {

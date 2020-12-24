@@ -247,6 +247,49 @@ Map<String, dynamic> _$NeteaseUserSubcountToJson(
       'subPlaylistCount': instance.subPlaylistCount,
     };
 
+NeteaseUserLevel _$NeteaseUserLevelFromJson(Map<String, dynamic> json) {
+  return NeteaseUserLevel()
+    ..info = json['info'] as String
+    ..progress = json['progress'] as double
+    ..nextPlayCount = json['nextPlayCount'] as int
+    ..nextLoginCount = json['nextLoginCount'] as int
+    ..nowPlayCount = json['nowPlayCount'] as int
+    ..nowLoginCount = json['nowLoginCount'] as int
+    ..level = json['level'] as int;
+}
+
+Map<String, dynamic> _$NeteaseUserLevelToJson(NeteaseUserLevel instance) =>
+    <String, dynamic>{
+      'info': instance.info,
+      'progress': instance.progress,
+      'nextPlayCount': instance.nextPlayCount,
+      'nextLoginCount': instance.nextLoginCount,
+      'nowPlayCount': instance.nowPlayCount,
+      'nowLoginCount': instance.nowLoginCount,
+      'level': instance.level,
+    };
+
+NeteaseUserLevelWrap _$NeteaseUserLevelWrapFromJson(Map<String, dynamic> json) {
+  return NeteaseUserLevelWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..full = json['full'] as bool
+    ..data = json['data'] == null
+        ? null
+        : NeteaseUserLevel.fromJson(json['data'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$NeteaseUserLevelWrapToJson(
+        NeteaseUserLevelWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'full': instance.full,
+      'data': instance.data,
+    };
+
 UserFollowListWrap _$UserFollowListWrapFromJson(Map<String, dynamic> json) {
   return UserFollowListWrap()
     ..code = json['code'] as int

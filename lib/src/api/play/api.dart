@@ -55,6 +55,20 @@ mixin ApiPlay {
     });
   }
 
+  DioMetaData highqualityPlaylistHotTagsDioMetaData() {
+    return DioMetaData(joinUri('/api/playlist/highquality/tags'),
+        data: {}, options: joinOptions());
+  }
+
+  /// 精品歌单tags
+  Future<PlaylistHotTagsWrap> highqualityPlaylistHotTags() {
+    return Https.dioProxy
+        .postUri(highqualityPlaylistHotTagsDioMetaData())
+        .then((Response value) {
+      return PlaylistHotTagsWrap.fromJson(value.data);
+    });
+  }
+
   DioMetaData highqualityPlayListDioMetaData(
       {String category = '全部',
       int limit = 30,
