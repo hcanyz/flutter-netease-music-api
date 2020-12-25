@@ -120,6 +120,56 @@ Map<String, dynamic> _$NeteaseAccountInfoWrapToJson(
       'profile': instance.profile,
     };
 
+NeteaseAccountBinding _$NeteaseAccountBindingFromJson(
+    Map<String, dynamic> json) {
+  return NeteaseAccountBinding()
+    ..id = dynamicToString(json['id'])
+    ..userId = dynamicToString(json['userId'])
+    ..tokenJsonStr = json['tokenJsonStr'] as String
+    ..url = json['url'] as String
+    ..type = json['type'] as int
+    ..expiresIn = json['expiresIn'] as int
+    ..refreshTime = json['refreshTime'] as int
+    ..bindingTime = json['bindingTime'] as int
+    ..expired = json['expired'] as bool;
+}
+
+Map<String, dynamic> _$NeteaseAccountBindingToJson(
+        NeteaseAccountBinding instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'userId': instance.userId,
+      'tokenJsonStr': instance.tokenJsonStr,
+      'url': instance.url,
+      'type': instance.type,
+      'expiresIn': instance.expiresIn,
+      'refreshTime': instance.refreshTime,
+      'bindingTime': instance.bindingTime,
+      'expired': instance.expired,
+    };
+
+NeteaseAccountBindingWrap _$NeteaseAccountBindingWrapFromJson(
+    Map<String, dynamic> json) {
+  return NeteaseAccountBindingWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..bindings = (json['bindings'] as List)
+        ?.map((e) => e == null
+            ? null
+            : NeteaseAccountBinding.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$NeteaseAccountBindingWrapToJson(
+        NeteaseAccountBindingWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'bindings': instance.bindings,
+    };
+
 CellPhoneCheckExistenceRet _$CellPhoneCheckExistenceRetFromJson(
     Map<String, dynamic> json) {
   return CellPhoneCheckExistenceRet()

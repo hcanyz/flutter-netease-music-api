@@ -18,6 +18,11 @@ void main() async {
   //是否测试发验证码
   const bool doSendCaptcha = false;
 
+  test('test login protect', () async {
+    var result = await api.loginProtect();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test anonimous', () async {
     api.usc.onLogout();
 

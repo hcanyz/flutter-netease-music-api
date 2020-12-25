@@ -58,6 +58,41 @@ class NeteaseAccountInfoWrap extends ServerStatusBean {
 }
 
 @JsonSerializable()
+class NeteaseAccountBinding {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+  @JsonKey(fromJson: dynamicToString)
+  String userId;
+
+  String tokenJsonStr;
+  String url;
+  int type;
+  int expiresIn;
+  int refreshTime;
+  int bindingTime;
+  bool expired;
+
+  NeteaseAccountBinding();
+
+  factory NeteaseAccountBinding.fromJson(Map<String, dynamic> json) =>
+      _$NeteaseAccountBindingFromJson(json);
+
+  Map<String, dynamic> toJson() => _$NeteaseAccountBindingToJson(this);
+}
+
+@JsonSerializable()
+class NeteaseAccountBindingWrap extends ServerStatusBean {
+  List<NeteaseAccountBinding> bindings;
+
+  NeteaseAccountBindingWrap();
+
+  factory NeteaseAccountBindingWrap.fromJson(Map<String, dynamic> json) =>
+      _$NeteaseAccountBindingWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$NeteaseAccountBindingWrapToJson(this);
+}
+
+@JsonSerializable()
 class CellPhoneCheckExistenceRet extends ServerStatusBean {
   // 1: 存在   -1: 不存在
   int exist;

@@ -13,6 +13,21 @@ import 'package:pointycastle/digests/md5.dart';
 import 'bean.dart';
 
 mixin ApiLogin {
+  DioMetaData loginProtectDioMetaData() {
+    var params = {};
+    return DioMetaData(joinUri('/api/usersafe/loginprotect/status/get'),
+        data: params, options: joinOptions());
+  }
+
+  /// 登录保护状态
+  Future<ServerStatusBean> loginProtect() {
+    return Https.dioProxy
+        .postUri(loginProtectDioMetaData())
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
+  }
+
   DioMetaData loginAnonimousDioMetaData() {
     var base64 = Base64Encoder();
     var deviceId = Uri.encodeComponent(base64.convert(utf8

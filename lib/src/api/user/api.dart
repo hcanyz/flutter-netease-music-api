@@ -25,6 +25,21 @@ mixin ApiUser {
     });
   }
 
+  DioMetaData userBindingsDioMetaData(String userId) {
+    return DioMetaData(joinUri('/api/v1/user/bindings/$userId'),
+        data: {}, options: joinOptions());
+  }
+
+  /// 用户账号信息
+  /// !需要登录
+  Future<NeteaseAccountBindingWrap> userBindings(String userId) {
+    return Https.dioProxy
+        .postUri(userBindingsDioMetaData(userId))
+        .then((Response value) {
+      return NeteaseAccountBindingWrap.fromJson(value.data);
+    });
+  }
+
   DioMetaData userDetailDioMetaData(String userId) {
     return DioMetaData(joinUri('/weapi/v1/user/detail/$userId'),
         data: {}, options: joinOptions());

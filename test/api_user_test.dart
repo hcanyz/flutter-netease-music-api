@@ -31,6 +31,12 @@ void main() async {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test userDetail', () async {
+    var result = await api
+        .userBindings(api.usc?.accountInfo?.account?.id ?? defaultUserId);
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test user Subcount', () async {
     var result = await api.userSubcount();
     expect(result.code, RET_CODE_OK);
