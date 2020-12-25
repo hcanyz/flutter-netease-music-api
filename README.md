@@ -61,6 +61,9 @@ subscription.cancel();
 - [ ] 文档
 - [ ] 持续同步api...
 
+### ~
+- json String to Bean ```flutter pub run build_runner build```
+
 ### errorCode
 | code | desc                               |
 |------|--------------------                |
