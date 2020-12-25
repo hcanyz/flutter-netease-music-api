@@ -79,6 +79,11 @@ void main() async {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test dj radio personalize', () async {
+    var result = await api.djRadioPersonalize();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test pay dj radio top list', () async {
     var result = await api.djRadioPayTopList();
     expect(result.code, RET_CODE_OK);

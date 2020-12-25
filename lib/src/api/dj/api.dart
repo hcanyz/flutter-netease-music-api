@@ -178,6 +178,24 @@ mixin ApiDj {
     });
   }
 
+  DioMetaData djRadioPersonalizeDioMetaData({int limit = 6}) {
+    var params = {
+      'limit': limit,
+    };
+    return DioMetaData(joinUri('/api/djradio/personalize/rcmd'),
+        data: params, options: joinOptions());
+  }
+
+  /// 新晋电台榜/热门电台榜
+  /// [type] 新晋:'new'  热门:'hot'
+  Future<DjRadioListWrap2> djRadioPersonalize({int limit = 6}) {
+    return Https.dioProxy
+        .postUri(djRadioPersonalizeDioMetaData(limit: limit))
+        .then((Response value) {
+      return DjRadioListWrap2.fromJson(value.data);
+    });
+  }
+
   DioMetaData djRadioPayTopListDioMetaData({int limit = 100}) {
     var params = {'limit': limit};
     return DioMetaData(joinUri('/api/djradio/toplist/pay'),
