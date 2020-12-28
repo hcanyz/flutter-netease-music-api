@@ -134,138 +134,26 @@ mixin ApiEvent {
     });
   }
 
-  DioMetaData songCommentListDioMetaData(String songId,
+  DioMetaData commentListDioMetaData(String id, String type,
       {int offset = 0, int limit = 20, int beforeTime = 0}) {
+    String typeKey = _type2key(type);
     var params = {
-      'rid': songId,
+      'rid': id,
       'limit': limit,
       'offset': offset,
       'beforeTime': beforeTime
     };
-    return DioMetaData(joinUri('/api/v1/resource/comments/R_SO_4_$songId'),
+    return DioMetaData(joinUri('/weapi/v1/resource/comments/$typeKey$id'),
         data: params, options: joinOptions(cookies: {'os': 'pc'}));
   }
 
-  /// 歌曲评论
-  Future<CommentListWrap> songCommentList(String songId,
+  /// 评论
+  /// [id] 资源id
+  /// [type] 'song':歌曲 'mv':mv 'playlist':歌单 'album':专辑 'dj':电台 'video':视频
+  Future<CommentListWrap> commentList(String id, String type,
       {int offset = 0, int limit = 20, int beforeTime = 0}) {
     return Https.dioProxy
-        .postUri(songCommentListDioMetaData(songId,
-            offset: offset, limit: limit, beforeTime: beforeTime))
-        .then((Response value) {
-      return CommentListWrap.fromJson(value.data);
-    });
-  }
-
-  DioMetaData albumCommentListDioMetaData(String albumId,
-      {int offset = 0, int limit = 20, int beforeTime = 0}) {
-    var params = {
-      'rid': albumId,
-      'limit': limit,
-      'offset': offset,
-      'beforeTime': beforeTime
-    };
-    return DioMetaData(joinUri('/weapi/v1/resource/comments/R_AL_3_$albumId'),
-        data: params, options: joinOptions(cookies: {'os': 'pc'}));
-  }
-
-  /// 专辑评论
-  Future<CommentListWrap> albumCommentList(String albumId,
-      {int offset = 0, int limit = 20, int beforeTime = 0}) {
-    return Https.dioProxy
-        .postUri(albumCommentListDioMetaData(albumId,
-            offset: offset, limit: limit, beforeTime: beforeTime))
-        .then((Response value) {
-      return CommentListWrap.fromJson(value.data);
-    });
-  }
-
-  DioMetaData playlistCommentListDioMetaData(String pid,
-      {int offset = 0, int limit = 20, int beforeTime = 0}) {
-    var params = {
-      'rid': pid,
-      'limit': limit,
-      'offset': offset,
-      'beforeTime': beforeTime
-    };
-    return DioMetaData(joinUri('/weapi/v1/resource/comments/A_PL_0_$pid'),
-        data: params, options: joinOptions(cookies: {'os': 'pc'}));
-  }
-
-  /// 歌单评论
-  Future<CommentListWrap> playlistCommentList(String pid,
-      {int offset = 0, int limit = 20, int beforeTime = 0}) {
-    return Https.dioProxy
-        .postUri(playlistCommentListDioMetaData(pid,
-            offset: offset, limit: limit, beforeTime: beforeTime))
-        .then((Response value) {
-      return CommentListWrap.fromJson(value.data);
-    });
-  }
-
-  DioMetaData mvCommentListDioMetaData(String mvId,
-      {int offset = 0, int limit = 20, int beforeTime = 0}) {
-    var params = {
-      'rid': mvId,
-      'limit': limit,
-      'offset': offset,
-      'beforeTime': beforeTime
-    };
-    return DioMetaData(joinUri('/weapi/v1/resource/comments/R_MV_5_$mvId'),
-        data: params, options: joinOptions(cookies: {'os': 'pc'}));
-  }
-
-  /// mv评论
-  Future<CommentListWrap> mvCommentList(String mvId,
-      {int offset = 0, int limit = 20, int beforeTime = 0}) {
-    return Https.dioProxy
-        .postUri(mvCommentListDioMetaData(mvId,
-            offset: offset, limit: limit, beforeTime: beforeTime))
-        .then((Response value) {
-      return CommentListWrap.fromJson(value.data);
-    });
-  }
-
-  DioMetaData djRadioCommentListDioMetaData(String radioId,
-      {int offset = 0, int limit = 20, int beforeTime = 0}) {
-    var params = {
-      'rid': radioId,
-      'limit': limit,
-      'offset': offset,
-      'beforeTime': beforeTime
-    };
-    return DioMetaData(joinUri('/weapi/v1/resource/comments/A_DJ_1_$radioId'),
-        data: params, options: joinOptions(cookies: {'os': 'pc'}));
-  }
-
-  /// 电台评论
-  Future<CommentListWrap> djRadioCommentList(String radioId,
-      {int offset = 0, int limit = 20, int beforeTime = 0}) {
-    return Https.dioProxy
-        .postUri(djRadioCommentListDioMetaData(radioId,
-            offset: offset, limit: limit, beforeTime: beforeTime))
-        .then((Response value) {
-      return CommentListWrap.fromJson(value.data);
-    });
-  }
-
-  DioMetaData videoCommentListDioMetaData(String videoId,
-      {int offset = 0, int limit = 20, int beforeTime = 0}) {
-    var params = {
-      'rid': videoId,
-      'limit': limit,
-      'offset': offset,
-      'beforeTime': beforeTime
-    };
-    return DioMetaData(joinUri('/weapi/v1/resource/comments/R_VI_62_$videoId'),
-        data: params, options: joinOptions(cookies: {'os': 'pc'}));
-  }
-
-  /// 视频评论
-  Future<CommentListWrap> videoCommentList(String videoId,
-      {int offset = 0, int limit = 20, int beforeTime = 0}) {
-    return Https.dioProxy
-        .postUri(videoCommentListDioMetaData(videoId,
+        .postUri(commentListDioMetaData(id, type,
             offset: offset, limit: limit, beforeTime: beforeTime))
         .then((Response value) {
       return CommentListWrap.fromJson(value.data);

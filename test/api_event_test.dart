@@ -61,32 +61,33 @@ void main() async {
   });
 
   test('test song comment list', () async {
-    var result = await api.songCommentList('167975');
+    var result = await api.commentList('167975', 'song');
     expect(result.code, RET_CODE_OK);
   });
 
   test('test album comment list', () async {
-    var result = await api.albumCommentList('16967');
+    var result = await api.commentList('16967', 'album');
     expect(result.code, RET_CODE_OK);
   });
 
   test('test playlist comment list', () async {
-    var result = await api.playlistCommentList('2819660572');
+    var result = await api.commentList('2819660572', 'playlist');
     expect(result.code, RET_CODE_OK);
   });
 
   test('test mv comment list', () async {
-    var result = await api.mvCommentList('5300126');
+    var result = await api.commentList('5300126', 'mv');
     expect(result.code, RET_CODE_OK);
   });
 
   test('test dj comment list', () async {
-    var result = await api.djRadioCommentList('526230592');
+    var result = await api.commentList('526230592', 'dj');
     expect(result.code, RET_CODE_OK);
   });
 
   test('test video comment list', () async {
-    var result = await api.videoCommentList('84107D4616B72B929C8AEB7D1E6CC904');
+    var result =
+        await api.commentList('84107D4616B72B929C8AEB7D1E6CC904', 'video');
     expect(result.code, RET_CODE_OK);
   });
 
@@ -108,7 +109,7 @@ void main() async {
   });
 
   test('test user comments', () async {
-    var result = await api.playlistCommentList('2819660572');
+    var result = await api.commentList('2819660572', 'playlist');
     expect(result.code, RET_CODE_OK);
 
     if (result.comments.isEmpty) {
@@ -127,7 +128,7 @@ void main() async {
   });
 
   test('test like comment', () async {
-    var result = await api.playlistCommentList('2819660572');
+    var result = await api.commentList('2819660572', 'playlist');
     expect(result.code, RET_CODE_OK);
 
     if (result.comments.isEmpty) {
@@ -146,7 +147,7 @@ void main() async {
   });
 
   test('test comment', () async {
-    var result = await api.playlistCommentList('2819660572');
+    var result = await api.commentList('2819660572', 'playlist');
     expect(result.code, RET_CODE_OK);
 
     if (result.comments.isEmpty) {
