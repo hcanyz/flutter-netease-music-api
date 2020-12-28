@@ -133,6 +133,72 @@ mixin ApiUncategorized {
     });
   }
 
+  DioMetaData mcalendarDetailDioMetaData({int startTime = 0, int endTime = 0}) {
+    if (startTime == 0) {
+      startTime = DateTime.now().millisecondsSinceEpoch;
+    }
+    if (endTime == 0) {
+      endTime = DateTime.now().millisecondsSinceEpoch;
+    }
+    var params = {
+      'startTime': startTime,
+      'endTime': endTime,
+    };
+    return DioMetaData(joinUri('/api/mcalendar/detail'),
+        data: params, options: joinOptions());
+  }
+
+  /// mcalendar
+  Future<McalendarDetailWrap> mcalendarDetail(
+      {int startTime = 0, int endTime = 0}) {
+    return Https.dioProxy
+        .postUri(mcalendarDetailDioMetaData())
+        .then((Response value) {
+      return McalendarDetailWrap.fromJson(value.data);
+    });
+  }
+
+  DioMetaData audioMatchDioMetaData(
+      {String algorithmCode,
+      int times,
+      String sessionId,
+      double duration,
+      String from,
+      String rawdata}) {
+    var params = {
+      'algorithmCode': algorithmCode,
+      'times': times,
+      'sessionId': sessionId,
+      'duration': duration,
+      'from': from,
+      'rawdata': rawdata,
+    };
+    return DioMetaData(joinUri('/api/music/audio/match'),
+        data: params, options: joinOptions());
+  }
+
+  /// audio match
+  Future<AudioMatchResultWrap> audioMatch(
+      {String algorithmCode = 'shazam_v2',
+      int times = 1,
+      String sessionId = 'C999431ACDC84EDBB984763654E6F8D7',
+      double duration = 3.3066249999999995,
+      String from = 'recognize-song',
+      String rawdata =
+          'eJx10mtIU2EcBvDtnCwNMfO2klUSmSQ5ZugKW/v/0TIjJVdhDStbXpqXrhY5Kwhtrcwiut9VSqMUMxX6IFqsD92sD1YgWGHRBcowKrpnPa/v+drg4flt572ds2PQ6XQut7MwJ940w2TOyS0pzF+/BV/MJrNO+3TVLOHUzKx5iw3/H5uZ7yxegct3tTl7Cr6QEa0gZ/dZOFsvfe5YHe1D+yFZxpncqEj/cCdwoirdVxHNnZrX3xygU5g7Eh6I9uOx8Ch4y9FQjlKkDz1pYrFXIJLUOovFGcYivqJgXqaXDqu7Rzc0XzmZxG81B/fF8wRVusn2jN5rDnwca8tFhyAJP4L4qiI9vX8cWzEmVKzT/46qxNpIdZOZz2HNcHhSkZ3D4AjYFpfGFkX6+dB+FvcSBe/SWbkLPVnEOJ1DFelXxVVci/Wj4TsBLhrQ/LGoaU4HxsTA28L76Cc8Dfau/U6F6FgkyBDDJar0g8tesmOvOHioWeXXmme6l3MLbIIre6wciU5E2t/k8WVxHfHvuUWXsH4SPCv1NW1Cz0aivgYO34vw1AEvi3MlIw0xHl6JNVPEGW41UJsqPaXYYTuEnotMdHwYfv7CFR/i+aXmrY5wrlSkEwr+0EJ0GvLmdw4/RS9Amj93UAbGZMIF40ezE3PtcG/yBWrT3L6oh66hFyMXK4xsUKT7aufzapxnFTwiNc3Wis5Bdm+OYCvmOuHj/ZeoQPOI00PUrUjXpG+kMFU61tFFDvQaZOn5DH4mzoLw4Hsaj14rzu/K4jF66fSWTnJinW3wBvcveqjZN3iFjKp0qKuF1mi21keST3NtTcbwu1eG3Dussr9eemljLIco0tVH7HwA493wOr+FlIjfy+GvkR4uwfjt4v/6G8K3NX8K38lt6B1ISa+Bv2O8Fy69foZOovci2S4Lr1aku4P9OEWVTt9wgMQ7exgJ8JXyI0W694WFyuBjcH75XyrEXsfhg+ZSvqZIf/Lct8Wp0md2tJN4PifEfjcm8gu02Ptbj459eum8eg8bFWlLXTb/A+uo9bM='}) {
+    return Https.dioProxy
+        .postUri(audioMatchDioMetaData(
+            algorithmCode: algorithmCode,
+            times: times,
+            sessionId: sessionId,
+            duration: duration,
+            from: from,
+            rawdata: rawdata))
+        .then((Response value) {
+      return AudioMatchResultWrap.fromJson(value.data);
+    });
+  }
+
   /// 申请图片空间
   DioMetaData uploadImageAllocDioMetaData(String fileName) {
     var params = {

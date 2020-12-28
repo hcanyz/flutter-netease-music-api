@@ -543,6 +543,95 @@ class TopListDetailWrap extends ServerStatusBean {
 }
 
 @JsonSerializable()
+class McalendarDetailEvent {
+  String id;
+  String eventType;
+  int onlineTime;
+  int offlineTime;
+  String imgUrl;
+  String targetUrl;
+  String tag;
+  String title;
+  bool canRemind;
+  bool reminded;
+  String remindText;
+  String resourceId;
+  String resourceType;
+  String eventStatus;
+  String remindedText;
+
+  McalendarDetailEvent();
+
+  factory McalendarDetailEvent.fromJson(Map<String, dynamic> json) =>
+      _$McalendarDetailEventFromJson(json);
+
+  Map<String, dynamic> toJson() => _$McalendarDetailEventToJson(this);
+}
+
+@JsonSerializable()
+class McalendarDetail {
+  List<McalendarDetailEvent> calendarEvents;
+
+  McalendarDetail();
+
+  factory McalendarDetail.fromJson(Map<String, dynamic> json) =>
+      _$McalendarDetailFromJson(json);
+
+  Map<String, dynamic> toJson() => _$McalendarDetailToJson(this);
+}
+
+@JsonSerializable()
+class McalendarDetailWrap extends ServerStatusBean {
+  McalendarDetail data;
+
+  McalendarDetailWrap();
+
+  factory McalendarDetailWrap.fromJson(Map<String, dynamic> json) =>
+      _$McalendarDetailWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$McalendarDetailWrapToJson(this);
+}
+
+@JsonSerializable()
+class AudioMatchResult {
+  int startTime;
+  Song song;
+
+  AudioMatchResult();
+
+  factory AudioMatchResult.fromJson(Map<String, dynamic> json) =>
+      _$AudioMatchResultFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AudioMatchResultToJson(this);
+}
+
+@JsonSerializable()
+class AudioMatchResultData {
+  int type;
+
+  List<AudioMatchResult> result;
+
+  AudioMatchResultData();
+
+  factory AudioMatchResultData.fromJson(Map<String, dynamic> json) =>
+      _$AudioMatchResultDataFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AudioMatchResultDataToJson(this);
+}
+
+@JsonSerializable()
+class AudioMatchResultWrap extends ServerStatusBean {
+  AudioMatchResultData data;
+
+  AudioMatchResultWrap();
+
+  factory AudioMatchResultWrap.fromJson(Map<String, dynamic> json) =>
+      _$AudioMatchResultWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AudioMatchResultWrapToJson(this);
+}
+
+@JsonSerializable()
 class UploadImageAlloc {
   String bucket;
   String docId;

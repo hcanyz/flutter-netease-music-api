@@ -48,6 +48,16 @@ void main() async {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test mcalendar detail', () async {
+    var result = await api.mcalendarDetail();
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test audio match', () async {
+    var result = await api.audioMatch();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test upload image', () async {
     await needLogin(api);
 

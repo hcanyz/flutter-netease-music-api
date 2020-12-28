@@ -704,6 +704,128 @@ Map<String, dynamic> _$TopListDetailWrapToJson(TopListDetailWrap instance) =>
       'rewardToplist': instance.rewardToplist,
     };
 
+McalendarDetailEvent _$McalendarDetailEventFromJson(Map<String, dynamic> json) {
+  return McalendarDetailEvent()
+    ..id = json['id'] as String
+    ..eventType = json['eventType'] as String
+    ..onlineTime = json['onlineTime'] as int
+    ..offlineTime = json['offlineTime'] as int
+    ..imgUrl = json['imgUrl'] as String
+    ..targetUrl = json['targetUrl'] as String
+    ..tag = json['tag'] as String
+    ..title = json['title'] as String
+    ..canRemind = json['canRemind'] as bool
+    ..reminded = json['reminded'] as bool
+    ..remindText = json['remindText'] as String
+    ..resourceId = json['resourceId'] as String
+    ..resourceType = json['resourceType'] as String
+    ..eventStatus = json['eventStatus'] as String
+    ..remindedText = json['remindedText'] as String;
+}
+
+Map<String, dynamic> _$McalendarDetailEventToJson(
+        McalendarDetailEvent instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'eventType': instance.eventType,
+      'onlineTime': instance.onlineTime,
+      'offlineTime': instance.offlineTime,
+      'imgUrl': instance.imgUrl,
+      'targetUrl': instance.targetUrl,
+      'tag': instance.tag,
+      'title': instance.title,
+      'canRemind': instance.canRemind,
+      'reminded': instance.reminded,
+      'remindText': instance.remindText,
+      'resourceId': instance.resourceId,
+      'resourceType': instance.resourceType,
+      'eventStatus': instance.eventStatus,
+      'remindedText': instance.remindedText,
+    };
+
+McalendarDetail _$McalendarDetailFromJson(Map<String, dynamic> json) {
+  return McalendarDetail()
+    ..calendarEvents = (json['calendarEvents'] as List)
+        ?.map((e) => e == null
+            ? null
+            : McalendarDetailEvent.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$McalendarDetailToJson(McalendarDetail instance) =>
+    <String, dynamic>{
+      'calendarEvents': instance.calendarEvents,
+    };
+
+McalendarDetailWrap _$McalendarDetailWrapFromJson(Map<String, dynamic> json) {
+  return McalendarDetailWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..data = json['data'] == null
+        ? null
+        : McalendarDetail.fromJson(json['data'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$McalendarDetailWrapToJson(
+        McalendarDetailWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
+AudioMatchResult _$AudioMatchResultFromJson(Map<String, dynamic> json) {
+  return AudioMatchResult()
+    ..startTime = json['startTime'] as int
+    ..song = json['song'] == null
+        ? null
+        : Song.fromJson(json['song'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$AudioMatchResultToJson(AudioMatchResult instance) =>
+    <String, dynamic>{
+      'startTime': instance.startTime,
+      'song': instance.song,
+    };
+
+AudioMatchResultData _$AudioMatchResultDataFromJson(Map<String, dynamic> json) {
+  return AudioMatchResultData()
+    ..type = json['type'] as int
+    ..result = (json['result'] as List)
+        ?.map((e) => e == null
+            ? null
+            : AudioMatchResult.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$AudioMatchResultDataToJson(
+        AudioMatchResultData instance) =>
+    <String, dynamic>{
+      'type': instance.type,
+      'result': instance.result,
+    };
+
+AudioMatchResultWrap _$AudioMatchResultWrapFromJson(Map<String, dynamic> json) {
+  return AudioMatchResultWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..data = json['data'] == null
+        ? null
+        : AudioMatchResultData.fromJson(json['data'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$AudioMatchResultWrapToJson(
+        AudioMatchResultWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
 UploadImageAlloc _$UploadImageAllocFromJson(Map<String, dynamic> json) {
   return UploadImageAlloc()
     ..bucket = json['bucket'] as String
