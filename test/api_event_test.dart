@@ -63,32 +63,51 @@ void main() async {
   test('test song comment list', () async {
     var result = await api.commentList('167975', 'song');
     expect(result.code, RET_CODE_OK);
+
+    var result2 = await api.commentList2('167975', 'song');
+    expect(result2.code, RET_CODE_OK);
   });
 
   test('test album comment list', () async {
     var result = await api.commentList('16967', 'album');
     expect(result.code, RET_CODE_OK);
+
+    var result2 = await api.commentList2('16967', 'album');
+    expect(result2.code, RET_CODE_OK);
   });
 
   test('test playlist comment list', () async {
     var result = await api.commentList('2819660572', 'playlist');
     expect(result.code, RET_CODE_OK);
+
+    var result2 = await api.commentList2('2819660572', 'playlist');
+    expect(result2.code, RET_CODE_OK);
   });
 
   test('test mv comment list', () async {
     var result = await api.commentList('5300126', 'mv');
     expect(result.code, RET_CODE_OK);
+
+    var result2 = await api.commentList2('5300126', 'mv');
+    expect(result2.code, RET_CODE_OK);
   });
 
   test('test dj comment list', () async {
     var result = await api.commentList('526230592', 'dj');
     expect(result.code, RET_CODE_OK);
+
+    var result2 = await api.commentList2('526230592', 'dj');
+    expect(result2.code, RET_CODE_OK);
   });
 
   test('test video comment list', () async {
     var result =
         await api.commentList('84107D4616B72B929C8AEB7D1E6CC904', 'video');
     expect(result.code, RET_CODE_OK);
+
+    var result2 =
+        await api.commentList2('84107D4616B72B929C8AEB7D1E6CC904', 'video');
+    expect(result2.code, RET_CODE_OK);
   });
 
   test('test hot comment list', () async {

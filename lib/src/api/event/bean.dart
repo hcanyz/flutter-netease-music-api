@@ -201,6 +201,52 @@ class CommentListWrap extends ServerStatusListBean {
 }
 
 @JsonSerializable()
+class CommentList2DataSortType {
+  int sortType;
+  String sortTypeName;
+  String target;
+
+  CommentList2DataSortType();
+
+  factory CommentList2DataSortType.fromJson(Map<String, dynamic> json) =>
+      _$CommentList2DataSortTypeFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CommentList2DataSortTypeToJson(this);
+}
+
+@JsonSerializable()
+class CommentList2Data {
+  bool hasMore;
+
+  String cursor;
+  int totalCount;
+  int sortType;
+  List<CommentList2DataSortType> sortTypeList;
+
+  List<CommentItem> comments;
+  CommentItem currentComment;
+
+  CommentList2Data();
+
+  factory CommentList2Data.fromJson(Map<String, dynamic> json) =>
+      _$CommentList2DataFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CommentList2DataToJson(this);
+}
+
+@JsonSerializable()
+class CommentList2Wrap extends ServerStatusBean {
+  CommentList2Data data;
+
+  CommentList2Wrap();
+
+  factory CommentList2Wrap.fromJson(Map<String, dynamic> json) =>
+      _$CommentList2WrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CommentList2WrapToJson(this);
+}
+
+@JsonSerializable()
 class FloorCommentDetail {
   List<CommentItem> comments;
 

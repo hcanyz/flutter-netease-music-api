@@ -160,6 +160,47 @@ mixin ApiEvent {
     });
   }
 
+  DioMetaData commentListDioMetaData2(String id, String type,
+      {int pageNo = 1,
+      int pageSize = 20,
+      bool showInner = true,
+      int sortType}) {
+    String typeKey = _type2key(type) + id;
+    var params = {
+      'threadId': typeKey,
+      'pageNo': pageNo,
+      'pageSize': pageSize,
+      'showInner': showInner,
+      'sortType': sortType
+    };
+    return DioMetaData(joinUri('/api/v2/resource/comments'),
+        data: params,
+        options: joinOptions(
+            encryptType: EncryptType.EApi,
+            eApiUrl: '/api/v2/resource/comments',
+            cookies: {'os': 'pc'}));
+  }
+
+  /// 评论
+  /// [id] 资源id
+  /// [type] 'song':歌曲 'mv':mv 'playlist':歌单 'album':专辑 'dj':电台 'video':视频
+  /// [sortType] 1:按推荐排序,2:按热度排序,3:按时间排序
+  Future<CommentList2Wrap> commentList2(String id, String type,
+      {int pageNo = 1,
+      int pageSize = 20,
+      bool showInner = true,
+      int sortType}) {
+    return Https.dioProxy
+        .postUri(commentListDioMetaData2(id, type,
+            pageNo: pageNo,
+            pageSize: pageSize,
+            showInner: showInner,
+            sortType: sortType))
+        .then((Response value) {
+      return CommentList2Wrap.fromJson(value.data);
+    });
+  }
+
   DioMetaData hotCommentListDioMetaData(String id, String type,
       {int offset = 0, int limit = 20, int beforeTime = 0}) {
     String typeKey = _type2key(type);

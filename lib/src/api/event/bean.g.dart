@@ -299,6 +299,71 @@ Map<String, dynamic> _$CommentListWrapToJson(CommentListWrap instance) =>
       'comments': instance.comments,
     };
 
+CommentList2DataSortType _$CommentList2DataSortTypeFromJson(
+    Map<String, dynamic> json) {
+  return CommentList2DataSortType()
+    ..sortType = json['sortType'] as int
+    ..sortTypeName = json['sortTypeName'] as String
+    ..target = json['target'] as String;
+}
+
+Map<String, dynamic> _$CommentList2DataSortTypeToJson(
+        CommentList2DataSortType instance) =>
+    <String, dynamic>{
+      'sortType': instance.sortType,
+      'sortTypeName': instance.sortTypeName,
+      'target': instance.target,
+    };
+
+CommentList2Data _$CommentList2DataFromJson(Map<String, dynamic> json) {
+  return CommentList2Data()
+    ..hasMore = json['hasMore'] as bool
+    ..cursor = json['cursor'] as String
+    ..totalCount = json['totalCount'] as int
+    ..sortType = json['sortType'] as int
+    ..sortTypeList = (json['sortTypeList'] as List)
+        ?.map((e) => e == null
+            ? null
+            : CommentList2DataSortType.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..comments = (json['comments'] as List)
+        ?.map((e) =>
+            e == null ? null : CommentItem.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..currentComment = json['currentComment'] == null
+        ? null
+        : CommentItem.fromJson(json['currentComment'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$CommentList2DataToJson(CommentList2Data instance) =>
+    <String, dynamic>{
+      'hasMore': instance.hasMore,
+      'cursor': instance.cursor,
+      'totalCount': instance.totalCount,
+      'sortType': instance.sortType,
+      'sortTypeList': instance.sortTypeList,
+      'comments': instance.comments,
+      'currentComment': instance.currentComment,
+    };
+
+CommentList2Wrap _$CommentList2WrapFromJson(Map<String, dynamic> json) {
+  return CommentList2Wrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..data = json['data'] == null
+        ? null
+        : CommentList2Data.fromJson(json['data'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$CommentList2WrapToJson(CommentList2Wrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
 FloorCommentDetail _$FloorCommentDetailFromJson(Map<String, dynamic> json) {
   return FloorCommentDetail()
     ..comments = (json['comments'] as List)
