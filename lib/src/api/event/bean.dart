@@ -831,6 +831,7 @@ class MyLogResource {
   MyLogResourceExt mlogExtVO;
   NeteaseAccountProfile userProfile;
 
+  int status;
   String shareUrl;
 
   MyLogResource();
@@ -861,4 +862,31 @@ class MyLog {
   factory MyLog.fromJson(Map<String, dynamic> json) => _$MyLogFromJson(json);
 
   Map<String, dynamic> toJson() => _$MyLogToJson(this);
+}
+
+@JsonSerializable()
+class MyLogMyLikeData extends ServerStatusBean {
+  List<MyLogResource> feeds;
+
+  int time;
+  bool more;
+
+  MyLogMyLikeData();
+
+  factory MyLogMyLikeData.fromJson(Map<String, dynamic> json) =>
+      _$MyLogMyLikeDataFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MyLogMyLikeDataToJson(this);
+}
+
+@JsonSerializable()
+class MyLogMyLikeWrap extends ServerStatusBean {
+  MyLogMyLikeData data;
+
+  MyLogMyLikeWrap();
+
+  factory MyLogMyLikeWrap.fromJson(Map<String, dynamic> json) =>
+      _$MyLogMyLikeWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$MyLogMyLikeWrapToJson(this);
 }

@@ -327,6 +327,11 @@ void main() async {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test mlog mylike', () async {
+    var result = await api.mlogMylike();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test artist album list ', () async {
     var result = await api.artistAlbumList(defaultArtistId);
     expect(result.code, RET_CODE_OK);

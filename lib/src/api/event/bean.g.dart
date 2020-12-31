@@ -1074,6 +1074,7 @@ MyLogResource _$MyLogResourceFromJson(Map<String, dynamic> json) {
         ? null
         : NeteaseAccountProfile.fromJson(
             json['userProfile'] as Map<String, dynamic>)
+    ..status = json['status'] as int
     ..shareUrl = json['shareUrl'] as String;
 }
 
@@ -1082,6 +1083,7 @@ Map<String, dynamic> _$MyLogResourceToJson(MyLogResource instance) =>
       'mlogBaseData': instance.mlogBaseData,
       'mlogExtVO': instance.mlogExtVO,
       'userProfile': instance.userProfile,
+      'status': instance.status,
       'shareUrl': instance.shareUrl,
     };
 
@@ -1108,4 +1110,46 @@ Map<String, dynamic> _$MyLogToJson(MyLog instance) => <String, dynamic>{
       'matchField': instance.matchField,
       'matchFieldContent': instance.matchFieldContent,
       'sameCity': instance.sameCity,
+    };
+
+MyLogMyLikeData _$MyLogMyLikeDataFromJson(Map<String, dynamic> json) {
+  return MyLogMyLikeData()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..feeds = (json['feeds'] as List)
+        ?.map((e) => e == null
+            ? null
+            : MyLogResource.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..time = json['time'] as int
+    ..more = json['more'] as bool;
+}
+
+Map<String, dynamic> _$MyLogMyLikeDataToJson(MyLogMyLikeData instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'feeds': instance.feeds,
+      'time': instance.time,
+      'more': instance.more,
+    };
+
+MyLogMyLikeWrap _$MyLogMyLikeWrapFromJson(Map<String, dynamic> json) {
+  return MyLogMyLikeWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..data = json['data'] == null
+        ? null
+        : MyLogMyLikeData.fromJson(json['data'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$MyLogMyLikeWrapToJson(MyLogMyLikeWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'data': instance.data,
     };

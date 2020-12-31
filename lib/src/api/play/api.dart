@@ -1146,6 +1146,21 @@ mixin ApiPlay {
     });
   }
 
+  DioMetaData mlogMylikeDioMetaData({int time = -1, int limit = 12}) {
+    var params = {'time': time, 'limit': limit};
+    return DioMetaData(joinUri('/api/mlog/playlist/mylike/bytime/get'),
+        data: params, options: joinOptions());
+  }
+
+  /// 获取点赞过的视频
+  Future<MyLogMyLikeWrap> mlogMylike({int time = -1, int limit = 12}) {
+    return Https.dioProxy
+        .postUri(mlogMylikeDioMetaData(time: time, limit: limit))
+        .then((Response value) {
+      return MyLogMyLikeWrap.fromJson(value.data);
+    });
+  }
+
   DioMetaData artistAlbumListDioMetaData(String artistId,
       {int offset = 0, int limit = 30, bool total = true}) {
     var params = {'total': total, 'limit': limit, 'offset': offset};
