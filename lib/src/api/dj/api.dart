@@ -230,7 +230,7 @@ mixin ApiDj {
 
   DioMetaData djRadioDetailDioMetaData(String radioId) {
     var params = {'id': radioId};
-    return DioMetaData(joinUri('/weapi/djradio/get'),
+    return DioMetaData(joinUri('/api/djradio/v2/get'),
         data: params, options: joinOptions());
   }
 

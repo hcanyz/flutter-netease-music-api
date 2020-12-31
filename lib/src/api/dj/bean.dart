@@ -313,9 +313,7 @@ class DjRadioTopListListWrapX extends ServerStatusBean {
 
 @JsonSerializable()
 class DjRadioDetail extends ServerStatusBean {
-  DjRadio djRadio;
-
-  String picId;
+  DjRadio data;
 
   DjRadioDetail();
 

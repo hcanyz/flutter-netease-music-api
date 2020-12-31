@@ -440,10 +440,9 @@ DjRadioDetail _$DjRadioDetailFromJson(Map<String, dynamic> json) {
     ..code = json['code'] as int
     ..message = json['message'] as String
     ..msg = json['msg'] as String
-    ..djRadio = json['djRadio'] == null
+    ..data = json['data'] == null
         ? null
-        : DjRadio.fromJson(json['djRadio'] as Map<String, dynamic>)
-    ..picId = json['picId'] as String;
+        : DjRadio.fromJson(json['data'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$DjRadioDetailToJson(DjRadioDetail instance) =>
@@ -451,8 +450,7 @@ Map<String, dynamic> _$DjRadioDetailToJson(DjRadioDetail instance) =>
       'code': instance.code,
       'message': instance.message,
       'msg': instance.msg,
-      'djRadio': instance.djRadio,
-      'picId': instance.picId,
+      'data': instance.data,
     };
 
 DjRadioTopListListWrapX2 _$DjRadioTopListListWrapX2FromJson(
