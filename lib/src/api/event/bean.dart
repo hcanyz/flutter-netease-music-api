@@ -716,6 +716,30 @@ class UsersMsgListWrap extends ServerStatusBean {
 }
 
 @JsonSerializable()
+class RecentContactUsersData {
+  List<NeteaseAccountProfile> follow;
+
+  RecentContactUsersData();
+
+  factory RecentContactUsersData.fromJson(Map<String, dynamic> json) =>
+      _$RecentContactUsersDataFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RecentContactUsersDataToJson(this);
+}
+
+@JsonSerializable()
+class RecentContactUsersWrap extends ServerStatusBean {
+  RecentContactUsersData data;
+
+  RecentContactUsersWrap();
+
+  factory RecentContactUsersWrap.fromJson(Map<String, dynamic> json) =>
+      _$RecentContactUsersWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RecentContactUsersWrapToJson(this);
+}
+
+@JsonSerializable()
 class UserMsgListWrap extends ServerStatusBean {
   List<Msg2> msgs;
 

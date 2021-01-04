@@ -928,6 +928,42 @@ Map<String, dynamic> _$UsersMsgListWrapToJson(UsersMsgListWrap instance) =>
       'msgs': instance.msgs,
     };
 
+RecentContactUsersData _$RecentContactUsersDataFromJson(
+    Map<String, dynamic> json) {
+  return RecentContactUsersData()
+    ..follow = (json['follow'] as List)
+        ?.map((e) => e == null
+            ? null
+            : NeteaseAccountProfile.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$RecentContactUsersDataToJson(
+        RecentContactUsersData instance) =>
+    <String, dynamic>{
+      'follow': instance.follow,
+    };
+
+RecentContactUsersWrap _$RecentContactUsersWrapFromJson(
+    Map<String, dynamic> json) {
+  return RecentContactUsersWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..data = json['data'] == null
+        ? null
+        : RecentContactUsersData.fromJson(json['data'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$RecentContactUsersWrapToJson(
+        RecentContactUsersWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
 UserMsgListWrap _$UserMsgListWrapFromJson(Map<String, dynamic> json) {
   return UserMsgListWrap()
     ..code = json['code'] as int

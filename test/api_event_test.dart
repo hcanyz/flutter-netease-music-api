@@ -209,6 +209,11 @@ void main() async {
     });
   });
 
+  test('test private msg conversation list', () async {
+    var result = await api.recentContactUsers();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test send private msg', () async {
     var result =
         await api.sendPrivateMsg('test', '3251549719', playlist: '117666725');

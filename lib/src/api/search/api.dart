@@ -6,7 +6,7 @@ import 'bean.dart';
 
 mixin ApiSearch {
   Uri _searchUrl(bool cloudSearch) => cloudSearch
-      ? joinUri('/weapi/cloudsearch/get/web')
+      ? joinUri('/weapi/cloudsearch/pc')
       : joinUri('/weapi/search/get');
 
   DioMetaData searchSongDioMetaData(String keyword,

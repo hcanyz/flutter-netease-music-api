@@ -461,6 +461,22 @@ mixin ApiEvent {
     return typeKey;
   }
 
+  DioMetaData recentContactUsersDioMetaData() {
+    var params = {};
+    return DioMetaData(joinUri('/api/msg/recentcontact/get'),
+        data: params, options: joinOptions());
+  }
+
+  /// 最近联系
+  /// !需要登录
+  Future<RecentContactUsersWrap> recentContactUsers() {
+    return Https.dioProxy
+        .postUri(recentContactUsersDioMetaData())
+        .then((Response value) {
+      return RecentContactUsersWrap.fromJson(value.data);
+    });
+  }
+
   DioMetaData privateMsgListUsersDioMetaData(
       {int offset = 0, int limit = 30, bool total = true}) {
     var params = {'limit': limit, 'offset': offset, 'total': total};
