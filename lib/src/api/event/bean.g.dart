@@ -364,6 +364,63 @@ Map<String, dynamic> _$CommentList2WrapToJson(CommentList2Wrap instance) =>
       'data': instance.data,
     };
 
+HugComment _$HugCommentFromJson(Map<String, dynamic> json) {
+  return HugComment()
+    ..user = json['user'] == null
+        ? null
+        : NeteaseUserInfo.fromJson(json['user'] as Map<String, dynamic>)
+    ..hugContent = json['hugContent'] as String;
+}
+
+Map<String, dynamic> _$HugCommentToJson(HugComment instance) =>
+    <String, dynamic>{
+      'user': instance.user,
+      'hugContent': instance.hugContent,
+    };
+
+HugCommentListData _$HugCommentListDataFromJson(Map<String, dynamic> json) {
+  return HugCommentListData()
+    ..hasMore = json['hasMore'] as bool
+    ..cursor = json['cursor'] as String
+    ..idCursor = json['idCursor'] as int
+    ..hugTotalCounts = json['hugTotalCounts'] as int
+    ..hugComments = (json['hugComments'] as List)
+        ?.map((e) =>
+            e == null ? null : HugComment.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..currentComment = json['currentComment'] == null
+        ? null
+        : CommentItem.fromJson(json['currentComment'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$HugCommentListDataToJson(HugCommentListData instance) =>
+    <String, dynamic>{
+      'hasMore': instance.hasMore,
+      'cursor': instance.cursor,
+      'idCursor': instance.idCursor,
+      'hugTotalCounts': instance.hugTotalCounts,
+      'hugComments': instance.hugComments,
+      'currentComment': instance.currentComment,
+    };
+
+HugCommentListWrap _$HugCommentListWrapFromJson(Map<String, dynamic> json) {
+  return HugCommentListWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..data = json['data'] == null
+        ? null
+        : HugCommentListData.fromJson(json['data'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$HugCommentListWrapToJson(HugCommentListWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
 FloorCommentDetail _$FloorCommentDetailFromJson(Map<String, dynamic> json) {
   return FloorCommentDetail()
     ..comments = (json['comments'] as List)

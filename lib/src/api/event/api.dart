@@ -433,6 +433,80 @@ mixin ApiEvent {
     });
   }
 
+  DioMetaData hugCommentListDioMetaData(
+    String id,
+    String type,
+    String userId,
+    String commentId, {
+    String cursor = '-1',
+    int idCursor = -1,
+    int pageNo = 1,
+    int pageSize = 20,
+  }) {
+    String typeKey = _type2key(type);
+    var params = {
+      'threadId': typeKey + id,
+      'targetUserId': userId,
+      'commentId': commentId,
+      'cursor': cursor,
+      'idCursor': idCursor,
+      'pageNo': pageNo,
+      'pageSize': pageSize
+    };
+    return DioMetaData(joinUri('/api/v2/resource/comments/hug/list'),
+        data: params,
+        options: joinOptions(cookies: {'os': 'ios', 'appver': '7.3.27'}));
+  }
+
+  /// 抱一抱 评论列表
+  /// !需要登录
+  /// [id] 资源id
+  Future<HugCommentListWrap> hugCommentList(
+    String id,
+    String type,
+    String userId,
+    String commentId, {
+    String cursor = '-1',
+    int idCursor = -1,
+    int pageNo = 1,
+    int pageSize = 20,
+  }) {
+    return Https.dioProxy
+        .postUri(hugCommentListDioMetaData(id, type, userId, commentId,
+            cursor: cursor,
+            idCursor: idCursor,
+            pageNo: pageNo,
+            pageSize: pageSize))
+        .then((Response value) {
+      return HugCommentListWrap.fromJson(value.data);
+    });
+  }
+
+  DioMetaData hugCommentDioMetaData(
+      String id, String type, String userId, String commentId) {
+    String typeKey = _type2key(type);
+    var params = {
+      'threadId': typeKey + id,
+      'targetUserId': userId,
+      'commentId': commentId,
+    };
+    return DioMetaData(joinUri('/api/v2/resource/comments/hug/listener'),
+        data: params,
+        options: joinOptions(cookies: {'os': 'ios', 'appver': '7.3.27'}));
+  }
+
+  /// 抱一抱 评论
+  /// !需要登录
+  /// [id] 资源id
+  Future<ServerStatusBean> hugComment(
+      String id, String type, String userId, String commentId) {
+    return Https.dioProxy
+        .postUri(hugCommentDioMetaData(id, type, userId, commentId))
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
+  }
+
   String _type2key(String type) {
     String typeKey = 'R_SO_4_';
     switch (type) {

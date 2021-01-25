@@ -200,6 +200,32 @@ void main() async {
     expect(result3.code, RET_CODE_OK);
   });
 
+  test('test hub commnet x', () async {
+    var result = await api.commentList('167975', 'song');
+    expect(result.code, RET_CODE_OK);
+
+    if (result.comments.isEmpty) {
+      return;
+    }
+
+    var result2 = await api.hugComment('167975', 'song',
+        result.comments[0].user.userId, result.comments[0].commentId);
+    expect(result2.code, RET_CODE_OK);
+  });
+
+  test('test hub commnet list', () async {
+    var result = await api.commentList('167975', 'song');
+    expect(result.code, RET_CODE_OK);
+
+    if (result.comments.isEmpty) {
+      return;
+    }
+
+    var result2 = await api.hugCommentList('167975', 'song',
+        result.comments[0].user.userId, result.comments[0].commentId);
+    expect(result2.code, RET_CODE_OK);
+  });
+
   test('test private msg conversation list', () async {
     var result = await api.privateMsgListUsers();
     expect(result.code, RET_CODE_OK);

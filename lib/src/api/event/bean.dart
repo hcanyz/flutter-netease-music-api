@@ -247,6 +247,50 @@ class CommentList2Wrap extends ServerStatusBean {
 }
 
 @JsonSerializable()
+class HugComment {
+  NeteaseUserInfo user;
+  String hugContent;
+
+  HugComment();
+
+  factory HugComment.fromJson(Map<String, dynamic> json) =>
+      _$HugCommentFromJson(json);
+
+  Map<String, dynamic> toJson() => _$HugCommentToJson(this);
+}
+
+@JsonSerializable()
+class HugCommentListData {
+  bool hasMore;
+
+  String cursor;
+  int idCursor;
+  int hugTotalCounts;
+
+  List<HugComment> hugComments;
+  CommentItem currentComment;
+
+  HugCommentListData();
+
+  factory HugCommentListData.fromJson(Map<String, dynamic> json) =>
+      _$HugCommentListDataFromJson(json);
+
+  Map<String, dynamic> toJson() => _$HugCommentListDataToJson(this);
+}
+
+@JsonSerializable()
+class HugCommentListWrap extends ServerStatusBean {
+  HugCommentListData data;
+
+  HugCommentListWrap();
+
+  factory HugCommentListWrap.fromJson(Map<String, dynamic> json) =>
+      _$HugCommentListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$HugCommentListWrapToJson(this);
+}
+
+@JsonSerializable()
 class FloorCommentDetail {
   List<CommentItem> comments;
 
