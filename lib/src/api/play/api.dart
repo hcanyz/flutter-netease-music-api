@@ -777,7 +777,7 @@ mixin ApiPlay {
     var params = {'limit': limit, 'startTimestamp': before};
     return DioMetaData(joinUri('/api/sub/artist/new/works/song/list'),
         data: params,
-        options: joinOptions(cookies: {'os': 'ios', 'appver': '7.3.40'}));
+        options: joinOptions(cookies: {'os': 'ios', 'appver': '8.0.00'}));
   }
 
   /// 已关注的歌手新歌曲
@@ -962,7 +962,7 @@ mixin ApiPlay {
     var params = {'limit': limit, 'startTimestamp': before};
     return DioMetaData(joinUri('/api/sub/artist/new/works/mv/list'),
         data: params,
-        options: joinOptions(cookies: {'os': 'ios', 'appver': '7.3.40'}));
+        options: joinOptions(cookies: {'os': 'ios', 'appver': '8.0.00'}));
   }
 
   /// 已关注歌手新MV列表

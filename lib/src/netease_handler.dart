@@ -163,7 +163,7 @@ void _handleEApi(RequestOptions option, List<Cookie> cookies) {
     });
     header['osver'] = cookiesMap['osver'];
     header['deviceId'] = cookiesMap['deviceId'];
-    header['appver'] = cookiesMap['appver'] ?? '6.1.1';
+    header['appver'] = cookiesMap['appver'] ?? '8.0.00';
     header['versioncode'] = cookiesMap['versioncode'] ?? '140';
     header['mobilename'] = cookiesMap['mobilename'];
     header['buildver'] = cookiesMap['mobilename'] ??

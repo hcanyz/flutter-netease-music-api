@@ -455,7 +455,7 @@ mixin ApiEvent {
     };
     return DioMetaData(joinUri('/api/v2/resource/comments/hug/list'),
         data: params,
-        options: joinOptions(cookies: {'os': 'ios', 'appver': '7.3.27'}));
+        options: joinOptions(cookies: {'os': 'ios', 'appver': '8.0.00'}));
   }
 
   /// 抱一抱 评论列表
@@ -492,7 +492,7 @@ mixin ApiEvent {
     };
     return DioMetaData(joinUri('/api/v2/resource/comments/hug/listener'),
         data: params,
-        options: joinOptions(cookies: {'os': 'ios', 'appver': '7.3.27'}));
+        options: joinOptions(cookies: {'os': 'ios', 'appver': '8.0.00'}));
   }
 
   /// 抱一抱 评论
