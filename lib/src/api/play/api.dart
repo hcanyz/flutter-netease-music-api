@@ -757,6 +757,26 @@ mixin ApiPlay {
     });
   }
 
+  DioMetaData artistFollowedNewSongListDioMetaData(
+      {int before = 0, int limit = 20}) {
+    var params = {'limit': limit, 'startTimestamp': before};
+    return DioMetaData(joinUri('/api/sub/artist/new/works/song/list'),
+        data: params,
+        options: joinOptions(cookies: {'os': 'ios', 'appver': '7.3.40'}));
+  }
+
+  /// 已关注的歌手新歌曲
+  /// !需要登录
+  Future<ArtistNewSongListWrap> artistFollowedNewSongList(
+      {int before = 0, int limit = 20}) {
+    return Https.dioProxy
+        .postUri(
+            artistFollowedNewSongListDioMetaData(before: before, limit: limit))
+        .then((Response value) {
+      return ArtistNewSongListWrap.fromJson(value.data);
+    });
+  }
+
   DioMetaData artistDetailAndSongListDioMetaData(String artistId) {
     return DioMetaData(joinUri('/weapi/v1/artist/$artistId'),
         data: {}, options: joinOptions());
@@ -916,6 +936,29 @@ mixin ApiPlay {
             offset: offset, limit: limit, total: total))
         .then((Response value) {
       return ArtistMvListWrap.fromJson(value.data);
+    });
+  }
+
+  DioMetaData artistFollowedNewMvListDioMetaData(
+      {int before = 0, int limit = 20}) {
+    if (before == 0) {
+      before = DateTime.now().millisecondsSinceEpoch;
+    }
+    var params = {'limit': limit, 'startTimestamp': before};
+    return DioMetaData(joinUri('/api/sub/artist/new/works/mv/list'),
+        data: params,
+        options: joinOptions(cookies: {'os': 'ios', 'appver': '7.3.40'}));
+  }
+
+  /// 已关注歌手新MV列表
+  /// !需要登录
+  Future<ArtistNewMvListWrap> artistFollowedNewMvList(
+      {int before = 0, int limit = 20}) {
+    return Https.dioProxy
+        .postUri(
+            artistFollowedNewMvListDioMetaData(before: before, limit: limit))
+        .then((Response value) {
+      return ArtistNewMvListWrap.fromJson(value.data);
     });
   }
 

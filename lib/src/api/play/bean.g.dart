@@ -665,6 +665,45 @@ Map<String, dynamic> _$ArtistSongListWrapToJson(ArtistSongListWrap instance) =>
       'songs': instance.songs,
     };
 
+ArtistNewSongListData _$ArtistNewSongListDataFromJson(
+    Map<String, dynamic> json) {
+  return ArtistNewSongListData()
+    ..hasMore = json['hasMore'] as bool
+    ..newSongCount = json['newSongCount'] as int
+    ..newWorks = (json['newWorks'] as List)
+        ?.map(
+            (e) => e == null ? null : Song2.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$ArtistNewSongListDataToJson(
+        ArtistNewSongListData instance) =>
+    <String, dynamic>{
+      'hasMore': instance.hasMore,
+      'newSongCount': instance.newSongCount,
+      'newWorks': instance.newWorks,
+    };
+
+ArtistNewSongListWrap _$ArtistNewSongListWrapFromJson(
+    Map<String, dynamic> json) {
+  return ArtistNewSongListWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..data = json['data'] == null
+        ? null
+        : ArtistNewSongListData.fromJson(json['data'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$ArtistNewSongListWrapToJson(
+        ArtistNewSongListWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
 ArtistDetailAndSongListWrap _$ArtistDetailAndSongListWrapFromJson(
     Map<String, dynamic> json) {
   return ArtistDetailAndSongListWrap()
@@ -1339,9 +1378,17 @@ Mv _$MvFromJson(Map<String, dynamic> json) {
     ..briefDesc = json['briefDesc'] as String
     ..desc = json['desc'] as String
     ..arTransName = json['arTransName'] as String
+    ..artisAlias = json['artisAlias'] as String
+    ..artisTransName = json['artisTransName'] as String
     ..artistName = json['artistName'] as String
+    ..artistImgUrl = json['artistImgUrl'] as String
     ..artistId = json['artistId'] as int
+    ..mvId = json['mvId'] as int
+    ..mvName = json['mvName'] as String
+    ..mvCoverUrl = json['mvCoverUrl'] as String
     ..duration = json['duration'] as int
+    ..publishTime = json['publishTime'] as int
+    ..publishDate = json['publishDate'] as String
     ..mark = json['mark'] as int
     ..alg = json['alg'] as String
     ..artists = (json['artists'] as List)
@@ -1358,9 +1405,17 @@ Map<String, dynamic> _$MvToJson(Mv instance) => <String, dynamic>{
       'briefDesc': instance.briefDesc,
       'desc': instance.desc,
       'arTransName': instance.arTransName,
+      'artisAlias': instance.artisAlias,
+      'artisTransName': instance.artisTransName,
       'artistName': instance.artistName,
+      'artistImgUrl': instance.artistImgUrl,
       'artistId': instance.artistId,
+      'mvId': instance.mvId,
+      'mvName': instance.mvName,
+      'mvCoverUrl': instance.mvCoverUrl,
       'duration': instance.duration,
+      'publishTime': instance.publishTime,
+      'publishDate': instance.publishDate,
       'mark': instance.mark,
       'alg': instance.alg,
       'artists': instance.artists,
@@ -1513,6 +1568,40 @@ Map<String, dynamic> _$ArtistMvListWrapToJson(ArtistMvListWrap instance) =>
       'total': instance.total,
       'mvs': instance.mvs,
       'time': instance.time,
+    };
+
+ArtistNewMvListData _$ArtistNewMvListDataFromJson(Map<String, dynamic> json) {
+  return ArtistNewMvListData()
+    ..hasMore = json['hasMore'] as bool
+    ..newWorks = (json['newWorks'] as List)
+        ?.map((e) => e == null ? null : Mv.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$ArtistNewMvListDataToJson(
+        ArtistNewMvListData instance) =>
+    <String, dynamic>{
+      'hasMore': instance.hasMore,
+      'newWorks': instance.newWorks,
+    };
+
+ArtistNewMvListWrap _$ArtistNewMvListWrapFromJson(Map<String, dynamic> json) {
+  return ArtistNewMvListWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..data = json['data'] == null
+        ? null
+        : ArtistNewMvListData.fromJson(json['data'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$ArtistNewMvListWrapToJson(
+        ArtistNewMvListWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'data': instance.data,
     };
 
 MvDetailWrap _$MvDetailWrapFromJson(Map<String, dynamic> json) {

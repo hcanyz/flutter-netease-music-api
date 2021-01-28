@@ -488,6 +488,32 @@ class ArtistSongListWrap extends ServerStatusBean {
 }
 
 @JsonSerializable()
+class ArtistNewSongListData {
+  bool hasMore;
+  int newSongCount;
+  List<Song2> newWorks;
+
+  ArtistNewSongListData();
+
+  factory ArtistNewSongListData.fromJson(Map<String, dynamic> json) =>
+      _$ArtistNewSongListDataFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ArtistNewSongListDataToJson(this);
+}
+
+@JsonSerializable()
+class ArtistNewSongListWrap extends ServerStatusBean {
+  ArtistNewSongListData data;
+
+  ArtistNewSongListWrap();
+
+  factory ArtistNewSongListWrap.fromJson(Map<String, dynamic> json) =>
+      _$ArtistNewSongListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ArtistNewSongListWrapToJson(this);
+}
+
+@JsonSerializable()
 class ArtistDetailAndSongListWrap extends ServerStatusBean {
   List<Song2> hotSongs;
 
@@ -1029,10 +1055,19 @@ class Mv {
 
   String arTransName;
 
+  String artisAlias;
+  String artisTransName;
   String artistName;
+  String artistImgUrl;
   int artistId;
 
+  int mvId;
+  String mvName;
+  String mvCoverUrl;
+
   int duration;
+  int publishTime;
+  String publishDate;
   int mark;
 
   String alg;
@@ -1141,6 +1176,31 @@ class ArtistMvListWrap extends MvListWrap {
       _$ArtistMvListWrapFromJson(json);
 
   Map<String, dynamic> toJson() => _$ArtistMvListWrapToJson(this);
+}
+
+@JsonSerializable()
+class ArtistNewMvListData {
+  bool hasMore;
+  List<Mv> newWorks;
+
+  ArtistNewMvListData();
+
+  factory ArtistNewMvListData.fromJson(Map<String, dynamic> json) =>
+      _$ArtistNewMvListDataFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ArtistNewMvListDataToJson(this);
+}
+
+@JsonSerializable()
+class ArtistNewMvListWrap extends ServerStatusBean {
+  ArtistNewMvListData data;
+
+  ArtistNewMvListWrap();
+
+  factory ArtistNewMvListWrap.fromJson(Map<String, dynamic> json) =>
+      _$ArtistNewMvListWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ArtistNewMvListWrapToJson(this);
 }
 
 @JsonSerializable()

@@ -226,6 +226,11 @@ void main() async {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test artist followed song list ', () async {
+    var result = await api.artistFollowedNewSongList();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test artist song list ', () async {
     var result = await api.artistDetailAndSongList(defaultArtistId);
     expect(result.code, RET_CODE_OK);
@@ -258,6 +263,11 @@ void main() async {
 
   test('test artist mv list ', () async {
     var result = await api.artistMvList(defaultArtistId);
+    expect(result.code, RET_CODE_OK);
+  });
+
+  test('test artist followed new mv list', () async {
+    var result = await api.artistFollowedNewMvList();
     expect(result.code, RET_CODE_OK);
   });
 
