@@ -705,6 +705,21 @@ mixin ApiPlay {
     });
   }
 
+  DioMetaData artistDetailDioMetaData(String artistId) {
+    var params = {'id': artistId};
+    return DioMetaData(joinUri('/api/artist/head/info/get'),
+        data: params, options: joinOptions());
+  }
+
+  /// 歌手详情
+  Future<ArtistDetailWrap> artistDetail(String artistId) {
+    return Https.dioProxy
+        .postUri(artistDetailDioMetaData(artistId))
+        .then((Response value) {
+      return ArtistDetailWrap.fromJson(value.data);
+    });
+  }
+
   DioMetaData artistTopSongListDioMetaData(String artistId) {
     var params = {'id': artistId};
     return DioMetaData(joinUri('/api/artist/top/song'),

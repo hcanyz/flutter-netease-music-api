@@ -1075,13 +1075,14 @@ Artists _$ArtistsFromJson(Map<String, dynamic> json) {
     ..picUrl = json['picUrl'] as String
     ..img1v1Id = json['img1v1Id'] as int
     ..img1v1Url = json['img1v1Url'] as String
+    ..cover = json['cover'] as String
     ..albumSize = json['albumSize'] as int
     ..musicSize = json['musicSize'] as int
+    ..mvSize = json['mvSize'] as int
     ..topicPerson = json['topicPerson'] as int
     ..trans = json['trans'] as String
     ..briefDesc = json['briefDesc'] as String
     ..followed = json['followed'] as bool
-    ..mvSize = json['mvSize'] as int
     ..publishTime = json['publishTime'] as int;
 }
 
@@ -1092,13 +1093,14 @@ Map<String, dynamic> _$ArtistsToJson(Artists instance) => <String, dynamic>{
       'picUrl': instance.picUrl,
       'img1v1Id': instance.img1v1Id,
       'img1v1Url': instance.img1v1Url,
+      'cover': instance.cover,
       'albumSize': instance.albumSize,
       'musicSize': instance.musicSize,
+      'mvSize': instance.mvSize,
       'topicPerson': instance.topicPerson,
       'trans': instance.trans,
       'briefDesc': instance.briefDesc,
       'followed': instance.followed,
-      'mvSize': instance.mvSize,
       'publishTime': instance.publishTime,
     };
 
@@ -1196,6 +1198,42 @@ Map<String, dynamic> _$ArtistDescWrapToJson(ArtistDescWrap instance) =>
       'briefDesc': instance.briefDesc,
       'count': instance.count,
       'topicData': instance.topicData,
+    };
+
+ArtistDetailData _$ArtistDetailDataFromJson(Map<String, dynamic> json) {
+  return ArtistDetailData()
+    ..blacklist = json['blacklist'] as bool
+    ..showPriMsg = json['showPriMsg'] as bool
+    ..videoCount = json['videoCount'] as int
+    ..artist = json['artist'] == null
+        ? null
+        : Artists.fromJson(json['artist'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$ArtistDetailDataToJson(ArtistDetailData instance) =>
+    <String, dynamic>{
+      'blacklist': instance.blacklist,
+      'showPriMsg': instance.showPriMsg,
+      'videoCount': instance.videoCount,
+      'artist': instance.artist,
+    };
+
+ArtistDetailWrap _$ArtistDetailWrapFromJson(Map<String, dynamic> json) {
+  return ArtistDetailWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..data = json['data'] == null
+        ? null
+        : ArtistDetailData.fromJson(json['data'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$ArtistDetailWrapToJson(ArtistDetailWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'data': instance.data,
     };
 
 Album _$AlbumFromJson(Map<String, dynamic> json) {

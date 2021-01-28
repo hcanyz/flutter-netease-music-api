@@ -832,17 +832,17 @@ class Artists {
 
   int img1v1Id;
   String img1v1Url;
+  String cover;
 
   int albumSize;
   int musicSize;
+  int mvSize;
   int topicPerson;
 
   String trans;
   String briefDesc;
 
   bool followed;
-
-  int mvSize;
 
   int publishTime;
 
@@ -922,6 +922,34 @@ class ArtistDescWrap extends ServerStatusBean {
       _$ArtistDescWrapFromJson(json);
 
   Map<String, dynamic> toJson() => _$ArtistDescWrapToJson(this);
+}
+
+@JsonSerializable()
+class ArtistDetailData {
+  bool blacklist;
+  bool showPriMsg;
+  int videoCount;
+
+  Artists artist;
+
+  ArtistDetailData();
+
+  factory ArtistDetailData.fromJson(Map<String, dynamic> json) =>
+      _$ArtistDetailDataFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ArtistDetailDataToJson(this);
+}
+
+@JsonSerializable()
+class ArtistDetailWrap extends ServerStatusBean {
+  ArtistDetailData data;
+
+  ArtistDetailWrap();
+
+  factory ArtistDetailWrap.fromJson(Map<String, dynamic> json) =>
+      _$ArtistDetailWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ArtistDetailWrapToJson(this);
 }
 
 @JsonSerializable()
