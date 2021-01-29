@@ -124,3 +124,15 @@ class AnonimousLoginRet extends ServerStatusBean {
 
   Map<String, dynamic> toJson() => _$AnonimousLoginRetToJson(this);
 }
+
+@JsonSerializable()
+class QrCodeLoginKey extends ServerStatusBean {
+  String unikey;
+
+  QrCodeLoginKey();
+
+  factory QrCodeLoginKey.fromJson(Map<String, dynamic> json) =>
+      _$QrCodeLoginKeyFromJson(json);
+
+  Map<String, dynamic> toJson() => _$QrCodeLoginKeyToJson(this);
+}

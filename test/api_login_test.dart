@@ -140,8 +140,26 @@ void main() async {
     subscription.cancel();
   });
 
+  test('test loginQrCode', () async {
+    var result = await api.loginQrCodeKey();
+    expect(result.code, RET_CODE_OK);
+
+    var uniKey = result.unikey;
+
+    var url = api.loginQrCodeUrl(uniKey);
+    expect(url, isNotNull);
+
+    var result2 = await api.loginQrCodeCheck(uniKey);
+    expect(result2.message, isNotNull);
+  });
+
   test('test loginStatus', () async {
     var result = await api.loginStatus();
+    expect(result.code, anyOf(RET_CODE_OK, RET_CODE_NEED_LOGIN));
+  });
+
+  test('test loginAccountInfo', () async {
+    var result = await api.loginAccountInfo();
     expect(result.code, anyOf(RET_CODE_OK, RET_CODE_NEED_LOGIN));
   });
 

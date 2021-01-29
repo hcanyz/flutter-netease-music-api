@@ -207,3 +207,19 @@ Map<String, dynamic> _$AnonimousLoginRetToJson(AnonimousLoginRet instance) =>
       'msg': instance.msg,
       'userId': instance.userId,
     };
+
+QrCodeLoginKey _$QrCodeLoginKeyFromJson(Map<String, dynamic> json) {
+  return QrCodeLoginKey()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..unikey = json['unikey'] as String;
+}
+
+Map<String, dynamic> _$QrCodeLoginKeyToJson(QrCodeLoginKey instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'unikey': instance.unikey,
+    };

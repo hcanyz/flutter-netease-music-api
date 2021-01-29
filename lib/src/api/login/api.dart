@@ -107,6 +107,55 @@ mixin ApiLogin {
     });
   }
 
+  DioMetaData loginQrCodeKeyDioMetaData() {
+    var params = {'type': 1};
+    return DioMetaData(joinUri('/weapi/login/qrcode/unikey'),
+        data: params, options: joinOptions());
+  }
+
+  /// 二维码登录-申请key
+  Future<QrCodeLoginKey> loginQrCodeKey() {
+    return Https.dioProxy
+        .postUri(loginQrCodeKeyDioMetaData())
+        .then((Response value) {
+      return QrCodeLoginKey.fromJson(value.data);
+    });
+  }
+
+  /// 二维码登录-二维码数据
+  String loginQrCodeUrl(String key) {
+    return joinUri('/login?codekey=$key').toString();
+  }
+
+  DioMetaData loginQrCodeCheckDioMetaData(String key) {
+    var params = {'key': key, 'type': 1};
+    return DioMetaData(joinUri('/weapi/login/qrcode/client/login'),
+        data: params, options: joinOptions());
+  }
+
+  /// 二维码登录-状态查询
+  Future<ServerStatusBean> loginQrCodeCheck(String key) {
+    return Https.dioProxy
+        .postUri(loginQrCodeCheckDioMetaData(key))
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
+  }
+
+  DioMetaData loginAccountInfoDioMetaData() {
+    return DioMetaData(joinUri('/weapi/w/nuser/account/get'),
+        data: {}, options: joinOptions());
+  }
+
+  /// 获取当前登录账号信息
+  Future<NeteaseAccountInfoWrap> loginAccountInfo() {
+    return Https.dioProxy
+        .postUri(loginAccountInfoDioMetaData())
+        .then((Response value) {
+      return NeteaseAccountInfoWrap.fromJson(value.data);
+    });
+  }
+
   /// 获取当前登录状态
   /// [ServerStatusBean] code [RetCode]
   Future<ServerStatusBean> loginStatus() {
