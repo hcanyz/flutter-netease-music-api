@@ -180,7 +180,7 @@ void main() async {
   });
 
   test('test verify captcha', () async {
-    var result = await api.captchaVerify(login_phone, '7721');
+    var result = await api.captchaVerify(login_phone, '1379');
     expect(result.code, anyOf(RET_CODE_OK, RET_CODE_CAPTCHA_VERIFY_FAIL));
   });
 
