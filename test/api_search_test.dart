@@ -8,7 +8,7 @@ void main() async {
 
   var api = NeteaseMusicApi();
 
-  test('test search song', () async {
+  test('test_search_song', () async {
     var result = await api.searchSong("许巍", cloudSearch: false);
     expect(result.code, RET_CODE_OK);
 
@@ -16,7 +16,7 @@ void main() async {
     expect(result2.code, RET_CODE_OK);
   });
 
-  test('test search album', () async {
+  test('test_search_album', () async {
     var result = await api.searchAlbum("许巍", cloudSearch: false);
     expect(result.code, RET_CODE_OK);
 
@@ -24,7 +24,7 @@ void main() async {
     expect(result2.code, RET_CODE_OK);
   });
 
-  test('test search artists', () async {
+  test('test_search_artists', () async {
     var result = await api.searchArtists("许巍", cloudSearch: false);
     expect(result.code, RET_CODE_OK);
 
@@ -32,7 +32,7 @@ void main() async {
     expect(result2.code, RET_CODE_OK);
   });
 
-  test('test search playlist', () async {
+  test('test_search_playlist', () async {
     var result = await api.searchPlaylist("许巍", cloudSearch: false);
     expect(result.code, RET_CODE_OK);
 
@@ -40,7 +40,7 @@ void main() async {
     expect(result2.code, RET_CODE_OK);
   });
 
-  test('test search user', () async {
+  test('test_search_user', () async {
     var result = await api.searchUser("许巍", cloudSearch: false);
     expect(result.code, RET_CODE_OK);
 
@@ -48,7 +48,7 @@ void main() async {
     expect(result2.code, RET_CODE_OK);
   });
 
-  test('test search mv', () async {
+  test('test_search_mv', () async {
     var result = await api.searchMv("许巍", cloudSearch: false);
     expect(result.code, RET_CODE_OK);
 
@@ -56,7 +56,7 @@ void main() async {
     expect(result2.code, RET_CODE_OK);
   });
 
-  test('test search lyrics', () async {
+  test('test_search_lyrics', () async {
     var result = await api.searchLyrics("许巍", cloudSearch: false);
     expect(result.code, RET_CODE_OK);
 
@@ -64,7 +64,7 @@ void main() async {
     expect(result2.code, RET_CODE_OK);
   });
 
-  test('test search djradio', () async {
+  test('test_search_djradio', () async {
     var result = await api.searchDjradio("许巍", cloudSearch: false);
     expect(result.code, RET_CODE_OK);
 
@@ -72,7 +72,7 @@ void main() async {
     expect(result2.code, RET_CODE_OK);
   });
 
-  test('test search video', () async {
+  test('test_search_video', () async {
     var result = await api.searchVideo("许巍", cloudSearch: false);
     expect(result.code, RET_CODE_OK);
 
@@ -80,7 +80,7 @@ void main() async {
     expect(result2.code, RET_CODE_OK);
   });
 
-  test('test search complex', () async {
+  test('test_search_complex', () async {
     var result = await api.searchComplex("许巍", cloudSearch: false);
     expect(result.code, RET_CODE_OK);
 
@@ -88,27 +88,27 @@ void main() async {
     expect(result2.code, RET_CODE_OK);
   });
 
-  test('test search default key', () async {
+  test('test_search_default_key', () async {
     var result = await api.searchDefaultKey();
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test search hot key', () async {
+  test('test_search_hot_key', () async {
     var result = await api.searchHotKey();
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test search hot key detail', () async {
+  test('test_search_hot_key_detail', () async {
     var result = await api.searchHotKeyDetailed();
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test search suggest', () async {
+  test('test_search_suggest', () async {
     var result = await api.searchSuggest('许巍');
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test search multi match', () async {
+  test('test_search_multi_match', () async {
     var result = await api.searchMultiMatch('许巍');
     expect(result.code, RET_CODE_OK);
   });

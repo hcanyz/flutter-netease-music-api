@@ -20,34 +20,34 @@ void main() async {
     await needLogin(api);
   });
 
-  test('test user setting', () async {
+  test('test_user_setting', () async {
     var result = await api.userSetting();
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test userDetail', () async {
+  test('test_userDetail', () async {
     var result = await api
         .userDetail(api.usc?.accountInfo?.account?.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test userDetail', () async {
+  test('test_userDetail', () async {
     var result = await api
         .userBindings(api.usc?.accountInfo?.account?.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test user Subcount', () async {
+  test('test_user_Subcount', () async {
     var result = await api.userSubcount();
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test user level', () async {
+  test('test_user_level', () async {
     var result = await api.userLevel();
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test user update profile', () async {
+  test('test_user_update_profile', () async {
     var info = api.usc.accountInfo;
     if (info == null) {
       return;
@@ -64,19 +64,19 @@ void main() async {
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test user update profile-avatar', () async {
+  test('test_user_update_profile-avatar', () async {
     var result = await api.userUpdateProfileAvatar('./test/raw/z.png');
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test user playlist', () async {
+  test('test_user_playlist', () async {
     var result = await api
         .userPlayList(api.usc?.accountInfo?.account?.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
     expect(result.playlist, isNotNull);
   });
 
-  test('test user update playlist info', () async {
+  test('test_user_update_playlist_info', () async {
     var result = await api
         .userPlayList(api.usc?.accountInfo?.account?.id ?? defaultUserId);
     expect(result.playlist, isNotNull);
@@ -112,22 +112,22 @@ void main() async {
     expect(result3.code, RET_CODE_OK);
   });
 
-  test('test user follow list', () async {
+  test('test_user_follow_list', () async {
     var result = await api.userFollowList(defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test user sign', () async {
+  test('test_user_sign', () async {
     var result = await api.userSign();
     expect(result.code, anyOf(RET_CODE_OK, RET_CODE_NO_PERMISSION));
   });
 
-  test('test user followed list', () async {
+  test('test_user_followed_list', () async {
     var result = await api.userFollowedList(defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test user follow or delFollow', () async {
+  test('test_user_follow_or_delFollow', () async {
     var result = await api.userFollow(defaultUserId, false);
     expect(result.code, anyOf(RET_CODE_OK_FOLLOW, RET_CODE_OK));
 
@@ -137,7 +137,7 @@ void main() async {
     expect(result2.code, anyOf(RET_CODE_OK_FOLLOW, RET_CODE_OK));
   });
 
-  test('test user artist sub or unSub', () async {
+  test('test_user_artist_sub_or_unSub', () async {
     var result = await api.artistSub(defaultArtistId, false);
     expect(result.code, anyOf(RET_CODE_OK_FOLLOW, RET_CODE_OK));
 
@@ -147,12 +147,12 @@ void main() async {
     expect(result2.code, anyOf(RET_CODE_OK_FOLLOW, RET_CODE_OK));
   });
 
-  test('test user artist sub list', () async {
+  test('test_user_artist_sub_list', () async {
     var result = await api.artistSubList();
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test user dj radio sub or unSub', () async {
+  test('test_user_dj_radio_sub_or_unSub', () async {
     var result = await api.djRadioSub('526230592', true);
     expect(result.code, anyOf(RET_CODE_ILLEGAL, RET_CODE_OK));
 
@@ -162,12 +162,12 @@ void main() async {
     expect(result2.code, anyOf(RET_CODE_ILLEGAL, RET_CODE_OK));
   });
 
-  test('test user dj radio sub list', () async {
+  test('test_user_dj_radio_sub_list', () async {
     var result = await api.djRadioSubList();
     expect(result.code, anyOf(RET_CODE_ILLEGAL, RET_CODE_OK));
   });
 
-  test('test user video sub or unSub', () async {
+  test('test_user_video_sub_or_unSub', () async {
     var result = await api.videoSub('84107D4616B72B929C8AEB7D1E6CC904', false);
     expect(result.code, anyOf(RET_CODE_ILLEGAL, RET_CODE_OK));
 
@@ -177,7 +177,7 @@ void main() async {
     expect(result2.code, anyOf(RET_CODE_ILLEGAL, RET_CODE_OK));
   });
 
-  test('test user mv sub or unSub', () async {
+  test('test_user_mv_sub_or_unSub', () async {
     var result = await api.mvSub('5300126', false);
     expect(result.code, anyOf(RET_CODE_ILLEGAL, RET_CODE_OK));
 
@@ -187,19 +187,19 @@ void main() async {
     expect(result2.code, anyOf(RET_CODE_ILLEGAL, RET_CODE_OK));
   });
 
-  test('test user mv sub list', () async {
+  test('test_user_mv_sub_list', () async {
     var result = await api.mvSubList();
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test user play record list', () async {
+  test('test_user_play_record_list', () async {
     var result = await api.userPlayRecordList(
         NeteaseMusicApi().usc?.accountInfo?.account?.id ?? defaultUserId,
         false);
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test user album sub or unSub', () async {
+  test('test_user_album_sub_or_unSub', () async {
     var result = await api.albumSub('489928', false);
     expect(result.code, anyOf(RET_CODE_REQUEST_NOT_FOUNT, RET_CODE_OK));
 
@@ -209,12 +209,12 @@ void main() async {
     expect(result2.code, RET_CODE_OK);
   });
 
-  test('test album sub list', () async {
+  test('test_album_sub_list', () async {
     var result = await api.albumSubList();
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test user playlist sub or unSub', () async {
+  test('test_user_playlist_sub_or_unSub', () async {
     var result = await api.playlistSub('2819660572', false);
     expect(result.code, anyOf(RET_CODE_ILLEGAL, RET_CODE_OK));
 
@@ -224,7 +224,7 @@ void main() async {
     expect(result2.code, anyOf(RET_CODE_ILLEGAL, RET_CODE_OK));
   });
 
-  test('test playlist create or delete', () async {
+  test('test_playlist_create_or_delete', () async {
     var result = await api.playlistCreate('老白涮肉铺', true);
     expect(result.code, RET_CODE_OK);
 
@@ -234,12 +234,12 @@ void main() async {
     expect(result2.code, RET_CODE_OK);
   });
 
-  test('test playlist update order', () async {
+  test('test_playlist_update_order', () async {
     var result = await api.playlistUpdateOrder(['2819660572']);
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test user playlist update cover manipulate tracks', () async {
+  test('test_user_playlist_update_cover_manipulate_tracks', () async {
     var result = await api.playlistCreate('老白涮肉铺', true);
     expect(result.code, RET_CODE_OK);
 
@@ -259,12 +259,12 @@ void main() async {
     expect(result5.code, RET_CODE_OK);
   });
 
-  test('test ordering digital album', () async {
+  test('test_ordering_digital_album', () async {
     var result = await api.orderingDigitalAlbum('10888');
     expect(result.code, anyOf(RET_CODE_OK, RET_CODE_ILLEGAL));
   });
 
-  test('test purchased digital album', () async {
+  test('test_purchased_digital_album', () async {
     var result = await api.purchasedDigitalAlbum();
     expect(result.code, anyOf(RET_CODE_OK, RET_CODE_ILLEGAL));
   });

@@ -16,17 +16,17 @@ void main() async {
     await needLogin(api);
   });
 
-  test('test event list', () async {
+  test('test_event_list', () async {
     var result = await api.eventList(defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test event my list', () async {
+  test('test_event_my_list', () async {
     var result = await api.eventMyList();
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test forward delete event', () async {
+  test('test_forward_delete_event', () async {
     var result = await api.eventForward(defaultUserId, '12485325409',
         forwards: '偶尔会发笑_');
     expect(result.code, RET_CODE_OK);
@@ -37,7 +37,7 @@ void main() async {
     expect(result2.code, RET_CODE_OK);
   });
 
-  test('test share resource', () async {
+  test('test_share_resource', () async {
     var result =
         await api.shareResource('52057476', type: 'playlist', msg: '偶尔会发笑');
     expect(result.code, RET_CODE_OK);
@@ -46,7 +46,7 @@ void main() async {
     expect(result2.code, RET_CODE_OK);
   });
 
-  test('test event comment list', () async {
+  test('test_event_comment_list', () async {
     var result = await api.eventList(defaultUserId);
     expect(result.code, RET_CODE_OK);
     expect(result.events, isNotEmpty);
@@ -55,12 +55,12 @@ void main() async {
     expect(result2.code, RET_CODE_OK);
   });
 
-  test('test topic hot list', () async {
+  test('test_topic_hot_list', () async {
     var result = await api.topicHotList();
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test song comment list', () async {
+  test('test_song_comment_list', () async {
     var result = await api.commentList('167975', 'song');
     expect(result.code, RET_CODE_OK);
 
@@ -68,7 +68,7 @@ void main() async {
     expect(result2.code, RET_CODE_OK);
   });
 
-  test('test album comment list', () async {
+  test('test_album_comment_list', () async {
     var result = await api.commentList('16967', 'album');
     expect(result.code, RET_CODE_OK);
 
@@ -76,7 +76,7 @@ void main() async {
     expect(result2.code, RET_CODE_OK);
   });
 
-  test('test playlist comment list', () async {
+  test('test_playlist_comment_list', () async {
     var result = await api.commentList('2819660572', 'playlist');
     expect(result.code, RET_CODE_OK);
 
@@ -84,7 +84,7 @@ void main() async {
     expect(result2.code, RET_CODE_OK);
   });
 
-  test('test mv comment list', () async {
+  test('test_mv_comment_list', () async {
     var result = await api.commentList('5300126', 'mv');
     expect(result.code, RET_CODE_OK);
 
@@ -92,7 +92,7 @@ void main() async {
     expect(result2.code, RET_CODE_OK);
   });
 
-  test('test dj comment list', () async {
+  test('test_dj_comment_list', () async {
     var result = await api.commentList('526230592', 'dj');
     expect(result.code, RET_CODE_OK);
 
@@ -100,7 +100,7 @@ void main() async {
     expect(result2.code, RET_CODE_OK);
   });
 
-  test('test video comment list', () async {
+  test('test_video_comment_list', () async {
     var result =
         await api.commentList('84107D4616B72B929C8AEB7D1E6CC904', 'video');
     expect(result.code, RET_CODE_OK);
@@ -110,24 +110,24 @@ void main() async {
     expect(result2.code, RET_CODE_OK);
   });
 
-  test('test hot comment list', () async {
+  test('test_hot_comment_list', () async {
     var result =
         await api.hotCommentList('84107D4616B72B929C8AEB7D1E6CC904', 'video');
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test hotwall comment list', () async {
+  test('test_hotwall_comment_list', () async {
     var result = await api.hotwallCommentList();
-    expect(result.code, RET_CODE_OK);
+    expect(result.code, anyOf(RET_CODE_OK, RET_CODE_REQUEST_NOT_FOUNT));
   });
 
-  test('test user comments', () async {
+  test('test_user_comments', () async {
     var result = await api.userComments(
         NeteaseMusicApi().usc?.accountInfo?.account?.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test user comments', () async {
+  test('test_user_comments', () async {
     var result = await api.commentList('2819660572', 'playlist');
     expect(result.code, RET_CODE_OK);
 
@@ -141,12 +141,12 @@ void main() async {
     expect(result2.code, RET_CODE_OK);
   });
 
-  test('test forwards', () async {
+  test('test_forwards', () async {
     var result = await api.forwards();
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test like comment', () async {
+  test('test_like_comment', () async {
     var result = await api.commentList('2819660572', 'playlist');
     expect(result.code, RET_CODE_OK);
 
@@ -165,7 +165,7 @@ void main() async {
     expect(result3.code, RET_CODE_OK);
   });
 
-  test('test comment', () async {
+  test('test_comment', () async {
     var result = await api.commentList('2819660572', 'playlist');
     expect(result.code, RET_CODE_OK);
 
@@ -190,7 +190,7 @@ void main() async {
     expect(result4.code, RET_CODE_OK);
   });
 
-  test('test like x', () async {
+  test('test_like', () async {
     var result2 = await api.likeResource('2819660572', 'playlist', false);
     expect(result2.code, RET_CODE_OK);
 
@@ -200,7 +200,7 @@ void main() async {
     expect(result3.code, RET_CODE_OK);
   });
 
-  test('test hub commnet x', () async {
+  test('test_hub_commnet', () async {
     var result = await api.commentList('167975', 'song');
     expect(result.code, RET_CODE_OK);
 
@@ -213,7 +213,7 @@ void main() async {
     expect(result2.code, RET_CODE_OK);
   });
 
-  test('test hub commnet list', () async {
+  test('test_hub_commnet_list', () async {
     var result = await api.commentList('167975', 'song');
     expect(result.code, RET_CODE_OK);
 
@@ -226,7 +226,7 @@ void main() async {
     expect(result2.code, RET_CODE_OK);
   });
 
-  test('test private msg conversation list', () async {
+  test('test_private_msg_conversation_list', () async {
     var result = await api.privateMsgListUsers();
     expect(result.code, RET_CODE_OK);
 
@@ -235,12 +235,12 @@ void main() async {
     });
   });
 
-  test('test private msg conversation list', () async {
+  test('test_private_msg_conversation_list', () async {
     var result = await api.recentContactUsers();
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test send private msg', () async {
+  test('test_send_private_msg', () async {
     var result =
         await api.sendPrivateMsg('test', '3251549719', playlist: '117666725');
     expect(result.code, RET_CODE_OK);
@@ -250,7 +250,7 @@ void main() async {
     });
   });
 
-  test('test private msg history', () async {
+  test('test_private_msg_history', () async {
     var result = await api.privateMsgListUser(defaultUserId);
     expect(result.code, RET_CODE_OK);
 
@@ -259,7 +259,7 @@ void main() async {
     });
   });
 
-  test('test msg notices', () async {
+  test('test_msg_notices', () async {
     var result = await api.msgNotices();
     expect(result.code, RET_CODE_OK);
   });

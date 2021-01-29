@@ -18,12 +18,12 @@ void main() async {
   //是否测试发验证码
   const bool doSendCaptcha = false;
 
-  test('test login protect', () async {
+  test('test_login_protect', () async {
     var result = await api.loginProtect();
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test anonimous', () async {
+  test('test_anonimous', () async {
     api.usc.onLogout();
 
     var result = await api.loginAnonimous();
@@ -31,7 +31,7 @@ void main() async {
     expect(api.usc.anonimousLoginInfo?.userId, isNotNull);
   });
 
-  test('test login cellPhone then logout', () async {
+  test('test_login_cellPhone_then_logout', () async {
     api.usc.onLogout();
 
     var loginStateChange = [];
@@ -59,7 +59,7 @@ void main() async {
     subscription.cancel();
   });
 
-  test('test RET_CODE_NEED_LOGIN refresh token x', () async {
+  test('test_RET_CODE_NEED_LOGIN_refresh_token', () async {
     var result = await api.loginCellPhone(login_phone, login_phone_password);
     expect(result.code, RET_CODE_OK);
 
@@ -81,7 +81,7 @@ void main() async {
     expect(ServerStatusBean.fromJson(result2.data).code, RET_CODE_OK);
   });
 
-  test('test RET_CODE_NEED_LOGIN refresh token mutil', () async {
+  test('test_RET_CODE_NEED_LOGIN_refresh_token_mutil', () async {
     api.usc.onLogout();
 
     var result = await api.loginCellPhone(login_phone, login_phone_password);
@@ -114,7 +114,7 @@ void main() async {
     });
   });
 
-  test('test login email then logout', () async {
+  test('test_login_email_then_logout', () async {
     api.usc.onLogout();
 
     var loginStateChange = [];
@@ -140,7 +140,7 @@ void main() async {
     subscription.cancel();
   });
 
-  test('test loginQrCode', () async {
+  test('test_loginQrCode', () async {
     var result = await api.loginQrCodeKey();
     expect(result.code, RET_CODE_OK);
 
@@ -153,17 +153,17 @@ void main() async {
     expect(result2.message, isNotNull);
   });
 
-  test('test loginStatus', () async {
+  test('test_loginStatus', () async {
     var result = await api.loginStatus();
     expect(result.code, anyOf(RET_CODE_OK, RET_CODE_NEED_LOGIN));
   });
 
-  test('test loginAccountInfo', () async {
+  test('test_loginAccountInfo', () async {
     var result = await api.loginAccountInfo();
     expect(result.code, anyOf(RET_CODE_OK, RET_CODE_NEED_LOGIN));
   });
 
-  test('test refresh login', () async {
+  test('test_refresh_login', () async {
     var result = await api.loginCellPhone(login_phone, login_phone_password);
     expect(result.code, RET_CODE_OK);
 
@@ -171,7 +171,7 @@ void main() async {
     expect(result2.code, RET_CODE_OK);
   });
 
-  test('test send captcha', () async {
+  test('test_send_captcha', () async {
     if (doSendCaptcha) {
       var result = await api.captchaSend(login_phone);
       expect(
@@ -179,12 +179,12 @@ void main() async {
     }
   });
 
-  test('test verify captcha', () async {
+  test('test_verify_captcha', () async {
     var result = await api.captchaVerify(login_phone, '1379');
     expect(result.code, anyOf(RET_CODE_OK, RET_CODE_CAPTCHA_VERIFY_FAIL));
   });
 
-  test('test check cellPhone existence', () async {
+  test('test_check_cellPhone_existence', () async {
     var result = await api.loginCellPhone(login_phone, login_phone_password);
     expect(result.code, RET_CODE_OK);
 
@@ -192,7 +192,7 @@ void main() async {
     expect(result2.code, RET_CODE_OK);
   });
 
-  test('test init nickname', () async {
+  test('test_init_nickname', () async {
     var result = await api.loginCellPhone(login_phone, login_phone_password);
     expect(result.code, RET_CODE_OK);
 

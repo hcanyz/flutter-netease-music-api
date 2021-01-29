@@ -8,57 +8,57 @@ void main() async {
 
   var api = NeteaseMusicApi();
 
-  test('test home bannerList', () async {
+  test('test_home_bannerList', () async {
     var result = await api.homeBannerList();
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test home block page', () async {
+  test('test_home_block_page', () async {
     var result = await api.homeBlockPage();
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test home dragon ball static', () async {
+  test('test_home_dragon_ball_static', () async {
     var result = await api.homeDragonBallStatic();
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test countries code list', () async {
+  test('test_countries_code_list', () async {
     var result = await api.countriesCodeList();
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test personalized private content x', () async {
+  test('test_personalized_private_content', () async {
     var result = await api.personalizedPrivateContent();
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test personalized private content list', () async {
+  test('test_personalized_private_content_list', () async {
     var result = await api.personalizedPrivateContentList();
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test toplist x', () async {
+  test('test_toplist', () async {
     var result = await api.topList();
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test toplist detail', () async {
+  test('test_toplist_detail', () async {
     var result = await api.topListDetail();
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test mcalendar detail', () async {
+  test('test_mcalendar_detail', () async {
     var result = await api.mcalendarDetail();
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test audio match', () async {
+  test('test_audio_match', () async {
     var result = await api.audioMatch();
     expect(result.code, RET_CODE_OK);
   });
 
-  test('test upload image', () async {
+  test('test_upload_image', () async {
     await needLogin(api);
 
     var result = await api.uploadImage('./test/raw/z.png');
@@ -67,7 +67,7 @@ void main() async {
     expect(result.url, isNotNull);
   });
 
-  test('test batch api', () async {
+  test('test_batch_api', () async {
     var bannerDioMetaData = api.homeBannerListDioMetaData();
 
     var result = await api.batchApi([bannerDioMetaData]);
