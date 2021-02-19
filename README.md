@@ -50,7 +50,7 @@ subscription.cancel();
     const String login_phone = '';
     const String login_phone_password = '';
     ```
-- 本项目仅供学习使用,请尊重版权，请勿利用此项目从事商业行为
+- 本项目仅供学习使用,请尊重版权，请勿利用此项目从事商业行为或进行破坏版权行为
 
 ### TODO
 - [x] 搬运 NeteaseCloudMusicApi库 所有api
@@ -89,10 +89,10 @@ subscription.cancel();
 ```text
 flutter doctor
 Doctor summary (to see all details, run flutter doctor -v):
-[√] Flutter (Channel master, 1.25.0-5.0.pre.125, on Microsoft Windows [Version 10.0.18363.1198], locale zh-CN)
+[√] Flutter (Channel master, 1.27.0-5.0.pre.68, on Microsoft Windows [Version 10.0.18363.1316], locale zh-CN)
 [√] Android toolchain - develop for Android devices (Android SDK version 30.0.2)
 [√] Chrome - develop for the web
 [√] Android Studio (version 4.1.0)
-[√] VS Code, 64-bit edition (version 1.51.1)
+[√] VS Code, 64-bit edition (version 1.53.2)
 [√] Connected device (1 available)
 ```
