@@ -11,8 +11,7 @@ mixin ApiUncategorized {
   DioMetaData homeBannerListDioMetaData({String clientType = 'android'}) {
     var params = {'clientType': clientType};
     return DioMetaData(joinUri('/api/v2/banner/get'),
-        data: params,
-        options: joinOptions(encryptType: EncryptType.LinuxForward));
+        data: params, options: joinOptions(encryptType: EncryptType.WeApi));
   }
 
   /// 首页轮播图
@@ -109,7 +108,7 @@ mixin ApiUncategorized {
 
   DioMetaData topListDioMetaData() {
     return DioMetaData(joinUri('/api/toplist'),
-        data: {}, options: joinOptions(encryptType: EncryptType.LinuxForward));
+        data: {}, options: joinOptions(encryptType: EncryptType.WeApi));
   }
 
   /// 所有榜单内容摘要

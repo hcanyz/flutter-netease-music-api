@@ -566,7 +566,7 @@ mixin ApiPlay {
     return DioMetaData(joinUri('/api/song/lyric'),
         data: params,
         options: joinOptions(
-            encryptType: EncryptType.LinuxForward, cookies: {'os': 'pc'}));
+            encryptType: EncryptType.WeApi, cookies: {'os': 'pc'}));
   }
 
   /// 音乐歌词

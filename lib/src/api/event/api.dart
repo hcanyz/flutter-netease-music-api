@@ -121,7 +121,7 @@ mixin ApiEvent {
 
   DioMetaData topicHotListDioMetaData({int offset = 0, int limit = 20}) {
     var params = {'limit': limit, 'offset': offset};
-    return DioMetaData(joinUri('/weapi/act/hot'),
+    return DioMetaData(joinUri('/api/act/hot'),
         data: params, options: joinOptions());
   }
 
