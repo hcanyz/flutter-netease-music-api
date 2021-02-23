@@ -60,6 +60,30 @@ void main() async {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test_hot_topic_detail_event', () async {
+    var result = await api.topicHotList();
+    expect(result.code, RET_CODE_OK);
+
+    if (result.hot.isEmpty) {
+      return;
+    }
+
+    var result2 = await api.hotTopicDetailEvent(result.hot[0].actId);
+    expect(result2.code, RET_CODE_OK);
+  });
+
+  test('test_topic_detail', () async {
+    var result = await api.topicHotList();
+    expect(result.code, RET_CODE_OK);
+
+    if (result.hot.isEmpty) {
+      return;
+    }
+
+    var result2 = await api.topicDetail(result.hot[0].actId);
+    expect(result2.code, RET_CODE_OK);
+  });
+
   test('test_song_comment_list', () async {
     var result = await api.commentList('167975', 'song');
     expect(result.code, RET_CODE_OK);

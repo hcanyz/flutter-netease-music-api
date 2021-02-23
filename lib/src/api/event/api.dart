@@ -134,6 +134,36 @@ mixin ApiEvent {
     });
   }
 
+  DioMetaData hotTopicDetailEventDioMetaData(String actid) {
+    var params = {'actid': actid};
+    return DioMetaData(joinUri('/api/act/event/hot'),
+        data: params, options: joinOptions());
+  }
+
+  /// 获取话题详情热门动态
+  Future<EventListWrap> hotTopicDetailEvent(String actid) {
+    return Https.dioProxy
+        .postUri(hotTopicDetailEventDioMetaData(actid))
+        .then((Response value) {
+      return EventListWrap.fromJson(value.data);
+    });
+  }
+
+  DioMetaData topicDetailDioMetaData(String actid) {
+    var params = {'actid': actid};
+    return DioMetaData(joinUri('/api/act/detail'),
+        data: params, options: joinOptions());
+  }
+
+  /// 获取话题详情
+  Future<TopicDetailWrap> topicDetail(String actid) {
+    return Https.dioProxy
+        .postUri(topicDetailDioMetaData(actid))
+        .then((Response value) {
+      return TopicDetailWrap.fromJson(value.data);
+    });
+  }
+
   DioMetaData commentListDioMetaData(String id, String type,
       {int offset = 0, int limit = 20, int beforeTime = 0}) {
     String typeKey = _type2key(type);

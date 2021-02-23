@@ -61,12 +61,15 @@ Map<String, dynamic> _$EventItemInfoToJson(EventItemInfo instance) =>
 EventItem _$EventItemFromJson(Map<String, dynamic> json) {
   return EventItem()
     ..id = dynamicToString(json['id'])
+    ..actName = json['actName'] as String
     ..json = json['json'] as String
     ..type = json['type'] as int
     ..actId = json['actId'] as int
     ..eventTime = json['eventTime'] as int
     ..expireTime = json['expireTime'] as int
     ..showTime = json['showTime'] as int
+    ..forwardCount = json['forwardCount'] as int
+    ..sic = json['sic'] as int
     ..insiteForwardCount = json['insiteForwardCount'] as int
     ..topEvent = json['topEvent'] as bool
     ..user = json['user'] == null
@@ -79,12 +82,15 @@ EventItem _$EventItemFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$EventItemToJson(EventItem instance) => <String, dynamic>{
       'id': instance.id,
+      'actName': instance.actName,
       'json': instance.json,
       'type': instance.type,
       'actId': instance.actId,
       'eventTime': instance.eventTime,
       'expireTime': instance.expireTime,
       'showTime': instance.showTime,
+      'forwardCount': instance.forwardCount,
+      'sic': instance.sic,
       'insiteForwardCount': instance.insiteForwardCount,
       'topEvent': instance.topEvent,
       'user': instance.user,
@@ -665,9 +671,21 @@ TopicItem _$TopicItemFromJson(Map<String, dynamic> json) {
     ..title = json['title'] as String
     ..text = (json['text'] as List)?.map((e) => e as String)?.toList()
     ..reason = json['reason'] as String
-    ..sharePicUrl = json['sharePicUrl'] as String
     ..participateCount = json['participateCount'] as int
-    ..alg = json['alg'] as String;
+    ..isDefaultImg = json['isDefaultImg'] as bool
+    ..alg = json['alg'] as String
+    ..startTime = json['startTime'] as int
+    ..endTime = json['endTime'] as int
+    ..resourceType = json['resourceType'] as int
+    ..videoType = json['videoType'] as int
+    ..topicType = json['topicType'] as int
+    ..meetingBeginTime = json['meetingBeginTime'] as int
+    ..meetingEndTime = json['meetingEndTime'] as int
+    ..coverPCLongUrl = json['coverPCLongUrl'] as String
+    ..sharePicUrl = json['sharePicUrl'] as String
+    ..coverPCUrl = json['coverPCUrl'] as String
+    ..coverMobileUrl = json['coverMobileUrl'] as String
+    ..coverPCListUrl = json['coverPCListUrl'] as String;
 }
 
 Map<String, dynamic> _$TopicItemToJson(TopicItem instance) => <String, dynamic>{
@@ -675,9 +693,21 @@ Map<String, dynamic> _$TopicItemToJson(TopicItem instance) => <String, dynamic>{
       'title': instance.title,
       'text': instance.text,
       'reason': instance.reason,
-      'sharePicUrl': instance.sharePicUrl,
       'participateCount': instance.participateCount,
+      'isDefaultImg': instance.isDefaultImg,
       'alg': instance.alg,
+      'startTime': instance.startTime,
+      'endTime': instance.endTime,
+      'resourceType': instance.resourceType,
+      'videoType': instance.videoType,
+      'topicType': instance.topicType,
+      'meetingBeginTime': instance.meetingBeginTime,
+      'meetingEndTime': instance.meetingEndTime,
+      'coverPCLongUrl': instance.coverPCLongUrl,
+      'sharePicUrl': instance.sharePicUrl,
+      'coverPCUrl': instance.coverPCUrl,
+      'coverMobileUrl': instance.coverMobileUrl,
+      'coverPCListUrl': instance.coverPCListUrl,
     };
 
 TopicHotListWrap _$TopicHotListWrapFromJson(Map<String, dynamic> json) {
@@ -697,6 +727,26 @@ Map<String, dynamic> _$TopicHotListWrapToJson(TopicHotListWrap instance) =>
       'message': instance.message,
       'msg': instance.msg,
       'hot': instance.hot,
+    };
+
+TopicDetailWrap _$TopicDetailWrapFromJson(Map<String, dynamic> json) {
+  return TopicDetailWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..act = json['act'] == null
+        ? null
+        : TopicItem.fromJson(json['act'] as Map<String, dynamic>)
+    ..needBeginNotify = json['needBeginNotify'] as bool;
+}
+
+Map<String, dynamic> _$TopicDetailWrapToJson(TopicDetailWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'act': instance.act,
+      'needBeginNotify': instance.needBeginNotify,
     };
 
 SimpleResourceInfo _$SimpleResourceInfoFromJson(Map<String, dynamic> json) {

@@ -57,6 +57,7 @@ class EventItem {
   @JsonKey(fromJson: dynamicToString)
   String id;
 
+  String actName;
   String json;
 
   int type;
@@ -65,6 +66,8 @@ class EventItem {
   int eventTime;
   int expireTime;
   int showTime;
+  int forwardCount;
+  int sic;
 
   int insiteForwardCount;
 
@@ -480,12 +483,36 @@ class TopicItem {
 
   String reason;
 
-  String sharePicUrl;
-
   int participateCount;
+
+  bool isDefaultImg;
 
   //featured TopicQualityScore
   String alg;
+
+  int startTime;
+
+  int endTime;
+
+  int resourceType;
+
+  int videoType;
+
+  int topicType;
+
+  int meetingBeginTime;
+
+  int meetingEndTime;
+
+  String coverPCLongUrl;
+
+  String sharePicUrl;
+
+  String coverPCUrl;
+
+  String coverMobileUrl;
+
+  String coverPCListUrl;
 
   TopicItem();
 
@@ -505,6 +532,20 @@ class TopicHotListWrap extends ServerStatusBean {
       _$TopicHotListWrapFromJson(json);
 
   Map<String, dynamic> toJson() => _$TopicHotListWrapToJson(this);
+}
+
+@JsonSerializable()
+class TopicDetailWrap extends ServerStatusBean {
+  TopicItem act;
+
+  bool needBeginNotify;
+
+  TopicDetailWrap();
+
+  factory TopicDetailWrap.fromJson(Map<String, dynamic> json) =>
+      _$TopicDetailWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TopicDetailWrapToJson(this);
 }
 
 @JsonSerializable()
