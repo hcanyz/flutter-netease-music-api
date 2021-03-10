@@ -199,15 +199,16 @@ mixin ApiUncategorized {
   }
 
   /// 申请图片空间
-  DioMetaData uploadImageAllocDioMetaData(String fileName) {
+  DioMetaData uploadAllocDioMetaData(String fileName,
+      {String bucket: '', String ext: '', int nosProduct: 0, String type: ''}) {
     var params = {
-      'bucket': 'yyimgs',
-      'ext': 'jpg',
+      'bucket': bucket,
+      'ext': ext,
       'filename': fileName,
       'local': false,
-      'nos_product': 0,
+      'nos_product': nosProduct,
       'return_body': '{"code": 200, "size": "\$(ObjectSize)"}',
-      'type': 'other',
+      'type': type
     };
     return DioMetaData(joinUri('/weapi/nos/token/alloc'),
         data: params, options: joinOptions());
@@ -230,7 +231,8 @@ mixin ApiUncategorized {
     String fileName = path.split('/').last;
 
     var res = await Https.dioProxy
-        .postUri(uploadImageAllocDioMetaData(fileName))
+        .postUri(uploadAllocDioMetaData(fileName,
+            bucket: 'yyimgs', ext: 'jpg', nosProduct: 0, type: 'other'))
         .then((Response value) {
       return UploadImageAllocWrap.fromJson(value.data);
     });
@@ -249,6 +251,34 @@ mixin ApiUncategorized {
             imgSize: imgSize, imgX: imgX, imgY: imgY))
         .then((Response value) {
       return UploadImageResult.fromJson(value.data);
+    });
+  }
+
+  /// 歌曲上传
+  /// !需要登录
+  Future<dynamic> uploadSong(String path) async {
+    String fileName = path.split('/').last;
+
+    var res = await Https.dioProxy
+        .postUri(uploadAllocDioMetaData(fileName,
+            bucket: '', ext: 'mp3', nosProduct: 3, type: 'audio'))
+        .then((Response value) {
+      return UploadImageAllocWrap.fromJson(value.data);
+    });
+
+    var file = File(path);
+    var formData = file.openRead();
+
+    return await Https.dio
+        .post(
+            "http://45.127.129.8/ymusic/${Uri.encodeComponent(res.result.objectKey)}?offset=0&complete=true&version=1.0",
+            data: formData,
+            options: Options(contentType: 'audio/mpeg', headers: {
+              'x-nos-token': res.result.token,
+              'Content-Length': file.lengthSync().toString(),
+            }))
+        .then((Response value) {
+      return value.data;
     });
   }
 

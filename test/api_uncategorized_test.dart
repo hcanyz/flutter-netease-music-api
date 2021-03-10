@@ -67,6 +67,14 @@ void main() async {
     expect(result.url, isNotNull);
   });
 
+  test('test_upload_song', () async {
+    await needLogin(api);
+
+    var result = await api.uploadSong('./test/raw/z.png');
+
+    expect(result, isNotNull);
+  });
+
   test('test_batch_api', () async {
     var bannerDioMetaData = api.homeBannerListDioMetaData();
 
