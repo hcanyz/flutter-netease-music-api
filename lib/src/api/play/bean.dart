@@ -789,6 +789,27 @@ class SinglePlayListWrap extends ServerStatusBean {
 }
 
 @JsonSerializable()
+class PlayListDetailDynamicWrap extends ServerStatusBean {
+  int commentCount;
+  int shareCount;
+  int playCount;
+  int bookedCount;
+
+  bool subscribed;
+
+  String remarkName;
+
+  bool followed;
+
+  PlayListDetailDynamicWrap();
+
+  factory PlayListDetailDynamicWrap.fromJson(Map<String, dynamic> json) =>
+      _$PlayListDetailDynamicWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PlayListDetailDynamicWrapToJson(this);
+}
+
+@JsonSerializable()
 class PlaymodeIntelligenceItem {
   @JsonKey(fromJson: dynamicToString)
   String id;

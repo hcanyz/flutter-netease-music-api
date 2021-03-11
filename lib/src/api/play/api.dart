@@ -244,6 +244,24 @@ mixin ApiPlay {
     });
   }
 
+  DioMetaData playListDetailDynamicDioMetaData(String playlistId,
+      {int subCount = 8}) {
+    var params = {'id': playlistId, 'n': 1000, 's': '$subCount'};
+    return DioMetaData(joinUri('/api/playlist/detail/dynamic'),
+        data: params, options: joinOptions());
+  }
+
+  /// 歌单详情 获取歌单详情动态部分,如评论数,是否收藏,播放数
+  Future<PlayListDetailDynamicWrap> playListDetailDynamic(String playlistId,
+      {int subCount = 8}) {
+    return Https.dioProxy
+        .postUri(
+            playListDetailDynamicDioMetaData(playlistId, subCount: subCount))
+        .then((Response value) {
+      return PlayListDetailDynamicWrap.fromJson(value.data);
+    });
+  }
+
   DioMetaData categorySongListDioMetaData({
     String category = '全部',
     String order = 'hot',
@@ -565,8 +583,8 @@ mixin ApiPlay {
     var params = {'id': songId, 'lv': -1, 'kv': -1, 'tv': -1};
     return DioMetaData(joinUri('/api/song/lyric'),
         data: params,
-        options: joinOptions(
-            encryptType: EncryptType.WeApi, cookies: {'os': 'pc'}));
+        options:
+            joinOptions(encryptType: EncryptType.WeApi, cookies: {'os': 'pc'}));
   }
 
   /// 音乐歌词

@@ -1025,6 +1025,36 @@ Map<String, dynamic> _$SinglePlayListWrapToJson(SinglePlayListWrap instance) =>
       'playlist': instance.playlist,
     };
 
+PlayListDetailDynamicWrap _$PlayListDetailDynamicWrapFromJson(
+    Map<String, dynamic> json) {
+  return PlayListDetailDynamicWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..commentCount = json['commentCount'] as int
+    ..shareCount = json['shareCount'] as int
+    ..playCount = json['playCount'] as int
+    ..bookedCount = json['bookedCount'] as int
+    ..subscribed = json['subscribed'] as bool
+    ..remarkName = json['remarkName'] as String
+    ..followed = json['followed'] as bool;
+}
+
+Map<String, dynamic> _$PlayListDetailDynamicWrapToJson(
+        PlayListDetailDynamicWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'commentCount': instance.commentCount,
+      'shareCount': instance.shareCount,
+      'playCount': instance.playCount,
+      'bookedCount': instance.bookedCount,
+      'subscribed': instance.subscribed,
+      'remarkName': instance.remarkName,
+      'followed': instance.followed,
+    };
+
 PlaymodeIntelligenceItem _$PlaymodeIntelligenceItemFromJson(
     Map<String, dynamic> json) {
   return PlaymodeIntelligenceItem()

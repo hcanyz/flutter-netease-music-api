@@ -73,6 +73,11 @@ void main() async {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test_category_playlist_dynamic', () async {
+    var result = await api.playListDetailDynamic('24381616');
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test_category_song_list', () async {
     var result = await api.categorySongList();
     expect(result.code, RET_CODE_OK);
