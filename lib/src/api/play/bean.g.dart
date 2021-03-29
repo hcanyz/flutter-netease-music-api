@@ -757,6 +757,14 @@ Play _$PlayFromJson(Map<String, dynamic> json) {
         ?.map((e) => e == null
             ? null
             : NeteaseUserInfo.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..tracks = (json['tracks'] as List)
+        ?.map((e) =>
+            e == null ? null : PlayTrack.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..trackIds = (json['trackIds'] as List)
+        ?.map((e) =>
+            e == null ? null : PlayTrackId.fromJson(e as Map<String, dynamic>))
         ?.toList();
 }
 
@@ -782,6 +790,110 @@ Map<String, dynamic> _$PlayToJson(Play instance) => <String, dynamic>{
       'specialType': instance.specialType,
       'creator': instance.creator,
       'subscribers': instance.subscribers,
+      'tracks': instance.tracks,
+      'trackIds': instance.trackIds,
+    };
+
+PlayTrack _$PlayTrackFromJson(Map<String, dynamic> json) {
+  return PlayTrack()
+    ..id = dynamicToString(json['id'])
+    ..name = json['name'] as String
+    ..pst = json['pst'] as int
+    ..t = json['t'] as int
+    ..ar = (json['ar'] as List)
+        ?.map((e) =>
+            e == null ? null : Artists.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..pop = (json['pop'] as num)?.toDouble()
+    ..st = json['st'] as int
+    ..rt = json['rt'] as String
+    ..fee = json['fee'] as int
+    ..v = json['v'] as int
+    ..cf = json['cf'] as String
+    ..al = json['al'] == null
+        ? null
+        : Album.fromJson(json['al'] as Map<String, dynamic>)
+    ..dt = json['dt'] as int
+    ..h = json['h'] == null
+        ? null
+        : Music2.fromJson(json['h'] as Map<String, dynamic>)
+    ..m = json['m'] == null
+        ? null
+        : Music2.fromJson(json['m'] as Map<String, dynamic>)
+    ..l = json['l'] == null
+        ? null
+        : Music2.fromJson(json['l'] as Map<String, dynamic>)
+    ..a = json['a'] == null
+        ? null
+        : Music2.fromJson(json['a'] as Map<String, dynamic>)
+    ..cd = json['cd'] as String
+    ..no = json['no'] as int
+    ..ftype = json['ftype'] as int
+    ..rtUrls = json['rtUrls'] as List
+    ..djId = json['djId'] as int
+    ..copyright = json['copyright'] as int
+    ..s_id = json['s_id'] as int
+    ..mark = json['mark'] as int
+    ..originCoverType = json['originCoverType'] as int
+    ..single = json['single'] as int
+    ..rtype = json['rtype'] as int
+    ..mst = json['mst'] as int
+    ..cp = json['cp'] as int
+    ..mv = json['mv'] as int
+    ..publishTime = json['publishTime'] as int;
+}
+
+Map<String, dynamic> _$PlayTrackToJson(PlayTrack instance) => <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'pst': instance.pst,
+      't': instance.t,
+      'ar': instance.ar,
+      'pop': instance.pop,
+      'st': instance.st,
+      'rt': instance.rt,
+      'fee': instance.fee,
+      'v': instance.v,
+      'cf': instance.cf,
+      'al': instance.al,
+      'dt': instance.dt,
+      'h': instance.h,
+      'm': instance.m,
+      'l': instance.l,
+      'a': instance.a,
+      'cd': instance.cd,
+      'no': instance.no,
+      'ftype': instance.ftype,
+      'rtUrls': instance.rtUrls,
+      'djId': instance.djId,
+      'copyright': instance.copyright,
+      's_id': instance.s_id,
+      'mark': instance.mark,
+      'originCoverType': instance.originCoverType,
+      'single': instance.single,
+      'rtype': instance.rtype,
+      'mst': instance.mst,
+      'cp': instance.cp,
+      'mv': instance.mv,
+      'publishTime': instance.publishTime,
+    };
+
+PlayTrackId _$PlayTrackIdFromJson(Map<String, dynamic> json) {
+  return PlayTrackId()
+    ..id = dynamicToString(json['id'])
+    ..v = json['v'] as int
+    ..t = json['t'] as int
+    ..at = json['at'] as int
+    ..lr = json['lr'] as int;
+}
+
+Map<String, dynamic> _$PlayTrackIdToJson(PlayTrackId instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'v': instance.v,
+      't': instance.t,
+      'at': instance.at,
+      'lr': instance.lr,
     };
 
 MultiPlayListWrap _$MultiPlayListWrapFromJson(Map<String, dynamic> json) {

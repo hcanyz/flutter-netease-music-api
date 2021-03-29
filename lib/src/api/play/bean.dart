@@ -569,6 +569,9 @@ class Play {
 
   List<NeteaseUserInfo> subscribers;
 
+  List<PlayTrack> tracks;
+  List<PlayTrackId> trackIds;
+
   Play();
 
   @override
@@ -579,6 +582,70 @@ class Play {
   factory Play.fromJson(Map<String, dynamic> json) => _$PlayFromJson(json);
 
   Map<String, dynamic> toJson() => _$PlayToJson(this);
+}
+
+@JsonSerializable()
+class PlayTrack {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  String name;
+  int pst;
+  int t;
+
+  List<Artists> ar;
+  double pop;
+  int st;
+  String rt;
+  int fee;
+  int v;
+  String cf;
+  Album al;
+  int dt;
+  Music2 h;
+  Music2 m;
+  Music2 l;
+  Music2 a;
+  String cd;
+  int no;
+  int ftype;
+  List<dynamic> rtUrls;
+  int djId;
+  int copyright;
+  int s_id;
+  int mark;
+  int originCoverType;
+  int single;
+  int rtype;
+  int mst;
+  int cp;
+  int mv;
+  int publishTime;
+
+  PlayTrack();
+
+  factory PlayTrack.fromJson(Map<String, dynamic> json) =>
+      _$PlayTrackFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PlayTrackToJson(this);
+}
+
+@JsonSerializable()
+class PlayTrackId {
+  @JsonKey(fromJson: dynamicToString)
+  String id;
+
+  int v;
+  int t;
+  int at;
+  int lr;
+
+  PlayTrackId();
+
+  factory PlayTrackId.fromJson(Map<String, dynamic> json) =>
+      _$PlayTrackIdFromJson(json);
+
+  Map<String, dynamic> toJson() => _$PlayTrackIdToJson(this);
 }
 
 @JsonSerializable()
