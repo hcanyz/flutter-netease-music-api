@@ -386,8 +386,8 @@ mixin ApiPlay {
 
   DioMetaData personalizedSongListDioMetaData() {
     var params = {'type': 'recommend'};
-    return DioMetaData(joinUri('/weapi/personalized/newsong'),
-        data: params, options: joinOptions());
+    return DioMetaData(joinUri('/api/personalized/newsong'),
+        data: params, options: joinOptions(cookies: {'os': 'pc'}));
   }
 
   /// 推荐新歌
