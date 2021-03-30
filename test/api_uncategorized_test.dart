@@ -58,6 +58,13 @@ void main() async {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test_listen_together_status', () async {
+    await needLogin(api);
+
+    var result = await api.listenTogetherStatus();
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test_upload_image', () async {
     await needLogin(api);
 

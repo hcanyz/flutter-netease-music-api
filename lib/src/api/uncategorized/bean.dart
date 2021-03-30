@@ -632,6 +632,32 @@ class AudioMatchResultWrap extends ServerStatusBean {
 }
 
 @JsonSerializable()
+class ListenTogetherStatusData {
+  bool inRoom;
+  dynamic roomInfo;
+  dynamic status;
+
+  ListenTogetherStatusData();
+
+  factory ListenTogetherStatusData.fromJson(Map<String, dynamic> json) =>
+      _$ListenTogetherStatusDataFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ListenTogetherStatusDataToJson(this);
+}
+
+@JsonSerializable()
+class ListenTogetherStatusWrap extends ServerStatusBean {
+  ListenTogetherStatusData data;
+
+  ListenTogetherStatusWrap();
+
+  factory ListenTogetherStatusWrap.fromJson(Map<String, dynamic> json) =>
+      _$ListenTogetherStatusWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ListenTogetherStatusWrapToJson(this);
+}
+
+@JsonSerializable()
 class UploadImageAlloc {
   String bucket;
   String docId;

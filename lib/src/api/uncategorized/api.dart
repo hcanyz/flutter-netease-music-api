@@ -198,6 +198,21 @@ mixin ApiUncategorized {
     });
   }
 
+  DioMetaData listenTogetherStatusDioMetaData() {
+    return DioMetaData(joinUri('/api/listen/together/status/get'),
+        data: {}, options: joinOptions());
+  }
+
+  /// 一起听状态
+  /// !需要登录
+  Future<ListenTogetherStatusWrap> listenTogetherStatus() {
+    return Https.dioProxy
+        .postUri(listenTogetherStatusDioMetaData())
+        .then((Response value) {
+      return ListenTogetherStatusWrap.fromJson(value.data);
+    });
+  }
+
   /// 申请图片空间
   DioMetaData uploadAllocDioMetaData(String fileName,
       {String bucket: '', String ext: '', int nosProduct: 0, String type: ''}) {

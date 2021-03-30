@@ -826,6 +826,43 @@ Map<String, dynamic> _$AudioMatchResultWrapToJson(
       'data': instance.data,
     };
 
+ListenTogetherStatusData _$ListenTogetherStatusDataFromJson(
+    Map<String, dynamic> json) {
+  return ListenTogetherStatusData()
+    ..inRoom = json['inRoom'] as bool
+    ..roomInfo = json['roomInfo']
+    ..status = json['status'];
+}
+
+Map<String, dynamic> _$ListenTogetherStatusDataToJson(
+        ListenTogetherStatusData instance) =>
+    <String, dynamic>{
+      'inRoom': instance.inRoom,
+      'roomInfo': instance.roomInfo,
+      'status': instance.status,
+    };
+
+ListenTogetherStatusWrap _$ListenTogetherStatusWrapFromJson(
+    Map<String, dynamic> json) {
+  return ListenTogetherStatusWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..data = json['data'] == null
+        ? null
+        : ListenTogetherStatusData.fromJson(
+            json['data'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$ListenTogetherStatusWrapToJson(
+        ListenTogetherStatusWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
 UploadImageAlloc _$UploadImageAllocFromJson(Map<String, dynamic> json) {
   return UploadImageAlloc()
     ..bucket = json['bucket'] as String
