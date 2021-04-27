@@ -204,6 +204,36 @@ class CommentListWrap extends ServerStatusListBean {
 }
 
 @JsonSerializable()
+class CommentHistoryData {
+  bool hasMore;
+  bool reminder;
+
+  int commentCount;
+
+  List<CommentItem> hotComments;
+  List<CommentItem> comments;
+
+  CommentHistoryData();
+
+  factory CommentHistoryData.fromJson(Map<String, dynamic> json) =>
+      _$CommentHistoryDataFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CommentHistoryDataToJson(this);
+}
+
+@JsonSerializable()
+class CommentHistoryWrap extends ServerStatusBean {
+  CommentHistoryData data;
+
+  CommentHistoryWrap();
+
+  factory CommentHistoryWrap.fromJson(Map<String, dynamic> json) =>
+      _$CommentHistoryWrapFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CommentHistoryWrapToJson(this);
+}
+
+@JsonSerializable()
 class CommentList2DataSortType {
   int sortType;
   String sortTypeName;

@@ -151,6 +151,12 @@ void main() async {
     expect(result.code, RET_CODE_OK);
   });
 
+  test('test_user_comments_history', () async {
+    var result = await api.userCommentsHistory(
+        NeteaseMusicApi().usc?.accountInfo?.account?.id ?? defaultUserId);
+    expect(result.code, RET_CODE_OK);
+  });
+
   test('test_user_comments', () async {
     var result = await api.commentList('2819660572', 'playlist');
     expect(result.code, RET_CODE_OK);

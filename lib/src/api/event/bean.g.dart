@@ -305,6 +305,48 @@ Map<String, dynamic> _$CommentListWrapToJson(CommentListWrap instance) =>
       'comments': instance.comments,
     };
 
+CommentHistoryData _$CommentHistoryDataFromJson(Map<String, dynamic> json) {
+  return CommentHistoryData()
+    ..hasMore = json['hasMore'] as bool
+    ..reminder = json['reminder'] as bool
+    ..commentCount = json['commentCount'] as int
+    ..hotComments = (json['hotComments'] as List)
+        ?.map((e) =>
+            e == null ? null : CommentItem.fromJson(e as Map<String, dynamic>))
+        ?.toList()
+    ..comments = (json['comments'] as List)
+        ?.map((e) =>
+            e == null ? null : CommentItem.fromJson(e as Map<String, dynamic>))
+        ?.toList();
+}
+
+Map<String, dynamic> _$CommentHistoryDataToJson(CommentHistoryData instance) =>
+    <String, dynamic>{
+      'hasMore': instance.hasMore,
+      'reminder': instance.reminder,
+      'commentCount': instance.commentCount,
+      'hotComments': instance.hotComments,
+      'comments': instance.comments,
+    };
+
+CommentHistoryWrap _$CommentHistoryWrapFromJson(Map<String, dynamic> json) {
+  return CommentHistoryWrap()
+    ..code = json['code'] as int
+    ..message = json['message'] as String
+    ..msg = json['msg'] as String
+    ..data = json['data'] == null
+        ? null
+        : CommentHistoryData.fromJson(json['data'] as Map<String, dynamic>);
+}
+
+Map<String, dynamic> _$CommentHistoryWrapToJson(CommentHistoryWrap instance) =>
+    <String, dynamic>{
+      'code': instance.code,
+      'message': instance.message,
+      'msg': instance.msg,
+      'data': instance.data,
+    };
+
 CommentList2DataSortType _$CommentList2DataSortTypeFromJson(
     Map<String, dynamic> json) {
   return CommentList2DataSortType()

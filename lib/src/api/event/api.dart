@@ -295,6 +295,40 @@ mixin ApiEvent {
     });
   }
 
+  DioMetaData userCommentsHistoryDioMetaData(String userId,
+      {int time = 0,
+      int limit = 10,
+      bool composeHotComment = true,
+      bool composeReminder = true}) {
+    var params = {
+      'user_id': userId,
+      'time': time,
+      'limit': limit,
+      'compose_hot_comment': composeHotComment,
+      'compose_reminder': composeReminder
+    };
+    return DioMetaData(joinUri('/api/comment/user/comment/history'),
+        data: params, options: joinOptions());
+  }
+
+  /// 通知 - 用户历史评论
+  /// !需要登录
+  Future<CommentHistoryWrap> userCommentsHistory(String userId,
+      {int time = 0,
+      int limit = 10,
+      bool composeHotComment = true,
+      bool composeReminder = true}) {
+    return Https.dioProxy
+        .postUri(userCommentsHistoryDioMetaData(userId,
+            time: time,
+            limit: limit,
+            composeHotComment: composeHotComment,
+            composeReminder: composeReminder))
+        .then((Response value) {
+      return CommentHistoryWrap.fromJson(value.data);
+    });
+  }
+
   DioMetaData floorCommentsDioMetaData(
       String id, String type, String parentCommentId,
       {int time = -1, int limit = 20}) {
