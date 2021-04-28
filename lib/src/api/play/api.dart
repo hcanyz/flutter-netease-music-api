@@ -510,6 +510,30 @@ mixin ApiPlay {
     });
   }
 
+  DioMetaData cloudUserSongMatchDioMetaData(
+      String userId, String songId, String adjustSongId) {
+    var params = {
+      'userId': userId,
+      'songId': songId,
+      'adjustSongId': adjustSongId,
+    };
+    return DioMetaData(joinUri('/api/cloud/user/song/match'),
+        data: params,
+        options: joinOptions(cookies: {'os': 'ios', 'appver': '8.0.00'}));
+  }
+
+  /// 云盘歌曲信息匹配纠正,如需取消匹配,adjustSongId需要传0
+  /// TODO 数据结构
+  /// !需要登录
+  Future<ServerStatusBean> cloudUserSongMatch(
+      String userId, String songId, String adjustSongId) {
+    return Https.dioProxy
+        .postUri(cloudUserSongMatchDioMetaData(userId, songId, adjustSongId))
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
+  }
+
   DioMetaData likeSongDioMetaData(String songId, bool like,
       {int time = 3, String alg = 'itembased'}) {
     var params = {'trackId': songId, 'like': like};

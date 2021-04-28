@@ -161,6 +161,14 @@ void main() async {
     expect(result3.code, RET_CODE_OK);
   });
 
+  test('test_cloud_user_song_match', () async {
+    var result = await api.cloudUserSongMatch(
+        NeteaseMusicApi().usc?.accountInfo?.account?.id ?? defaultUserId,
+        '0',
+        '0');
+    expect(result.code, isNotNull);
+  });
+
   test('test_song_like', () async {
     var result = await api.likeSong('167975', false);
     expect(result.code, RET_CODE_OK);
