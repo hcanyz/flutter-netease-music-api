@@ -565,7 +565,7 @@ mixin ApiPlay {
       'ids': songIds,
       'c': songIds.map((e) => jsonEncode({'id': e})).toList()
     };
-    return DioMetaData(joinUri('/weapi/v3/song/detail'),
+    return DioMetaData(joinUri('/api/v3/song/detail'),
         data: params, options: joinOptions());
   }
 

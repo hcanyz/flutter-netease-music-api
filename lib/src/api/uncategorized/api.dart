@@ -24,14 +24,16 @@ mixin ApiUncategorized {
     });
   }
 
-  DioMetaData homeBlockPageDioMetaData({bool refresh = true}) {
-    var params = {"refresh": refresh};
+  DioMetaData homeBlockPageDioMetaData(
+      {bool refresh = true, String cursor = ''}) {
+    var params = {"refresh": refresh, "cursor": cursor};
     return DioMetaData(joinUri('/api/homepage/block/page'),
         data: params, options: joinOptions());
   }
 
   /// 首页-发现 block page
-  Future<HomeBlockPageWrap> homeBlockPage({bool refresh = true}) {
+  Future<HomeBlockPageWrap> homeBlockPage(
+      {bool refresh = true, String cursor = ''}) {
     return Https.dioProxy
         .postUri(homeBlockPageDioMetaData(refresh: refresh))
         .then((Response value) {
