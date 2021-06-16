@@ -101,6 +101,18 @@ void main() async {
     expect(result2.code, RET_CODE_OK);
   });
 
+  test('test_yunbei_recommend_song', () async {
+    // 接口有问题 500
+    var result = await api.yunbeiRecommendSong('167975', reason: '听听看');
+    expect(result.code, RET_CODE_OK);
+
+    sleep(Duration(seconds: 1));
+
+    // 接口有问题 400
+    var result2 = await api.yunbeiRecommendSongHistoryList();
+    expect(result2.code, RET_CODE_OK);
+  });
+
   test('test_user_radio', () async {
     var result = await api.userRadio();
     expect(result.code, RET_CODE_OK);

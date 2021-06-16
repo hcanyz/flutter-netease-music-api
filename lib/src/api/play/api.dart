@@ -349,6 +349,52 @@ mixin ApiPlay {
     });
   }
 
+  DioMetaData yunbeiRecommendSongDioMetaData(String songId,
+      {String reason = '好歌献给你', String fromUserId = '-1'}) {
+    return DioMetaData(joinUri('/weapi/yunbei/rcmd/song/submit'),
+        data: {
+          'songId': songId,
+          'reason': reason,
+          'fromUserId': fromUserId,
+          'scene': '',
+        },
+        options: joinOptions());
+  }
+
+  /// 云贝推歌
+  /// !需要登录
+  Future<ServerStatusBean> yunbeiRecommendSong(String songId,
+      {String reason = '好歌献给你', String fromUserId = '-1'}) {
+    return Https.dioProxy
+        .postUri(yunbeiRecommendSongDioMetaData(songId,
+            reason: reason, fromUserId: fromUserId))
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
+  }
+
+  DioMetaData yunbeiRecommendSongHistoryListDioMetaData(
+      {int size = 20, String cursor = ''}) {
+    return DioMetaData(joinUri('/weapi/yunbei/rcmd/song/history/list'),
+        data: {
+          'size': size,
+          'cursor': cursor,
+        },
+        options: joinOptions());
+  }
+
+  /// 云贝推歌历史记录
+  /// !需要登录
+  Future<ServerStatusBean> yunbeiRecommendSongHistoryList(
+      {int size = 20, String cursor = ''}) {
+    return Https.dioProxy
+        .postUri(yunbeiRecommendSongHistoryListDioMetaData(
+            size: size, cursor: cursor))
+        .then((Response value) {
+      return ServerStatusBean.fromJson(value.data);
+    });
+  }
+
   DioMetaData userRadioDioMetaData() {
     return DioMetaData(joinUri('/weapi/v1/radio/get'),
         data: {}, options: joinOptions());
