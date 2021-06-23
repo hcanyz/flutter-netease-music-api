@@ -340,8 +340,10 @@ mixin ApiLogin {
   /// 退出登录
   /// !需要登录
   Future<ServerStatusBean> logout() {
-    return Https.dioProxy.postUri(logoutDioMetaData()).then((Response value) {
-      NeteaseMusicApi().usc.onLogout();
+    return Https.dioProxy
+        .postUri(logoutDioMetaData())
+        .then((Response value) async {
+      await NeteaseMusicApi().usc.onLogout();
       return ServerStatusBean.fromJson(value.data);
     });
   }

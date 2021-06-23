@@ -18,7 +18,8 @@ import 'encrypt_ext.dart';
 /// [option.extra] 'cookies' [Map<String,String>]
 /// [option.extra] 'encryptType' [EncryptType]
 /// [option.extra] 'eApiUrl' [String] eApi请求方式请求url 只能eApi方式使用
-dynamic neteaseInterceptor(RequestOptions option) {
+void neteaseInterceptor(
+    RequestOptions option, RequestInterceptorHandler handler) async {
   if (option.method == 'POST' &&
       HOSTS.contains(option.uri.host) &&
       option.extra['hookRequestData']) {
@@ -34,7 +35,7 @@ dynamic neteaseInterceptor(RequestOptions option) {
     option.headers[HttpHeaders.userAgentHeader] =
         _chooseUserAgent(option.extra['userAgent']);
 
-    var cookies = loadCookies(host: option.uri);
+    var cookies = await loadCookies(host: option.uri);
 
     var cookiesSb = new StringBuffer(CookieManager.getCookies(cookies) ?? '');
     option.extra['cookies'].forEach((key, value) {
@@ -42,8 +43,8 @@ dynamic neteaseInterceptor(RequestOptions option) {
           .write(' ;${Uri.encodeComponent(key)}=${Uri.encodeComponent(value)}');
     });
     option.headers[HttpHeaders.cookieHeader] = cookiesSb.toString();
-    option.extra['cookiesHash'] =
-        loadCookiesHash(cookies) + NeteaseMusicApi().loginRefreshVersion;
+    option.extra['cookiesHash'] = await loadCookiesHash(cookies: cookies) +
+        NeteaseMusicApi().loginRefreshVersion;
 
     if (!(option.extra['hookRequestDataSuccess'] ?? false)) {
       switch (option.extra['encryptType']) {
@@ -60,6 +61,7 @@ dynamic neteaseInterceptor(RequestOptions option) {
       option.extra['hookRequestDataSuccess'] = true;
     }
   }
+  handler.next(option);
 }
 
 const _BASE62 =
@@ -264,18 +266,22 @@ Uri joinUri(String path) {
   return Uri.parse('$HOST$path');
 }
 
-List<Cookie> loadCookies({Uri host}) {
+Future<List<Cookie>> loadCookies({Uri host}) async {
   if (host == null) {
     host = Uri.parse(HOST);
   }
   return (NeteaseMusicApi.cookieManager.cookieJar).loadForRequest(host);
 }
 
-int loadCookiesHash(List<Cookie> cookies) {
+Future<int> loadCookiesHash({List<Cookie> cookies}) async {
+  if (cookies == null) {
+    cookies = await loadCookies();
+  }
   return hashList(cookies.map((e) => e.toString())) +
       NeteaseMusicApi().loginRefreshVersion;
 }
 
-void deleteAllCookie() {
-  (NeteaseMusicApi.cookieManager.cookieJar as PersistCookieJar).deleteAll();
+Future<void> deleteAllCookie() async {
+  await (NeteaseMusicApi.cookieManager.cookieJar as PersistCookieJar)
+      .deleteAll();
 }

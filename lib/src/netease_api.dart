@@ -43,8 +43,8 @@ class NeteaseMusicApi
 
     await provider.init();
 
-    cookieManager =
-        CookieManager(PersistCookieJar(dir: provider.getCookieSavedPath()));
+    cookieManager = CookieManager(
+        PersistCookieJar(storage: FileStorage(provider.getCookieSavedPath())));
 
     _initDio(Https.dio, debug, true);
 
@@ -56,48 +56,47 @@ class NeteaseMusicApi
 
     dio.interceptors.add(InterceptorsWrapper(
         onRequest: neteaseInterceptor,
-        onResponse: (Response response) async {
+        onResponse:
+            (Response response, ResponseInterceptorHandler handler) async {
+          var requestOptions = response.requestOptions;
+
           if (response.data is String) {
             try {
               response.data = jsonDecode(response.data);
             } catch (e) {}
           }
           if (refreshToken && NeteaseMusicApi().usc.isLogined) {
-            try {
-              var result = ServerStatusBean.fromJson(response.data);
-              // 1. token已经更新，请求重试
-              // 2. token未更新
-              //    刷新token
-              //    1. 刷新成功，请求重试
-              //    2. 刷新失败，登录态切换
-              if (result.code == RET_CODE_NEED_LOGIN) {
-                try {
-                  var request = response.request;
-                  if (request.extra['cookiesHash'] !=
-                      loadCookiesHash(loadCookies())) {
-                    return dio.request(
-                      request.path,
-                      options: request,
-                    );
-                  }
-                  dio.lock();
-                  var refreshResult = await NeteaseMusicApi()
-                      .loginRefresh(dio: _initDio(Dio(), debug, false));
-                  dio.unlock();
-                  if (refreshResult.code == RET_CODE_OK) {
-                    return dio.request(
-                      request.path,
-                      options: request,
-                    );
-                  }
-                } catch (e) {} finally {
-                  dio.unlock();
+            var result = ServerStatusBean.fromJson(response.data);
+            // 1. token已经更新，请求重试
+            // 2. token未更新
+            //    刷新token
+            //    1. 刷新成功，请求重试
+            //    2. 刷新失败，登录态切换
+            if (result.code == RET_CODE_NEED_LOGIN) {
+              try {
+                if (requestOptions.extra['cookiesHash'] !=
+                    await loadCookiesHash()) {
+                  var newResponse = await dio.fetch(requestOptions);
+                  handler.next(newResponse);
+                  return;
                 }
-                NeteaseMusicApi().usc.onLogout();
+                dio.lock();
+                var refreshResult = await NeteaseMusicApi()
+                    .loginRefresh(dio: _initDio(Dio(), debug, false));
+                dio.unlock();
+                if (refreshResult.code == RET_CODE_OK) {
+                  var newResponse = await dio.fetch(requestOptions);
+                  handler.next(newResponse);
+                  return;
+                }
+              } catch (e) {} finally {
+                dio.unlock();
               }
-            } catch (e) {}
+              await NeteaseMusicApi().usc.onLogout();
+            }
           }
-          return null;
+
+          handler.next(response);
         }));
 
     if (debug) {
@@ -120,7 +119,9 @@ class NeteaseMusicApi
 
   UserLoginStateController usc = UserLoginStateController();
 
-  NeteaseMusicApi._internal();
+  NeteaseMusicApi._internal() {
+    usc.init();
+  }
 
   factory NeteaseMusicApi() {
     return _neteaseMusicApi ??= NeteaseMusicApi._internal();
@@ -132,10 +133,12 @@ class UserLoginStateController {
 
   StreamController _controller;
 
-  UserLoginStateController() {
+  UserLoginStateController();
+
+  Future<void> init() async {
     _checkCreateSavePath();
-    _readAccountInfo();
-    _refreshLoginState(loadCookies().isNotEmpty && _accountInfo != null
+    await _readAccountInfo();
+    _refreshLoginState((await loadCookies()).isNotEmpty && _accountInfo != null
         ? LoginState.Logined
         : LoginState.Logout);
   }
@@ -179,25 +182,25 @@ class UserLoginStateController {
     _anonimousLoginRet = anonimousLoginRet;
   }
 
-  void onLogout() {
+  Future<void> onLogout() async {
+    await deleteAllCookie();
     _accountInfo = null;
-    deleteAllCookie();
-    _refreshLoginState(LoginState.Logout);
     _saveAccountInfo(null);
+    _refreshLoginState(LoginState.Logout);
   }
 
   void _saveAccountInfo(NeteaseAccountInfoWrap infoWrap) {
     _saveFile().writeAsString(jsonEncode(infoWrap), flush: true);
   }
 
-  void _readAccountInfo() {
+  Future<void> _readAccountInfo() async {
     try {
       var accountInfo = _saveFile().readAsStringSync();
 
       _accountInfo = NeteaseAccountInfoWrap.fromJson(jsonDecode(accountInfo));
     } catch (e) {
       print('login info error');
-      onLogout();
+      await onLogout();
     }
   }
 

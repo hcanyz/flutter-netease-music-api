@@ -24,7 +24,7 @@ void main() async {
   });
 
   test('test_anonimous', () async {
-    api.usc.onLogout();
+    await api.usc.onLogout();
 
     var result = await api.loginAnonimous();
     expect(result.code, RET_CODE_OK);
@@ -32,7 +32,7 @@ void main() async {
   });
 
   test('test_login_cellPhone_then_logout', () async {
-    api.usc.onLogout();
+    await api.usc.onLogout();
 
     var loginStateChange = [];
 
@@ -45,7 +45,7 @@ void main() async {
     var result = await api.loginCellPhone(login_phone, login_phone_password);
     expect(result.code, RET_CODE_OK);
 
-    assert(loadCookies()?.isNotEmpty ?? false);
+    assert((await loadCookies())?.isNotEmpty ?? false);
 
     var result2 = await api.logout();
     expect(result2.code, RET_CODE_OK);
@@ -59,17 +59,18 @@ void main() async {
     subscription.cancel();
   });
 
-  test('test_RET_CODE_NEED_LOGIN_refresh_token', () async {
+  test('test_RET_CODE_NEED_LOGIN_refresh_tokenx', () async {
     var result = await api.loginCellPhone(login_phone, login_phone_password);
     expect(result.code, RET_CODE_OK);
 
-    var oldCookiesHash = loadCookiesHash(loadCookies());
+    var oldCookiesHash = await loadCookiesHash();
     const mockNeedLoginCount = 1;
     var setUp = 0;
     Response result2 = await Https.dio.postUri(joinUri('/weapi/subcount'),
         data: {},
-        options: joinOptions().merge(responseDecoder: (List<int> responseBytes,
-            RequestOptions options, ResponseBody responseBody) {
+        options: joinOptions().copyWith(responseDecoder:
+            (List<int> responseBytes, RequestOptions options,
+                ResponseBody responseBody) {
           if (setUp++ < mockNeedLoginCount) {
             return jsonEncode({'code': RET_CODE_NEED_LOGIN});
           }
@@ -77,23 +78,23 @@ void main() async {
         }));
 
     expect(setUp, mockNeedLoginCount + 1);
-    expect(oldCookiesHash, isNot(loadCookiesHash(loadCookies())));
+    expect(oldCookiesHash, isNot(await loadCookiesHash()));
     expect(ServerStatusBean.fromJson(result2.data).code, RET_CODE_OK);
   });
 
   test('test_RET_CODE_NEED_LOGIN_refresh_token_mutil', () async {
-    api.usc.onLogout();
+    await api.usc.onLogout();
 
     var result = await api.loginCellPhone(login_phone, login_phone_password);
     expect(result.code, RET_CODE_OK);
 
-    var oldCookiesHash = loadCookiesHash(loadCookies());
+    var oldCookiesHash = await loadCookiesHash();
 
     var reqFun = () {
       var mocked = false;
       return Https.dio.postUri(joinUri('/weapi/subcount'),
           data: {},
-          options: joinOptions().merge(responseDecoder:
+          options: joinOptions().copyWith(responseDecoder:
               (List<int> responseBytes, RequestOptions options,
                   ResponseBody responseBody) {
             if (!mocked) {
@@ -107,7 +108,7 @@ void main() async {
     List<Response> result2 =
         await Future.wait([reqFun(), reqFun(), reqFun(), reqFun()]);
 
-    expect(oldCookiesHash, isNot(loadCookiesHash(loadCookies())));
+    expect(oldCookiesHash, isNot(await loadCookiesHash()));
 
     result2.forEach((element) {
       expect(ServerStatusBean.fromJson(element.data).code, RET_CODE_OK);
@@ -115,7 +116,7 @@ void main() async {
   });
 
   test('test_login_email_then_logout', () async {
-    api.usc.onLogout();
+    await api.usc.onLogout();
 
     var loginStateChange = [];
 
