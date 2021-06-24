@@ -29,11 +29,15 @@ void main() async {
   test('test_forward_delete_event', () async {
     var result = await api.eventForward(defaultUserId, '12485325409',
         forwards: '偶尔会发笑_');
-    expect(result.code, RET_CODE_OK);
+    expect(result.code, anyOf(RET_CODE_OK, RET_CODE_RISK_WARNING));
+
+    if (result.code != RET_CODE_OK) {
+      return;
+    }
 
     sleep(Duration(seconds: 1));
 
-    var result2 = await api.eventDelete('${result.data.eventId}');
+    var result2 = await api.eventDelete('${result.data?.eventId}');
     expect(result2.code, RET_CODE_OK);
   });
 
@@ -51,7 +55,7 @@ void main() async {
     expect(result.code, RET_CODE_OK);
     expect(result.events, isNotEmpty);
 
-    var result2 = await api.eventCommentList(result.events[0].info.threadId);
+    var result2 = await api.eventCommentList(result.events![0].info.threadId);
     expect(result2.code, RET_CODE_OK);
   });
 
@@ -64,11 +68,11 @@ void main() async {
     var result = await api.topicHotList();
     expect(result.code, RET_CODE_OK);
 
-    if (result.hot.isEmpty) {
+    if (result.hot?.isEmpty ?? true) {
       return;
     }
 
-    var result2 = await api.hotTopicDetailEvent(result.hot[0].actId);
+    var result2 = await api.hotTopicDetailEvent(result.hot![0].actId);
     expect(result2.code, RET_CODE_OK);
   });
 
@@ -76,11 +80,11 @@ void main() async {
     var result = await api.topicHotList();
     expect(result.code, RET_CODE_OK);
 
-    if (result.hot.isEmpty) {
+    if (result.hot?.isEmpty ?? true) {
       return;
     }
 
-    var result2 = await api.topicDetail(result.hot[0].actId);
+    var result2 = await api.topicDetail(result.hot![0].actId);
     expect(result2.code, RET_CODE_OK);
   });
 
@@ -147,13 +151,13 @@ void main() async {
 
   test('test_user_comments', () async {
     var result = await api.userComments(
-        NeteaseMusicApi().usc.accountInfo?.account.id ?? defaultUserId);
+        NeteaseMusicApi().usc.accountInfo?.account?.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 
   test('test_user_comments_history', () async {
     var result = await api.userCommentsHistory(
-        NeteaseMusicApi().usc.accountInfo?.account.id ?? defaultUserId);
+        NeteaseMusicApi().usc.accountInfo?.account?.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 
@@ -161,7 +165,7 @@ void main() async {
     var result = await api.commentList('2819660572', 'playlist');
     expect(result.code, RET_CODE_OK);
 
-    if (result.comments.isEmpty) {
+    if (result.comments?.isEmpty ?? true) {
       return;
     }
 
@@ -180,18 +184,19 @@ void main() async {
     var result = await api.commentList('2819660572', 'playlist');
     expect(result.code, RET_CODE_OK);
 
-    if (result.comments.isEmpty) {
+    if (result.comments?.isEmpty ?? true) {
       return;
     }
 
+    var comment = result.comments![0];
     var result2 = await api.likeComment(
-        '2819660572', result.comments[0].commentId, 'playlist', true);
+        '2819660572', comment.commentId, 'playlist', true);
     expect(result2.code, RET_CODE_OK);
 
     sleep(Duration(seconds: 1));
 
     var result3 = await api.likeComment(
-        '2819660572', result.comments[0].commentId, 'playlist', false);
+        '2819660572', comment.commentId, 'playlist', false);
     expect(result3.code, RET_CODE_OK);
   });
 
@@ -199,7 +204,7 @@ void main() async {
     var result = await api.commentList('2819660572', 'playlist');
     expect(result.code, RET_CODE_OK);
 
-    if (result.comments.isEmpty) {
+    if (result.comments?.isEmpty ?? true) {
       return;
     }
 
@@ -210,13 +215,13 @@ void main() async {
     sleep(Duration(seconds: 1));
 
     var result3 = await api.comment('2819660572', 'playlist', 'reply',
-        content: '321', commentId: result2.comment.commentId);
+        content: '321', commentId: result2.comment?.commentId);
     expect(result3.code, RET_CODE_OK);
 
     sleep(Duration(seconds: 1));
 
     var result4 = await api.comment('2819660572', 'playlist', 'delete',
-        commentId: result2.comment.commentId);
+        commentId: result2.comment?.commentId);
     expect(result4.code, RET_CODE_OK);
   });
 
@@ -234,12 +239,13 @@ void main() async {
     var result = await api.commentList('167975', 'song');
     expect(result.code, RET_CODE_OK);
 
-    if (result.comments.isEmpty) {
+    if (result.comments?.isEmpty ?? true) {
       return;
     }
 
-    var result2 = await api.hugComment('167975', 'song',
-        result.comments[0].user.userId, result.comments[0].commentId);
+    var comment = result.comments![0];
+    var result2 = await api.hugComment(
+        '167975', 'song', comment.user.userId, comment.commentId);
     expect(result2.code, RET_CODE_OK);
   });
 
@@ -247,12 +253,13 @@ void main() async {
     var result = await api.commentList('167975', 'song');
     expect(result.code, RET_CODE_OK);
 
-    if (result.comments.isEmpty) {
+    if (result.comments?.isEmpty ?? true) {
       return;
     }
 
-    var result2 = await api.hugCommentList('167975', 'song',
-        result.comments[0].user.userId, result.comments[0].commentId);
+    var comment = result.comments![0];
+    var result2 = await api.hugCommentList(
+        '167975', 'song', comment.user.userId, comment.commentId);
     expect(result2.code, RET_CODE_OK);
   });
 
@@ -260,7 +267,7 @@ void main() async {
     var result = await api.privateMsgListUsers();
     expect(result.code, RET_CODE_OK);
 
-    result.msgs.forEach((element) {
+    result.msgs?.forEach((element) {
       element.msgObj;
     });
   });
@@ -275,7 +282,7 @@ void main() async {
         await api.sendPrivateMsg('test', '3251549719', playlist: '117666725');
     expect(result.code, RET_CODE_OK);
 
-    result.newMsgs.forEach((element) {
+    result.newMsgs?.forEach((element) {
       element.msgObj;
     });
   });
@@ -284,7 +291,7 @@ void main() async {
     var result = await api.privateMsgListUser(defaultUserId);
     expect(result.code, RET_CODE_OK);
 
-    result.msgs.forEach((element) {
+    result.msgs?.forEach((element) {
       element.msgObj;
     });
   });

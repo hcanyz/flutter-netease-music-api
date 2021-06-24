@@ -10,16 +10,16 @@ class Music {
   @JsonKey(fromJson: dynamicToString)
   late String id;
 
-  late String name;
+  String? name;
 
-  late int size;
-  late String extension;
+  int? size;
+  String? extension;
 
-  late int sr;
-  late int dfsId;
-  late int bitrate;
-  late int playTime;
-  late double volumeDelta;
+  int? sr;
+  int? dfsId;
+  int? bitrate;
+  int? playTime;
+  double? volumeDelta;
 
   Music();
 
@@ -30,10 +30,10 @@ class Music {
 
 @JsonSerializable()
 class Music2 {
-  late int br;
-  late int fid;
-  late int size;
-  late double vd;
+  int? br;
+  int? fid;
+  int? size;
+  double? vd;
 
   Music2();
 
@@ -44,7 +44,7 @@ class Music2 {
 
 @JsonSerializable()
 class Lyrics {
-  late String txt;
+  String? txt;
 
   Lyrics();
 
@@ -55,9 +55,9 @@ class Lyrics {
 
 @JsonSerializable()
 class Lyrics2 {
-  late String lyric;
+  String? lyric;
 
-  late int version;
+  int? version;
 
   Lyrics2();
 
@@ -72,21 +72,21 @@ class Privilege {
   @JsonKey(fromJson: dynamicToString)
   late String id;
 
-  late int fee;
+  int? fee;
 
-  late int payed;
-  late int st;
-  late int pl;
-  late int dl;
-  late int sp;
-  late int cp;
-  late int subp;
-  late bool cs;
-  late int maxbr;
-  late int fl;
-  late bool toast;
-  late int flag;
-  late bool preSell;
+  int? payed;
+  int? st;
+  int? pl;
+  int? dl;
+  int? sp;
+  int? cp;
+  int? subp;
+  bool? cs;
+  int? maxbr;
+  int? fl;
+  bool? toast;
+  int? flag;
+  bool? preSell;
 
   Privilege();
 
@@ -101,55 +101,55 @@ class Song {
   @JsonKey(fromJson: dynamicToString)
   late String id;
 
-  late String name;
+  String? name;
 
-  late int copyrightId;
+  int? copyrightId;
 
-  late String disc;
-  late int no;
-  late int fee;
-  late int status;
+  String? disc;
+  int? no;
+  int? fee;
+  int? status;
 
-  late bool starred;
-  late int starredNum;
-  late double popularity;
-  late int score;
+  bool? starred;
+  int? starredNum;
+  double? popularity;
+  int? score;
 
-  late int duration;
-  late int playedNum;
-  late int dayPlays;
-  late int hearTime;
+  int? duration;
+  int? playedNum;
+  int? dayPlays;
+  int? hearTime;
 
-  late String ringtone;
-  late String copyFrom;
+  String? ringtone;
+  String? copyFrom;
 
-  late String commentThreadId;
+  String? commentThreadId;
 
-  late List<Artists> artists;
+  List<Artists>? artists;
 
-  late Album album;
+  Album? album;
 
   // Lyrics String[]
   dynamic lyrics;
 
-  late Privilege privilege;
+  Privilege? privilege;
 
-  late int copyright;
+  int? copyright;
 
-  late String transName;
+  String? transName;
 
-  late int mark;
-  late int rtype;
-  late int mvid;
+  int? mark;
+  int? rtype;
+  int? mvid;
 
-  late String alg;
+  String? alg;
 
-  late String reason;
+  String? reason;
 
-  late Music hMusic;
-  late Music mMusic;
-  late Music lMusic;
-  late Music bMusic;
+  Music? hMusic;
+  Music? mMusic;
+  Music? lMusic;
+  Music? bMusic;
 
   // {type: 2, typeDesc: 其它版本可播, songId: null}
   // String noCopyrightRcmd;
@@ -166,40 +166,40 @@ class Song2 {
   @JsonKey(fromJson: dynamicToString)
   late String id;
 
-  late String name;
+  String? name;
 
-  late int pst;
-  late int t;
+  int? pst;
+  int? t;
 
-  late List<Artists> ar;
+  List<Artists>? ar;
 
-  late double pop;
-  late int st;
+  double? pop;
+  int? st;
 
-  late String rt;
+  String? rt;
 
-  late int fee;
-  late int v;
-  late String cf;
+  int? fee;
+  int? v;
+  String? cf;
 
   late Album al;
 
-  late int dt;
+  int? dt;
 
-  late Music2 h;
-  late Music2 m;
-  late Music2 l;
-  late Music2 a;
+  Music2? h;
+  Music2? m;
+  Music2? l;
+  Music2? a;
 
-  late int mark;
-  late int mv;
-  late int rtype;
-  late int mst;
-  late int cp;
-  late int publishTime;
-  late String reason;
+  int? mark;
+  int? mv;
+  int? rtype;
+  int? mst;
+  int? cp;
+  int? publishTime;
+  String? reason;
 
-  late Privilege privilege;
+  Privilege? privilege;
 
   Song2();
 
@@ -210,9 +210,9 @@ class Song2 {
 
 @JsonSerializable()
 class SongDetailWrap extends ServerStatusBean {
-  late List<Song2> songs;
+  List<Song2>? songs;
 
-  late List<Privilege> privileges;
+  List<Privilege>? privileges;
 
   SongDetailWrap();
 
@@ -227,19 +227,19 @@ class SongUrl {
   @JsonKey(fromJson: dynamicToString)
   late String id;
 
-  late String url;
+  String? url;
 
   //码率
-  late int br;
-  late int size;
-  late int code;
-  late int expi;
-  late double gain;
-  late int fee;
-  late int payed;
-  late int flag;
+  int? br;
+  int? size;
+  int? code;
+  int? expi;
+  double? gain;
+  int? fee;
+  int? payed;
+  int? flag;
 
-  late bool canExtend;
+  bool? canExtend;
 
   late String md5;
 
@@ -253,7 +253,7 @@ class SongUrl {
 
 @JsonSerializable()
 class SongUrlListWrap extends ServerStatusBean {
-  late List<SongUrl> data;
+  List<SongUrl>? data;
 
   SongUrlListWrap();
 
@@ -265,9 +265,9 @@ class SongUrlListWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class SongLyricWrap extends ServerStatusBean {
-  late bool sgc;
-  late bool sfy;
-  late bool qfy;
+  bool? sgc;
+  bool? sfy;
+  bool? qfy;
 
   late Lyrics2 lrc;
   late Lyrics2 klyric;
@@ -283,7 +283,7 @@ class SongLyricWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class SongListWrap extends ServerStatusBean {
-  late List<Song> songs;
+  List<Song>? songs;
 
   SongListWrap();
 
@@ -295,7 +295,7 @@ class SongListWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class SongListWrap2 extends ServerStatusBean {
-  late List<Song> data;
+  List<Song>? data;
 
   SongListWrap2();
 
@@ -309,15 +309,15 @@ class SongListWrap2 extends ServerStatusBean {
 class PersonalizedSongItem {
   @JsonKey(fromJson: dynamicToString)
   late String id;
-  late String name;
-  late String picUrl;
-  late String copywriter;
+  String? name;
+  String? picUrl;
+  String? copywriter;
 
-  late bool canDislike;
+  bool? canDislike;
 
-  late String alg;
+  String? alg;
 
-  late int type;
+  int? type;
 
   late Song song;
 
@@ -331,9 +331,9 @@ class PersonalizedSongItem {
 
 @JsonSerializable()
 class PersonalizedSongListWrap extends ServerStatusBean {
-  late List<PersonalizedSongItem> result;
+  List<PersonalizedSongItem>? result;
 
-  late int category;
+  int? category;
 
   PersonalizedSongListWrap();
 
@@ -345,7 +345,7 @@ class PersonalizedSongListWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class LikeSongListWrap extends ServerStatusBean {
-  late int checkPoint;
+  int? checkPoint;
 
   late List<int> ids;
 
@@ -363,20 +363,20 @@ class CloudSongItem {
 
   @JsonKey(fromJson: dynamicToString)
   late String songId;
-  late String songName;
-  late String fileName;
+  String? songName;
+  String? fileName;
 
-  late int cover;
-  late int fileSize;
+  int? cover;
+  int? fileSize;
   late int addTime;
-  late int version;
-  late String coverId;
-  late String lyricId;
+  int? version;
+  String? coverId;
+  String? lyricId;
 
-  late String album;
-  late String artist;
+  String? album;
+  String? artist;
 
-  late int bitrate;
+  int? bitrate;
 
   CloudSongItem();
 
@@ -388,11 +388,11 @@ class CloudSongItem {
 
 @JsonSerializable()
 class CloudSongListWrap extends ServerStatusListBean {
-  late String size;
-  late String maxSize;
-  late int upgradeSign;
+  String? size;
+  String? maxSize;
+  int? upgradeSign;
 
-  late List<CloudSongItem> data;
+  List<CloudSongItem>? data;
 
   CloudSongListWrap();
 
@@ -405,9 +405,9 @@ class CloudSongListWrap extends ServerStatusListBean {
 @JsonSerializable()
 class RecommendSongReason {
   @JsonKey(fromJson: dynamicToString)
-  late String songId;
+  String? songId;
 
-  late String reason;
+  String? reason;
 
   RecommendSongReason();
 
@@ -419,9 +419,9 @@ class RecommendSongReason {
 
 @JsonSerializable()
 class RecommendSongListWrap {
-  late List<Song2> dailySongs;
-  late List<Song2> orderSongs;
-  late List<RecommendSongReason> recommendReasons;
+  List<Song2>? dailySongs;
+  List<Song2>? orderSongs;
+  List<RecommendSongReason>? recommendReasons;
 
   RecommendSongListWrap();
 
@@ -445,15 +445,15 @@ class RecommendSongListWrapX extends ServerStatusBean {
 
 @JsonSerializable()
 class RecommendSongListHistoryWrap {
-  late List<String> dates;
+  List<String>? dates;
 
-  late String purchaseUrl;
+  String? purchaseUrl;
 
-  late String description;
+  String? description;
 
-  late String noHistoryMessage;
+  String? noHistoryMessage;
 
-  late List<Song2> songs;
+  List<Song2>? songs;
 
   RecommendSongListHistoryWrap();
 
@@ -477,7 +477,7 @@ class RecommendSongListHistoryWrapX extends ServerStatusBean {
 
 @JsonSerializable()
 class ArtistSongListWrap extends ServerStatusBean {
-  late List<Song2> songs;
+  List<Song2>? songs;
 
   ArtistSongListWrap();
 
@@ -489,9 +489,9 @@ class ArtistSongListWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class ArtistNewSongListData {
-  late bool hasMore;
-  late int newSongCount;
-  late List<Song2> newWorks;
+  bool? hasMore;
+  int? newSongCount;
+  List<Song2>? newWorks;
 
   ArtistNewSongListData();
 
@@ -515,7 +515,7 @@ class ArtistNewSongListWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class ArtistDetailAndSongListWrap extends ServerStatusBean {
-  late List<Song2> hotSongs;
+  List<Song2>? hotSongs;
 
   late Artists artist;
 
@@ -533,44 +533,44 @@ class Play {
   late String id;
 
   @JsonKey(fromJson: dynamicToString)
-  late String userId;
+  String? userId;
 
   //歌单名
-  late String name;
-  late String description;
-  late String coverImgUrl;
+  String? name;
+  String? description;
+  String? coverImgUrl;
 
-  late String tag;
-  late List<String> tags;
-  late String copywriter;
+  String? tag;
+  List<String>? tags;
+  String? copywriter;
 
-  late int createTime;
-  late int updateTime;
+  int? createTime;
+  int? updateTime;
 
   @JsonKey(fromJson: dynamicToInt)
-  late int playCount;
-  late int subscribedCount;
-  late int shareCount;
-  late int commentCount;
+  int? playCount;
+  int? subscribedCount;
+  int? shareCount;
+  int? commentCount;
 
-  late int trackCount;
-  late int trackNumberUpdateTime;
+  int? trackCount;
+  int? trackNumberUpdateTime;
 
-  late String commentThreadId;
+  String? commentThreadId;
 
-  late String alg;
+  String? alg;
 
   // 歌单类型:
   // 0: 自建?
   // 5: 我喜欢的音乐
-  late int specialType;
+  int? specialType;
 
-  late NeteaseUserInfo creator;
+  NeteaseUserInfo? creator;
 
-  late List<NeteaseUserInfo> subscribers;
+  List<NeteaseUserInfo>? subscribers;
 
-  late List<PlayTrack> tracks;
-  late List<PlayTrackId> trackIds;
+  List<PlayTrack>? tracks;
+  List<PlayTrackId>? trackIds;
 
   Play();
 
@@ -589,38 +589,38 @@ class PlayTrack {
   @JsonKey(fromJson: dynamicToString)
   late String id;
 
-  late String name;
-  late int pst;
-  late int t;
+  String? name;
+  int? pst;
+  int? t;
 
-  late List<Artists> ar;
-  late double pop;
-  late int st;
-  late String rt;
-  late int fee;
-  late int v;
-  late String cf;
+  List<Artists>? ar;
+  double? pop;
+  int? st;
+  String? rt;
+  int? fee;
+  int? v;
+  String? cf;
   late Album al;
-  late int dt;
-  late Music2 h;
-  late Music2 m;
-  late Music2 l;
-  late Music2 a;
+  int? dt;
+  Music2? h;
+  Music2? m;
+  Music2? l;
+  Music2? a;
   late String cd;
-  late int no;
-  late int ftype;
-  late List<dynamic> rtUrls;
-  late int djId;
-  late int copyright;
-  late int s_id;
-  late int mark;
-  late int originCoverType;
-  late int single;
-  late int rtype;
-  late int mst;
-  late int cp;
-  late int mv;
-  late int publishTime;
+  int? no;
+  int? ftype;
+  List<dynamic>? rtUrls;
+  int? djId;
+  int? copyright;
+  int? s_id;
+  int? mark;
+  int? originCoverType;
+  int? single;
+  int? rtype;
+  int? mst;
+  int? cp;
+  int? mv;
+  int? publishTime;
 
   PlayTrack();
 
@@ -635,10 +635,10 @@ class PlayTrackId {
   @JsonKey(fromJson: dynamicToString)
   late String id;
 
-  late int v;
-  late int t;
-  late int at;
-  late int lr;
+  int? v;
+  int? t;
+  int? at;
+  int? lr;
 
   PlayTrackId();
 
@@ -650,7 +650,7 @@ class PlayTrackId {
 
 @JsonSerializable()
 class MultiPlayListWrap extends ServerStatusBean {
-  late List<Play> playlists;
+  List<Play>? playlists;
 
   MultiPlayListWrap();
 
@@ -662,7 +662,7 @@ class MultiPlayListWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class MultiPlayListWrap2 extends ServerStatusBean {
-  late List<Play> playlist;
+  List<Play>? playlist;
 
   MultiPlayListWrap2();
 
@@ -674,10 +674,10 @@ class MultiPlayListWrap2 extends ServerStatusBean {
 
 @JsonSerializable()
 class RecommendPlayListWrap extends ServerStatusBean {
-  late List<Play> recommend;
+  List<Play>? recommend;
 
-  late bool featureFirst;
-  late bool haveRcmdSongs;
+  bool? featureFirst;
+  bool? haveRcmdSongs;
 
   RecommendPlayListWrap();
 
@@ -689,10 +689,10 @@ class RecommendPlayListWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class PersonalizedPlayListWrap extends ServerStatusBean {
-  late List<Play> result;
+  List<Play>? result;
 
-  late bool hasTaste;
-  late int category;
+  bool? hasTaste;
+  int? category;
 
   PersonalizedPlayListWrap();
 
@@ -704,15 +704,15 @@ class PersonalizedPlayListWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class PlaylistCatalogueItem {
-  late String name;
-  late int resourceCount;
-  late String imgUrl;
+  String? name;
+  int? resourceCount;
+  String? imgUrl;
 
-  late int type;
-  late int category;
-  late int resourceType;
-  late bool hot;
-  late bool activity;
+  int? type;
+  int? category;
+  int? resourceType;
+  bool? hot;
+  bool? activity;
 
   PlaylistCatalogueItem();
 
@@ -724,10 +724,10 @@ class PlaylistCatalogueItem {
 
 @JsonSerializable()
 class PlaylistCatalogueWrap extends ServerStatusBean {
-  late PlaylistCatalogueItem all;
-  late List<PlaylistCatalogueItem> sub;
+  PlaylistCatalogueItem? all;
+  List<PlaylistCatalogueItem>? sub;
 
-  late Map<int, String> categories;
+  Map<int, String>? categories;
 
   PlaylistCatalogueWrap();
 
@@ -742,20 +742,20 @@ class PlaylistHotTag {
   @JsonKey(fromJson: dynamicToString)
   late String id;
 
-  late String name;
+  String? name;
 
-  late int category;
+  int? category;
 
-  late int usedCount;
+  int? usedCount;
 
-  late int type;
+  int? type;
 
-  late int position;
-  late int highQuality;
-  late int highQualityPos;
-  late int officialPos;
+  int? position;
+  int? highQuality;
+  int? highQualityPos;
+  int? officialPos;
 
-  late int createTime;
+  int? createTime;
 
   PlaylistHotTag();
 
@@ -770,18 +770,18 @@ class PlaylistHotTagsItem {
   @JsonKey(fromJson: dynamicToString)
   late String id;
 
-  late String name;
+  String? name;
 
-  late bool activity;
-  late bool hot;
+  bool? activity;
+  bool? hot;
 
-  late int position;
-  late int category;
-  late int createTime;
+  int? position;
+  int? category;
+  int? createTime;
 
-  late int type;
+  int? type;
 
-  late PlaylistHotTag playlistTag;
+  PlaylistHotTag? playlistTag;
 
   PlaylistHotTagsItem();
 
@@ -793,7 +793,7 @@ class PlaylistHotTagsItem {
 
 @JsonSerializable()
 class PlaylistHotTagsWrap extends ServerStatusBean {
-  late List<PlaylistHotTagsItem> tags;
+  List<PlaylistHotTagsItem>? tags;
 
   PlaylistHotTagsWrap();
 
@@ -845,7 +845,7 @@ const PLAYLIST_CATEGORY = [
 
 @JsonSerializable()
 class SinglePlayListWrap extends ServerStatusBean {
-  late Play playlist;
+  Play? playlist;
 
   SinglePlayListWrap();
 
@@ -857,16 +857,16 @@ class SinglePlayListWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class PlayListDetailDynamicWrap extends ServerStatusBean {
-  late int commentCount;
-  late int shareCount;
-  late int playCount;
-  late int bookedCount;
+  int? commentCount;
+  int? shareCount;
+  int? playCount;
+  int? bookedCount;
 
-  late bool subscribed;
+  bool? subscribed;
 
-  late String remarkName;
+  String? remarkName;
 
-  late bool followed;
+  bool? followed;
 
   PlayListDetailDynamicWrap();
 
@@ -881,11 +881,11 @@ class PlaymodeIntelligenceItem {
   @JsonKey(fromJson: dynamicToString)
   late String id;
 
-  late bool recommended;
+  bool? recommended;
 
-  late String alg;
+  String? alg;
 
-  late Song songInfo;
+  Song? songInfo;
 
   PlaymodeIntelligenceItem();
 
@@ -897,7 +897,7 @@ class PlaymodeIntelligenceItem {
 
 @JsonSerializable()
 class PlaymodeIntelligenceListWrap extends ServerStatusBean {
-  late List<PlaymodeIntelligenceItem> data;
+  List<PlaymodeIntelligenceItem>? data;
 
   PlaymodeIntelligenceListWrap();
 
@@ -912,27 +912,27 @@ class Artists {
   @JsonKey(fromJson: dynamicToString)
   late String id;
   @JsonKey(fromJson: dynamicToString)
-  late String accountId;
+  String? accountId;
 
-  late String name;
+  String? name;
 
-  late String picUrl;
+  String? picUrl;
 
-  late int img1v1Id;
-  late String img1v1Url;
-  late String cover;
+  int? img1v1Id;
+  String? img1v1Url;
+  String? cover;
 
-  late int albumSize;
-  late int musicSize;
-  late int mvSize;
-  late int topicPerson;
+  int? albumSize;
+  int? musicSize;
+  int? mvSize;
+  int? topicPerson;
 
-  late String trans;
-  late String briefDesc;
+  String? trans;
+  String? briefDesc;
 
-  late bool followed;
+  bool? followed;
 
-  late int publishTime;
+  int? publishTime;
 
   Artists();
 
@@ -944,7 +944,7 @@ class Artists {
 
 @JsonSerializable()
 class ArtistsListWrap extends ServerStatusBean {
-  late List<Artists> artists;
+  List<Artists>? artists;
 
   ArtistsListWrap();
 
@@ -956,10 +956,10 @@ class ArtistsListWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class ArtistsTopListWrap {
-  late List<Artists> artists;
+  List<Artists>? artists;
 
-  late int type;
-  late int updateTime;
+  int? type;
+  int? updateTime;
 
   ArtistsTopListWrap();
 
@@ -971,7 +971,7 @@ class ArtistsTopListWrap {
 
 @JsonSerializable()
 class ArtistsTopListWrapX extends ServerStatusBean {
-  late ArtistsTopListWrap list;
+  ArtistsTopListWrap? list;
 
   ArtistsTopListWrapX();
 
@@ -983,8 +983,8 @@ class ArtistsTopListWrapX extends ServerStatusBean {
 
 @JsonSerializable()
 class ArtistIntroduction {
-  late String ti;
-  late String txt;
+  String? ti;
+  String? txt;
 
   ArtistIntroduction();
 
@@ -996,13 +996,13 @@ class ArtistIntroduction {
 
 @JsonSerializable()
 class ArtistDescWrap extends ServerStatusBean {
-  late List<ArtistIntroduction> introduction;
+  List<ArtistIntroduction>? introduction;
 
-  late String briefDesc;
+  String? briefDesc;
 
-  late int count;
+  int? count;
 
-  late List<TopicItem2> topicData;
+  List<TopicItem2>? topicData;
 
   ArtistDescWrap();
 
@@ -1014,11 +1014,11 @@ class ArtistDescWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class ArtistDetailData {
-  late bool blacklist;
-  late bool showPriMsg;
-  late int videoCount;
+  bool? blacklist;
+  bool? showPriMsg;
+  int? videoCount;
 
-  late Artists artist;
+  Artists? artist;
 
   ArtistDetailData();
 
@@ -1030,7 +1030,7 @@ class ArtistDetailData {
 
 @JsonSerializable()
 class ArtistDetailWrap extends ServerStatusBean {
-  late ArtistDetailData data;
+  ArtistDetailData? data;
 
   ArtistDetailWrap();
 
@@ -1045,32 +1045,32 @@ class Album {
   @JsonKey(fromJson: dynamicToString)
   late String id;
 
-  late String name;
+  String? name;
 
-  late String type;
-  late String subType;
+  String? type;
+  String? subType;
 
-  late int mark;
-  late int size;
-  late int publishTime;
+  int? mark;
+  int? size;
+  int? publishTime;
 
-  late String picUrl;
+  String? picUrl;
 
-  late String tags;
+  String? tags;
 
-  late int copyrightId;
-  late int companyId;
-  late String company;
+  int? copyrightId;
+  int? companyId;
+  String? company;
 
-  late String description;
-  late String briefDesc;
+  String? description;
+  String? briefDesc;
 
-  late Artists artist;
-  late List<Artists> artists;
+  Artists? artist;
+  List<Artists>? artists;
 
-  late bool isSub;
-  late bool paid;
-  late bool onSale;
+  bool? isSub;
+  bool? paid;
+  bool? onSale;
 
   Album();
 
@@ -1081,9 +1081,9 @@ class Album {
 
 @JsonSerializable()
 class AlbumDetailWrap extends ServerStatusBean {
-  late List<Song2> songs;
+  List<Song2>? songs;
 
-  late Album album;
+  Album? album;
 
   AlbumDetailWrap();
 
@@ -1095,15 +1095,15 @@ class AlbumDetailWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class AlbumDetailDynamicWrap extends ServerStatusBean {
-  late bool onSale;
-  late bool isSub;
+  bool? onSale;
+  bool? isSub;
 
-  late int subTime;
+  int? subTime;
 
-  late int commentCount;
-  late int likedCount;
-  late int shareCount;
-  late int subCount;
+  int? commentCount;
+  int? likedCount;
+  int? shareCount;
+  int? subCount;
 
   AlbumDetailDynamicWrap();
 
@@ -1115,7 +1115,7 @@ class AlbumDetailDynamicWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class AlbumListWrap extends ServerStatusListBean {
-  late List<Album> albums;
+  List<Album>? albums;
 
   AlbumListWrap();
 
@@ -1127,9 +1127,9 @@ class AlbumListWrap extends ServerStatusListBean {
 
 @JsonSerializable()
 class ArtistAlbumListWrap extends ServerStatusListBean {
-  late int time;
+  int? time;
 
-  late List<Album> hotAlbums;
+  List<Album>? hotAlbums;
 
   late Artists artist;
 
@@ -1144,9 +1144,9 @@ class ArtistAlbumListWrap extends ServerStatusListBean {
 @JsonSerializable()
 class MvCreator {
   @JsonKey(fromJson: dynamicToString)
-  late String userId;
+  String? userId;
 
-  late String userName;
+  String? userName;
 
   MvCreator();
 
@@ -1161,34 +1161,35 @@ class Mv {
   @JsonKey(fromJson: dynamicToString)
   late String id;
 
-  late String name;
+  String? name;
 
-  late String cover;
+  String? cover;
 
-  late int playCount;
-  late String briefDesc;
-  late String desc;
+  int? playCount;
+  String? briefDesc;
+  String? desc;
 
-  late String arTransName;
+  String? arTransName;
 
-  late String artisAlias;
-  late String artisTransName;
-  late String artistName;
-  late String artistImgUrl;
-  late int artistId;
+  String? artisAlias;
+  String? artisTransName;
+  String? artistName;
+  String? artistImgUrl;
+  int? artistId;
 
-  late int mvId;
-  late String mvName;
-  late String mvCoverUrl;
+  int? mvId;
+  String? mvName;
+  String? mvCoverUrl;
 
-  late int duration;
-  late int publishTime;
-  late String publishDate;
-  late int mark;
+  int? duration;
+  @JsonKey(fromJson: dynamicToString)
+  String? publishTime;
+  String? publishDate;
+  int? mark;
 
-  late String alg;
+  String? alg;
 
-  late List<Artists> artists;
+  List<Artists>? artists;
 
   Mv();
 
@@ -1199,20 +1200,20 @@ class Mv {
 
 @JsonSerializable()
 class Mv2 {
-  late int type;
+  int? type;
 
-  late String title;
-  late int durationms;
+  String? title;
+  int? durationms;
 
-  late int playTime;
+  int? playTime;
 
-  late String vid;
-  late String coverUrl;
+  String? vid;
+  String? coverUrl;
 
-  late String aliaName;
-  late String transName;
+  String? aliaName;
+  String? transName;
 
-  late List<MvCreator> creator;
+  List<MvCreator>? creator;
 
   Mv2();
 
@@ -1226,12 +1227,12 @@ class Mv3 {
   @JsonKey(fromJson: dynamicToString)
   late String id;
 
-  late String name;
-  late String artistName;
+  String? name;
+  String? artistName;
   late String imgurl;
   late String imgurl16v9;
 
-  late int status;
+  int? status;
 
   late Artists artist;
 
@@ -1244,7 +1245,7 @@ class Mv3 {
 
 @JsonSerializable()
 class MvListWrap extends ServerStatusListBean {
-  late List<Mv> mvs;
+  List<Mv>? mvs;
 
   MvListWrap();
 
@@ -1256,9 +1257,9 @@ class MvListWrap extends ServerStatusListBean {
 
 @JsonSerializable()
 class MvListWrap2 extends ServerStatusListBean {
-  late List<Mv> data;
+  List<Mv>? data;
 
-  late int updateTime;
+  int? updateTime;
 
   MvListWrap2();
 
@@ -1270,9 +1271,9 @@ class MvListWrap2 extends ServerStatusListBean {
 
 @JsonSerializable()
 class PersonalizedMvListWrap extends ServerStatusBean {
-  late List<Mv> result;
+  List<Mv>? result;
 
-  late int category;
+  int? category;
 
   PersonalizedMvListWrap();
 
@@ -1284,7 +1285,7 @@ class PersonalizedMvListWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class ArtistMvListWrap extends MvListWrap {
-  late int time;
+  int? time;
 
   ArtistMvListWrap();
 
@@ -1296,8 +1297,8 @@ class ArtistMvListWrap extends MvListWrap {
 
 @JsonSerializable()
 class ArtistNewMvListData {
-  late bool hasMore;
-  late List<Mv> newWorks;
+  bool? hasMore;
+  List<Mv>? newWorks;
 
   ArtistNewMvListData();
 
@@ -1321,14 +1322,14 @@ class ArtistNewMvListWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class MvDetailWrap extends ServerStatusBean {
-  late String loadingPic;
-  late String bufferPic;
-  late String loadingPicFS;
-  late String bufferPicFS;
+  String? loadingPic;
+  String? bufferPic;
+  String? loadingPicFS;
+  String? bufferPicFS;
 
-  late bool subed;
+  bool? subed;
 
-  late Mv data;
+  Mv? data;
 
   MvDetailWrap();
 
@@ -1340,11 +1341,11 @@ class MvDetailWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class MvDetailInfoWrap extends ServerStatusBean {
-  late int likedCount;
-  late int shareCount;
-  late int commentCount;
+  int? likedCount;
+  int? shareCount;
+  int? commentCount;
 
-  late bool liked;
+  bool? liked;
 
   MvDetailInfoWrap();
 
@@ -1359,16 +1360,16 @@ class MvUrl {
   @JsonKey(fromJson: dynamicToString)
   late String id;
 
-  late String url;
-  late String md5;
-  late String msg;
+  String? url;
+  String? md5;
+  String? msg;
 
-  late int r;
-  late int size;
-  late int expi;
-  late int fee;
-  late int mvFee;
-  late int st;
+  int? r;
+  int? size;
+  int? expi;
+  int? fee;
+  int? mvFee;
+  int? st;
 
   MvUrl();
 
@@ -1391,8 +1392,8 @@ class MvUrlWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class VideoResolution {
-  late int resolution;
-  late int size;
+  int? resolution;
+  int? size;
 
   VideoResolution();
 
@@ -1405,11 +1406,11 @@ class VideoResolution {
 @JsonSerializable()
 class VideoUrlInfo {
   late String id;
-  late String url;
-  late int size;
-  late int validityTime;
-  late bool needPay;
-  late int r;
+  String? url;
+  int? size;
+  int? validityTime;
+  bool? needPay;
+  int? r;
 
   VideoUrlInfo();
 
@@ -1421,34 +1422,34 @@ class VideoUrlInfo {
 
 @JsonSerializable()
 class VideoBase {
-  late String vid;
-  late String title;
-  late String description;
-  late String scm;
-  late String alg;
-  late String threadId;
-  late String coverUrl;
-  late String previewUrl;
+  String? vid;
+  String? title;
+  String? description;
+  String? scm;
+  String? alg;
+  String? threadId;
+  String? coverUrl;
+  String? previewUrl;
 
-  late int width;
-  late int height;
-  late int praisedCount;
-  late int playTime;
-  late int durationms;
-  late int previewDurationms;
+  int? width;
+  int? height;
+  int? praisedCount;
+  int? playTime;
+  int? durationms;
+  int? previewDurationms;
 
-  late int commentCount;
-  late int shareCount;
+  int? commentCount;
+  int? shareCount;
 
-  late bool praised;
-  late bool subscribed;
-  late bool hasRelatedGameAd;
+  bool? praised;
+  bool? subscribed;
+  bool? hasRelatedGameAd;
 
-  late List<VideoResolution> resolutions;
+  List<VideoResolution>? resolutions;
 
-  late VideoUrlInfo urlInfo;
-  late List<VideoMetaItem> videoGroup;
-  late List<Song> relateSong;
+  VideoUrlInfo? urlInfo;
+  List<VideoMetaItem>? videoGroup;
+  List<Song>? relateSong;
 
   VideoBase();
 
@@ -1471,7 +1472,7 @@ class Video extends VideoBase {
 
 @JsonSerializable()
 class Video2 extends VideoBase {
-  late List<NeteaseUserInfo> creator;
+  List<NeteaseUserInfo>? creator;
 
   Video2();
 
@@ -1485,11 +1486,11 @@ class VideoMetaItem {
   @JsonKey(fromJson: dynamicToString)
   late String id;
 
-  late String name;
-  late String url;
-  late String relatedVideoType;
+  String? name;
+  String? url;
+  String? relatedVideoType;
 
-  late bool selectTab;
+  bool? selectTab;
 
   VideoMetaItem();
 
@@ -1501,7 +1502,7 @@ class VideoMetaItem {
 
 @JsonSerializable()
 class VideoMetaListWrap extends ServerStatusBean {
-  late List<VideoMetaItem> data;
+  List<VideoMetaItem>? data;
 
   VideoMetaListWrap();
 
@@ -1513,10 +1514,10 @@ class VideoMetaListWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class VideoWrap {
-  late int type;
-  late bool displayed;
-  late String alg;
-  late String extAlg;
+  int? type;
+  bool? displayed;
+  String? alg;
+  String? extAlg;
 
   late Video data;
 
@@ -1530,9 +1531,9 @@ class VideoWrap {
 
 @JsonSerializable()
 class VideoListWrapX extends ServerStatusListBean {
-  late List<VideoWrap> datas;
+  List<VideoWrap>? datas;
 
-  late int rcmdLimit;
+  int? rcmdLimit;
 
   VideoListWrapX();
 
@@ -1544,7 +1545,7 @@ class VideoListWrapX extends ServerStatusListBean {
 
 @JsonSerializable()
 class VideoListWrap extends ServerStatusBean {
-  late List<Video2> data;
+  List<Video2>? data;
 
   VideoListWrap();
 
@@ -1568,11 +1569,11 @@ class VideoDetailWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class VideoDetailInfoWrap extends ServerStatusBean {
-  late int likedCount;
-  late int shareCount;
-  late int commentCount;
+  int? likedCount;
+  int? shareCount;
+  int? commentCount;
 
-  late bool liked;
+  bool? liked;
 
   VideoDetailInfoWrap();
 
@@ -1587,13 +1588,13 @@ class VideoUrl {
   @JsonKey(fromJson: dynamicToString)
   late String id;
 
-  late String url;
-  late int size;
-  late int validityTime;
+  String? url;
+  int? size;
+  int? validityTime;
 
-  late bool needPay;
+  bool? needPay;
 
-  late int r;
+  int? r;
 
   VideoUrl();
 
@@ -1605,7 +1606,7 @@ class VideoUrl {
 
 @JsonSerializable()
 class VideoUrlWrap extends ServerStatusBean {
-  late List<VideoUrl> urls;
+  List<VideoUrl>? urls;
 
   VideoUrlWrap();
 

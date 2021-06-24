@@ -5,6 +5,7 @@ part 'bean.g.dart';
 
 @JsonSerializable()
 class ServerStatusBean {
+  @JsonKey(fromJson: dynamicToInt)
   late int code;
   String? message;
   String? msg;
@@ -27,9 +28,14 @@ class ServerStatusBean {
 
 @JsonSerializable()
 class ServerStatusListBean extends ServerStatusBean {
-  late bool more;
-  late int count;
-  late int total;
+  bool? more;
+  bool? hasMore;
+  int? count;
+  int? total;
+
+  bool get realMore {
+    return more ?? hasMore ?? false;
+  }
 
   ServerStatusListBean();
 
@@ -39,7 +45,7 @@ class ServerStatusListBean extends ServerStatusBean {
   Map<String, dynamic> toJson() => _$ServerStatusListBeanToJson(this);
 }
 
-String dynamicToString(dynamic value) => value.toString();
+String dynamicToString(dynamic value) => value?.toString() ?? '';
 
 int dynamicToInt(dynamic value) {
   if (value is double) {
@@ -47,5 +53,5 @@ int dynamicToInt(dynamic value) {
   } else if (value is String) {
     return int.parse(value);
   }
-  return value;
+  return value ?? 0;
 }

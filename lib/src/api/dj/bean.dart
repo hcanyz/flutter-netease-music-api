@@ -9,13 +9,13 @@ class Dj {
   @JsonKey(fromJson: dynamicToString)
   late String id;
 
-  late String nickName;
-  late String avatarUrl;
-  late int userType;
+  String? nickName;
+  String? avatarUrl;
+  int? userType;
 
-  late int rank;
-  late int lastRank;
-  late int score;
+  int? rank;
+  int? lastRank;
+  int? score;
 
   Dj();
 
@@ -31,38 +31,38 @@ class DjRadio {
 
   late String name;
 
-  late NeteaseAccountProfile dj;
+  NeteaseAccountProfile? dj;
 
   late String picUrl;
-  late String desc;
+  String? desc;
 
   late int subCount;
-  late int commentCount;
+  int? commentCount;
   late int programCount;
-  late int shareCount;
-  late int likedCount;
+  int? shareCount;
+  int? likedCount;
 
-  late int createTime;
-  late int categoryId;
-  late String category;
+  int? createTime;
+  int? categoryId;
+  String? category;
 
   late int radioFeeType;
   late int feeScope;
 
-  late bool buyed;
-  late bool finished;
-  late bool underShelf;
+  bool? buyed;
+  bool? finished;
+  bool? underShelf;
 
-  late int purchaseCount;
-  late int price;
-  late int originalPrice;
-  late int lastProgramCreateTime;
-  late String lastProgramName;
-  late int lastProgramId;
+  int? purchaseCount;
+  int? price;
+  int? originalPrice;
+  int? lastProgramCreateTime;
+  String? lastProgramName;
+  int? lastProgramId;
 
-  late bool composeVideo;
+  bool? composeVideo;
 
-  late String alg;
+  String? alg;
 
   DjRadio();
 
@@ -77,38 +77,38 @@ class DjProgram {
   @JsonKey(fromJson: dynamicToString)
   late String id;
 
-  late String name;
-  late String programDesc;
+  String? name;
+  String? programDesc;
 
-  late String coverUrl;
-  late String blurCoverUrl;
-  late String description;
-  late String alg;
-  late String commentThreadId;
+  String? coverUrl;
+  String? blurCoverUrl;
+  String? description;
+  String? alg;
+  String? commentThreadId;
 
-  late int mainTrackId;
-  late int pubStatus;
+  int? mainTrackId;
+  int? pubStatus;
   late int bdAuditStatus;
-  late int serialNum;
-  late int duration;
-  late int auditStatus;
-  late int score;
-  late int createTime;
-  late int feeScope;
-  late int listenerCount;
-  late int subscribedCount;
-  late int programFeeType;
-  late int trackCount;
-  late int smallLanguageAuditStatus;
-  late int shareCount;
-  late int likedCount;
-  late int commentCount;
+  int? serialNum;
+  int? duration;
+  int? auditStatus;
+  int? score;
+  int? createTime;
+  int? feeScope;
+  int? listenerCount;
+  int? subscribedCount;
+  int? programFeeType;
+  int? trackCount;
+  int? smallLanguageAuditStatus;
+  int? shareCount;
+  int? likedCount;
+  int? commentCount;
 
-  late bool buyed;
+  bool? buyed;
   late bool isPublish;
-  late bool subscribed;
-  late bool canReward;
-  late bool reward;
+  bool? subscribed;
+  bool? canReward;
+  bool? reward;
 
   late DjRadio radio;
 
@@ -204,9 +204,9 @@ class DjRadioCategoryWrap3 extends ServerStatusBean {
 class DjRadioListWrap extends ServerStatusListBean {
   late List<DjRadio> djRadios;
 
-  late String name;
+  String? name;
 
-  late int subCount;
+  int? subCount;
 
   DjRadioListWrap();
 
@@ -232,8 +232,8 @@ class DjRadioListWrap2 extends ServerStatusBean {
 class DjTopListListWrap {
   late List<Dj> list;
 
-  late int total;
-  late int updateTime;
+  int? total;
+  int? updateTime;
 
   DjTopListListWrap();
 
@@ -259,22 +259,22 @@ class DjTopListListWrapX extends ServerStatusBean {
 class DjRadioTopListItem {
   @JsonKey(fromJson: dynamicToString)
   late String id;
-  late String name;
-  late String picUrl;
-  late String creatorName;
+  String? name;
+  String? picUrl;
+  String? creatorName;
 
-  late int rank;
-  late int lastRank;
-  late int score;
+  int? rank;
+  int? lastRank;
+  int? score;
 
   // [djRadioPayGiftTopList] 这个api独有数据
-  late String rcmdText;
-  late int radioFeeType;
-  late int feeScope;
-  late int programCount;
-  late int originalPrice;
-  late String alg;
-  late String lastProgramName;
+  String? rcmdText;
+  int? radioFeeType;
+  int? feeScope;
+  int? programCount;
+  int? originalPrice;
+  String? alg;
+  String? lastProgramName;
 
   DjRadioTopListItem();
 
@@ -288,8 +288,8 @@ class DjRadioTopListItem {
 class DjRadioTopListListWrap {
   late List<DjRadioTopListItem> list;
 
-  late int total;
-  late int updateTime;
+  int? total;
+  int? updateTime;
 
   DjRadioTopListListWrap();
 
@@ -327,7 +327,7 @@ class DjRadioDetail extends ServerStatusBean {
 class DjRadioTopListListWrapX2 extends ServerStatusBean {
   late List<DjRadio> toplist;
 
-  late int updateTime;
+  int? updateTime;
 
   DjRadioTopListListWrapX2();
 
@@ -341,7 +341,7 @@ class DjRadioTopListListWrapX2 extends ServerStatusBean {
 class DjProgramListWrap extends ServerStatusListBean {
   late List<DjProgram> programs;
 
-  late String name;
+  String? name;
 
   DjProgramListWrap();
 
@@ -355,10 +355,10 @@ class DjProgramListWrap extends ServerStatusListBean {
 class DjProgramTopListItem {
   late DjProgram program;
 
-  late int rank;
-  late int lastRank;
-  late int score;
-  late int programFeeType;
+  int? rank;
+  int? lastRank;
+  int? score;
+  int? programFeeType;
 
   DjProgramTopListItem();
 
@@ -372,7 +372,7 @@ class DjProgramTopListItem {
 class DjProgramTopListListWrap2 extends ServerStatusBean {
   late List<DjProgramTopListItem> toplist;
 
-  late int updateTime;
+  int? updateTime;
 
   DjProgramTopListListWrap2();
 
@@ -387,13 +387,13 @@ class PersonalizedDjProgramItem {
   @JsonKey(fromJson: dynamicToString)
   late String id;
 
-  late String name;
-  late String copywriter;
-  late String picUrl;
+  String? name;
+  String? copywriter;
+  String? picUrl;
 
-  late bool canDislike;
+  bool? canDislike;
 
-  late int type;
+  int? type;
 
   late DjProgram program;
 
@@ -409,8 +409,8 @@ class PersonalizedDjProgramItem {
 class DjProgramTopListListWrap {
   late List<DjProgramTopListItem> list;
 
-  late int total;
-  late int updateTime;
+  int? total;
+  int? updateTime;
 
   DjProgramTopListListWrap();
 
@@ -434,7 +434,7 @@ class DjProgramTopListListWrapX extends ServerStatusBean {
 
 @JsonSerializable()
 class PersonalizedDjProgramListWrap extends ServerStatusBean {
-  late int category;
+  int? category;
 
   late List<PersonalizedDjProgramItem> result;
 

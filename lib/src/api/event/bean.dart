@@ -12,15 +12,15 @@ class CommentThread {
   @JsonKey(fromJson: dynamicToString)
   late String id;
 
-  late int resourceType;
-  late int commentCount;
-  late int likedCount;
-  late int shareCount;
-  late int hotCount;
+  int? resourceType;
+  int? commentCount;
+  int? likedCount;
+  int? shareCount;
+  int? hotCount;
 
-  late int resourceId;
-  late int resourceOwnerId;
-  late String resourceTitle;
+  int? resourceId;
+  int? resourceOwnerId;
+  String? resourceTitle;
 
   CommentThread();
 
@@ -34,13 +34,13 @@ class CommentThread {
 class EventItemInfo {
   late String threadId;
 
-  late int resourceId;
-  late int resourceType;
+  int? resourceId;
+  int? resourceType;
 
-  late bool liked;
-  late int commentCount;
-  late int likedCount;
-  late int shareCount;
+  bool? liked;
+  int? commentCount;
+  int? likedCount;
+  int? shareCount;
 
   late CommentThread commentThread;
 
@@ -57,21 +57,21 @@ class EventItem {
   @JsonKey(fromJson: dynamicToString)
   late String id;
 
-  late String actName;
-  late String json;
+  String? actName;
+  String? json;
 
-  late int type;
+  int? type;
 
-  late int actId;
-  late int eventTime;
-  late int expireTime;
-  late int showTime;
-  late int forwardCount;
-  late int sic;
+  int? actId;
+  int? eventTime;
+  int? expireTime;
+  int? showTime;
+  int? forwardCount;
+  int? sic;
 
   late int insiteForwardCount;
 
-  late bool topEvent;
+  bool? topEvent;
 
   late NeteaseAccountProfile user;
 
@@ -87,9 +87,9 @@ class EventItem {
 
 @JsonSerializable()
 class EventListWrap extends ServerStatusBean {
-  late List<EventItem> events;
+  List<EventItem>? events;
 
-  late int lasttime;
+  int? lasttime;
 
   EventListWrap();
 
@@ -101,9 +101,9 @@ class EventListWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class EventListWrap2 extends ServerStatusBean {
-  late List<EventItem> event;
+  List<EventItem>? event;
 
-  late int lasttime;
+  int? lasttime;
 
   EventListWrap2();
 
@@ -131,23 +131,23 @@ class CommentItemBase {
   late String commentId;
 
   @JsonKey(fromJson: dynamicToString)
-  late String parentCommentId;
+  String? parentCommentId;
 
   late NeteaseUserInfo user;
 
-  late List<BeRepliedCommentItem> beReplied;
+  List<BeRepliedCommentItem>? beReplied;
 
-  late String content;
+  String? content;
 
-  late int time;
+  int? time;
 
-  late int likedCount;
-  late bool liked;
+  int? likedCount;
+  bool? liked;
 
   // beReplied
 
-  late int status;
-  late int commentLocationType;
+  int? status;
+  int? commentLocationType;
 
   CommentItemBase();
 
@@ -159,7 +159,7 @@ class CommentItemBase {
 
 @JsonSerializable()
 class CommentItem extends CommentItemBase {
-  late List<BeRepliedCommentItem> beReplied;
+  List<BeRepliedCommentItem>? beReplied;
 
   CommentItem();
 
@@ -172,7 +172,7 @@ class CommentItem extends CommentItemBase {
 @JsonSerializable()
 class BeRepliedCommentItem extends CommentItemBase {
   @JsonKey(fromJson: dynamicToString)
-  late String beRepliedCommentId;
+  String? beRepliedCommentId;
 
   BeRepliedCommentItem();
 
@@ -184,16 +184,16 @@ class BeRepliedCommentItem extends CommentItemBase {
 
 @JsonSerializable()
 class CommentListWrap extends ServerStatusListBean {
-  late bool moreHot;
-  late int cnum;
-  late bool isMusician;
+  bool? moreHot;
+  int? cnum;
+  bool? isMusician;
 
   @JsonKey(fromJson: dynamicToString)
-  late String userId;
+  String? userId;
 
-  late List<CommentItem> topComments;
-  late List<CommentItem> hotComments;
-  late List<CommentItem> comments;
+  List<CommentItem>? topComments;
+  List<CommentItem>? hotComments;
+  List<CommentItem>? comments;
 
   CommentListWrap();
 
@@ -205,13 +205,13 @@ class CommentListWrap extends ServerStatusListBean {
 
 @JsonSerializable()
 class CommentHistoryData {
-  late bool hasMore;
-  late bool reminder;
+  bool? hasMore;
+  bool? reminder;
 
-  late int commentCount;
+  int? commentCount;
 
-  late List<CommentItem> hotComments;
-  late List<CommentItem> comments;
+  List<CommentItem>? hotComments;
+  List<CommentItem>? comments;
 
   CommentHistoryData();
 
@@ -235,9 +235,9 @@ class CommentHistoryWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class CommentList2DataSortType {
-  late int sortType;
-  late String sortTypeName;
-  late String target;
+  int? sortType;
+  String? sortTypeName;
+  String? target;
 
   CommentList2DataSortType();
 
@@ -249,15 +249,15 @@ class CommentList2DataSortType {
 
 @JsonSerializable()
 class CommentList2Data {
-  late bool hasMore;
+  bool? hasMore;
 
-  late String cursor;
-  late int totalCount;
-  late int sortType;
-  late List<CommentList2DataSortType> sortTypeList;
+  String? cursor;
+  int? totalCount;
+  int? sortType;
+  List<CommentList2DataSortType>? sortTypeList;
 
-  late List<CommentItem> comments;
-  late CommentItem currentComment;
+  List<CommentItem>? comments;
+  CommentItem? currentComment;
 
   CommentList2Data();
 
@@ -282,7 +282,7 @@ class CommentList2Wrap extends ServerStatusBean {
 @JsonSerializable()
 class HugComment {
   late NeteaseUserInfo user;
-  late String hugContent;
+  String? hugContent;
 
   HugComment();
 
@@ -294,13 +294,13 @@ class HugComment {
 
 @JsonSerializable()
 class HugCommentListData {
-  late bool hasMore;
+  bool? hasMore;
 
-  late String cursor;
-  late int idCursor;
-  late int hugTotalCounts;
+  String? cursor;
+  int? idCursor;
+  int? hugTotalCounts;
 
-  late List<HugComment> hugComments;
+  List<HugComment>? hugComments;
   late CommentItem currentComment;
 
   HugCommentListData();
@@ -325,11 +325,11 @@ class HugCommentListWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class FloorCommentDetail {
-  late List<CommentItem> comments;
+  List<CommentItem>? comments;
 
-  late bool hasMore;
-  late int totalCount;
-  late int time;
+  bool? hasMore;
+  int? totalCount;
+  int? time;
 
   late CommentItem ownerComment;
 
@@ -355,9 +355,9 @@ class FloorCommentDetailWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class EventForwardRet {
-  late String msg;
+  String? msg;
   late int eventId;
-  late int eventTime;
+  int? eventTime;
 
   EventForwardRet();
 
@@ -369,7 +369,7 @@ class EventForwardRet {
 
 @JsonSerializable()
 class EventForwardRetWrap extends ServerStatusBean {
-  late EventForwardRet data;
+  EventForwardRet? data;
 
   EventForwardRetWrap();
 
@@ -384,9 +384,9 @@ class TopicContent {
   @JsonKey(fromJson: dynamicToString)
   late String id;
 
-  late int type;
+  int? type;
 
-  late String content;
+  String? content;
 
   TopicContent();
 
@@ -402,46 +402,46 @@ class Topic {
   late String id;
 
   @JsonKey(fromJson: dynamicToString)
-  late String userId;
+  String? userId;
 
-  late List<TopicContent> content;
-  late String title;
-  late String wxTitle;
-  late String mainTitle;
-  late String startText;
-  late String summary;
+  List<TopicContent>? content;
+  String? title;
+  String? wxTitle;
+  String? mainTitle;
+  String? startText;
+  String? summary;
   late String adInfo;
-  late String recomdTitle;
-  late String recomdContent;
+  String? recomdTitle;
+  String? recomdContent;
 
   late int addTime;
-  late int pubTime;
-  late int updateTime;
+  int? pubTime;
+  int? updateTime;
 
-  late int cover;
-  late int headPic;
-  late int status;
-  late int seriesId;
-  late int categoryId;
-  late double hotScore;
+  int? cover;
+  int? headPic;
+  int? status;
+  int? seriesId;
+  int? categoryId;
+  double? hotScore;
 
-  late String auditor;
-  late int auditTime;
-  late int auditStatus;
-  late String delReason;
+  String? auditor;
+  int? auditTime;
+  int? auditStatus;
+  String? delReason;
 
-  late int number;
-  late int readCount;
+  int? number;
+  int? readCount;
 
-  late int rectanglePic;
+  int? rectanglePic;
 
-  late List<String> tags;
+  List<String>? tags;
 
-  late bool reward;
-  late bool fromBackend;
-  late bool showRelated;
-  late bool showComment;
-  late bool pubImmidiatly;
+  bool? reward;
+  bool? fromBackend;
+  bool? showRelated;
+  bool? showComment;
+  bool? pubImmidiatly;
 
   Topic();
 
@@ -459,40 +459,40 @@ class TopicItem2 {
 
   late NeteaseUserInfo creator;
 
-  late int number;
-  late int shareCount;
-  late int commentCount;
-  late int likedCount;
-  late int readCount;
-  late int rewardCount;
-  late double rewardMoney;
+  int? number;
+  int? shareCount;
+  int? commentCount;
+  int? likedCount;
+  int? readCount;
+  int? rewardCount;
+  double? rewardMoney;
 
-  late String rectanglePicUrl;
-  late String coverUrl;
+  String? rectanglePicUrl;
+  String? coverUrl;
 
-  late int seriesId;
-  late int categoryId;
-  late String categoryName;
+  int? seriesId;
+  int? categoryId;
+  String? categoryName;
 
-  late String url;
-  late String wxTitle;
-  late String mainTitle;
-  late String title;
-  late String summary;
-  late String shareContent;
-  late String recmdTitle;
-  late String recmdContent;
+  String? url;
+  String? wxTitle;
+  String? mainTitle;
+  String? title;
+  String? summary;
+  String? shareContent;
+  String? recmdTitle;
+  String? recmdContent;
 
-  late List<String> tags;
+  List<String>? tags;
 
   late int addTime;
 
-  late String commentThreadId;
+  String? commentThreadId;
 
-  late bool showRelated;
-  late bool showComment;
-  late bool reward;
-  late bool liked;
+  bool? showRelated;
+  bool? showComment;
+  bool? reward;
+  bool? liked;
 
   TopicItem2();
 
@@ -507,42 +507,42 @@ class TopicItem {
   @JsonKey(fromJson: dynamicToString)
   late String actId;
 
-  late String title;
+  String? title;
 
-  late List<String> text;
+  List<String>? text;
 
-  late String reason;
+  String? reason;
 
-  late int participateCount;
+  int? participateCount;
 
   late bool isDefaultImg;
 
   //featured TopicQualityScore
-  late String alg;
+  String? alg;
 
-  late int startTime;
+  int? startTime;
 
-  late int endTime;
+  int? endTime;
 
-  late int resourceType;
+  int? resourceType;
 
-  late int videoType;
+  int? videoType;
 
-  late int topicType;
+  int? topicType;
 
-  late int meetingBeginTime;
+  int? meetingBeginTime;
 
-  late int meetingEndTime;
+  int? meetingEndTime;
 
-  late String coverPCLongUrl;
+  String? coverPCLongUrl;
 
-  late String sharePicUrl;
+  String? sharePicUrl;
 
-  late String coverPCUrl;
+  String? coverPCUrl;
 
-  late String coverMobileUrl;
+  String? coverMobileUrl;
 
-  late String coverPCListUrl;
+  String? coverPCListUrl;
 
   TopicItem();
 
@@ -554,7 +554,7 @@ class TopicItem {
 
 @JsonSerializable()
 class TopicHotListWrap extends ServerStatusBean {
-  late List<TopicItem> hot;
+  List<TopicItem>? hot;
 
   TopicHotListWrap();
 
@@ -568,7 +568,7 @@ class TopicHotListWrap extends ServerStatusBean {
 class TopicDetailWrap extends ServerStatusBean {
   late TopicItem act;
 
-  late bool needBeginNotify;
+  bool? needBeginNotify;
 
   TopicDetailWrap();
 
@@ -581,13 +581,13 @@ class TopicDetailWrap extends ServerStatusBean {
 @JsonSerializable()
 class SimpleResourceInfo {
   @JsonKey(fromJson: dynamicToString)
-  late String songId;
+  String? songId;
 
-  late String threadId;
+  String? threadId;
 
-  late String songCoverUrl;
+  String? songCoverUrl;
 
-  late String name;
+  String? name;
 
   late Song song;
 
@@ -604,16 +604,16 @@ class HotwallCommentItem {
   @JsonKey(fromJson: dynamicToString)
   late String id;
 
-  late String threadId;
+  String? threadId;
 
-  late String content;
+  String? content;
 
-  late int time;
+  int? time;
 
-  late bool liked;
+  bool? liked;
 
-  late int likedCount;
-  late int replyCount;
+  int? likedCount;
+  int? replyCount;
 
   late NeteaseSimpleUserInfo simpleUserInfo;
 
@@ -629,7 +629,7 @@ class HotwallCommentItem {
 
 @JsonSerializable()
 class HotwallCommentListWrap extends ServerStatusBean {
-  late List<HotwallCommentItem> data;
+  List<HotwallCommentItem>? data;
 
   HotwallCommentListWrap();
 
@@ -642,16 +642,16 @@ class HotwallCommentListWrap extends ServerStatusBean {
 @JsonSerializable()
 class CommentSimple {
   @JsonKey(fromJson: dynamicToString)
-  late String commentId;
+  String? commentId;
 
-  late String content;
+  String? content;
 
-  late String threadId;
+  String? threadId;
 
   @JsonKey(fromJson: dynamicToString)
-  late String userId;
+  String? userId;
 
-  late String userName;
+  String? userName;
 
   CommentSimple();
 
@@ -667,15 +667,15 @@ class Comment {
   late String commentId;
 
   late NeteaseUserInfo user;
-  late NeteaseUserInfo beRepliedUser;
+  NeteaseUserInfo? beRepliedUser;
 
-  late String expressionUrl;
+  String? expressionUrl;
 
-  late int commentLocationType;
+  int? commentLocationType;
 
-  late int time;
+  int? time;
 
-  late String content;
+  String? content;
 
   Comment();
 
@@ -687,7 +687,7 @@ class Comment {
 
 @JsonSerializable()
 class CommentWrap extends ServerStatusBean {
-  late Comment comment;
+  Comment? comment;
 
   CommentWrap();
 
@@ -702,10 +702,10 @@ class MsgPromotion {
   @JsonKey(fromJson: dynamicToString)
   late String id;
 
-  late String title;
-  late String coverUrl;
-  late String text;
-  late String url;
+  String? title;
+  String? coverUrl;
+  String? text;
+  String? url;
 
   late int addTime;
 
@@ -719,20 +719,20 @@ class MsgPromotion {
 
 @JsonSerializable()
 class MsgGeneral {
-  late String title;
-  late String subTitle;
-  late String tag;
-  late String subTag;
-  late String noticeMsg;
+  String? title;
+  String? subTitle;
+  String? tag;
+  String? subTag;
+  String? noticeMsg;
   late String inboxBriefContent;
-  late String webUrl;
-  late String nativeUrl;
-  late String cover;
-  late String resName;
+  String? webUrl;
+  String? nativeUrl;
+  String? cover;
+  String? resName;
 
-  late int channel;
-  late int subType;
-  late bool canPlay;
+  int? channel;
+  int? subType;
+  bool? canPlay;
 
   MsgGeneral();
 
@@ -744,24 +744,24 @@ class MsgGeneral {
 
 @JsonSerializable()
 class MsgContent {
-  late String msg;
-  late String title;
-  late String pushMsg;
-  late int type;
-  late int resType;
+  String? msg;
+  String? title;
+  String? pushMsg;
+  int? type;
+  int? resType;
 
-  late bool newPub;
+  bool? newPub;
 
   // type={6} ~
 
   //type={12}
-  late MsgPromotion promotionUrl;
+  MsgPromotion? promotionUrl;
 
   //type={23}
-  late MsgGeneral generalMsg;
+  MsgGeneral? generalMsg;
 
   //type={7}
-  late Mv3 mv;
+  Mv3? mv;
 
   MsgContent();
 
@@ -776,15 +776,15 @@ class Msg {
   late NeteaseUserInfo fromUser;
   late NeteaseUserInfo toUser;
 
-  late String lastMsg;
+  String? lastMsg;
 
-  late bool noticeAccountFlag;
+  bool? noticeAccountFlag;
 
-  late int lastMsgTime;
-  late int newMsgCount;
+  int? lastMsgTime;
+  int? newMsgCount;
 
   MsgContent get msgObj {
-    return MsgContent.fromJson(jsonDecode(lastMsg));
+    return MsgContent.fromJson(jsonDecode(lastMsg ?? ''));
   }
 
   Msg();
@@ -802,13 +802,13 @@ class Msg2 {
   late NeteaseUserInfo fromUser;
   late NeteaseUserInfo toUser;
 
-  late String msg;
+  String? msg;
 
-  late int time;
-  late int batchId;
+  int? time;
+  int? batchId;
 
   MsgContent get msgObj {
-    return MsgContent.fromJson(jsonDecode(msg));
+    return MsgContent.fromJson(jsonDecode(msg ?? ''));
   }
 
   Msg2();
@@ -820,7 +820,7 @@ class Msg2 {
 
 @JsonSerializable()
 class UsersMsgListWrap extends ServerStatusBean {
-  late List<Msg> msgs;
+  List<Msg>? msgs;
 
   UsersMsgListWrap();
 
@@ -832,7 +832,7 @@ class UsersMsgListWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class RecentContactUsersData {
-  late List<NeteaseAccountProfile> follow;
+  List<NeteaseAccountProfile>? follow;
 
   RecentContactUsersData();
 
@@ -856,11 +856,11 @@ class RecentContactUsersWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class UserMsgListWrap extends ServerStatusBean {
-  late List<Msg2> msgs;
+  List<Msg2>? msgs;
 
   late bool isArtist;
   late bool isSubed;
-  late bool more;
+  bool? more;
 
   UserMsgListWrap();
 
@@ -875,7 +875,7 @@ class UserMsgListWrap2 extends ServerStatusBean {
   @JsonKey(fromJson: dynamicToString)
   late String id;
 
-  late List<Msg2> newMsgs;
+  List<Msg2>? newMsgs;
 
   //sendblacklist
   //blacklist
@@ -890,9 +890,9 @@ class UserMsgListWrap2 extends ServerStatusBean {
 
 @JsonSerializable()
 class Cover {
-  late int width;
-  late int height;
-  late String url;
+  int? width;
+  int? height;
+  String? url;
 
   Cover();
 
@@ -904,20 +904,20 @@ class Cover {
 @JsonSerializable()
 class Talk {
   @JsonKey(fromJson: dynamicToString)
-  late String talkId;
-  late String talkName;
-  late String talkDes;
+  String? talkId;
+  String? talkName;
+  String? talkDes;
   late Cover shareCover;
   late Cover showCover;
 
-  late int status;
-  late int mlogCount;
-  late int follows;
-  late int participations;
-  late int showParticipations;
+  int? status;
+  int? mlogCount;
+  int? follows;
+  int? participations;
+  int? showParticipations;
   late bool isFollow;
 
-  late String alg;
+  String? alg;
 
   Talk();
 
@@ -931,17 +931,17 @@ class MyLogBaseData {
   @JsonKey(fromJson: dynamicToString)
   late String id;
 
-  late int pubTime;
-  late int type;
+  int? pubTime;
+  int? type;
 
-  late String coverUrl;
-  late int coverWidth;
-  late int coverHeight;
-  late int coverColor;
+  String? coverUrl;
+  int? coverWidth;
+  int? coverHeight;
+  int? coverColor;
 
-  late Talk talk;
+  Talk? talk;
 
-  late String text;
+  String? text;
 
   MyLogBaseData();
 
@@ -953,8 +953,8 @@ class MyLogBaseData {
 
 @JsonSerializable()
 class MyLogResourceExt {
-  late int likedCount;
-  late int commentCount;
+  int? likedCount;
+  int? commentCount;
 
   MyLogResourceExt();
 
@@ -968,10 +968,10 @@ class MyLogResourceExt {
 class MyLogResource {
   late MyLogBaseData mlogBaseData;
   late MyLogResourceExt mlogExtVO;
-  late NeteaseAccountProfile userProfile;
+  NeteaseAccountProfile? userProfile;
 
-  late int status;
-  late String shareUrl;
+  int? status;
+  String? shareUrl;
 
   MyLogResource();
 
@@ -986,15 +986,15 @@ class MyLog {
   @JsonKey(fromJson: dynamicToString)
   late String id;
 
-  late int type;
+  int? type;
 
   late MyLogResource resource;
 
-  late String alg;
-  late String reason;
-  late int matchField;
-  late String matchFieldContent;
-  late bool sameCity;
+  String? alg;
+  String? reason;
+  int? matchField;
+  String? matchFieldContent;
+  bool? sameCity;
 
   MyLog();
 
@@ -1004,11 +1004,11 @@ class MyLog {
 }
 
 @JsonSerializable()
-class MyLogMyLikeData extends ServerStatusBean {
-  late List<MyLogResource> feeds;
+class MyLogMyLikeData {
+  List<MyLogResource>? feeds;
 
-  late int time;
-  late bool more;
+  int? time;
+  bool? more;
 
   MyLogMyLikeData();
 

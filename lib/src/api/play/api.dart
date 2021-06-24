@@ -126,10 +126,10 @@ mixin ApiPlay {
                     0, match.group(1)?.length ?? 0 - '?param=50y50'.length) ??
                 '';
             item.creator = NeteaseUserInfo();
-            item.creator.userId =
+            item.creator?.userId =
                 match.group(4)?.substring('/user/home?id='.length) ?? '';
-            item.creator.nickname = match.group(5) ?? '';
-            listWrap.playlists.add(item);
+            item.creator?.nickname = match.group(5) ?? '';
+            listWrap.playlists?.add(item);
           } catch (ignore) {}
         }
       } catch (e) {
@@ -1351,7 +1351,7 @@ mixin ApiPlay {
       int offset = 0,
       int limit = 30}) {
     var params = {'limit': limit, 'offset': offset};
-    return DioMetaData(joinUri('api/discovery/new/albums/area'),
+    return DioMetaData(joinUri('/api/discovery/new/albums/area'),
         data: params, options: joinOptions());
   }
 

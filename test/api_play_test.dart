@@ -92,12 +92,12 @@ void main() async {
     var result = await api.recommendSongListHistory();
     expect(result.code, RET_CODE_OK);
 
-    if (result.data.dates.isEmpty) {
+    if (result.data.dates?.isEmpty ?? true) {
       return;
     }
 
     var result2 =
-        await api.recommendSongListHistoryDetail(date: result.data.dates[0]);
+        await api.recommendSongListHistoryDetail(date: result.data.dates![0]);
     expect(result2.code, RET_CODE_OK);
   });
 
@@ -122,11 +122,11 @@ void main() async {
     var result = await api.userRadio();
     expect(result.code, RET_CODE_OK);
 
-    if (result.data.isEmpty) {
+    if (result.data?.isEmpty ?? true) {
       return;
     }
 
-    var result2 = await api.userRadioTrash(result.data[0].id);
+    var result2 = await api.userRadioTrash(result.data![0].id);
     expect(result2.code, RET_CODE_OK);
   });
 
@@ -152,7 +152,7 @@ void main() async {
 
   test('test_song_like_list', () async {
     var result = await api.likeSongList(
-        NeteaseMusicApi().usc.accountInfo?.account.id ?? defaultUserId);
+        NeteaseMusicApi().usc.accountInfo?.account?.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 
@@ -160,7 +160,8 @@ void main() async {
     var result = await api.cloudSong();
     expect(result.code, RET_CODE_OK);
 
-    List<String> ids = result.data.map((e) => e.songId).toList();
+    List<String> ids =
+        result.data?.map((e) => e.songId).toList() ?? List.empty();
 
     var result2 = await api.cloudSongDetail(ids);
     expect(result2.code, RET_CODE_OK);
@@ -175,7 +176,7 @@ void main() async {
 
   test('test_cloud_user_song_match', () async {
     var result = await api.cloudUserSongMatch(
-        NeteaseMusicApi().usc.accountInfo?.account.id ?? defaultUserId,
+        NeteaseMusicApi().usc.accountInfo?.account?.id ?? defaultUserId,
         '0',
         '0');
     expect(result.code, isNotNull);
@@ -330,17 +331,17 @@ void main() async {
     var result = await api.videoGroupList();
     expect(result.code, RET_CODE_OK);
 
-    if (result.data.isEmpty) {
+    if (result.data?.isEmpty ?? true) {
       return;
     }
 
-    var result2 = await api.videoListByGroup(result.data[0].id);
+    var result2 = await api.videoListByGroup(result.data![0].id);
     expect(result2.code, RET_CODE_OK);
 
     var result3 = await api.videoList();
     expect(result3.code, RET_CODE_OK);
 
-    var result4 = await api.videoListOther(result.data[0].id);
+    var result4 = await api.videoListOther(result.data![0].id);
     expect(result4.code, RET_CODE_OK);
   });
 

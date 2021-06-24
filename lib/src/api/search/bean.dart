@@ -191,11 +191,11 @@ class SearchVideoWrapX extends ServerStatusBean {
 class SearchComplexSong {
   late List<Song2> songs;
 
-  late String moreText;
+  String? moreText;
 
-  late String highText;
+  String? highText;
 
-  late bool more;
+  bool? more;
 
   late List<int> resourceIds;
 
@@ -211,9 +211,9 @@ class SearchComplexSong {
 class SearchComplexMlog {
   late List<MyLog> mlogs;
 
-  late String moreText;
+  String? moreText;
 
-  late bool more;
+  bool? more;
 
   late List<int> resourceIds;
 
@@ -229,11 +229,11 @@ class SearchComplexMlog {
 class SearchComplexPlaylist {
   late List<Play> playLists;
 
-  late String moreText;
+  String? moreText;
 
-  late String highText;
+  String? highText;
 
-  late bool more;
+  bool? more;
 
   late List<int> resourceIds;
 
@@ -249,11 +249,11 @@ class SearchComplexPlaylist {
 class SearchComplexArtist {
   late List<Artists> artists;
 
-  late String moreText;
+  String? moreText;
 
-  late String highText;
+  String? highText;
 
-  late bool more;
+  bool? more;
 
   late List<int> resourceIds;
 
@@ -269,11 +269,11 @@ class SearchComplexArtist {
 class SearchComplexAlbum {
   late List<Album> albums;
 
-  late String moreText;
+  String? moreText;
 
-  late String highText;
+  String? highText;
 
-  late bool more;
+  bool? more;
 
   late List<int> resourceIds;
 
@@ -289,11 +289,11 @@ class SearchComplexAlbum {
 class SearchComplexVideo {
   late List<Video2> videos;
 
-  late String moreText;
+  String? moreText;
 
-  late String highText;
+  String? highText;
 
-  late bool more;
+  bool? more;
 
   late List<int> resourceIds;
 
@@ -307,8 +307,8 @@ class SearchComplexVideo {
 
 @JsonSerializable()
 class SearchComplexSimQueryItem {
-  late String keyword;
-  late String alg;
+  String? keyword;
+  String? alg;
 
   SearchComplexSimQueryItem();
 
@@ -321,7 +321,7 @@ class SearchComplexSimQueryItem {
 @JsonSerializable()
 class SearchComplexSimQuery {
   late List<SearchComplexSimQueryItem> sim_querys;
-  late bool more;
+  bool? more;
 
   SearchComplexSimQuery();
 
@@ -333,11 +333,11 @@ class SearchComplexSimQuery {
 
 @JsonSerializable()
 class SearchComplexTalk {
-  late List<NeteaseUserInfo> users;
+  List<NeteaseUserInfo>? users;
 
-  late String moreText;
+  String? moreText;
 
-  late bool more;
+  bool? more;
 
   late List<int> resourceIds;
 
@@ -353,9 +353,9 @@ class SearchComplexTalk {
 class SearchComplexUser {
   late List<NeteaseUserInfo> users;
 
-  late String moreText;
+  String? moreText;
 
-  late bool more;
+  bool? more;
 
   late List<int> resourceIds;
 
@@ -369,17 +369,17 @@ class SearchComplexUser {
 
 @JsonSerializable()
 class SearchComplexWrap {
-  late SearchComplexSong song;
-  late SearchComplexMlog mlog;
-  late SearchComplexPlaylist playList;
-  late SearchComplexArtist artist;
-  late SearchComplexAlbum album;
-  late SearchComplexVideo video;
-  late SearchComplexSimQuery sim_query;
-  late SearchComplexTalk talk;
-  late SearchComplexUser user;
+  SearchComplexSong? song;
+  SearchComplexMlog? mlog;
+  SearchComplexPlaylist? playList;
+  SearchComplexArtist? artist;
+  SearchComplexAlbum? album;
+  SearchComplexVideo? video;
+  SearchComplexSimQuery? sim_query;
+  SearchComplexTalk? talk;
+  SearchComplexUser? user;
 
-  late List<String> order;
+  List<String>? order;
 
   SearchComplexWrap();
 
@@ -403,12 +403,12 @@ class SearchComplexWrapX extends ServerStatusBean {
 
 @JsonSerializable()
 class SearchKey {
-  late String showKeyword;
-  late int action;
-  late String realkeyword;
-  late int searchType;
-  late String alg;
-  late int gap;
+  String? showKeyword;
+  int? action;
+  String? realkeyword;
+  int? searchType;
+  String? alg;
+  int? gap;
 
   SearchKey();
 
@@ -432,8 +432,8 @@ class SearchKeyWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class SearchHotKey {
-  late String first;
-  late int second;
+  String? first;
+  int? second;
   late int iconType;
 
   SearchHotKey();
@@ -470,15 +470,15 @@ class SearchKeyWrapX extends ServerStatusBean {
 
 @JsonSerializable()
 class SearchKeyDetailedItem {
-  late String searchWord;
-  late String content;
+  String? searchWord;
+  String? content;
 
-  late String iconUrl;
-  late String url;
-  late String alg;
+  String? iconUrl;
+  String? url;
+  String? alg;
 
-  late int score;
-  late int source;
+  int? score;
+  int? source;
   late int iconType;
 
   SearchKeyDetailedItem();
@@ -503,10 +503,10 @@ class SearchKeyDetailedWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class SearchSuggestItem {
-  late String keyword;
-  late int type;
-  late String alg;
-  late String lastKeyword;
+  String? keyword;
+  int? type;
+  String? alg;
+  String? lastKeyword;
 
   SearchSuggestItem();
 
@@ -542,10 +542,10 @@ class SearchSuggestWrapX extends ServerStatusBean {
 
 @JsonSerializable()
 class SearchMultiMatchWrap {
-  late List<Song> song;
-  late List<Play> playList;
-  late List<Artists> artist;
-  late List<Album> album;
+  List<Song>? song;
+  List<Play>? playList;
+  List<Artists>? artist;
+  List<Album>? album;
 
   late List<String> orders;
 

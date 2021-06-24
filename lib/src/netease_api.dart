@@ -65,7 +65,9 @@ class NeteaseMusicApi
               response.data = jsonDecode(response.data);
             } catch (e) {}
           }
-          if (refreshToken && NeteaseMusicApi().usc.isLogined) {
+          if (refreshToken &&
+              NeteaseMusicApi().usc.isLogined &&
+              response.data is Map) {
             var result = ServerStatusBean.fromJson(response.data);
             // 1. token已经更新，请求重试
             // 2. token未更新

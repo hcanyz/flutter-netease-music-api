@@ -20,7 +20,7 @@ Map<String, dynamic> _$SearchSongWrapToJson(SearchSongWrap instance) =>
 
 SearchSongWrapX _$SearchSongWrapXFromJson(Map<String, dynamic> json) {
   return SearchSongWrapX()
-    ..code = json['code'] as int
+    ..code = dynamicToInt(json['code'])
     ..message = json['message'] as String?
     ..msg = json['msg'] as String?
     ..result = SearchSongWrap.fromJson(json['result'] as Map<String, dynamic>);
@@ -36,7 +36,7 @@ Map<String, dynamic> _$SearchSongWrapXToJson(SearchSongWrapX instance) =>
 
 SearchAlbumsWrapX _$SearchAlbumsWrapXFromJson(Map<String, dynamic> json) {
   return SearchAlbumsWrapX()
-    ..code = json['code'] as int
+    ..code = dynamicToInt(json['code'])
     ..message = json['message'] as String?
     ..msg = json['msg'] as String?
     ..result = AlbumListWrap.fromJson(json['result'] as Map<String, dynamic>);
@@ -64,7 +64,7 @@ Map<String, dynamic> _$SearchArtistsWrapToJson(SearchArtistsWrap instance) =>
 
 SearchArtistsWrapX _$SearchArtistsWrapXFromJson(Map<String, dynamic> json) {
   return SearchArtistsWrapX()
-    ..code = json['code'] as int
+    ..code = dynamicToInt(json['code'])
     ..message = json['message'] as String?
     ..msg = json['msg'] as String?
     ..result =
@@ -93,7 +93,7 @@ Map<String, dynamic> _$SearchPlaylistWrapToJson(SearchPlaylistWrap instance) =>
 
 SearchPlaylistWrapX _$SearchPlaylistWrapXFromJson(Map<String, dynamic> json) {
   return SearchPlaylistWrapX()
-    ..code = json['code'] as int
+    ..code = dynamicToInt(json['code'])
     ..message = json['message'] as String?
     ..msg = json['msg'] as String?
     ..result =
@@ -111,7 +111,7 @@ Map<String, dynamic> _$SearchPlaylistWrapXToJson(
 
 SearchUserWrapX _$SearchUserWrapXFromJson(Map<String, dynamic> json) {
   return SearchUserWrapX()
-    ..code = json['code'] as int
+    ..code = dynamicToInt(json['code'])
     ..message = json['message'] as String?
     ..msg = json['msg'] as String?
     ..result = UserListWrap.fromJson(json['result'] as Map<String, dynamic>);
@@ -127,7 +127,7 @@ Map<String, dynamic> _$SearchUserWrapXToJson(SearchUserWrapX instance) =>
 
 SearchMvWrapX _$SearchMvWrapXFromJson(Map<String, dynamic> json) {
   return SearchMvWrapX()
-    ..code = json['code'] as int
+    ..code = dynamicToInt(json['code'])
     ..message = json['message'] as String?
     ..msg = json['msg'] as String?
     ..result = MvListWrap.fromJson(json['result'] as Map<String, dynamic>);
@@ -155,7 +155,7 @@ Map<String, dynamic> _$SearchLyricsWrapToJson(SearchLyricsWrap instance) =>
 
 SearchLyricsWrapX _$SearchLyricsWrapXFromJson(Map<String, dynamic> json) {
   return SearchLyricsWrapX()
-    ..code = json['code'] as int
+    ..code = dynamicToInt(json['code'])
     ..message = json['message'] as String?
     ..msg = json['msg'] as String?
     ..result =
@@ -184,7 +184,7 @@ Map<String, dynamic> _$SearchDjradiorapToJson(SearchDjradiorap instance) =>
 
 SearchDjradioWrapX _$SearchDjradioWrapXFromJson(Map<String, dynamic> json) {
   return SearchDjradioWrapX()
-    ..code = json['code'] as int
+    ..code = dynamicToInt(json['code'])
     ..message = json['message'] as String?
     ..msg = json['msg'] as String?
     ..result =
@@ -213,7 +213,7 @@ Map<String, dynamic> _$SearchVideoWrapToJson(SearchVideoWrap instance) =>
 
 SearchVideoWrapX _$SearchVideoWrapXFromJson(Map<String, dynamic> json) {
   return SearchVideoWrapX()
-    ..code = json['code'] as int
+    ..code = dynamicToInt(json['code'])
     ..message = json['message'] as String?
     ..msg = json['msg'] as String?
     ..result = SearchVideoWrap.fromJson(json['result'] as Map<String, dynamic>);
@@ -232,9 +232,9 @@ SearchComplexSong _$SearchComplexSongFromJson(Map<String, dynamic> json) {
     ..songs = (json['songs'] as List<dynamic>)
         .map((e) => Song2.fromJson(e as Map<String, dynamic>))
         .toList()
-    ..moreText = json['moreText'] as String
-    ..highText = json['highText'] as String
-    ..more = json['more'] as bool
+    ..moreText = json['moreText'] as String?
+    ..highText = json['highText'] as String?
+    ..more = json['more'] as bool?
     ..resourceIds =
         (json['resourceIds'] as List<dynamic>).map((e) => e as int).toList();
 }
@@ -253,8 +253,8 @@ SearchComplexMlog _$SearchComplexMlogFromJson(Map<String, dynamic> json) {
     ..mlogs = (json['mlogs'] as List<dynamic>)
         .map((e) => MyLog.fromJson(e as Map<String, dynamic>))
         .toList()
-    ..moreText = json['moreText'] as String
-    ..more = json['more'] as bool
+    ..moreText = json['moreText'] as String?
+    ..more = json['more'] as bool?
     ..resourceIds =
         (json['resourceIds'] as List<dynamic>).map((e) => e as int).toList();
 }
@@ -273,9 +273,9 @@ SearchComplexPlaylist _$SearchComplexPlaylistFromJson(
     ..playLists = (json['playLists'] as List<dynamic>)
         .map((e) => Play.fromJson(e as Map<String, dynamic>))
         .toList()
-    ..moreText = json['moreText'] as String
-    ..highText = json['highText'] as String
-    ..more = json['more'] as bool
+    ..moreText = json['moreText'] as String?
+    ..highText = json['highText'] as String?
+    ..more = json['more'] as bool?
     ..resourceIds =
         (json['resourceIds'] as List<dynamic>).map((e) => e as int).toList();
 }
@@ -295,9 +295,9 @@ SearchComplexArtist _$SearchComplexArtistFromJson(Map<String, dynamic> json) {
     ..artists = (json['artists'] as List<dynamic>)
         .map((e) => Artists.fromJson(e as Map<String, dynamic>))
         .toList()
-    ..moreText = json['moreText'] as String
-    ..highText = json['highText'] as String
-    ..more = json['more'] as bool
+    ..moreText = json['moreText'] as String?
+    ..highText = json['highText'] as String?
+    ..more = json['more'] as bool?
     ..resourceIds =
         (json['resourceIds'] as List<dynamic>).map((e) => e as int).toList();
 }
@@ -317,9 +317,9 @@ SearchComplexAlbum _$SearchComplexAlbumFromJson(Map<String, dynamic> json) {
     ..albums = (json['albums'] as List<dynamic>)
         .map((e) => Album.fromJson(e as Map<String, dynamic>))
         .toList()
-    ..moreText = json['moreText'] as String
-    ..highText = json['highText'] as String
-    ..more = json['more'] as bool
+    ..moreText = json['moreText'] as String?
+    ..highText = json['highText'] as String?
+    ..more = json['more'] as bool?
     ..resourceIds =
         (json['resourceIds'] as List<dynamic>).map((e) => e as int).toList();
 }
@@ -338,9 +338,9 @@ SearchComplexVideo _$SearchComplexVideoFromJson(Map<String, dynamic> json) {
     ..videos = (json['videos'] as List<dynamic>)
         .map((e) => Video2.fromJson(e as Map<String, dynamic>))
         .toList()
-    ..moreText = json['moreText'] as String
-    ..highText = json['highText'] as String
-    ..more = json['more'] as bool
+    ..moreText = json['moreText'] as String?
+    ..highText = json['highText'] as String?
+    ..more = json['more'] as bool?
     ..resourceIds =
         (json['resourceIds'] as List<dynamic>).map((e) => e as int).toList();
 }
@@ -357,8 +357,8 @@ Map<String, dynamic> _$SearchComplexVideoToJson(SearchComplexVideo instance) =>
 SearchComplexSimQueryItem _$SearchComplexSimQueryItemFromJson(
     Map<String, dynamic> json) {
   return SearchComplexSimQueryItem()
-    ..keyword = json['keyword'] as String
-    ..alg = json['alg'] as String;
+    ..keyword = json['keyword'] as String?
+    ..alg = json['alg'] as String?;
 }
 
 Map<String, dynamic> _$SearchComplexSimQueryItemToJson(
@@ -375,7 +375,7 @@ SearchComplexSimQuery _$SearchComplexSimQueryFromJson(
         .map((e) =>
             SearchComplexSimQueryItem.fromJson(e as Map<String, dynamic>))
         .toList()
-    ..more = json['more'] as bool;
+    ..more = json['more'] as bool?;
 }
 
 Map<String, dynamic> _$SearchComplexSimQueryToJson(
@@ -387,11 +387,11 @@ Map<String, dynamic> _$SearchComplexSimQueryToJson(
 
 SearchComplexTalk _$SearchComplexTalkFromJson(Map<String, dynamic> json) {
   return SearchComplexTalk()
-    ..users = (json['users'] as List<dynamic>)
-        .map((e) => NeteaseUserInfo.fromJson(e as Map<String, dynamic>))
+    ..users = (json['users'] as List<dynamic>?)
+        ?.map((e) => NeteaseUserInfo.fromJson(e as Map<String, dynamic>))
         .toList()
-    ..moreText = json['moreText'] as String
-    ..more = json['more'] as bool
+    ..moreText = json['moreText'] as String?
+    ..more = json['more'] as bool?
     ..resourceIds =
         (json['resourceIds'] as List<dynamic>).map((e) => e as int).toList();
 }
@@ -409,8 +409,8 @@ SearchComplexUser _$SearchComplexUserFromJson(Map<String, dynamic> json) {
     ..users = (json['users'] as List<dynamic>)
         .map((e) => NeteaseUserInfo.fromJson(e as Map<String, dynamic>))
         .toList()
-    ..moreText = json['moreText'] as String
-    ..more = json['more'] as bool
+    ..moreText = json['moreText'] as String?
+    ..more = json['more'] as bool?
     ..resourceIds =
         (json['resourceIds'] as List<dynamic>).map((e) => e as int).toList();
 }
@@ -425,19 +425,37 @@ Map<String, dynamic> _$SearchComplexUserToJson(SearchComplexUser instance) =>
 
 SearchComplexWrap _$SearchComplexWrapFromJson(Map<String, dynamic> json) {
   return SearchComplexWrap()
-    ..song = SearchComplexSong.fromJson(json['song'] as Map<String, dynamic>)
-    ..mlog = SearchComplexMlog.fromJson(json['mlog'] as Map<String, dynamic>)
-    ..playList =
-        SearchComplexPlaylist.fromJson(json['playList'] as Map<String, dynamic>)
-    ..artist =
-        SearchComplexArtist.fromJson(json['artist'] as Map<String, dynamic>)
-    ..album = SearchComplexAlbum.fromJson(json['album'] as Map<String, dynamic>)
-    ..video = SearchComplexVideo.fromJson(json['video'] as Map<String, dynamic>)
-    ..sim_query = SearchComplexSimQuery.fromJson(
-        json['sim_query'] as Map<String, dynamic>)
-    ..talk = SearchComplexTalk.fromJson(json['talk'] as Map<String, dynamic>)
-    ..user = SearchComplexUser.fromJson(json['user'] as Map<String, dynamic>)
-    ..order = (json['order'] as List<dynamic>).map((e) => e as String).toList();
+    ..song = json['song'] == null
+        ? null
+        : SearchComplexSong.fromJson(json['song'] as Map<String, dynamic>)
+    ..mlog = json['mlog'] == null
+        ? null
+        : SearchComplexMlog.fromJson(json['mlog'] as Map<String, dynamic>)
+    ..playList = json['playList'] == null
+        ? null
+        : SearchComplexPlaylist.fromJson(
+            json['playList'] as Map<String, dynamic>)
+    ..artist = json['artist'] == null
+        ? null
+        : SearchComplexArtist.fromJson(json['artist'] as Map<String, dynamic>)
+    ..album = json['album'] == null
+        ? null
+        : SearchComplexAlbum.fromJson(json['album'] as Map<String, dynamic>)
+    ..video = json['video'] == null
+        ? null
+        : SearchComplexVideo.fromJson(json['video'] as Map<String, dynamic>)
+    ..sim_query = json['sim_query'] == null
+        ? null
+        : SearchComplexSimQuery.fromJson(
+            json['sim_query'] as Map<String, dynamic>)
+    ..talk = json['talk'] == null
+        ? null
+        : SearchComplexTalk.fromJson(json['talk'] as Map<String, dynamic>)
+    ..user = json['user'] == null
+        ? null
+        : SearchComplexUser.fromJson(json['user'] as Map<String, dynamic>)
+    ..order =
+        (json['order'] as List<dynamic>?)?.map((e) => e as String).toList();
 }
 
 Map<String, dynamic> _$SearchComplexWrapToJson(SearchComplexWrap instance) =>
@@ -456,7 +474,7 @@ Map<String, dynamic> _$SearchComplexWrapToJson(SearchComplexWrap instance) =>
 
 SearchComplexWrapX _$SearchComplexWrapXFromJson(Map<String, dynamic> json) {
   return SearchComplexWrapX()
-    ..code = json['code'] as int
+    ..code = dynamicToInt(json['code'])
     ..message = json['message'] as String?
     ..msg = json['msg'] as String?
     ..result =
@@ -473,12 +491,12 @@ Map<String, dynamic> _$SearchComplexWrapXToJson(SearchComplexWrapX instance) =>
 
 SearchKey _$SearchKeyFromJson(Map<String, dynamic> json) {
   return SearchKey()
-    ..showKeyword = json['showKeyword'] as String
-    ..action = json['action'] as int
-    ..realkeyword = json['realkeyword'] as String
-    ..searchType = json['searchType'] as int
-    ..alg = json['alg'] as String
-    ..gap = json['gap'] as int;
+    ..showKeyword = json['showKeyword'] as String?
+    ..action = json['action'] as int?
+    ..realkeyword = json['realkeyword'] as String?
+    ..searchType = json['searchType'] as int?
+    ..alg = json['alg'] as String?
+    ..gap = json['gap'] as int?;
 }
 
 Map<String, dynamic> _$SearchKeyToJson(SearchKey instance) => <String, dynamic>{
@@ -492,7 +510,7 @@ Map<String, dynamic> _$SearchKeyToJson(SearchKey instance) => <String, dynamic>{
 
 SearchKeyWrap _$SearchKeyWrapFromJson(Map<String, dynamic> json) {
   return SearchKeyWrap()
-    ..code = json['code'] as int
+    ..code = dynamicToInt(json['code'])
     ..message = json['message'] as String?
     ..msg = json['msg'] as String?
     ..data = SearchKey.fromJson(json['data'] as Map<String, dynamic>);
@@ -508,8 +526,8 @@ Map<String, dynamic> _$SearchKeyWrapToJson(SearchKeyWrap instance) =>
 
 SearchHotKey _$SearchHotKeyFromJson(Map<String, dynamic> json) {
   return SearchHotKey()
-    ..first = json['first'] as String
-    ..second = json['second'] as int
+    ..first = json['first'] as String?
+    ..second = json['second'] as int?
     ..iconType = json['iconType'] as int;
 }
 
@@ -534,7 +552,7 @@ Map<String, dynamic> _$SearchHotKeyWrapToJson(SearchHotKeyWrap instance) =>
 
 SearchKeyWrapX _$SearchKeyWrapXFromJson(Map<String, dynamic> json) {
   return SearchKeyWrapX()
-    ..code = json['code'] as int
+    ..code = dynamicToInt(json['code'])
     ..message = json['message'] as String?
     ..msg = json['msg'] as String?
     ..result =
@@ -552,13 +570,13 @@ Map<String, dynamic> _$SearchKeyWrapXToJson(SearchKeyWrapX instance) =>
 SearchKeyDetailedItem _$SearchKeyDetailedItemFromJson(
     Map<String, dynamic> json) {
   return SearchKeyDetailedItem()
-    ..searchWord = json['searchWord'] as String
-    ..content = json['content'] as String
-    ..iconUrl = json['iconUrl'] as String
-    ..url = json['url'] as String
-    ..alg = json['alg'] as String
-    ..score = json['score'] as int
-    ..source = json['source'] as int
+    ..searchWord = json['searchWord'] as String?
+    ..content = json['content'] as String?
+    ..iconUrl = json['iconUrl'] as String?
+    ..url = json['url'] as String?
+    ..alg = json['alg'] as String?
+    ..score = json['score'] as int?
+    ..source = json['source'] as int?
     ..iconType = json['iconType'] as int;
 }
 
@@ -578,7 +596,7 @@ Map<String, dynamic> _$SearchKeyDetailedItemToJson(
 SearchKeyDetailedWrap _$SearchKeyDetailedWrapFromJson(
     Map<String, dynamic> json) {
   return SearchKeyDetailedWrap()
-    ..code = json['code'] as int
+    ..code = dynamicToInt(json['code'])
     ..message = json['message'] as String?
     ..msg = json['msg'] as String?
     ..data = (json['data'] as List<dynamic>)
@@ -597,10 +615,10 @@ Map<String, dynamic> _$SearchKeyDetailedWrapToJson(
 
 SearchSuggestItem _$SearchSuggestItemFromJson(Map<String, dynamic> json) {
   return SearchSuggestItem()
-    ..keyword = json['keyword'] as String
-    ..type = json['type'] as int
-    ..alg = json['alg'] as String
-    ..lastKeyword = json['lastKeyword'] as String;
+    ..keyword = json['keyword'] as String?
+    ..type = json['type'] as int?
+    ..alg = json['alg'] as String?
+    ..lastKeyword = json['lastKeyword'] as String?;
 }
 
 Map<String, dynamic> _$SearchSuggestItemToJson(SearchSuggestItem instance) =>
@@ -625,7 +643,7 @@ Map<String, dynamic> _$SearchSuggestWrapToJson(SearchSuggestWrap instance) =>
 
 SearchSuggestWrapX _$SearchSuggestWrapXFromJson(Map<String, dynamic> json) {
   return SearchSuggestWrapX()
-    ..code = json['code'] as int
+    ..code = dynamicToInt(json['code'])
     ..message = json['message'] as String?
     ..msg = json['msg'] as String?
     ..result =
@@ -642,17 +660,17 @@ Map<String, dynamic> _$SearchSuggestWrapXToJson(SearchSuggestWrapX instance) =>
 
 SearchMultiMatchWrap _$SearchMultiMatchWrapFromJson(Map<String, dynamic> json) {
   return SearchMultiMatchWrap()
-    ..song = (json['song'] as List<dynamic>)
-        .map((e) => Song.fromJson(e as Map<String, dynamic>))
+    ..song = (json['song'] as List<dynamic>?)
+        ?.map((e) => Song.fromJson(e as Map<String, dynamic>))
         .toList()
-    ..playList = (json['playList'] as List<dynamic>)
-        .map((e) => Play.fromJson(e as Map<String, dynamic>))
+    ..playList = (json['playList'] as List<dynamic>?)
+        ?.map((e) => Play.fromJson(e as Map<String, dynamic>))
         .toList()
-    ..artist = (json['artist'] as List<dynamic>)
-        .map((e) => Artists.fromJson(e as Map<String, dynamic>))
+    ..artist = (json['artist'] as List<dynamic>?)
+        ?.map((e) => Artists.fromJson(e as Map<String, dynamic>))
         .toList()
-    ..album = (json['album'] as List<dynamic>)
-        .map((e) => Album.fromJson(e as Map<String, dynamic>))
+    ..album = (json['album'] as List<dynamic>?)
+        ?.map((e) => Album.fromJson(e as Map<String, dynamic>))
         .toList()
     ..orders =
         (json['orders'] as List<dynamic>).map((e) => e as String).toList();
@@ -671,7 +689,7 @@ Map<String, dynamic> _$SearchMultiMatchWrapToJson(
 SearchMultiMatchWrapX _$SearchMultiMatchWrapXFromJson(
     Map<String, dynamic> json) {
   return SearchMultiMatchWrapX()
-    ..code = json['code'] as int
+    ..code = dynamicToInt(json['code'])
     ..message = json['message'] as String?
     ..msg = json['msg'] as String?
     ..result =

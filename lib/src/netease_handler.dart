@@ -159,29 +159,27 @@ void _handleEApi(RequestOptions option, List<Cookie> cookies) {
   option.path = oldUriStr.replaceAll(RegExp(r'\w*api'), 'eapi');
 
   var header = {};
-  if (cookies != null) {
-    Map<String, String> cookiesMap =
-        cookies.fold(<String, String>{}, (map, element) {
-      map[element.name] = element.value;
-      return map;
-    });
-    header['osver'] = cookiesMap['osver'];
-    header['deviceId'] = cookiesMap['deviceId'];
-    header['appver'] = cookiesMap['appver'] ?? '8.0.00';
-    header['versioncode'] = cookiesMap['versioncode'] ?? '140';
-    header['mobilename'] = cookiesMap['mobilename'];
-    header['buildver'] = cookiesMap['mobilename'] ??
-        DateTime.now().millisecondsSinceEpoch ~/ 1000;
-    header['resolution'] = cookiesMap['resolution'] ?? '1920x1080';
-    header['os'] = cookiesMap['os'] ?? 'android';
-    header['channel'] = cookiesMap['channel'];
-    header['__csrf'] = cookiesMap['__csrf'] ?? '';
-    if (cookiesMap['MUSIC_U'] != null) {
-      header['MUSIC_U'] = cookiesMap['MUSIC_U'];
-    }
-    if (cookiesMap['MUSIC_A'] != null) {
-      header['MUSIC_A'] = cookiesMap['MUSIC_A'];
-    }
+  Map<String, String> cookiesMap =
+      cookies.fold(<String, String>{}, (map, element) {
+    map[element.name] = element.value;
+    return map;
+  });
+  header['osver'] = cookiesMap['osver'];
+  header['deviceId'] = cookiesMap['deviceId'];
+  header['appver'] = cookiesMap['appver'] ?? '8.0.00';
+  header['versioncode'] = cookiesMap['versioncode'] ?? '140';
+  header['mobilename'] = cookiesMap['mobilename'];
+  header['buildver'] =
+      cookiesMap['mobilename'] ?? DateTime.now().millisecondsSinceEpoch ~/ 1000;
+  header['resolution'] = cookiesMap['resolution'] ?? '1920x1080';
+  header['os'] = cookiesMap['os'] ?? 'android';
+  header['channel'] = cookiesMap['channel'];
+  header['__csrf'] = cookiesMap['__csrf'] ?? '';
+  if (cookiesMap['MUSIC_U'] != null) {
+    header['MUSIC_U'] = cookiesMap['MUSIC_U'];
+  }
+  if (cookiesMap['MUSIC_A'] != null) {
+    header['MUSIC_A'] = cookiesMap['MUSIC_A'];
   }
   header['requestId'] =
       '${DateTime.now().millisecondsSinceEpoch}${Random().nextInt(1000).toString().padLeft(4, '0')}';
@@ -199,7 +197,7 @@ void _handleEApi(RequestOptions option, List<Cookie> cookies) {
   var data = '$url-36cd479b6b5-$body-36cd479b6b5-$digest';
 
   final encrypted = Encrypter(AES(Key.fromUtf8(_KeyEApi), mode: AESMode.ecb))
-      .encrypt(data)
+      .encrypt(data, iv: IV.fromLength(0))
       .base16
       .toUpperCase();
 
@@ -284,6 +282,10 @@ Future<int> loadCookiesHash({List<Cookie>? cookies}) async {
 }
 
 Future<void> deleteAllCookie() async {
-  await (NeteaseMusicApi.cookieManager.cookieJar as PersistCookieJar)
-      .deleteAll();
+  try {
+    await (NeteaseMusicApi.cookieManager.cookieJar as PersistCookieJar)
+        .deleteAll();
+  } catch (e) {
+    // 忽略删除失败
+  }
 }

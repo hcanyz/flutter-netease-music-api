@@ -8,17 +8,17 @@ part 'bean.g.dart';
 class NeteaseAccount {
   @JsonKey(fromJson: dynamicToString)
   late String id;
-  late String userName;
+  String? userName;
 
-  late int type;
-  late int status;
+  int? type;
+  int? status;
 
-  late int createTime;
+  int? createTime;
 
-  late int vipType;
-  late int viptypeVersion;
+  int? vipType;
+  int? viptypeVersion;
 
-  late bool anonimousUser;
+  bool? anonimousUser;
 
   NeteaseAccount();
 
@@ -30,8 +30,8 @@ class NeteaseAccount {
 
 @JsonSerializable()
 class NeteaseAccountProfile extends NeteaseUserInfo {
-  late int follows;
-  late int playlistCount;
+  int? follows;
+  int? playlistCount;
 
   NeteaseAccountProfile();
 
@@ -43,11 +43,11 @@ class NeteaseAccountProfile extends NeteaseUserInfo {
 
 @JsonSerializable()
 class NeteaseAccountInfoWrap extends ServerStatusBean {
-  late int loginType;
+  int? loginType;
 
-  late NeteaseAccount account;
+  NeteaseAccount? account;
 
-  late NeteaseAccountProfile profile;
+  NeteaseAccountProfile? profile;
 
   NeteaseAccountInfoWrap();
 
@@ -62,15 +62,15 @@ class NeteaseAccountBinding {
   @JsonKey(fromJson: dynamicToString)
   late String id;
   @JsonKey(fromJson: dynamicToString)
-  late String userId;
+  String? userId;
 
-  late String tokenJsonStr;
-  late String url;
-  late int type;
-  late int expiresIn;
-  late int refreshTime;
-  late int bindingTime;
-  late bool expired;
+  String? tokenJsonStr;
+  String? url;
+  int? type;
+  int? expiresIn;
+  int? refreshTime;
+  int? bindingTime;
+  bool? expired;
 
   NeteaseAccountBinding();
 
@@ -95,14 +95,14 @@ class NeteaseAccountBindingWrap extends ServerStatusBean {
 @JsonSerializable()
 class CellPhoneCheckExistenceRet extends ServerStatusBean {
   // 1: 存在   -1: 不存在
-  late int exist;
+  int? exist;
 
-  late String nickname;
+  String? nickname;
 
-  late bool hasPassword;
+  bool? hasPassword;
 
   /// 账号不存在 或者 没有密码 需要短信登录
-  bool get needUseSms => exist != 1 || !hasPassword;
+  bool get needUseSms => exist != 1 || !(hasPassword ?? true);
 
   CellPhoneCheckExistenceRet();
 

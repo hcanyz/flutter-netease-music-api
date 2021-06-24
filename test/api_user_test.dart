@@ -28,13 +28,13 @@ void main() async {
 
   test('test_userDetail', () async {
     var result =
-        await api.userDetail(api.usc.accountInfo?.account.id ?? defaultUserId);
+        await api.userDetail(api.usc.accountInfo?.account?.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 
   test('test_userDetail', () async {
     var result = await api
-        .userBindings(api.usc.accountInfo?.account.id ?? defaultUserId);
+        .userBindings(api.usc.accountInfo?.account?.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 
@@ -53,14 +53,13 @@ void main() async {
     if (info == null) {
       return;
     }
+    var birthday = info.profile?.birthday ?? 0;
     var result = await api.userUpdateProfile(
-        info.profile.gender,
-        info.profile.birthday < 0
-            ? DateTime.now().millisecondsSinceEpoch
-            : info.profile.birthday,
+        info.profile?.gender ?? 0,
+        (birthday) < 0 ? DateTime.now().millisecondsSinceEpoch : birthday,
         'hcanyz_${Random().nextInt(10)}',
-        info.profile.province,
-        info.profile.city,
+        info.profile?.province ?? 0,
+        info.profile?.city ?? 0,
         '偶尔会发笑_${Random().nextInt(10)}');
     expect(result.code, RET_CODE_OK);
   });
@@ -72,19 +71,19 @@ void main() async {
 
   test('test_user_playlist', () async {
     var result = await api
-        .userPlayList(api.usc.accountInfo?.account.id ?? defaultUserId);
+        .userPlayList(api.usc.accountInfo?.account?.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
     expect(result.playlist, isNotNull);
   });
 
   test('test_user_update_playlist_info', () async {
     var result = await api
-        .userPlayList(api.usc.accountInfo?.account.id ?? defaultUserId);
+        .userPlayList(api.usc.accountInfo?.account?.id ?? defaultUserId);
     expect(result.playlist, isNotNull);
     expect(result.playlist, isNotEmpty);
 
     var id = result.playlist
-            .firstWhereOrNull((element) => element.specialType == 0)
+            ?.firstWhereOrNull((element) => element.specialType == 0)
             ?.id ??
         '';
 
@@ -194,7 +193,7 @@ void main() async {
 
   test('test_user_play_record_list', () async {
     var result = await api.userPlayRecordList(
-        NeteaseMusicApi().usc.accountInfo?.account.id ?? defaultUserId, false);
+        NeteaseMusicApi().usc.accountInfo?.account?.id ?? defaultUserId, false);
     expect(result.code, RET_CODE_OK);
   });
 

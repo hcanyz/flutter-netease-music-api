@@ -111,7 +111,7 @@ void main() async {
 
   test('test_user_dj_programs_list', () async {
     var result = await api
-        .userDjProgramsList(api.usc.accountInfo?.account.id ?? defaultUserId);
+        .userDjProgramsList(api.usc.accountInfo?.account?.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 

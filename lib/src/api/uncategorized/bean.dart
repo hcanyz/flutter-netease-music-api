@@ -11,29 +11,29 @@ part 'bean.g.dart';
 
 @JsonSerializable()
 class BannerItem {
-  late String bannerId;
+  String? bannerId;
 
   late String pic;
 
   late int targetId;
   late int targetType;
 
-  late String titleColor;
+  String? titleColor;
   late String typeTitle;
-  late String url;
-  late String adurlV2;
+  String? url;
+  String? adurlV2;
 
   late bool exclusive;
 
-  late String encodeId;
+  String? encodeId;
 
-  late Song2 song;
+  Song2? song;
 
-  late String alg;
-  late String scm;
-  late String requestId;
+  String? alg;
+  String? scm;
+  String? requestId;
 
-  late bool showAdTag;
+  bool? showAdTag;
 
   BannerItem();
 
@@ -69,14 +69,14 @@ class BannerListWrap2 extends ServerStatusBean {
 
 @JsonSerializable()
 class PageConfig {
-  late String title;
+  String? title;
 
-  late String refreshToast;
-  late String nodataToast;
-  late int refreshInterval;
-  late int songLabelMarkLimit;
+  String? refreshToast;
+  String? nodataToast;
+  int? refreshInterval;
+  int? songLabelMarkLimit;
 
-  late bool fullscreen;
+  bool? fullscreen;
 
   late List<String> songLabelMarkPriority;
   late List<String> abtest;
@@ -91,7 +91,7 @@ class PageConfig {
 
 @JsonSerializable()
 class HomeBlockPageUiElementTitle {
-  late String title;
+  String? title;
 
   HomeBlockPageUiElementTitle();
 
@@ -103,10 +103,10 @@ class HomeBlockPageUiElementTitle {
 
 @JsonSerializable()
 class HomeBlockPageUiElementButton {
-  late String action;
-  late String actionType;
-  late String text;
-  late String iconUrl;
+  String? action;
+  String? actionType;
+  String? text;
+  String? iconUrl;
 
   HomeBlockPageUiElementButton();
 
@@ -130,12 +130,12 @@ class HomeBlockPageUiElementImage {
 
 @JsonSerializable()
 class HomeBlockPageUiElement {
-  late HomeBlockPageUiElementTitle mainTitle;
-  late HomeBlockPageUiElementTitle subTitle;
-  late HomeBlockPageUiElementButton button;
-  late HomeBlockPageUiElementImage image;
+  HomeBlockPageUiElementTitle? mainTitle;
+  HomeBlockPageUiElementTitle? subTitle;
+  HomeBlockPageUiElementButton? button;
+  HomeBlockPageUiElementImage? image;
 
-  late List<String> labelTexts;
+  List<String>? labelTexts;
 
   HomeBlockPageUiElement();
 
@@ -147,13 +147,13 @@ class HomeBlockPageUiElement {
 
 @JsonSerializable()
 class HomeBlockPageResourceExt {
-  late List<Artists> artists;
-  late Song songData;
-  late Privilege songPrivilege;
-  late CommentSimple commentSimpleData;
+  List<Artists>? artists;
+  Song? songData;
+  Privilege? songPrivilege;
+  CommentSimple? commentSimpleData;
 
-  late bool highQuality;
-  late int playCount;
+  bool? highQuality;
+  int? playCount;
 
   HomeBlockPageResourceExt();
 
@@ -165,22 +165,22 @@ class HomeBlockPageResourceExt {
 
 @JsonSerializable()
 class HomeBlockPageResource {
-  late String resourceType;
+  String? resourceType;
 
-  late String resourceId;
+  String? resourceId;
 
-  late String resourceUrl;
+  String? resourceUrl;
 
-  late String action;
-  late String actionType;
+  String? action;
+  String? actionType;
 
   late HomeBlockPageUiElement uiElement;
 
   late HomeBlockPageResourceExt resourceExtInfo;
 
-  late String alg;
+  String? alg;
 
-  late bool valid;
+  bool? valid;
 
   HomeBlockPageResource();
 
@@ -192,20 +192,20 @@ class HomeBlockPageResource {
 
 @JsonSerializable()
 class HomeBlockPageCreative {
-  late String creativeType;
+  String? creativeType;
 
-  late String creativeId;
+  String? creativeId;
 
-  late String action;
-  late String actionType;
+  String? action;
+  String? actionType;
 
   late HomeBlockPageUiElement uiElement;
 
   late List<HomeBlockPageResource> resources;
 
-  late String alg;
+  String? alg;
 
-  late int position;
+  int? position;
 
   HomeBlockPageCreative();
 
@@ -217,24 +217,24 @@ class HomeBlockPageCreative {
 
 @JsonSerializable()
 class HomeBlockPageItem {
-  late String blockCode;
+  String? blockCode;
 
   // HOMEPAGE_SLIDE_PLAYLIST  HOMEPAGE_SLIDE_SONGLIST_ALIGN
-  late String showType;
+  String? showType;
 
   late HomeBlockPageUiElement uiElement;
 
-  late List<HomeBlockPageCreative> creatives;
+  List<HomeBlockPageCreative>? creatives;
 
   dynamic extInfo;
 
   // orpheus://playlistCollection?referLog=HOMEPAGE_BLOCK_PLAYLIST_RCMD
-  late String action;
+  String? action;
 
   // scheme
-  late String actionType;
+  String? actionType;
 
-  late bool canClose;
+  bool? canClose;
 
   HomeBlockPageItem();
 
@@ -246,7 +246,7 @@ class HomeBlockPageItem {
 
 @JsonSerializable()
 class HomeBlockPageCursor {
-  late int offset;
+  int? offset;
 
   late List<String> blockCodeOrderList;
 
@@ -260,10 +260,10 @@ class HomeBlockPageCursor {
 
 @JsonSerializable()
 class HomeBlockPage {
-  late bool hasMore;
+  bool? hasMore;
 
   @JsonKey(fromJson: _stringToHomeBlockPageCursor)
-  late HomeBlockPageCursor cursor;
+  HomeBlockPageCursor? cursor;
 
   late PageConfig pageConfig;
 
@@ -295,13 +295,13 @@ class HomeBlockPageWrap extends ServerStatusBean {
 @JsonSerializable()
 class HomeDragonBallItem {
   late int id;
-  late String name;
+  String? name;
 
   late String iconUrl;
 
-  late String url;
+  String? url;
 
-  late bool skinSupport;
+  bool? skinSupport;
 
   HomeDragonBallItem();
 
@@ -325,10 +325,10 @@ class HomeDragonBallWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class CountriesCodeItem {
-  late String zh;
-  late String en;
-  late String locale;
-  late String code;
+  String? zh;
+  String? en;
+  String? locale;
+  String? code;
 
   CountriesCodeItem();
 
@@ -340,7 +340,7 @@ class CountriesCodeItem {
 
 @JsonSerializable()
 class CountriesCodeIndex {
-  late String label;
+  String? label;
   late List<CountriesCodeItem> countryList;
 
   CountriesCodeIndex();
@@ -367,14 +367,14 @@ class CountriesCodeListWrap extends ServerStatusBean {
 class PersonalizedPrivateContentItem {
   @JsonKey(fromJson: dynamicToString)
   late String id;
-  late String name;
-  late String picUrl;
-  late String sPicUrl;
-  late String copywriter;
+  String? name;
+  String? picUrl;
+  String? sPicUrl;
+  String? copywriter;
 
-  late String alg;
+  String? alg;
 
-  late int type;
+  int? type;
 
   PersonalizedPrivateContentItem();
 
@@ -400,8 +400,8 @@ class PersonalizedPrivateContentListWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class TopListTrack {
-  late String first;
-  late String second;
+  String? first;
+  String? second;
 
   TopListTrack();
 
@@ -417,43 +417,43 @@ class TopList {
   late String id;
 
   @JsonKey(fromJson: dynamicToString)
-  late String userId;
+  String? userId;
 
   late List<NeteaseUserInfo> subscribers;
 
-  late List<TopListTrack> tracks;
+  List<TopListTrack>? tracks;
 
-  late String name;
-  late String englishTitle;
-  late String titleImageUrl;
-  late String updateFrequency;
-  late String backgroundCoverUrl;
-  late String coverImgUrl;
-  late String description;
-  late String commentThreadId;
-  late String ToplistType;
+  String? name;
+  String? englishTitle;
+  String? titleImageUrl;
+  String? updateFrequency;
+  String? backgroundCoverUrl;
+  String? coverImgUrl;
+  String? description;
+  String? commentThreadId;
+  String? ToplistType;
 
   late int adType;
-  late int status;
-  late int privacy;
-  late int subscribedCount;
-  late int playCount;
-  late int createTime;
-  late int updateTime;
-  late int totalDuration;
-  late int specialType;
+  int? status;
+  int? privacy;
+  int? subscribedCount;
+  int? playCount;
+  int? createTime;
+  int? updateTime;
+  int? totalDuration;
+  int? specialType;
 
-  late int cloudTrackCount;
-  late int trackNumberUpdateTime;
-  late int trackUpdateTime;
-  late int trackCount;
+  int? cloudTrackCount;
+  int? trackNumberUpdateTime;
+  int? trackUpdateTime;
+  int? trackCount;
 
-  late bool opRecommend;
-  late String recommendInfo;
-  late bool ordered;
-  late bool highQuality;
-  late bool newImported;
-  late bool anonimous;
+  bool? opRecommend;
+  String? recommendInfo;
+  bool? ordered;
+  bool? highQuality;
+  bool? newImported;
+  bool? anonimous;
 
   late List<String> tags;
 
@@ -467,10 +467,10 @@ class TopList {
 
 @JsonSerializable()
 class ArtistTopListArtists {
-  late String first;
-  late String second;
+  String? first;
+  String? second;
 
-  late int third;
+  int? third;
 
   ArtistTopListArtists();
 
@@ -482,14 +482,14 @@ class ArtistTopListArtists {
 
 @JsonSerializable()
 class ArtistTopList {
-  late int position;
+  int? position;
 
-  late String coverUrl;
-  late String name;
-  late String upateFrequency;
-  late String updateFrequency;
+  String? coverUrl;
+  String? name;
+  String? upateFrequency;
+  String? updateFrequency;
 
-  late List<ArtistTopListArtists> artists;
+  List<ArtistTopListArtists>? artists;
 
   ArtistTopList();
 
@@ -501,9 +501,9 @@ class ArtistTopList {
 
 @JsonSerializable()
 class RewardTopList {
-  late int position;
+  int? position;
 
-  late String coverUrl;
+  String? coverUrl;
 
   late List<Song> songs;
 
@@ -545,20 +545,20 @@ class TopListDetailWrap extends ServerStatusBean {
 @JsonSerializable()
 class McalendarDetailEvent {
   late String id;
-  late String eventType;
-  late int onlineTime;
-  late int offlineTime;
+  String? eventType;
+  int? onlineTime;
+  int? offlineTime;
   late String imgUrl;
-  late String targetUrl;
-  late String tag;
-  late String title;
-  late bool canRemind;
-  late bool reminded;
-  late String remindText;
-  late String resourceId;
-  late String resourceType;
-  late String eventStatus;
-  late String remindedText;
+  String? targetUrl;
+  String? tag;
+  String? title;
+  bool? canRemind;
+  bool? reminded;
+  String? remindText;
+  String? resourceId;
+  String? resourceType;
+  String? eventStatus;
+  String? remindedText;
 
   McalendarDetailEvent();
 
@@ -594,7 +594,7 @@ class McalendarDetailWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class AudioMatchResult {
-  late int startTime;
+  int? startTime;
   late Song song;
 
   AudioMatchResult();
@@ -607,7 +607,7 @@ class AudioMatchResult {
 
 @JsonSerializable()
 class AudioMatchResultData {
-  late int type;
+  int? type;
 
   late List<AudioMatchResult> result;
 
@@ -689,7 +689,7 @@ class UploadImageResult extends ServerStatusBean {
   @JsonKey(fromJson: dynamicToString)
   late String id;
 
-  late String url;
+  String? url;
 
   UploadImageResult();
 
@@ -711,8 +711,8 @@ class BatchApiWrap extends ServerStatusBean {
   factory BatchApiWrap.fromJson(Map<String, dynamic> json) {
     return BatchApiWrap()
       ..code = json['code'] as int
-      ..message = json['message'] as String
-      ..msg = json['msg'] as String
+      ..message = json['message'] as String?
+      ..msg = json['msg'] as String?
       ..data = json;
   }
 }
