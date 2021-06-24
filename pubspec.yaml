@@ -5,11 +5,14 @@ author: hcanyz
 homepage: https://github.com/hcanyz/flutter-netease-music-api
 
 environment:
-  sdk: '>=2.7.0 <3.0.0'
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
+
+  # ext
+  collection: ^1.15.0
 
   # app path
   path_provider: ^2.0.2

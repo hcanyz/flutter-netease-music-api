@@ -7,15 +7,15 @@ part 'bean.g.dart';
 @JsonSerializable()
 class Dj {
   @JsonKey(fromJson: dynamicToString)
-  String id;
+  late String id;
 
-  String nickName;
-  String avatarUrl;
-  int userType;
+  late String nickName;
+  late String avatarUrl;
+  late int userType;
 
-  int rank;
-  int lastRank;
-  int score;
+  late int rank;
+  late int lastRank;
+  late int score;
 
   Dj();
 
@@ -27,42 +27,42 @@ class Dj {
 @JsonSerializable()
 class DjRadio {
   @JsonKey(fromJson: dynamicToString)
-  String id;
+  late String id;
 
-  String name;
+  late String name;
 
-  NeteaseAccountProfile dj;
+  late NeteaseAccountProfile dj;
 
-  String picUrl;
-  String desc;
+  late String picUrl;
+  late String desc;
 
-  int subCount;
-  int commentCount;
-  int programCount;
-  int shareCount;
-  int likedCount;
+  late int subCount;
+  late int commentCount;
+  late int programCount;
+  late int shareCount;
+  late int likedCount;
 
-  int createTime;
-  int categoryId;
-  String category;
+  late int createTime;
+  late int categoryId;
+  late String category;
 
-  int radioFeeType;
-  int feeScope;
+  late int radioFeeType;
+  late int feeScope;
 
-  bool buyed;
-  bool finished;
-  bool underShelf;
+  late bool buyed;
+  late bool finished;
+  late bool underShelf;
 
-  int purchaseCount;
-  int price;
-  int originalPrice;
-  int lastProgramCreateTime;
-  String lastProgramName;
-  int lastProgramId;
+  late int purchaseCount;
+  late int price;
+  late int originalPrice;
+  late int lastProgramCreateTime;
+  late String lastProgramName;
+  late int lastProgramId;
 
-  bool composeVideo;
+  late bool composeVideo;
 
-  String alg;
+  late String alg;
 
   DjRadio();
 
@@ -75,46 +75,46 @@ class DjRadio {
 @JsonSerializable()
 class DjProgram {
   @JsonKey(fromJson: dynamicToString)
-  String id;
+  late String id;
 
-  String name;
-  String programDesc;
+  late String name;
+  late String programDesc;
 
-  String coverUrl;
-  String blurCoverUrl;
-  String description;
-  String alg;
-  String commentThreadId;
+  late String coverUrl;
+  late String blurCoverUrl;
+  late String description;
+  late String alg;
+  late String commentThreadId;
 
-  int mainTrackId;
-  int pubStatus;
-  int bdAuditStatus;
-  int serialNum;
-  int duration;
-  int auditStatus;
-  int score;
-  int createTime;
-  int feeScope;
-  int listenerCount;
-  int subscribedCount;
-  int programFeeType;
-  int trackCount;
-  int smallLanguageAuditStatus;
-  int shareCount;
-  int likedCount;
-  int commentCount;
+  late int mainTrackId;
+  late int pubStatus;
+  late int bdAuditStatus;
+  late int serialNum;
+  late int duration;
+  late int auditStatus;
+  late int score;
+  late int createTime;
+  late int feeScope;
+  late int listenerCount;
+  late int subscribedCount;
+  late int programFeeType;
+  late int trackCount;
+  late int smallLanguageAuditStatus;
+  late int shareCount;
+  late int likedCount;
+  late int commentCount;
 
-  bool buyed;
-  bool isPublish;
-  bool subscribed;
-  bool canReward;
-  bool reward;
+  late bool buyed;
+  late bool isPublish;
+  late bool subscribed;
+  late bool canReward;
+  late bool reward;
 
-  DjRadio radio;
+  late DjRadio radio;
 
-  Song mainSong;
+  late Song mainSong;
 
-  NeteaseAccountProfile dj;
+  late NeteaseAccountProfile dj;
 
   DjProgram();
 
@@ -127,18 +127,18 @@ class DjProgram {
 @JsonSerializable()
 class DjRadioCategory {
   @JsonKey(fromJson: dynamicToString)
-  String id;
-  String name;
+  late String id;
+  late String name;
 
-  String picMacUrl;
-  String picWebUrl;
-  String picUWPUrl;
-  String picIPadUrl;
-  String picPCBlackUrl;
-  String picPCWhiteUrl;
-  String pic56x56Url;
-  String pic84x84IdUrl;
-  String pic96x96Url;
+  late String picMacUrl;
+  late String picWebUrl;
+  late String picUWPUrl;
+  late String picIPadUrl;
+  late String picPCBlackUrl;
+  late String picPCWhiteUrl;
+  late String pic56x56Url;
+  late String pic84x84IdUrl;
+  late String pic96x96Url;
 
   DjRadioCategory();
 
@@ -151,10 +151,10 @@ class DjRadioCategory {
 @JsonSerializable()
 class DjRadioCategory2 {
   @JsonKey(fromJson: dynamicToString)
-  String categoryId;
-  String categoryName;
+  late String categoryId;
+  late String categoryName;
 
-  List<DjRadio> radios;
+  late List<DjRadio> radios;
 
   DjRadioCategory2();
 
@@ -166,7 +166,7 @@ class DjRadioCategory2 {
 
 @JsonSerializable()
 class DjRadioCategoryWrap extends ServerStatusBean {
-  List<DjRadioCategory> categories;
+  late List<DjRadioCategory> categories;
 
   DjRadioCategoryWrap();
 
@@ -178,7 +178,7 @@ class DjRadioCategoryWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class DjRadioCategoryWrap2 extends ServerStatusBean {
-  List<DjRadioCategory2> data;
+  late List<DjRadioCategory2> data;
 
   DjRadioCategoryWrap2();
 
@@ -190,7 +190,7 @@ class DjRadioCategoryWrap2 extends ServerStatusBean {
 
 @JsonSerializable()
 class DjRadioCategoryWrap3 extends ServerStatusBean {
-  List<DjRadioCategory> data;
+  late List<DjRadioCategory> data;
 
   DjRadioCategoryWrap3();
 
@@ -202,11 +202,11 @@ class DjRadioCategoryWrap3 extends ServerStatusBean {
 
 @JsonSerializable()
 class DjRadioListWrap extends ServerStatusListBean {
-  List<DjRadio> djRadios;
+  late List<DjRadio> djRadios;
 
-  String name;
+  late String name;
 
-  int subCount;
+  late int subCount;
 
   DjRadioListWrap();
 
@@ -218,7 +218,7 @@ class DjRadioListWrap extends ServerStatusListBean {
 
 @JsonSerializable()
 class DjRadioListWrap2 extends ServerStatusBean {
-  List<DjRadio> data;
+  late List<DjRadio> data;
 
   DjRadioListWrap2();
 
@@ -230,10 +230,10 @@ class DjRadioListWrap2 extends ServerStatusBean {
 
 @JsonSerializable()
 class DjTopListListWrap {
-  List<Dj> list;
+  late List<Dj> list;
 
-  int total;
-  int updateTime;
+  late int total;
+  late int updateTime;
 
   DjTopListListWrap();
 
@@ -245,7 +245,7 @@ class DjTopListListWrap {
 
 @JsonSerializable()
 class DjTopListListWrapX extends ServerStatusBean {
-  DjTopListListWrap data;
+  late DjTopListListWrap data;
 
   DjTopListListWrapX();
 
@@ -258,23 +258,23 @@ class DjTopListListWrapX extends ServerStatusBean {
 @JsonSerializable()
 class DjRadioTopListItem {
   @JsonKey(fromJson: dynamicToString)
-  String id;
-  String name;
-  String picUrl;
-  String creatorName;
+  late String id;
+  late String name;
+  late String picUrl;
+  late String creatorName;
 
-  int rank;
-  int lastRank;
-  int score;
+  late int rank;
+  late int lastRank;
+  late int score;
 
   // [djRadioPayGiftTopList] 这个api独有数据
-  String rcmdText;
-  int radioFeeType;
-  int feeScope;
-  int programCount;
-  int originalPrice;
-  String alg;
-  String lastProgramName;
+  late String rcmdText;
+  late int radioFeeType;
+  late int feeScope;
+  late int programCount;
+  late int originalPrice;
+  late String alg;
+  late String lastProgramName;
 
   DjRadioTopListItem();
 
@@ -286,10 +286,10 @@ class DjRadioTopListItem {
 
 @JsonSerializable()
 class DjRadioTopListListWrap {
-  List<DjRadioTopListItem> list;
+  late List<DjRadioTopListItem> list;
 
-  int total;
-  int updateTime;
+  late int total;
+  late int updateTime;
 
   DjRadioTopListListWrap();
 
@@ -301,7 +301,7 @@ class DjRadioTopListListWrap {
 
 @JsonSerializable()
 class DjRadioTopListListWrapX extends ServerStatusBean {
-  DjRadioTopListListWrap data;
+  late DjRadioTopListListWrap data;
 
   DjRadioTopListListWrapX();
 
@@ -313,7 +313,7 @@ class DjRadioTopListListWrapX extends ServerStatusBean {
 
 @JsonSerializable()
 class DjRadioDetail extends ServerStatusBean {
-  DjRadio data;
+  late DjRadio data;
 
   DjRadioDetail();
 
@@ -325,9 +325,9 @@ class DjRadioDetail extends ServerStatusBean {
 
 @JsonSerializable()
 class DjRadioTopListListWrapX2 extends ServerStatusBean {
-  List<DjRadio> toplist;
+  late List<DjRadio> toplist;
 
-  int updateTime;
+  late int updateTime;
 
   DjRadioTopListListWrapX2();
 
@@ -339,9 +339,9 @@ class DjRadioTopListListWrapX2 extends ServerStatusBean {
 
 @JsonSerializable()
 class DjProgramListWrap extends ServerStatusListBean {
-  List<DjProgram> programs;
+  late List<DjProgram> programs;
 
-  String name;
+  late String name;
 
   DjProgramListWrap();
 
@@ -353,12 +353,12 @@ class DjProgramListWrap extends ServerStatusListBean {
 
 @JsonSerializable()
 class DjProgramTopListItem {
-  DjProgram program;
+  late DjProgram program;
 
-  int rank;
-  int lastRank;
-  int score;
-  int programFeeType;
+  late int rank;
+  late int lastRank;
+  late int score;
+  late int programFeeType;
 
   DjProgramTopListItem();
 
@@ -370,9 +370,9 @@ class DjProgramTopListItem {
 
 @JsonSerializable()
 class DjProgramTopListListWrap2 extends ServerStatusBean {
-  List<DjProgramTopListItem> toplist;
+  late List<DjProgramTopListItem> toplist;
 
-  int updateTime;
+  late int updateTime;
 
   DjProgramTopListListWrap2();
 
@@ -385,17 +385,17 @@ class DjProgramTopListListWrap2 extends ServerStatusBean {
 @JsonSerializable()
 class PersonalizedDjProgramItem {
   @JsonKey(fromJson: dynamicToString)
-  String id;
+  late String id;
 
-  String name;
-  String copywriter;
-  String picUrl;
+  late String name;
+  late String copywriter;
+  late String picUrl;
 
-  bool canDislike;
+  late bool canDislike;
 
-  int type;
+  late int type;
 
-  DjProgram program;
+  late DjProgram program;
 
   PersonalizedDjProgramItem();
 
@@ -407,10 +407,10 @@ class PersonalizedDjProgramItem {
 
 @JsonSerializable()
 class DjProgramTopListListWrap {
-  List<DjProgramTopListItem> list;
+  late List<DjProgramTopListItem> list;
 
-  int total;
-  int updateTime;
+  late int total;
+  late int updateTime;
 
   DjProgramTopListListWrap();
 
@@ -422,7 +422,7 @@ class DjProgramTopListListWrap {
 
 @JsonSerializable()
 class DjProgramTopListListWrapX extends ServerStatusBean {
-  DjProgramTopListListWrap data;
+  late DjProgramTopListListWrap data;
 
   DjProgramTopListListWrapX();
 
@@ -434,9 +434,9 @@ class DjProgramTopListListWrapX extends ServerStatusBean {
 
 @JsonSerializable()
 class PersonalizedDjProgramListWrap extends ServerStatusBean {
-  int category;
+  late int category;
 
-  List<PersonalizedDjProgramItem> result;
+  late List<PersonalizedDjProgramItem> result;
 
   PersonalizedDjProgramListWrap();
 
@@ -448,7 +448,7 @@ class PersonalizedDjProgramListWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class DjProgramDetail extends ServerStatusBean {
-  DjProgram program;
+  late DjProgram program;
 
   DjProgramDetail();
 

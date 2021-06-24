@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:math';
 
+import 'package:collection/src/iterable_extensions.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:netease_music_api/netease_music_api.dart';
 
@@ -26,14 +27,14 @@ void main() async {
   });
 
   test('test_userDetail', () async {
-    var result = await api
-        .userDetail(api.usc?.accountInfo?.account?.id ?? defaultUserId);
+    var result =
+        await api.userDetail(api.usc.accountInfo?.account.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 
   test('test_userDetail', () async {
     var result = await api
-        .userBindings(api.usc?.accountInfo?.account?.id ?? defaultUserId);
+        .userBindings(api.usc.accountInfo?.account.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 
@@ -71,20 +72,19 @@ void main() async {
 
   test('test_user_playlist', () async {
     var result = await api
-        .userPlayList(api.usc?.accountInfo?.account?.id ?? defaultUserId);
+        .userPlayList(api.usc.accountInfo?.account.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
     expect(result.playlist, isNotNull);
   });
 
   test('test_user_update_playlist_info', () async {
     var result = await api
-        .userPlayList(api.usc?.accountInfo?.account?.id ?? defaultUserId);
+        .userPlayList(api.usc.accountInfo?.account.id ?? defaultUserId);
     expect(result.playlist, isNotNull);
     expect(result.playlist, isNotEmpty);
 
     var id = result.playlist
-            .firstWhere((element) => element.specialType == 0,
-                orElse: () => null)
+            .firstWhereOrNull((element) => element.specialType == 0)
             ?.id ??
         '';
 
@@ -194,8 +194,7 @@ void main() async {
 
   test('test_user_play_record_list', () async {
     var result = await api.userPlayRecordList(
-        NeteaseMusicApi().usc?.accountInfo?.account?.id ?? defaultUserId,
-        false);
+        NeteaseMusicApi().usc.accountInfo?.account.id ?? defaultUserId, false);
     expect(result.code, RET_CODE_OK);
   });
 

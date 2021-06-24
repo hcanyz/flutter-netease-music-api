@@ -7,18 +7,18 @@ part 'bean.g.dart';
 @JsonSerializable()
 class NeteaseAccount {
   @JsonKey(fromJson: dynamicToString)
-  String id;
-  String userName;
+  late String id;
+  late String userName;
 
-  int type;
-  int status;
+  late int type;
+  late int status;
 
-  int createTime;
+  late int createTime;
 
-  int vipType;
-  int viptypeVersion;
+  late int vipType;
+  late int viptypeVersion;
 
-  bool anonimousUser;
+  late bool anonimousUser;
 
   NeteaseAccount();
 
@@ -30,8 +30,8 @@ class NeteaseAccount {
 
 @JsonSerializable()
 class NeteaseAccountProfile extends NeteaseUserInfo {
-  int follows;
-  int playlistCount;
+  late int follows;
+  late int playlistCount;
 
   NeteaseAccountProfile();
 
@@ -43,11 +43,11 @@ class NeteaseAccountProfile extends NeteaseUserInfo {
 
 @JsonSerializable()
 class NeteaseAccountInfoWrap extends ServerStatusBean {
-  int loginType;
+  late int loginType;
 
-  NeteaseAccount account;
+  late NeteaseAccount account;
 
-  NeteaseAccountProfile profile;
+  late NeteaseAccountProfile profile;
 
   NeteaseAccountInfoWrap();
 
@@ -60,17 +60,17 @@ class NeteaseAccountInfoWrap extends ServerStatusBean {
 @JsonSerializable()
 class NeteaseAccountBinding {
   @JsonKey(fromJson: dynamicToString)
-  String id;
+  late String id;
   @JsonKey(fromJson: dynamicToString)
-  String userId;
+  late String userId;
 
-  String tokenJsonStr;
-  String url;
-  int type;
-  int expiresIn;
-  int refreshTime;
-  int bindingTime;
-  bool expired;
+  late String tokenJsonStr;
+  late String url;
+  late int type;
+  late int expiresIn;
+  late int refreshTime;
+  late int bindingTime;
+  late bool expired;
 
   NeteaseAccountBinding();
 
@@ -82,7 +82,7 @@ class NeteaseAccountBinding {
 
 @JsonSerializable()
 class NeteaseAccountBindingWrap extends ServerStatusBean {
-  List<NeteaseAccountBinding> bindings;
+  late List<NeteaseAccountBinding> bindings;
 
   NeteaseAccountBindingWrap();
 
@@ -95,11 +95,11 @@ class NeteaseAccountBindingWrap extends ServerStatusBean {
 @JsonSerializable()
 class CellPhoneCheckExistenceRet extends ServerStatusBean {
   // 1: 存在   -1: 不存在
-  int exist;
+  late int exist;
 
-  String nickname;
+  late String nickname;
 
-  bool hasPassword;
+  late bool hasPassword;
 
   /// 账号不存在 或者 没有密码 需要短信登录
   bool get needUseSms => exist != 1 || !hasPassword;
@@ -115,7 +115,7 @@ class CellPhoneCheckExistenceRet extends ServerStatusBean {
 @JsonSerializable()
 class AnonimousLoginRet extends ServerStatusBean {
   @JsonKey(fromJson: dynamicToString)
-  String userId;
+  late String userId;
 
   AnonimousLoginRet();
 
@@ -127,7 +127,7 @@ class AnonimousLoginRet extends ServerStatusBean {
 
 @JsonSerializable()
 class QrCodeLoginKey extends ServerStatusBean {
-  String unikey;
+  late String unikey;
 
   QrCodeLoginKey();
 

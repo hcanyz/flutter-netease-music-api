@@ -147,13 +147,13 @@ void main() async {
 
   test('test_user_comments', () async {
     var result = await api.userComments(
-        NeteaseMusicApi().usc?.accountInfo?.account?.id ?? defaultUserId);
+        NeteaseMusicApi().usc.accountInfo?.account.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 
   test('test_user_comments_history', () async {
     var result = await api.userCommentsHistory(
-        NeteaseMusicApi().usc?.accountInfo?.account?.id ?? defaultUserId);
+        NeteaseMusicApi().usc.accountInfo?.account.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 

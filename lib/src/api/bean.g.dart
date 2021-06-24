@@ -9,8 +9,8 @@ part of 'bean.dart';
 ServerStatusBean _$ServerStatusBeanFromJson(Map<String, dynamic> json) {
   return ServerStatusBean()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String;
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?;
 }
 
 Map<String, dynamic> _$ServerStatusBeanToJson(ServerStatusBean instance) =>
@@ -23,8 +23,8 @@ Map<String, dynamic> _$ServerStatusBeanToJson(ServerStatusBean instance) =>
 ServerStatusListBean _$ServerStatusListBeanFromJson(Map<String, dynamic> json) {
   return ServerStatusListBean()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
     ..more = json['more'] as bool
     ..count = json['count'] as int
     ..total = json['total'] as int;

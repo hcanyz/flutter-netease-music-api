@@ -40,23 +40,23 @@ NeteaseAccountProfile _$NeteaseAccountProfileFromJson(
     ..signature = json['signature'] as String
     ..description = json['description'] as String
     ..detailDescription = json['detailDescription'] as String
-    ..recommendReason = json['recommendReason'] as String
+    ..recommendReason = json['recommendReason'] as String?
     ..gender = json['gender'] as int
     ..authority = json['authority'] as int
     ..birthday = json['birthday'] as int
     ..city = json['city'] as int
     ..province = json['province'] as int
     ..vipType = json['vipType'] as int
-    ..authenticationTypes = json['authenticationTypes'] as int
+    ..authenticationTypes = json['authenticationTypes'] as int?
     ..authStatus = json['authStatus'] as int
     ..djStatus = json['djStatus'] as int
     ..accountStatus = json['accountStatus'] as int
     ..expertTags =
-        (json['expertTags'] as List)?.map((e) => e as String)?.toList()
-    ..alg = json['alg'] as String
+        (json['expertTags'] as List<dynamic>?)?.map((e) => e as String).toList()
+    ..alg = json['alg'] as String?
     ..followed = json['followed'] as bool
     ..mutual = json['mutual'] as bool
-    ..anchor = json['anchor'] as bool
+    ..anchor = json['anchor'] as bool?
     ..defaultAvatar = json['defaultAvatar'] as bool
     ..follows = json['follows'] as int
     ..playlistCount = json['playlistCount'] as int;
@@ -97,16 +97,12 @@ NeteaseAccountInfoWrap _$NeteaseAccountInfoWrapFromJson(
     Map<String, dynamic> json) {
   return NeteaseAccountInfoWrap()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
     ..loginType = json['loginType'] as int
-    ..account = json['account'] == null
-        ? null
-        : NeteaseAccount.fromJson(json['account'] as Map<String, dynamic>)
-    ..profile = json['profile'] == null
-        ? null
-        : NeteaseAccountProfile.fromJson(
-            json['profile'] as Map<String, dynamic>);
+    ..account = NeteaseAccount.fromJson(json['account'] as Map<String, dynamic>)
+    ..profile =
+        NeteaseAccountProfile.fromJson(json['profile'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$NeteaseAccountInfoWrapToJson(
@@ -152,13 +148,11 @@ NeteaseAccountBindingWrap _$NeteaseAccountBindingWrapFromJson(
     Map<String, dynamic> json) {
   return NeteaseAccountBindingWrap()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
-    ..bindings = (json['bindings'] as List)
-        ?.map((e) => e == null
-            ? null
-            : NeteaseAccountBinding.fromJson(e as Map<String, dynamic>))
-        ?.toList();
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
+    ..bindings = (json['bindings'] as List<dynamic>)
+        .map((e) => NeteaseAccountBinding.fromJson(e as Map<String, dynamic>))
+        .toList();
 }
 
 Map<String, dynamic> _$NeteaseAccountBindingWrapToJson(
@@ -174,8 +168,8 @@ CellPhoneCheckExistenceRet _$CellPhoneCheckExistenceRetFromJson(
     Map<String, dynamic> json) {
   return CellPhoneCheckExistenceRet()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
     ..exist = json['exist'] as int
     ..nickname = json['nickname'] as String
     ..hasPassword = json['hasPassword'] as bool;
@@ -195,8 +189,8 @@ Map<String, dynamic> _$CellPhoneCheckExistenceRetToJson(
 AnonimousLoginRet _$AnonimousLoginRetFromJson(Map<String, dynamic> json) {
   return AnonimousLoginRet()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
     ..userId = dynamicToString(json['userId']);
 }
 
@@ -211,8 +205,8 @@ Map<String, dynamic> _$AnonimousLoginRetToJson(AnonimousLoginRet instance) =>
 QrCodeLoginKey _$QrCodeLoginKeyFromJson(Map<String, dynamic> json) {
   return QrCodeLoginKey()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
     ..unikey = json['unikey'] as String;
 }
 

@@ -10,6 +10,7 @@ import 'package:encrypt/encrypt.dart';
 import 'package:flutter/cupertino.dart' hide Key;
 import 'package:netease_music_api/netease_music_api.dart';
 import 'package:pointycastle/digests/md5.dart';
+import 'package:pointycastle/export.dart' hide Algorithm;
 
 import 'encrypt_ext.dart';
 
@@ -37,7 +38,7 @@ void neteaseInterceptor(
 
     var cookies = await loadCookies(host: option.uri);
 
-    var cookiesSb = new StringBuffer(CookieManager.getCookies(cookies) ?? '');
+    var cookiesSb = new StringBuffer(CookieManager.getCookies(cookies));
     option.extra['cookies'].forEach((key, value) {
       cookiesSb
           .write(' ;${Uri.encodeComponent(key)}=${Uri.encodeComponent(value)}');
@@ -111,8 +112,9 @@ void _handleWeApi(RequestOptions option) {
   String csrfToken = '';
   try {
     csrfToken = RegExp(r'_csrf=([^(;|$)]+)')
-        .firstMatch(option.headers[HttpHeaders.cookieHeader] ?? '')
-        .group(1);
+            .firstMatch(option.headers[HttpHeaders.cookieHeader] ?? '')
+            ?.group(1) ??
+        '';
   } catch (e) {}
   if (csrfToken.isNotEmpty) {
     // map可能是<String,Int>类型的，默认转换成<String,dynamic>
@@ -140,8 +142,8 @@ void _handleWeApi(RequestOptions option) {
 
   //4. RSA加密密钥A
   final parser = RSAKeyParser();
-  final encrypter3 =
-      Encrypter(RSAExt(publicKey: parser.parse(_publicKeyWeApi)));
+  final encrypter3 = Encrypter(
+      RSAExt(publicKey: parser.parse(_publicKeyWeApi) as RSAPublicKey?));
   final encrypted3 =
       encrypter3.encryptBytes(List.from(randomKeyBytes.reversed));
 
@@ -243,7 +245,6 @@ String _chooseUserAgent(UserAgent agent) {
     case UserAgent.Mobile:
       return userAgentList[random.nextInt(7)];
   }
-  return '';
 }
 
 Options joinOptions(
@@ -252,7 +253,7 @@ Options joinOptions(
         UserAgent userAgent = UserAgent.Random,
         Map<String, String> cookies = const {},
         String eApiUrl = '',
-        String realIP}) =>
+        String? realIP}) =>
     Options(contentType: ContentType.json.value, extra: {
       'hookRequestData': hookRequestDate,
       'encryptType': encryptType,
@@ -266,19 +267,20 @@ Uri joinUri(String path) {
   return Uri.parse('$HOST$path');
 }
 
-Future<List<Cookie>> loadCookies({Uri host}) async {
+Future<List<Cookie>> loadCookies({Uri? host}) async {
   if (host == null) {
     host = Uri.parse(HOST);
   }
   return (NeteaseMusicApi.cookieManager.cookieJar).loadForRequest(host);
 }
 
-Future<int> loadCookiesHash({List<Cookie> cookies}) async {
+Future<int> loadCookiesHash({List<Cookie>? cookies}) async {
   if (cookies == null) {
     cookies = await loadCookies();
   }
-  return hashList(cookies.map((e) => e.toString())) +
-      NeteaseMusicApi().loginRefreshVersion;
+  int hash = hashList(cookies.map((e) => e.toString()));
+  int loginRefreshVersion = NeteaseMusicApi().loginRefreshVersion;
+  return hash + loginRefreshVersion;
 }
 
 Future<void> deleteAllCookie() async {

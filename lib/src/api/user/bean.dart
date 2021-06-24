@@ -8,48 +8,48 @@ part 'bean.g.dart';
 @JsonSerializable()
 class UserSetting {
   @JsonKey(fromJson: dynamicToString)
-  String userId;
+  late String userId;
 
-  int profileSetting;
-  int ageSetting;
-  int areaSetting;
-  int collegeSetting;
-  int villageAgeSetting;
-  int followSingerSetting;
-  int personalServiceSetting;
-  int concertSetting;
-  int socialSetting;
-  int shareSetting;
-  int playRecordSetting;
-  int broadcastSetting;
-  int commentSetting;
+  late int profileSetting;
+  late int ageSetting;
+  late int areaSetting;
+  late int collegeSetting;
+  late int villageAgeSetting;
+  late int followSingerSetting;
+  late int personalServiceSetting;
+  late int concertSetting;
+  late int socialSetting;
+  late int shareSetting;
+  late int playRecordSetting;
+  late int broadcastSetting;
+  late int commentSetting;
 
   //newSongDiskSetting
 
-  bool phoneFriendSetting;
-  bool allowFollowedCanSeeMyPlayRecord;
-  bool finishedFollowGuide;
-  bool allowOfflinePrivateMessageNotify;
-  bool allowOfflineForwardNotify;
-  bool allowOfflineCommentNotify;
-  bool allowOfflineCommentReplyNotify;
-  bool allowOfflineNotify;
-  bool allowVideoSubscriptionNotify;
-  bool sendMiuiMsg;
-  bool allowImportDoubanPlaylist;
-  bool importedDoubanPlaylist;
-  bool importedXiamiPlaylist;
-  bool allowImportXiamiPlaylist;
-  bool allowSubscriptionNotify;
-  bool allowLikedNotify;
-  bool allowNewFollowerNotify;
-  bool needRcmdEvent;
-  bool allowPlaylistShareNotify;
-  bool allowDJProgramShareNotify;
-  bool allowDJRadioSubscriptionNotify;
-  bool allowPeopleCanSeeMyPlaynNotify;
-  bool peopleNearbyCanSeeMe;
-  bool allowDJProgramSubscriptionNotify;
+  late bool phoneFriendSetting;
+  late bool allowFollowedCanSeeMyPlayRecord;
+  late bool finishedFollowGuide;
+  late bool allowOfflinePrivateMessageNotify;
+  late bool allowOfflineForwardNotify;
+  late bool allowOfflineCommentNotify;
+  late bool allowOfflineCommentReplyNotify;
+  late bool allowOfflineNotify;
+  late bool allowVideoSubscriptionNotify;
+  late bool sendMiuiMsg;
+  late bool allowImportDoubanPlaylist;
+  late bool importedDoubanPlaylist;
+  late bool importedXiamiPlaylist;
+  late bool allowImportXiamiPlaylist;
+  late bool allowSubscriptionNotify;
+  late bool allowLikedNotify;
+  late bool allowNewFollowerNotify;
+  late bool needRcmdEvent;
+  late bool allowPlaylistShareNotify;
+  late bool allowDJProgramShareNotify;
+  late bool allowDJRadioSubscriptionNotify;
+  late bool allowPeopleCanSeeMyPlaynNotify;
+  late bool peopleNearbyCanSeeMe;
+  late bool allowDJProgramSubscriptionNotify;
 
   UserSetting();
 
@@ -61,7 +61,7 @@ class UserSetting {
 
 @JsonSerializable()
 class UserSettingWrap extends ServerStatusBean {
-  UserSetting setting;
+  late UserSetting setting;
 
   UserSettingWrap();
 
@@ -74,11 +74,11 @@ class UserSettingWrap extends ServerStatusBean {
 @JsonSerializable()
 class NeteaseSimpleUserInfo {
   @JsonKey(fromJson: dynamicToString)
-  String userId;
-  String nickname;
-  String avatar;
+  late String userId;
+  late String nickname;
+  late String avatar;
 
-  bool followed;
+  late bool followed;
 
   NeteaseSimpleUserInfo();
 
@@ -91,39 +91,39 @@ class NeteaseSimpleUserInfo {
 @JsonSerializable()
 class NeteaseUserInfo {
   @JsonKey(fromJson: dynamicToString)
-  String userId;
-  String nickname;
-  String avatarUrl;
-  String backgroundUrl;
-  String signature;
-  String description;
-  String detailDescription;
-  String recommendReason;
+  late String userId;
+  late String nickname;
+  late String avatarUrl;
+  late String backgroundUrl;
+  late String signature;
+  late String description;
+  late String detailDescription;
+  String? recommendReason;
 
   //性别 0:保密 1:男性 2:女性
-  int gender;
+  late int gender;
 
-  int authority;
+  late int authority;
 
   //出生日期,时间戳 unix timestamp
-  int birthday;
+  late int birthday;
 
-  int city;
-  int province;
-  int vipType;
-  int authenticationTypes;
-  int authStatus;
-  int djStatus;
-  int accountStatus;
+  late int city;
+  late int province;
+  late int vipType;
+  int? authenticationTypes;
+  late int authStatus;
+  late int djStatus;
+  late int accountStatus;
 
-  List<String> expertTags;
+  List<String>? expertTags;
 
-  String alg;
+  String? alg;
 
-  bool followed;
-  bool mutual;
-  bool anchor;
-  bool defaultAvatar;
+  late bool followed;
+  late bool mutual;
+  bool? anchor;
+  late bool defaultAvatar;
 
   NeteaseUserInfo();
 
@@ -135,10 +135,10 @@ class NeteaseUserInfo {
 
 @JsonSerializable()
 class NeteaseUserDetail extends ServerStatusBean {
-  int createTime;
-  int createDays;
+  late int createTime;
+  late int createDays;
 
-  NeteaseAccountProfile profile;
+  late NeteaseAccountProfile profile;
 
   NeteaseUserDetail();
 
@@ -150,14 +150,14 @@ class NeteaseUserDetail extends ServerStatusBean {
 
 @JsonSerializable()
 class NeteaseUserSubcount extends ServerStatusBean {
-  int programCount;
-  int djRadioCount;
-  int mvCount;
-  int artistCount;
-  int newProgramCount;
-  int createDjRadioCount;
-  int createdPlaylistCount;
-  int subPlaylistCount;
+  late int programCount;
+  late int djRadioCount;
+  late int mvCount;
+  late int artistCount;
+  late int newProgramCount;
+  late int createDjRadioCount;
+  late int createdPlaylistCount;
+  late int subPlaylistCount;
 
   NeteaseUserSubcount();
 
@@ -169,13 +169,13 @@ class NeteaseUserSubcount extends ServerStatusBean {
 
 @JsonSerializable()
 class NeteaseUserLevel {
-  String info;
-  double progress;
-  int nextPlayCount;
-  int nextLoginCount;
-  int nowPlayCount;
-  int nowLoginCount;
-  int level;
+  late String info;
+  late double progress;
+  late int nextPlayCount;
+  late int nextLoginCount;
+  late int nowPlayCount;
+  late int nowLoginCount;
+  late int level;
 
   NeteaseUserLevel();
 
@@ -187,9 +187,9 @@ class NeteaseUserLevel {
 
 @JsonSerializable()
 class NeteaseUserLevelWrap extends ServerStatusBean {
-  bool full;
+  late bool full;
 
-  NeteaseUserLevel data;
+  late NeteaseUserLevel data;
 
   NeteaseUserLevelWrap();
 
@@ -201,7 +201,7 @@ class NeteaseUserLevelWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class UserFollowListWrap extends ServerStatusBean {
-  List<NeteaseAccountProfile> follow;
+  late List<NeteaseAccountProfile> follow;
 
   UserFollowListWrap();
 
@@ -213,7 +213,7 @@ class UserFollowListWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class UserFollowedListWrap extends ServerStatusBean {
-  List<NeteaseAccountProfile> followeds;
+  late List<NeteaseAccountProfile> followeds;
 
   UserFollowedListWrap();
 
@@ -225,7 +225,7 @@ class UserFollowedListWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class UserListWrap extends ServerStatusBean {
-  List<NeteaseUserInfo> userprofiles;
+  late List<NeteaseUserInfo> userprofiles;
 
   UserListWrap();
 
@@ -237,7 +237,7 @@ class UserListWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class ArtistsSubListWrap extends ServerStatusListBean {
-  List<Artists> data;
+  late List<Artists> data;
 
   ArtistsSubListWrap();
 
@@ -249,7 +249,7 @@ class ArtistsSubListWrap extends ServerStatusListBean {
 
 @JsonSerializable()
 class MvSubListWrap extends ServerStatusListBean {
-  List<Mv2> data;
+  late List<Mv2> data;
 
   MvSubListWrap();
 
@@ -261,9 +261,9 @@ class MvSubListWrap extends ServerStatusListBean {
 
 @JsonSerializable()
 class AlbumSubListWrap extends ServerStatusListBean {
-  List<Album> data;
+  late List<Album> data;
 
-  int paidCount;
+  late int paidCount;
 
   AlbumSubListWrap();
 
@@ -275,10 +275,10 @@ class AlbumSubListWrap extends ServerStatusListBean {
 
 @JsonSerializable()
 class PlayRecordItem {
-  int playCount;
-  int score;
+  late int playCount;
+  late int score;
 
-  Song song;
+  late Song song;
 
   PlayRecordItem();
 
@@ -290,7 +290,7 @@ class PlayRecordItem {
 
 @JsonSerializable()
 class PlayRecordListWrap extends ServerStatusBean {
-  List<PlayRecordItem> allData;
+  late List<PlayRecordItem> allData;
 
   PlayRecordListWrap();
 
@@ -303,9 +303,9 @@ class PlayRecordListWrap extends ServerStatusBean {
 @JsonSerializable()
 class PlaylistCreateWrap extends ServerStatusBean {
   @JsonKey(fromJson: dynamicToString)
-  String id;
+  late String id;
 
-  Play playlist;
+  late Play playlist;
 
   PlaylistCreateWrap();
 
@@ -317,7 +317,7 @@ class PlaylistCreateWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class PlaylistSubscribersWrap extends ServerStatusBean {
-  List<NeteaseUserInfo> subscribers;
+  late List<NeteaseUserInfo> subscribers;
 
   PlaylistSubscribersWrap();
 

@@ -41,9 +41,8 @@ EventItemInfo _$EventItemInfoFromJson(Map<String, dynamic> json) {
     ..commentCount = json['commentCount'] as int
     ..likedCount = json['likedCount'] as int
     ..shareCount = json['shareCount'] as int
-    ..commentThread = json['commentThread'] == null
-        ? null
-        : CommentThread.fromJson(json['commentThread'] as Map<String, dynamic>);
+    ..commentThread =
+        CommentThread.fromJson(json['commentThread'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$EventItemInfoToJson(EventItemInfo instance) =>
@@ -72,12 +71,9 @@ EventItem _$EventItemFromJson(Map<String, dynamic> json) {
     ..sic = json['sic'] as int
     ..insiteForwardCount = json['insiteForwardCount'] as int
     ..topEvent = json['topEvent'] as bool
-    ..user = json['user'] == null
-        ? null
-        : NeteaseAccountProfile.fromJson(json['user'] as Map<String, dynamic>)
-    ..info = json['info'] == null
-        ? null
-        : EventItemInfo.fromJson(json['info'] as Map<String, dynamic>);
+    ..user =
+        NeteaseAccountProfile.fromJson(json['user'] as Map<String, dynamic>)
+    ..info = EventItemInfo.fromJson(json['info'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$EventItemToJson(EventItem instance) => <String, dynamic>{
@@ -100,12 +96,11 @@ Map<String, dynamic> _$EventItemToJson(EventItem instance) => <String, dynamic>{
 EventListWrap _$EventListWrapFromJson(Map<String, dynamic> json) {
   return EventListWrap()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
-    ..events = (json['events'] as List)
-        ?.map((e) =>
-            e == null ? null : EventItem.fromJson(e as Map<String, dynamic>))
-        ?.toList()
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
+    ..events = (json['events'] as List<dynamic>)
+        .map((e) => EventItem.fromJson(e as Map<String, dynamic>))
+        .toList()
     ..lasttime = json['lasttime'] as int;
 }
 
@@ -121,12 +116,11 @@ Map<String, dynamic> _$EventListWrapToJson(EventListWrap instance) =>
 EventListWrap2 _$EventListWrap2FromJson(Map<String, dynamic> json) {
   return EventListWrap2()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
-    ..event = (json['event'] as List)
-        ?.map((e) =>
-            e == null ? null : EventItem.fromJson(e as Map<String, dynamic>))
-        ?.toList()
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
+    ..event = (json['event'] as List<dynamic>)
+        .map((e) => EventItem.fromJson(e as Map<String, dynamic>))
+        .toList()
     ..lasttime = json['lasttime'] as int;
 }
 
@@ -142,11 +136,9 @@ Map<String, dynamic> _$EventListWrap2ToJson(EventListWrap2 instance) =>
 EventSingleWrap _$EventSingleWrapFromJson(Map<String, dynamic> json) {
   return EventSingleWrap()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
-    ..event = json['event'] == null
-        ? null
-        : EventItem.fromJson(json['event'] as Map<String, dynamic>);
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
+    ..event = EventItem.fromJson(json['event'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$EventSingleWrapToJson(EventSingleWrap instance) =>
@@ -161,14 +153,10 @@ CommentItemBase _$CommentItemBaseFromJson(Map<String, dynamic> json) {
   return CommentItemBase()
     ..commentId = dynamicToString(json['commentId'])
     ..parentCommentId = dynamicToString(json['parentCommentId'])
-    ..user = json['user'] == null
-        ? null
-        : NeteaseUserInfo.fromJson(json['user'] as Map<String, dynamic>)
-    ..beReplied = (json['beReplied'] as List)
-        ?.map((e) => e == null
-            ? null
-            : BeRepliedCommentItem.fromJson(e as Map<String, dynamic>))
-        ?.toList()
+    ..user = NeteaseUserInfo.fromJson(json['user'] as Map<String, dynamic>)
+    ..beReplied = (json['beReplied'] as List<dynamic>)
+        .map((e) => BeRepliedCommentItem.fromJson(e as Map<String, dynamic>))
+        .toList()
     ..content = json['content'] as String
     ..time = json['time'] as int
     ..likedCount = json['likedCount'] as int
@@ -195,20 +183,16 @@ CommentItem _$CommentItemFromJson(Map<String, dynamic> json) {
   return CommentItem()
     ..commentId = dynamicToString(json['commentId'])
     ..parentCommentId = dynamicToString(json['parentCommentId'])
-    ..user = json['user'] == null
-        ? null
-        : NeteaseUserInfo.fromJson(json['user'] as Map<String, dynamic>)
+    ..user = NeteaseUserInfo.fromJson(json['user'] as Map<String, dynamic>)
     ..content = json['content'] as String
     ..time = json['time'] as int
     ..likedCount = json['likedCount'] as int
     ..liked = json['liked'] as bool
     ..status = json['status'] as int
     ..commentLocationType = json['commentLocationType'] as int
-    ..beReplied = (json['beReplied'] as List)
-        ?.map((e) => e == null
-            ? null
-            : BeRepliedCommentItem.fromJson(e as Map<String, dynamic>))
-        ?.toList();
+    ..beReplied = (json['beReplied'] as List<dynamic>)
+        .map((e) => BeRepliedCommentItem.fromJson(e as Map<String, dynamic>))
+        .toList();
 }
 
 Map<String, dynamic> _$CommentItemToJson(CommentItem instance) =>
@@ -229,14 +213,10 @@ BeRepliedCommentItem _$BeRepliedCommentItemFromJson(Map<String, dynamic> json) {
   return BeRepliedCommentItem()
     ..commentId = dynamicToString(json['commentId'])
     ..parentCommentId = dynamicToString(json['parentCommentId'])
-    ..user = json['user'] == null
-        ? null
-        : NeteaseUserInfo.fromJson(json['user'] as Map<String, dynamic>)
-    ..beReplied = (json['beReplied'] as List)
-        ?.map((e) => e == null
-            ? null
-            : BeRepliedCommentItem.fromJson(e as Map<String, dynamic>))
-        ?.toList()
+    ..user = NeteaseUserInfo.fromJson(json['user'] as Map<String, dynamic>)
+    ..beReplied = (json['beReplied'] as List<dynamic>)
+        .map((e) => BeRepliedCommentItem.fromJson(e as Map<String, dynamic>))
+        .toList()
     ..content = json['content'] as String
     ..time = json['time'] as int
     ..likedCount = json['likedCount'] as int
@@ -265,8 +245,8 @@ Map<String, dynamic> _$BeRepliedCommentItemToJson(
 CommentListWrap _$CommentListWrapFromJson(Map<String, dynamic> json) {
   return CommentListWrap()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
     ..more = json['more'] as bool
     ..count = json['count'] as int
     ..total = json['total'] as int
@@ -274,18 +254,15 @@ CommentListWrap _$CommentListWrapFromJson(Map<String, dynamic> json) {
     ..cnum = json['cnum'] as int
     ..isMusician = json['isMusician'] as bool
     ..userId = dynamicToString(json['userId'])
-    ..topComments = (json['topComments'] as List)
-        ?.map((e) =>
-            e == null ? null : CommentItem.fromJson(e as Map<String, dynamic>))
-        ?.toList()
-    ..hotComments = (json['hotComments'] as List)
-        ?.map((e) =>
-            e == null ? null : CommentItem.fromJson(e as Map<String, dynamic>))
-        ?.toList()
-    ..comments = (json['comments'] as List)
-        ?.map((e) =>
-            e == null ? null : CommentItem.fromJson(e as Map<String, dynamic>))
-        ?.toList();
+    ..topComments = (json['topComments'] as List<dynamic>)
+        .map((e) => CommentItem.fromJson(e as Map<String, dynamic>))
+        .toList()
+    ..hotComments = (json['hotComments'] as List<dynamic>)
+        .map((e) => CommentItem.fromJson(e as Map<String, dynamic>))
+        .toList()
+    ..comments = (json['comments'] as List<dynamic>)
+        .map((e) => CommentItem.fromJson(e as Map<String, dynamic>))
+        .toList();
 }
 
 Map<String, dynamic> _$CommentListWrapToJson(CommentListWrap instance) =>
@@ -310,14 +287,12 @@ CommentHistoryData _$CommentHistoryDataFromJson(Map<String, dynamic> json) {
     ..hasMore = json['hasMore'] as bool
     ..reminder = json['reminder'] as bool
     ..commentCount = json['commentCount'] as int
-    ..hotComments = (json['hotComments'] as List)
-        ?.map((e) =>
-            e == null ? null : CommentItem.fromJson(e as Map<String, dynamic>))
-        ?.toList()
-    ..comments = (json['comments'] as List)
-        ?.map((e) =>
-            e == null ? null : CommentItem.fromJson(e as Map<String, dynamic>))
-        ?.toList();
+    ..hotComments = (json['hotComments'] as List<dynamic>)
+        .map((e) => CommentItem.fromJson(e as Map<String, dynamic>))
+        .toList()
+    ..comments = (json['comments'] as List<dynamic>)
+        .map((e) => CommentItem.fromJson(e as Map<String, dynamic>))
+        .toList();
 }
 
 Map<String, dynamic> _$CommentHistoryDataToJson(CommentHistoryData instance) =>
@@ -332,11 +307,9 @@ Map<String, dynamic> _$CommentHistoryDataToJson(CommentHistoryData instance) =>
 CommentHistoryWrap _$CommentHistoryWrapFromJson(Map<String, dynamic> json) {
   return CommentHistoryWrap()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
-    ..data = json['data'] == null
-        ? null
-        : CommentHistoryData.fromJson(json['data'] as Map<String, dynamic>);
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
+    ..data = CommentHistoryData.fromJson(json['data'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$CommentHistoryWrapToJson(CommentHistoryWrap instance) =>
@@ -369,18 +342,15 @@ CommentList2Data _$CommentList2DataFromJson(Map<String, dynamic> json) {
     ..cursor = json['cursor'] as String
     ..totalCount = json['totalCount'] as int
     ..sortType = json['sortType'] as int
-    ..sortTypeList = (json['sortTypeList'] as List)
-        ?.map((e) => e == null
-            ? null
-            : CommentList2DataSortType.fromJson(e as Map<String, dynamic>))
-        ?.toList()
-    ..comments = (json['comments'] as List)
-        ?.map((e) =>
-            e == null ? null : CommentItem.fromJson(e as Map<String, dynamic>))
-        ?.toList()
-    ..currentComment = json['currentComment'] == null
-        ? null
-        : CommentItem.fromJson(json['currentComment'] as Map<String, dynamic>);
+    ..sortTypeList = (json['sortTypeList'] as List<dynamic>)
+        .map(
+            (e) => CommentList2DataSortType.fromJson(e as Map<String, dynamic>))
+        .toList()
+    ..comments = (json['comments'] as List<dynamic>)
+        .map((e) => CommentItem.fromJson(e as Map<String, dynamic>))
+        .toList()
+    ..currentComment =
+        CommentItem.fromJson(json['currentComment'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$CommentList2DataToJson(CommentList2Data instance) =>
@@ -397,11 +367,9 @@ Map<String, dynamic> _$CommentList2DataToJson(CommentList2Data instance) =>
 CommentList2Wrap _$CommentList2WrapFromJson(Map<String, dynamic> json) {
   return CommentList2Wrap()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
-    ..data = json['data'] == null
-        ? null
-        : CommentList2Data.fromJson(json['data'] as Map<String, dynamic>);
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
+    ..data = CommentList2Data.fromJson(json['data'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$CommentList2WrapToJson(CommentList2Wrap instance) =>
@@ -414,9 +382,7 @@ Map<String, dynamic> _$CommentList2WrapToJson(CommentList2Wrap instance) =>
 
 HugComment _$HugCommentFromJson(Map<String, dynamic> json) {
   return HugComment()
-    ..user = json['user'] == null
-        ? null
-        : NeteaseUserInfo.fromJson(json['user'] as Map<String, dynamic>)
+    ..user = NeteaseUserInfo.fromJson(json['user'] as Map<String, dynamic>)
     ..hugContent = json['hugContent'] as String;
 }
 
@@ -432,13 +398,11 @@ HugCommentListData _$HugCommentListDataFromJson(Map<String, dynamic> json) {
     ..cursor = json['cursor'] as String
     ..idCursor = json['idCursor'] as int
     ..hugTotalCounts = json['hugTotalCounts'] as int
-    ..hugComments = (json['hugComments'] as List)
-        ?.map((e) =>
-            e == null ? null : HugComment.fromJson(e as Map<String, dynamic>))
-        ?.toList()
-    ..currentComment = json['currentComment'] == null
-        ? null
-        : CommentItem.fromJson(json['currentComment'] as Map<String, dynamic>);
+    ..hugComments = (json['hugComments'] as List<dynamic>)
+        .map((e) => HugComment.fromJson(e as Map<String, dynamic>))
+        .toList()
+    ..currentComment =
+        CommentItem.fromJson(json['currentComment'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$HugCommentListDataToJson(HugCommentListData instance) =>
@@ -454,11 +418,9 @@ Map<String, dynamic> _$HugCommentListDataToJson(HugCommentListData instance) =>
 HugCommentListWrap _$HugCommentListWrapFromJson(Map<String, dynamic> json) {
   return HugCommentListWrap()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
-    ..data = json['data'] == null
-        ? null
-        : HugCommentListData.fromJson(json['data'] as Map<String, dynamic>);
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
+    ..data = HugCommentListData.fromJson(json['data'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$HugCommentListWrapToJson(HugCommentListWrap instance) =>
@@ -471,16 +433,14 @@ Map<String, dynamic> _$HugCommentListWrapToJson(HugCommentListWrap instance) =>
 
 FloorCommentDetail _$FloorCommentDetailFromJson(Map<String, dynamic> json) {
   return FloorCommentDetail()
-    ..comments = (json['comments'] as List)
-        ?.map((e) =>
-            e == null ? null : CommentItem.fromJson(e as Map<String, dynamic>))
-        ?.toList()
+    ..comments = (json['comments'] as List<dynamic>)
+        .map((e) => CommentItem.fromJson(e as Map<String, dynamic>))
+        .toList()
     ..hasMore = json['hasMore'] as bool
     ..totalCount = json['totalCount'] as int
     ..time = json['time'] as int
-    ..ownerComment = json['ownerComment'] == null
-        ? null
-        : CommentItem.fromJson(json['ownerComment'] as Map<String, dynamic>);
+    ..ownerComment =
+        CommentItem.fromJson(json['ownerComment'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$FloorCommentDetailToJson(FloorCommentDetail instance) =>
@@ -496,11 +456,9 @@ FloorCommentDetailWrap _$FloorCommentDetailWrapFromJson(
     Map<String, dynamic> json) {
   return FloorCommentDetailWrap()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
-    ..data = json['data'] == null
-        ? null
-        : FloorCommentDetail.fromJson(json['data'] as Map<String, dynamic>);
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
+    ..data = FloorCommentDetail.fromJson(json['data'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$FloorCommentDetailWrapToJson(
@@ -529,11 +487,9 @@ Map<String, dynamic> _$EventForwardRetToJson(EventForwardRet instance) =>
 EventForwardRetWrap _$EventForwardRetWrapFromJson(Map<String, dynamic> json) {
   return EventForwardRetWrap()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
-    ..data = json['data'] == null
-        ? null
-        : EventForwardRet.fromJson(json['data'] as Map<String, dynamic>);
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
+    ..data = EventForwardRet.fromJson(json['data'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$EventForwardRetWrapToJson(
@@ -563,10 +519,9 @@ Topic _$TopicFromJson(Map<String, dynamic> json) {
   return Topic()
     ..id = dynamicToString(json['id'])
     ..userId = dynamicToString(json['userId'])
-    ..content = (json['content'] as List)
-        ?.map((e) =>
-            e == null ? null : TopicContent.fromJson(e as Map<String, dynamic>))
-        ?.toList()
+    ..content = (json['content'] as List<dynamic>)
+        .map((e) => TopicContent.fromJson(e as Map<String, dynamic>))
+        .toList()
     ..title = json['title'] as String
     ..wxTitle = json['wxTitle'] as String
     ..mainTitle = json['mainTitle'] as String
@@ -583,7 +538,7 @@ Topic _$TopicFromJson(Map<String, dynamic> json) {
     ..status = json['status'] as int
     ..seriesId = json['seriesId'] as int
     ..categoryId = json['categoryId'] as int
-    ..hotScore = (json['hotScore'] as num)?.toDouble()
+    ..hotScore = (json['hotScore'] as num).toDouble()
     ..auditor = json['auditor'] as String
     ..auditTime = json['auditTime'] as int
     ..auditStatus = json['auditStatus'] as int
@@ -591,7 +546,7 @@ Topic _$TopicFromJson(Map<String, dynamic> json) {
     ..number = json['number'] as int
     ..readCount = json['readCount'] as int
     ..rectanglePic = json['rectanglePic'] as int
-    ..tags = (json['tags'] as List)?.map((e) => e as String)?.toList()
+    ..tags = (json['tags'] as List<dynamic>).map((e) => e as String).toList()
     ..reward = json['reward'] as bool
     ..fromBackend = json['fromBackend'] as bool
     ..showRelated = json['showRelated'] as bool
@@ -638,19 +593,16 @@ Map<String, dynamic> _$TopicToJson(Topic instance) => <String, dynamic>{
 TopicItem2 _$TopicItem2FromJson(Map<String, dynamic> json) {
   return TopicItem2()
     ..id = dynamicToString(json['id'])
-    ..topic = json['topic'] == null
-        ? null
-        : Topic.fromJson(json['topic'] as Map<String, dynamic>)
-    ..creator = json['creator'] == null
-        ? null
-        : NeteaseUserInfo.fromJson(json['creator'] as Map<String, dynamic>)
+    ..topic = Topic.fromJson(json['topic'] as Map<String, dynamic>)
+    ..creator =
+        NeteaseUserInfo.fromJson(json['creator'] as Map<String, dynamic>)
     ..number = json['number'] as int
     ..shareCount = json['shareCount'] as int
     ..commentCount = json['commentCount'] as int
     ..likedCount = json['likedCount'] as int
     ..readCount = json['readCount'] as int
     ..rewardCount = json['rewardCount'] as int
-    ..rewardMoney = (json['rewardMoney'] as num)?.toDouble()
+    ..rewardMoney = (json['rewardMoney'] as num).toDouble()
     ..rectanglePicUrl = json['rectanglePicUrl'] as String
     ..coverUrl = json['coverUrl'] as String
     ..seriesId = json['seriesId'] as int
@@ -664,7 +616,7 @@ TopicItem2 _$TopicItem2FromJson(Map<String, dynamic> json) {
     ..shareContent = json['shareContent'] as String
     ..recmdTitle = json['recmdTitle'] as String
     ..recmdContent = json['recmdContent'] as String
-    ..tags = (json['tags'] as List)?.map((e) => e as String)?.toList()
+    ..tags = (json['tags'] as List<dynamic>).map((e) => e as String).toList()
     ..addTime = json['addTime'] as int
     ..commentThreadId = json['commentThreadId'] as String
     ..showRelated = json['showRelated'] as bool
@@ -711,7 +663,7 @@ TopicItem _$TopicItemFromJson(Map<String, dynamic> json) {
   return TopicItem()
     ..actId = dynamicToString(json['actId'])
     ..title = json['title'] as String
-    ..text = (json['text'] as List)?.map((e) => e as String)?.toList()
+    ..text = (json['text'] as List<dynamic>).map((e) => e as String).toList()
     ..reason = json['reason'] as String
     ..participateCount = json['participateCount'] as int
     ..isDefaultImg = json['isDefaultImg'] as bool
@@ -755,12 +707,11 @@ Map<String, dynamic> _$TopicItemToJson(TopicItem instance) => <String, dynamic>{
 TopicHotListWrap _$TopicHotListWrapFromJson(Map<String, dynamic> json) {
   return TopicHotListWrap()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
-    ..hot = (json['hot'] as List)
-        ?.map((e) =>
-            e == null ? null : TopicItem.fromJson(e as Map<String, dynamic>))
-        ?.toList();
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
+    ..hot = (json['hot'] as List<dynamic>)
+        .map((e) => TopicItem.fromJson(e as Map<String, dynamic>))
+        .toList();
 }
 
 Map<String, dynamic> _$TopicHotListWrapToJson(TopicHotListWrap instance) =>
@@ -774,11 +725,9 @@ Map<String, dynamic> _$TopicHotListWrapToJson(TopicHotListWrap instance) =>
 TopicDetailWrap _$TopicDetailWrapFromJson(Map<String, dynamic> json) {
   return TopicDetailWrap()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
-    ..act = json['act'] == null
-        ? null
-        : TopicItem.fromJson(json['act'] as Map<String, dynamic>)
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
+    ..act = TopicItem.fromJson(json['act'] as Map<String, dynamic>)
     ..needBeginNotify = json['needBeginNotify'] as bool;
 }
 
@@ -797,9 +746,7 @@ SimpleResourceInfo _$SimpleResourceInfoFromJson(Map<String, dynamic> json) {
     ..threadId = json['threadId'] as String
     ..songCoverUrl = json['songCoverUrl'] as String
     ..name = json['name'] as String
-    ..song = json['song'] == null
-        ? null
-        : Song.fromJson(json['song'] as Map<String, dynamic>);
+    ..song = Song.fromJson(json['song'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$SimpleResourceInfoToJson(SimpleResourceInfo instance) =>
@@ -820,14 +767,10 @@ HotwallCommentItem _$HotwallCommentItemFromJson(Map<String, dynamic> json) {
     ..liked = json['liked'] as bool
     ..likedCount = json['likedCount'] as int
     ..replyCount = json['replyCount'] as int
-    ..simpleUserInfo = json['simpleUserInfo'] == null
-        ? null
-        : NeteaseSimpleUserInfo.fromJson(
-            json['simpleUserInfo'] as Map<String, dynamic>)
-    ..simpleResourceInfo = json['simpleResourceInfo'] == null
-        ? null
-        : SimpleResourceInfo.fromJson(
-            json['simpleResourceInfo'] as Map<String, dynamic>);
+    ..simpleUserInfo = NeteaseSimpleUserInfo.fromJson(
+        json['simpleUserInfo'] as Map<String, dynamic>)
+    ..simpleResourceInfo = SimpleResourceInfo.fromJson(
+        json['simpleResourceInfo'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$HotwallCommentItemToJson(HotwallCommentItem instance) =>
@@ -847,13 +790,11 @@ HotwallCommentListWrap _$HotwallCommentListWrapFromJson(
     Map<String, dynamic> json) {
   return HotwallCommentListWrap()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
-    ..data = (json['data'] as List)
-        ?.map((e) => e == null
-            ? null
-            : HotwallCommentItem.fromJson(e as Map<String, dynamic>))
-        ?.toList();
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
+    ..data = (json['data'] as List<dynamic>)
+        .map((e) => HotwallCommentItem.fromJson(e as Map<String, dynamic>))
+        .toList();
 }
 
 Map<String, dynamic> _$HotwallCommentListWrapToJson(
@@ -886,13 +827,9 @@ Map<String, dynamic> _$CommentSimpleToJson(CommentSimple instance) =>
 Comment _$CommentFromJson(Map<String, dynamic> json) {
   return Comment()
     ..commentId = dynamicToString(json['commentId'])
-    ..user = json['user'] == null
-        ? null
-        : NeteaseUserInfo.fromJson(json['user'] as Map<String, dynamic>)
-    ..beRepliedUser = json['beRepliedUser'] == null
-        ? null
-        : NeteaseUserInfo.fromJson(
-            json['beRepliedUser'] as Map<String, dynamic>)
+    ..user = NeteaseUserInfo.fromJson(json['user'] as Map<String, dynamic>)
+    ..beRepliedUser =
+        NeteaseUserInfo.fromJson(json['beRepliedUser'] as Map<String, dynamic>)
     ..expressionUrl = json['expressionUrl'] as String
     ..commentLocationType = json['commentLocationType'] as int
     ..time = json['time'] as int
@@ -912,11 +849,9 @@ Map<String, dynamic> _$CommentToJson(Comment instance) => <String, dynamic>{
 CommentWrap _$CommentWrapFromJson(Map<String, dynamic> json) {
   return CommentWrap()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
-    ..comment = json['comment'] == null
-        ? null
-        : Comment.fromJson(json['comment'] as Map<String, dynamic>);
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
+    ..comment = Comment.fromJson(json['comment'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$CommentWrapToJson(CommentWrap instance) =>
@@ -989,15 +924,11 @@ MsgContent _$MsgContentFromJson(Map<String, dynamic> json) {
     ..type = json['type'] as int
     ..resType = json['resType'] as int
     ..newPub = json['newPub'] as bool
-    ..promotionUrl = json['promotionUrl'] == null
-        ? null
-        : MsgPromotion.fromJson(json['promotionUrl'] as Map<String, dynamic>)
-    ..generalMsg = json['generalMsg'] == null
-        ? null
-        : MsgGeneral.fromJson(json['generalMsg'] as Map<String, dynamic>)
-    ..mv = json['mv'] == null
-        ? null
-        : Mv3.fromJson(json['mv'] as Map<String, dynamic>);
+    ..promotionUrl =
+        MsgPromotion.fromJson(json['promotionUrl'] as Map<String, dynamic>)
+    ..generalMsg =
+        MsgGeneral.fromJson(json['generalMsg'] as Map<String, dynamic>)
+    ..mv = Mv3.fromJson(json['mv'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$MsgContentToJson(MsgContent instance) =>
@@ -1015,12 +946,9 @@ Map<String, dynamic> _$MsgContentToJson(MsgContent instance) =>
 
 Msg _$MsgFromJson(Map<String, dynamic> json) {
   return Msg()
-    ..fromUser = json['fromUser'] == null
-        ? null
-        : NeteaseUserInfo.fromJson(json['fromUser'] as Map<String, dynamic>)
-    ..toUser = json['toUser'] == null
-        ? null
-        : NeteaseUserInfo.fromJson(json['toUser'] as Map<String, dynamic>)
+    ..fromUser =
+        NeteaseUserInfo.fromJson(json['fromUser'] as Map<String, dynamic>)
+    ..toUser = NeteaseUserInfo.fromJson(json['toUser'] as Map<String, dynamic>)
     ..lastMsg = json['lastMsg'] as String
     ..noticeAccountFlag = json['noticeAccountFlag'] as bool
     ..lastMsgTime = json['lastMsgTime'] as int
@@ -1039,12 +967,9 @@ Map<String, dynamic> _$MsgToJson(Msg instance) => <String, dynamic>{
 Msg2 _$Msg2FromJson(Map<String, dynamic> json) {
   return Msg2()
     ..id = dynamicToString(json['id'])
-    ..fromUser = json['fromUser'] == null
-        ? null
-        : NeteaseUserInfo.fromJson(json['fromUser'] as Map<String, dynamic>)
-    ..toUser = json['toUser'] == null
-        ? null
-        : NeteaseUserInfo.fromJson(json['toUser'] as Map<String, dynamic>)
+    ..fromUser =
+        NeteaseUserInfo.fromJson(json['fromUser'] as Map<String, dynamic>)
+    ..toUser = NeteaseUserInfo.fromJson(json['toUser'] as Map<String, dynamic>)
     ..msg = json['msg'] as String
     ..time = json['time'] as int
     ..batchId = json['batchId'] as int;
@@ -1062,11 +987,11 @@ Map<String, dynamic> _$Msg2ToJson(Msg2 instance) => <String, dynamic>{
 UsersMsgListWrap _$UsersMsgListWrapFromJson(Map<String, dynamic> json) {
   return UsersMsgListWrap()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
-    ..msgs = (json['msgs'] as List)
-        ?.map((e) => e == null ? null : Msg.fromJson(e as Map<String, dynamic>))
-        ?.toList();
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
+    ..msgs = (json['msgs'] as List<dynamic>)
+        .map((e) => Msg.fromJson(e as Map<String, dynamic>))
+        .toList();
 }
 
 Map<String, dynamic> _$UsersMsgListWrapToJson(UsersMsgListWrap instance) =>
@@ -1080,11 +1005,9 @@ Map<String, dynamic> _$UsersMsgListWrapToJson(UsersMsgListWrap instance) =>
 RecentContactUsersData _$RecentContactUsersDataFromJson(
     Map<String, dynamic> json) {
   return RecentContactUsersData()
-    ..follow = (json['follow'] as List)
-        ?.map((e) => e == null
-            ? null
-            : NeteaseAccountProfile.fromJson(e as Map<String, dynamic>))
-        ?.toList();
+    ..follow = (json['follow'] as List<dynamic>)
+        .map((e) => NeteaseAccountProfile.fromJson(e as Map<String, dynamic>))
+        .toList();
 }
 
 Map<String, dynamic> _$RecentContactUsersDataToJson(
@@ -1097,11 +1020,10 @@ RecentContactUsersWrap _$RecentContactUsersWrapFromJson(
     Map<String, dynamic> json) {
   return RecentContactUsersWrap()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
-    ..data = json['data'] == null
-        ? null
-        : RecentContactUsersData.fromJson(json['data'] as Map<String, dynamic>);
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
+    ..data =
+        RecentContactUsersData.fromJson(json['data'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$RecentContactUsersWrapToJson(
@@ -1116,12 +1038,11 @@ Map<String, dynamic> _$RecentContactUsersWrapToJson(
 UserMsgListWrap _$UserMsgListWrapFromJson(Map<String, dynamic> json) {
   return UserMsgListWrap()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
-    ..msgs = (json['msgs'] as List)
-        ?.map(
-            (e) => e == null ? null : Msg2.fromJson(e as Map<String, dynamic>))
-        ?.toList()
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
+    ..msgs = (json['msgs'] as List<dynamic>)
+        .map((e) => Msg2.fromJson(e as Map<String, dynamic>))
+        .toList()
     ..isArtist = json['isArtist'] as bool
     ..isSubed = json['isSubed'] as bool
     ..more = json['more'] as bool;
@@ -1141,13 +1062,12 @@ Map<String, dynamic> _$UserMsgListWrapToJson(UserMsgListWrap instance) =>
 UserMsgListWrap2 _$UserMsgListWrap2FromJson(Map<String, dynamic> json) {
   return UserMsgListWrap2()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
     ..id = dynamicToString(json['id'])
-    ..newMsgs = (json['newMsgs'] as List)
-        ?.map(
-            (e) => e == null ? null : Msg2.fromJson(e as Map<String, dynamic>))
-        ?.toList();
+    ..newMsgs = (json['newMsgs'] as List<dynamic>)
+        .map((e) => Msg2.fromJson(e as Map<String, dynamic>))
+        .toList();
 }
 
 Map<String, dynamic> _$UserMsgListWrap2ToJson(UserMsgListWrap2 instance) =>
@@ -1177,12 +1097,8 @@ Talk _$TalkFromJson(Map<String, dynamic> json) {
     ..talkId = dynamicToString(json['talkId'])
     ..talkName = json['talkName'] as String
     ..talkDes = json['talkDes'] as String
-    ..shareCover = json['shareCover'] == null
-        ? null
-        : Cover.fromJson(json['shareCover'] as Map<String, dynamic>)
-    ..showCover = json['showCover'] == null
-        ? null
-        : Cover.fromJson(json['showCover'] as Map<String, dynamic>)
+    ..shareCover = Cover.fromJson(json['shareCover'] as Map<String, dynamic>)
+    ..showCover = Cover.fromJson(json['showCover'] as Map<String, dynamic>)
     ..status = json['status'] as int
     ..mlogCount = json['mlogCount'] as int
     ..follows = json['follows'] as int
@@ -1216,9 +1132,7 @@ MyLogBaseData _$MyLogBaseDataFromJson(Map<String, dynamic> json) {
     ..coverWidth = json['coverWidth'] as int
     ..coverHeight = json['coverHeight'] as int
     ..coverColor = json['coverColor'] as int
-    ..talk = json['talk'] == null
-        ? null
-        : Talk.fromJson(json['talk'] as Map<String, dynamic>)
+    ..talk = Talk.fromJson(json['talk'] as Map<String, dynamic>)
     ..text = json['text'] as String;
 }
 
@@ -1249,16 +1163,12 @@ Map<String, dynamic> _$MyLogResourceExtToJson(MyLogResourceExt instance) =>
 
 MyLogResource _$MyLogResourceFromJson(Map<String, dynamic> json) {
   return MyLogResource()
-    ..mlogBaseData = json['mlogBaseData'] == null
-        ? null
-        : MyLogBaseData.fromJson(json['mlogBaseData'] as Map<String, dynamic>)
-    ..mlogExtVO = json['mlogExtVO'] == null
-        ? null
-        : MyLogResourceExt.fromJson(json['mlogExtVO'] as Map<String, dynamic>)
-    ..userProfile = json['userProfile'] == null
-        ? null
-        : NeteaseAccountProfile.fromJson(
-            json['userProfile'] as Map<String, dynamic>)
+    ..mlogBaseData =
+        MyLogBaseData.fromJson(json['mlogBaseData'] as Map<String, dynamic>)
+    ..mlogExtVO =
+        MyLogResourceExt.fromJson(json['mlogExtVO'] as Map<String, dynamic>)
+    ..userProfile = NeteaseAccountProfile.fromJson(
+        json['userProfile'] as Map<String, dynamic>)
     ..status = json['status'] as int
     ..shareUrl = json['shareUrl'] as String;
 }
@@ -1276,9 +1186,8 @@ MyLog _$MyLogFromJson(Map<String, dynamic> json) {
   return MyLog()
     ..id = dynamicToString(json['id'])
     ..type = json['type'] as int
-    ..resource = json['resource'] == null
-        ? null
-        : MyLogResource.fromJson(json['resource'] as Map<String, dynamic>)
+    ..resource =
+        MyLogResource.fromJson(json['resource'] as Map<String, dynamic>)
     ..alg = json['alg'] as String
     ..reason = json['reason'] as String
     ..matchField = json['matchField'] as int
@@ -1300,13 +1209,11 @@ Map<String, dynamic> _$MyLogToJson(MyLog instance) => <String, dynamic>{
 MyLogMyLikeData _$MyLogMyLikeDataFromJson(Map<String, dynamic> json) {
   return MyLogMyLikeData()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
-    ..feeds = (json['feeds'] as List)
-        ?.map((e) => e == null
-            ? null
-            : MyLogResource.fromJson(e as Map<String, dynamic>))
-        ?.toList()
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
+    ..feeds = (json['feeds'] as List<dynamic>)
+        .map((e) => MyLogResource.fromJson(e as Map<String, dynamic>))
+        .toList()
     ..time = json['time'] as int
     ..more = json['more'] as bool;
 }
@@ -1324,11 +1231,9 @@ Map<String, dynamic> _$MyLogMyLikeDataToJson(MyLogMyLikeData instance) =>
 MyLogMyLikeWrap _$MyLogMyLikeWrapFromJson(Map<String, dynamic> json) {
   return MyLogMyLikeWrap()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
-    ..data = json['data'] == null
-        ? null
-        : MyLogMyLikeData.fromJson(json['data'] as Map<String, dynamic>);
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
+    ..data = MyLogMyLikeData.fromJson(json['data'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$MyLogMyLikeWrapToJson(MyLogMyLikeWrap instance) =>

@@ -45,7 +45,7 @@ void main() async {
     var result = await api.loginCellPhone(login_phone, login_phone_password);
     expect(result.code, RET_CODE_OK);
 
-    assert((await loadCookies())?.isNotEmpty ?? false);
+    assert((await loadCookies()).isNotEmpty);
 
     var result2 = await api.logout();
     expect(result2.code, RET_CODE_OK);

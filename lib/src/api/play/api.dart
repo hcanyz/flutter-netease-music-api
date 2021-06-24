@@ -120,15 +120,15 @@ mixin ApiPlay {
         for (var match in matchs) {
           try {
             var item = Play();
-            item.id = match.group(2).substring('/playlist?id='.length);
-            item.name = match.group(3);
-            item.coverImgUrl = match
-                .group(1)
-                .substring(0, match.group(1).length - '?param=50y50'.length);
+            item.id = match.group(2)?.substring('/playlist?id='.length) ?? '';
+            item.name = match.group(3) ?? '';
+            item.coverImgUrl = match.group(1)?.substring(
+                    0, match.group(1)?.length ?? 0 - '?param=50y50'.length) ??
+                '';
             item.creator = NeteaseUserInfo();
             item.creator.userId =
-                match.group(4).substring('/user/home?id='.length);
-            item.creator.nickname = match.group(5);
+                match.group(4)?.substring('/user/home?id='.length) ?? '';
+            item.creator.nickname = match.group(5) ?? '';
             listWrap.playlists.add(item);
           } catch (ignore) {}
         }
@@ -173,7 +173,7 @@ mixin ApiPlay {
 
   DioMetaData playmodeIntelligenceListDioMetaData(
       String songId, String playlistId,
-      {String startMusicId, int count = 1}) {
+      {String? startMusicId, int count = 1}) {
     var params = {
       'songId': songId,
       'type': 'fromPlayOne',
@@ -191,7 +191,7 @@ mixin ApiPlay {
   /// [startMusicId]  要开始播放的歌曲的 id
   Future<PlaymodeIntelligenceListWrap> playmodeIntelligenceList(
       String songId, String playlistId,
-      {String startMusicId, int count = 1}) {
+      {String? startMusicId, int count = 1}) {
     return Https.dioProxy
         .postUri(playmodeIntelligenceListDioMetaData(songId, playlistId,
             startMusicId: startMusicId, count: count))

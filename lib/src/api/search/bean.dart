@@ -9,7 +9,7 @@ part 'bean.g.dart';
 
 @JsonSerializable()
 class SearchSongWrap {
-  List<Song> songs;
+  late List<Song> songs;
 
   SearchSongWrap();
 
@@ -21,7 +21,7 @@ class SearchSongWrap {
 
 @JsonSerializable()
 class SearchSongWrapX extends ServerStatusBean {
-  SearchSongWrap result;
+  late SearchSongWrap result;
 
   SearchSongWrapX();
 
@@ -33,7 +33,7 @@ class SearchSongWrapX extends ServerStatusBean {
 
 @JsonSerializable()
 class SearchAlbumsWrapX extends ServerStatusBean {
-  AlbumListWrap result;
+  late AlbumListWrap result;
 
   SearchAlbumsWrapX();
 
@@ -45,7 +45,7 @@ class SearchAlbumsWrapX extends ServerStatusBean {
 
 @JsonSerializable()
 class SearchArtistsWrap {
-  List<Artists> artists;
+  late List<Artists> artists;
 
   SearchArtistsWrap();
 
@@ -57,7 +57,7 @@ class SearchArtistsWrap {
 
 @JsonSerializable()
 class SearchArtistsWrapX extends ServerStatusBean {
-  SearchArtistsWrap result;
+  late SearchArtistsWrap result;
 
   SearchArtistsWrapX();
 
@@ -69,7 +69,7 @@ class SearchArtistsWrapX extends ServerStatusBean {
 
 @JsonSerializable()
 class SearchPlaylistWrap {
-  List<Play> playlists;
+  late List<Play> playlists;
 
   SearchPlaylistWrap();
 
@@ -81,7 +81,7 @@ class SearchPlaylistWrap {
 
 @JsonSerializable()
 class SearchPlaylistWrapX extends ServerStatusBean {
-  SearchPlaylistWrap result;
+  late SearchPlaylistWrap result;
 
   SearchPlaylistWrapX();
 
@@ -93,7 +93,7 @@ class SearchPlaylistWrapX extends ServerStatusBean {
 
 @JsonSerializable()
 class SearchUserWrapX extends ServerStatusBean {
-  UserListWrap result;
+  late UserListWrap result;
 
   SearchUserWrapX();
 
@@ -105,7 +105,7 @@ class SearchUserWrapX extends ServerStatusBean {
 
 @JsonSerializable()
 class SearchMvWrapX extends ServerStatusBean {
-  MvListWrap result;
+  late MvListWrap result;
 
   SearchMvWrapX();
 
@@ -117,7 +117,7 @@ class SearchMvWrapX extends ServerStatusBean {
 
 @JsonSerializable()
 class SearchLyricsWrap {
-  List<Song> songs;
+  late List<Song> songs;
 
   SearchLyricsWrap();
 
@@ -129,7 +129,7 @@ class SearchLyricsWrap {
 
 @JsonSerializable()
 class SearchLyricsWrapX extends ServerStatusBean {
-  SearchLyricsWrap result;
+  late SearchLyricsWrap result;
 
   SearchLyricsWrapX();
 
@@ -141,7 +141,7 @@ class SearchLyricsWrapX extends ServerStatusBean {
 
 @JsonSerializable()
 class SearchDjradiorap {
-  List<DjRadio> djRadios;
+  late List<DjRadio> djRadios;
 
   SearchDjradiorap();
 
@@ -153,7 +153,7 @@ class SearchDjradiorap {
 
 @JsonSerializable()
 class SearchDjradioWrapX extends ServerStatusBean {
-  SearchDjradiorap result;
+  late SearchDjradiorap result;
 
   SearchDjradioWrapX();
 
@@ -165,7 +165,7 @@ class SearchDjradioWrapX extends ServerStatusBean {
 
 @JsonSerializable()
 class SearchVideoWrap {
-  List<Mv2> videos;
+  late List<Mv2> videos;
 
   SearchVideoWrap();
 
@@ -177,7 +177,7 @@ class SearchVideoWrap {
 
 @JsonSerializable()
 class SearchVideoWrapX extends ServerStatusBean {
-  SearchVideoWrap result;
+  late SearchVideoWrap result;
 
   SearchVideoWrapX();
 
@@ -189,15 +189,15 @@ class SearchVideoWrapX extends ServerStatusBean {
 
 @JsonSerializable()
 class SearchComplexSong {
-  List<Song2> songs;
+  late List<Song2> songs;
 
-  String moreText;
+  late String moreText;
 
-  String highText;
+  late String highText;
 
-  bool more;
+  late bool more;
 
-  List<int> resourceIds;
+  late List<int> resourceIds;
 
   SearchComplexSong();
 
@@ -209,13 +209,13 @@ class SearchComplexSong {
 
 @JsonSerializable()
 class SearchComplexMlog {
-  List<MyLog> mlogs;
+  late List<MyLog> mlogs;
 
-  String moreText;
+  late String moreText;
 
-  bool more;
+  late bool more;
 
-  List<int> resourceIds;
+  late List<int> resourceIds;
 
   SearchComplexMlog();
 
@@ -227,15 +227,15 @@ class SearchComplexMlog {
 
 @JsonSerializable()
 class SearchComplexPlaylist {
-  List<Play> playLists;
+  late List<Play> playLists;
 
-  String moreText;
+  late String moreText;
 
-  String highText;
+  late String highText;
 
-  bool more;
+  late bool more;
 
-  List<int> resourceIds;
+  late List<int> resourceIds;
 
   SearchComplexPlaylist();
 
@@ -247,15 +247,15 @@ class SearchComplexPlaylist {
 
 @JsonSerializable()
 class SearchComplexArtist {
-  List<Artists> artists;
+  late List<Artists> artists;
 
-  String moreText;
+  late String moreText;
 
-  String highText;
+  late String highText;
 
-  bool more;
+  late bool more;
 
-  List<int> resourceIds;
+  late List<int> resourceIds;
 
   SearchComplexArtist();
 
@@ -267,15 +267,15 @@ class SearchComplexArtist {
 
 @JsonSerializable()
 class SearchComplexAlbum {
-  List<Album> albums;
+  late List<Album> albums;
 
-  String moreText;
+  late String moreText;
 
-  String highText;
+  late String highText;
 
-  bool more;
+  late bool more;
 
-  List<int> resourceIds;
+  late List<int> resourceIds;
 
   SearchComplexAlbum();
 
@@ -287,15 +287,15 @@ class SearchComplexAlbum {
 
 @JsonSerializable()
 class SearchComplexVideo {
-  List<Video2> videos;
+  late List<Video2> videos;
 
-  String moreText;
+  late String moreText;
 
-  String highText;
+  late String highText;
 
-  bool more;
+  late bool more;
 
-  List<int> resourceIds;
+  late List<int> resourceIds;
 
   SearchComplexVideo();
 
@@ -307,8 +307,8 @@ class SearchComplexVideo {
 
 @JsonSerializable()
 class SearchComplexSimQueryItem {
-  String keyword;
-  String alg;
+  late String keyword;
+  late String alg;
 
   SearchComplexSimQueryItem();
 
@@ -320,8 +320,8 @@ class SearchComplexSimQueryItem {
 
 @JsonSerializable()
 class SearchComplexSimQuery {
-  List<SearchComplexSimQueryItem> sim_querys;
-  bool more;
+  late List<SearchComplexSimQueryItem> sim_querys;
+  late bool more;
 
   SearchComplexSimQuery();
 
@@ -333,13 +333,13 @@ class SearchComplexSimQuery {
 
 @JsonSerializable()
 class SearchComplexTalk {
-  List<NeteaseUserInfo> users;
+  late List<NeteaseUserInfo> users;
 
-  String moreText;
+  late String moreText;
 
-  bool more;
+  late bool more;
 
-  List<int> resourceIds;
+  late List<int> resourceIds;
 
   SearchComplexTalk();
 
@@ -351,13 +351,13 @@ class SearchComplexTalk {
 
 @JsonSerializable()
 class SearchComplexUser {
-  List<NeteaseUserInfo> users;
+  late List<NeteaseUserInfo> users;
 
-  String moreText;
+  late String moreText;
 
-  bool more;
+  late bool more;
 
-  List<int> resourceIds;
+  late List<int> resourceIds;
 
   SearchComplexUser();
 
@@ -369,17 +369,17 @@ class SearchComplexUser {
 
 @JsonSerializable()
 class SearchComplexWrap {
-  SearchComplexSong song;
-  SearchComplexMlog mlog;
-  SearchComplexPlaylist playList;
-  SearchComplexArtist artist;
-  SearchComplexAlbum album;
-  SearchComplexVideo video;
-  SearchComplexSimQuery sim_query;
-  SearchComplexTalk talk;
-  SearchComplexUser user;
+  late SearchComplexSong song;
+  late SearchComplexMlog mlog;
+  late SearchComplexPlaylist playList;
+  late SearchComplexArtist artist;
+  late SearchComplexAlbum album;
+  late SearchComplexVideo video;
+  late SearchComplexSimQuery sim_query;
+  late SearchComplexTalk talk;
+  late SearchComplexUser user;
 
-  List<String> order;
+  late List<String> order;
 
   SearchComplexWrap();
 
@@ -391,7 +391,7 @@ class SearchComplexWrap {
 
 @JsonSerializable()
 class SearchComplexWrapX extends ServerStatusBean {
-  SearchComplexWrap result;
+  late SearchComplexWrap result;
 
   SearchComplexWrapX();
 
@@ -403,12 +403,12 @@ class SearchComplexWrapX extends ServerStatusBean {
 
 @JsonSerializable()
 class SearchKey {
-  String showKeyword;
-  int action;
-  String realkeyword;
-  int searchType;
-  String alg;
-  int gap;
+  late String showKeyword;
+  late int action;
+  late String realkeyword;
+  late int searchType;
+  late String alg;
+  late int gap;
 
   SearchKey();
 
@@ -420,7 +420,7 @@ class SearchKey {
 
 @JsonSerializable()
 class SearchKeyWrap extends ServerStatusBean {
-  SearchKey data;
+  late SearchKey data;
 
   SearchKeyWrap();
 
@@ -432,9 +432,9 @@ class SearchKeyWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class SearchHotKey {
-  String first;
-  int second;
-  int iconType;
+  late String first;
+  late int second;
+  late int iconType;
 
   SearchHotKey();
 
@@ -446,7 +446,7 @@ class SearchHotKey {
 
 @JsonSerializable()
 class SearchHotKeyWrap {
-  List<SearchHotKey> hots;
+  late List<SearchHotKey> hots;
 
   SearchHotKeyWrap();
 
@@ -458,7 +458,7 @@ class SearchHotKeyWrap {
 
 @JsonSerializable()
 class SearchKeyWrapX extends ServerStatusBean {
-  SearchHotKeyWrap result;
+  late SearchHotKeyWrap result;
 
   SearchKeyWrapX();
 
@@ -470,16 +470,16 @@ class SearchKeyWrapX extends ServerStatusBean {
 
 @JsonSerializable()
 class SearchKeyDetailedItem {
-  String searchWord;
-  String content;
+  late String searchWord;
+  late String content;
 
-  String iconUrl;
-  String url;
-  String alg;
+  late String iconUrl;
+  late String url;
+  late String alg;
 
-  int score;
-  int source;
-  int iconType;
+  late int score;
+  late int source;
+  late int iconType;
 
   SearchKeyDetailedItem();
 
@@ -491,7 +491,7 @@ class SearchKeyDetailedItem {
 
 @JsonSerializable()
 class SearchKeyDetailedWrap extends ServerStatusBean {
-  List<SearchKeyDetailedItem> data;
+  late List<SearchKeyDetailedItem> data;
 
   SearchKeyDetailedWrap();
 
@@ -503,10 +503,10 @@ class SearchKeyDetailedWrap extends ServerStatusBean {
 
 @JsonSerializable()
 class SearchSuggestItem {
-  String keyword;
-  int type;
-  String alg;
-  String lastKeyword;
+  late String keyword;
+  late int type;
+  late String alg;
+  late String lastKeyword;
 
   SearchSuggestItem();
 
@@ -518,7 +518,7 @@ class SearchSuggestItem {
 
 @JsonSerializable()
 class SearchSuggestWrap {
-  List<SearchSuggestItem> allMatch;
+  late List<SearchSuggestItem> allMatch;
 
   SearchSuggestWrap();
 
@@ -530,7 +530,7 @@ class SearchSuggestWrap {
 
 @JsonSerializable()
 class SearchSuggestWrapX extends ServerStatusBean {
-  SearchSuggestWrap result;
+  late SearchSuggestWrap result;
 
   SearchSuggestWrapX();
 
@@ -542,12 +542,12 @@ class SearchSuggestWrapX extends ServerStatusBean {
 
 @JsonSerializable()
 class SearchMultiMatchWrap {
-  List<Song> song;
-  List<Play> playList;
-  List<Artists> artist;
-  List<Album> album;
+  late List<Song> song;
+  late List<Play> playList;
+  late List<Artists> artist;
+  late List<Album> album;
 
-  List<String> orders;
+  late List<String> orders;
 
   SearchMultiMatchWrap();
 
@@ -559,7 +559,7 @@ class SearchMultiMatchWrap {
 
 @JsonSerializable()
 class SearchMultiMatchWrapX extends ServerStatusBean {
-  SearchMultiMatchWrap result;
+  late SearchMultiMatchWrap result;
 
   SearchMultiMatchWrapX();
 

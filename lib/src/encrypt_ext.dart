@@ -8,15 +8,15 @@ class NoPaddingEncoding extends PKCS1Encoding {
 
   final AsymmetricBlockCipher _engine;
 
-  int _keyLength;
-  bool _forEncryption;
+  late int _keyLength;
+  late bool _forEncryption;
 
   @override
   void init(bool forEncryption, CipherParameters params) {
     super.init(forEncryption, params);
     this._forEncryption = forEncryption;
     if (params is AsymmetricKeyParameter<RSAAsymmetricKey>) {
-      this._keyLength = (params.key.modulus.bitLength + 7) ~/ 8;
+      this._keyLength = (params.key.modulus?.bitLength ?? 0 + 7) ~/ 8;
     }
   }
 
@@ -69,46 +69,48 @@ class NoPaddingEncoding extends PKCS1Encoding {
 }
 
 abstract class AbstractRSAExt {
-  final RSAPublicKey publicKey;
-  final RSAPrivateKey privateKey;
-  final PublicKeyParameter<RSAPublicKey> _publicKeyParams;
-  final PrivateKeyParameter<RSAPrivateKey> _privateKeyParams;
+  final RSAPublicKey? publicKey;
+  final RSAPrivateKey? privateKey;
+
+  PublicKeyParameter<RSAPublicKey>? get _publicKeyParams =>
+      publicKey != null ? PublicKeyParameter(publicKey!) : null;
+
+  PrivateKeyParameter<RSAPrivateKey>? get _privateKeyParams =>
+      privateKey != null ? PrivateKeyParameter(privateKey!) : null;
   final AsymmetricBlockCipher _cipher;
 
   AbstractRSAExt({
-    this.publicKey,
-    this.privateKey,
-  })  : this._publicKeyParams = PublicKeyParameter(publicKey),
-        this._privateKeyParams = PrivateKeyParameter(privateKey),
-        this._cipher = NoPaddingEncoding(RSAEngine());
+    required this.publicKey,
+    required this.privateKey,
+  }) : this._cipher = NoPaddingEncoding(RSAEngine());
 }
 
 class RSAExt extends AbstractRSAExt implements Algorithm {
-  RSAExt({RSAPublicKey publicKey, RSAPrivateKey privateKey})
+  RSAExt({RSAPublicKey? publicKey, RSAPrivateKey? privateKey})
       : super(publicKey: publicKey, privateKey: privateKey);
 
   @override
-  Encrypted encrypt(Uint8List bytes, {IV iv}) {
+  Encrypted encrypt(Uint8List bytes, {IV? iv}) {
     if (publicKey == null) {
       throw StateError('Can\'t encrypt without a public key, null given.');
     }
 
     _cipher
       ..reset()
-      ..init(true, _publicKeyParams);
+      ..init(true, _publicKeyParams!);
 
     return Encrypted(_cipher.process(bytes));
   }
 
   @override
-  Uint8List decrypt(Encrypted encrypted, {IV iv}) {
+  Uint8List decrypt(Encrypted encrypted, {IV? iv}) {
     if (privateKey == null) {
       throw StateError('Can\'t decrypt without a private key, null given.');
     }
 
     _cipher
       ..reset()
-      ..init(false, _privateKeyParams);
+      ..init(false, _privateKeyParams!);
 
     return _cipher.process(encrypted.bytes);
   }

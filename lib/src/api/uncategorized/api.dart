@@ -160,12 +160,12 @@ mixin ApiUncategorized {
   }
 
   DioMetaData audioMatchDioMetaData(
-      {String algorithmCode,
-      int times,
-      String sessionId,
-      double duration,
-      String from,
-      String rawdata}) {
+      {String? algorithmCode,
+      int? times,
+      String? sessionId,
+      double? duration,
+      String? from,
+      String? rawdata}) {
     var params = {
       'algorithmCode': algorithmCode,
       'times': times,

@@ -3,8 +3,8 @@ import 'package:dio/dio.dart';
 class Https {
   Https._inner();
 
-  static Dio _dio;
-  static DioProxy _dioProxy;
+  static Dio? _dio;
+  static DioProxy? _dioProxy;
 
   static Map<String, String> optHeader = {};
 
@@ -15,11 +15,11 @@ class Https {
 }
 
 class DioMetaData {
-  Uri uri;
+  late Uri uri;
   dynamic data;
-  Options options;
+  Options? options;
 
-  Error error;
+  Error? error;
 
   DioMetaData(this.uri, {this.data, this.options});
 
@@ -29,12 +29,13 @@ class DioMetaData {
 class DioProxy {
   Future<Response<T>> postUri<T>(
     DioMetaData metaData, {
-    CancelToken cancelToken,
-    ProgressCallback onSendProgress,
-    ProgressCallback onReceiveProgress,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
   }) {
-    if (metaData.error != null) {
-      return Future.error(metaData.error);
+    var error = metaData.error;
+    if (error != null) {
+      return Future.error(error);
     }
     return Https.dio
         .postUri(metaData.uri, data: metaData.data, options: metaData.options);
@@ -42,22 +43,23 @@ class DioProxy {
 
   Future<Response<T>> getUri<T>(
     DioMetaData metaData, {
-    CancelToken cancelToken,
-    ProgressCallback onSendProgress,
-    ProgressCallback onReceiveProgress,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
   }) {
-    if (metaData.error != null) {
-      return Future.error(metaData.error);
+    var error = metaData.error;
+    if (error != null) {
+      return Future.error(error);
     }
     return Https.dio.getUri(metaData.uri, options: metaData.options);
   }
 
   Future<Response<T>> get<T>(
     String path, {
-    Map<String, dynamic> queryParameters,
-    Options options,
-    CancelToken cancelToken,
-    ProgressCallback onReceiveProgress,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onReceiveProgress,
   }) {
     return Https.dio.get(path,
         queryParameters: queryParameters,

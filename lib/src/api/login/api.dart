@@ -164,9 +164,9 @@ mixin ApiLogin {
       s.code = RET_CODE_NEED_LOGIN;
       try {
         String body = value.data;
-        var profile = RegExp(r'GUser\s*=\s*([^;]+);').firstMatch(body).group(1);
+        var profile = RegExp(r'GUser\s*=\s*([^;]+);').firstMatch(body)?.group(1);
         var bindings =
-            RegExp(r'GBinds\s*=\s*([^;]+);').firstMatch(body).group(1);
+            RegExp(r'GBinds\s*=\s*([^;]+);').firstMatch(body)?.group(1);
         if (profile != null && bindings != null) {
           s.code = RET_CODE_OK;
         }
@@ -184,7 +184,7 @@ mixin ApiLogin {
   /// 刷新token
   /// !需要登录
   /// [ServerStatusBean] code [RetCode]
-  Future<ServerStatusBean> loginRefresh({Dio dio}) {
+  Future<ServerStatusBean> loginRefresh({Dio? dio}) {
     if (dio == null) {
       dio = Https.dio;
     }

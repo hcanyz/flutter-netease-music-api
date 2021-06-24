@@ -103,11 +103,9 @@ Map<String, dynamic> _$UserSettingToJson(UserSetting instance) =>
 UserSettingWrap _$UserSettingWrapFromJson(Map<String, dynamic> json) {
   return UserSettingWrap()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
-    ..setting = json['setting'] == null
-        ? null
-        : UserSetting.fromJson(json['setting'] as Map<String, dynamic>);
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
+    ..setting = UserSetting.fromJson(json['setting'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$UserSettingWrapToJson(UserSettingWrap instance) =>
@@ -145,23 +143,23 @@ NeteaseUserInfo _$NeteaseUserInfoFromJson(Map<String, dynamic> json) {
     ..signature = json['signature'] as String
     ..description = json['description'] as String
     ..detailDescription = json['detailDescription'] as String
-    ..recommendReason = json['recommendReason'] as String
+    ..recommendReason = json['recommendReason'] as String?
     ..gender = json['gender'] as int
     ..authority = json['authority'] as int
     ..birthday = json['birthday'] as int
     ..city = json['city'] as int
     ..province = json['province'] as int
     ..vipType = json['vipType'] as int
-    ..authenticationTypes = json['authenticationTypes'] as int
+    ..authenticationTypes = json['authenticationTypes'] as int?
     ..authStatus = json['authStatus'] as int
     ..djStatus = json['djStatus'] as int
     ..accountStatus = json['accountStatus'] as int
     ..expertTags =
-        (json['expertTags'] as List)?.map((e) => e as String)?.toList()
-    ..alg = json['alg'] as String
+        (json['expertTags'] as List<dynamic>?)?.map((e) => e as String).toList()
+    ..alg = json['alg'] as String?
     ..followed = json['followed'] as bool
     ..mutual = json['mutual'] as bool
-    ..anchor = json['anchor'] as bool
+    ..anchor = json['anchor'] as bool?
     ..defaultAvatar = json['defaultAvatar'] as bool;
 }
 
@@ -196,14 +194,12 @@ Map<String, dynamic> _$NeteaseUserInfoToJson(NeteaseUserInfo instance) =>
 NeteaseUserDetail _$NeteaseUserDetailFromJson(Map<String, dynamic> json) {
   return NeteaseUserDetail()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
     ..createTime = json['createTime'] as int
     ..createDays = json['createDays'] as int
-    ..profile = json['profile'] == null
-        ? null
-        : NeteaseAccountProfile.fromJson(
-            json['profile'] as Map<String, dynamic>);
+    ..profile =
+        NeteaseAccountProfile.fromJson(json['profile'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$NeteaseUserDetailToJson(NeteaseUserDetail instance) =>
@@ -219,8 +215,8 @@ Map<String, dynamic> _$NeteaseUserDetailToJson(NeteaseUserDetail instance) =>
 NeteaseUserSubcount _$NeteaseUserSubcountFromJson(Map<String, dynamic> json) {
   return NeteaseUserSubcount()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
     ..programCount = json['programCount'] as int
     ..djRadioCount = json['djRadioCount'] as int
     ..mvCount = json['mvCount'] as int
@@ -250,7 +246,7 @@ Map<String, dynamic> _$NeteaseUserSubcountToJson(
 NeteaseUserLevel _$NeteaseUserLevelFromJson(Map<String, dynamic> json) {
   return NeteaseUserLevel()
     ..info = json['info'] as String
-    ..progress = (json['progress'] as num)?.toDouble()
+    ..progress = (json['progress'] as num).toDouble()
     ..nextPlayCount = json['nextPlayCount'] as int
     ..nextLoginCount = json['nextLoginCount'] as int
     ..nowPlayCount = json['nowPlayCount'] as int
@@ -272,12 +268,10 @@ Map<String, dynamic> _$NeteaseUserLevelToJson(NeteaseUserLevel instance) =>
 NeteaseUserLevelWrap _$NeteaseUserLevelWrapFromJson(Map<String, dynamic> json) {
   return NeteaseUserLevelWrap()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
     ..full = json['full'] as bool
-    ..data = json['data'] == null
-        ? null
-        : NeteaseUserLevel.fromJson(json['data'] as Map<String, dynamic>);
+    ..data = NeteaseUserLevel.fromJson(json['data'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$NeteaseUserLevelWrapToJson(
@@ -293,13 +287,11 @@ Map<String, dynamic> _$NeteaseUserLevelWrapToJson(
 UserFollowListWrap _$UserFollowListWrapFromJson(Map<String, dynamic> json) {
   return UserFollowListWrap()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
-    ..follow = (json['follow'] as List)
-        ?.map((e) => e == null
-            ? null
-            : NeteaseAccountProfile.fromJson(e as Map<String, dynamic>))
-        ?.toList();
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
+    ..follow = (json['follow'] as List<dynamic>)
+        .map((e) => NeteaseAccountProfile.fromJson(e as Map<String, dynamic>))
+        .toList();
 }
 
 Map<String, dynamic> _$UserFollowListWrapToJson(UserFollowListWrap instance) =>
@@ -313,13 +305,11 @@ Map<String, dynamic> _$UserFollowListWrapToJson(UserFollowListWrap instance) =>
 UserFollowedListWrap _$UserFollowedListWrapFromJson(Map<String, dynamic> json) {
   return UserFollowedListWrap()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
-    ..followeds = (json['followeds'] as List)
-        ?.map((e) => e == null
-            ? null
-            : NeteaseAccountProfile.fromJson(e as Map<String, dynamic>))
-        ?.toList();
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
+    ..followeds = (json['followeds'] as List<dynamic>)
+        .map((e) => NeteaseAccountProfile.fromJson(e as Map<String, dynamic>))
+        .toList();
 }
 
 Map<String, dynamic> _$UserFollowedListWrapToJson(
@@ -334,13 +324,11 @@ Map<String, dynamic> _$UserFollowedListWrapToJson(
 UserListWrap _$UserListWrapFromJson(Map<String, dynamic> json) {
   return UserListWrap()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
-    ..userprofiles = (json['userprofiles'] as List)
-        ?.map((e) => e == null
-            ? null
-            : NeteaseUserInfo.fromJson(e as Map<String, dynamic>))
-        ?.toList();
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
+    ..userprofiles = (json['userprofiles'] as List<dynamic>)
+        .map((e) => NeteaseUserInfo.fromJson(e as Map<String, dynamic>))
+        .toList();
 }
 
 Map<String, dynamic> _$UserListWrapToJson(UserListWrap instance) =>
@@ -354,15 +342,14 @@ Map<String, dynamic> _$UserListWrapToJson(UserListWrap instance) =>
 ArtistsSubListWrap _$ArtistsSubListWrapFromJson(Map<String, dynamic> json) {
   return ArtistsSubListWrap()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
     ..more = json['more'] as bool
     ..count = json['count'] as int
     ..total = json['total'] as int
-    ..data = (json['data'] as List)
-        ?.map((e) =>
-            e == null ? null : Artists.fromJson(e as Map<String, dynamic>))
-        ?.toList();
+    ..data = (json['data'] as List<dynamic>)
+        .map((e) => Artists.fromJson(e as Map<String, dynamic>))
+        .toList();
 }
 
 Map<String, dynamic> _$ArtistsSubListWrapToJson(ArtistsSubListWrap instance) =>
@@ -379,14 +366,14 @@ Map<String, dynamic> _$ArtistsSubListWrapToJson(ArtistsSubListWrap instance) =>
 MvSubListWrap _$MvSubListWrapFromJson(Map<String, dynamic> json) {
   return MvSubListWrap()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
     ..more = json['more'] as bool
     ..count = json['count'] as int
     ..total = json['total'] as int
-    ..data = (json['data'] as List)
-        ?.map((e) => e == null ? null : Mv2.fromJson(e as Map<String, dynamic>))
-        ?.toList();
+    ..data = (json['data'] as List<dynamic>)
+        .map((e) => Mv2.fromJson(e as Map<String, dynamic>))
+        .toList();
 }
 
 Map<String, dynamic> _$MvSubListWrapToJson(MvSubListWrap instance) =>
@@ -403,15 +390,14 @@ Map<String, dynamic> _$MvSubListWrapToJson(MvSubListWrap instance) =>
 AlbumSubListWrap _$AlbumSubListWrapFromJson(Map<String, dynamic> json) {
   return AlbumSubListWrap()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
     ..more = json['more'] as bool
     ..count = json['count'] as int
     ..total = json['total'] as int
-    ..data = (json['data'] as List)
-        ?.map(
-            (e) => e == null ? null : Album.fromJson(e as Map<String, dynamic>))
-        ?.toList()
+    ..data = (json['data'] as List<dynamic>)
+        .map((e) => Album.fromJson(e as Map<String, dynamic>))
+        .toList()
     ..paidCount = json['paidCount'] as int;
 }
 
@@ -431,9 +417,7 @@ PlayRecordItem _$PlayRecordItemFromJson(Map<String, dynamic> json) {
   return PlayRecordItem()
     ..playCount = json['playCount'] as int
     ..score = json['score'] as int
-    ..song = json['song'] == null
-        ? null
-        : Song.fromJson(json['song'] as Map<String, dynamic>);
+    ..song = Song.fromJson(json['song'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$PlayRecordItemToJson(PlayRecordItem instance) =>
@@ -446,13 +430,11 @@ Map<String, dynamic> _$PlayRecordItemToJson(PlayRecordItem instance) =>
 PlayRecordListWrap _$PlayRecordListWrapFromJson(Map<String, dynamic> json) {
   return PlayRecordListWrap()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
-    ..allData = (json['allData'] as List)
-        ?.map((e) => e == null
-            ? null
-            : PlayRecordItem.fromJson(e as Map<String, dynamic>))
-        ?.toList();
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
+    ..allData = (json['allData'] as List<dynamic>)
+        .map((e) => PlayRecordItem.fromJson(e as Map<String, dynamic>))
+        .toList();
 }
 
 Map<String, dynamic> _$PlayRecordListWrapToJson(PlayRecordListWrap instance) =>
@@ -466,12 +448,10 @@ Map<String, dynamic> _$PlayRecordListWrapToJson(PlayRecordListWrap instance) =>
 PlaylistCreateWrap _$PlaylistCreateWrapFromJson(Map<String, dynamic> json) {
   return PlaylistCreateWrap()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
     ..id = dynamicToString(json['id'])
-    ..playlist = json['playlist'] == null
-        ? null
-        : Play.fromJson(json['playlist'] as Map<String, dynamic>);
+    ..playlist = Play.fromJson(json['playlist'] as Map<String, dynamic>);
 }
 
 Map<String, dynamic> _$PlaylistCreateWrapToJson(PlaylistCreateWrap instance) =>
@@ -487,13 +467,11 @@ PlaylistSubscribersWrap _$PlaylistSubscribersWrapFromJson(
     Map<String, dynamic> json) {
   return PlaylistSubscribersWrap()
     ..code = json['code'] as int
-    ..message = json['message'] as String
-    ..msg = json['msg'] as String
-    ..subscribers = (json['subscribers'] as List)
-        ?.map((e) => e == null
-            ? null
-            : NeteaseUserInfo.fromJson(e as Map<String, dynamic>))
-        ?.toList();
+    ..message = json['message'] as String?
+    ..msg = json['msg'] as String?
+    ..subscribers = (json['subscribers'] as List<dynamic>)
+        .map((e) => NeteaseUserInfo.fromJson(e as Map<String, dynamic>))
+        .toList();
 }
 
 Map<String, dynamic> _$PlaylistSubscribersWrapToJson(

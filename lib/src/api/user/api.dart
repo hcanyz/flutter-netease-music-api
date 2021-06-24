@@ -166,8 +166,7 @@ mixin ApiUser {
     var params = {
       '/api/playlist/update/name': '{"id": "$id", "name": "$name"}',
       '/api/playlist/desc/update': '{"id": "$id", "desc": "$desc"}',
-      '/api/playlist/tags/update':
-          '{"id": "$id", "tags": "${tags?.join(',') ?? ''}"}'
+      '/api/playlist/tags/update': '{"id": "$id", "tags": "${tags.join(',')}"}'
     };
     return DioMetaData(joinUri('/weapi/batch'),
         data: params, options: joinOptions(cookies: {'os': 'pc'}));
@@ -228,7 +227,7 @@ mixin ApiUser {
   }
 
   DioMetaData updateUserPlayListTagsDioMetaData(String id, List<String> tags) {
-    var params = {'id': id, 'tags': tags?.join(',') ?? ''};
+    var params = {'id': id, 'tags': tags.join(',')};
     return DioMetaData(joinUri('/eapi/playlist/tags/update'),
         data: params,
         options: joinOptions(

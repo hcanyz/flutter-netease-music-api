@@ -30,12 +30,12 @@ class NeteaseMusicApi
         ApiEvent,
         ApiSearch,
         ApiUncategorized {
-  static NeteaseMusicApi _neteaseMusicApi;
+  static NeteaseMusicApi? _neteaseMusicApi;
 
-  static CookieManager cookieManager;
-  static PathProvider pathProvider;
+  static late CookieManager cookieManager;
+  static late PathProvider pathProvider;
 
-  static Future<bool> init({PathProvider provider, bool debug = false}) async {
+  static Future<bool> init({PathProvider? provider, bool debug = false}) async {
     if (provider == null) {
       provider = PathProvider();
     }
@@ -129,9 +129,9 @@ class NeteaseMusicApi
 }
 
 class UserLoginStateController {
-  LoginState _curLoginState;
+  LoginState? _curLoginState;
 
-  StreamController _controller;
+  StreamController? _controller;
 
   UserLoginStateController();
 
@@ -143,15 +143,15 @@ class UserLoginStateController {
         : LoginState.Logout);
   }
 
-  NeteaseAccountInfoWrap _accountInfo;
+  NeteaseAccountInfoWrap? _accountInfo;
 
-  NeteaseAccountInfoWrap get accountInfo {
+  NeteaseAccountInfoWrap? get accountInfo {
     return _accountInfo;
   }
 
-  AnonimousLoginRet _anonimousLoginRet;
+  AnonimousLoginRet? _anonimousLoginRet;
 
-  AnonimousLoginRet get anonimousLoginInfo {
+  AnonimousLoginRet? get anonimousLoginInfo {
     if (accountInfo != null) {
       _anonimousLoginRet = null;
     }
@@ -163,11 +163,13 @@ class UserLoginStateController {
   }
 
   StreamSubscription listenLoginState(
-      void onChange(LoginState event, NeteaseAccountInfoWrap accountInfoWrap)) {
-    if (_controller == null) {
-      _controller = StreamController.broadcast(sync: true);
+      void onChange(
+          LoginState event, NeteaseAccountInfoWrap? accountInfoWrap)) {
+    var controller = _controller;
+    if (controller == null) {
+      _controller = controller = StreamController.broadcast(sync: true);
     }
-    return _controller.stream.listen((t) {
+    return controller.stream.listen((t) {
       onChange(t, accountInfo);
     });
   }
@@ -189,7 +191,7 @@ class UserLoginStateController {
     _refreshLoginState(LoginState.Logout);
   }
 
-  void _saveAccountInfo(NeteaseAccountInfoWrap infoWrap) {
+  void _saveAccountInfo(NeteaseAccountInfoWrap? infoWrap) {
     _saveFile().writeAsString(jsonEncode(infoWrap), flush: true);
   }
 
@@ -215,14 +217,15 @@ class UserLoginStateController {
   }
 
   void _refreshLoginState(LoginState state) {
-    if (_controller != null && _curLoginState != state) {
-      _controller.add(state);
+    var controller = _controller;
+    if (controller != null && _curLoginState != state) {
+      controller.add(state);
     }
     _curLoginState = state;
   }
 
   void destroy() {
-    _controller.close();
+    _controller?.close();
   }
 }
 

@@ -194,7 +194,7 @@ mixin ApiEvent {
       {int pageNo = 1,
       int pageSize = 20,
       bool showInner = true,
-      int sortType}) {
+      int? sortType}) {
     String typeKey = _type2key(type) + id;
     var params = {
       'threadId': typeKey,
@@ -219,7 +219,7 @@ mixin ApiEvent {
       {int pageNo = 1,
       int pageSize = 20,
       bool showInner = true,
-      int sortType}) {
+      int? sortType}) {
     return Https.dioProxy
         .postUri(commentListDioMetaData2(id, type,
             pageNo: pageNo,
@@ -377,7 +377,7 @@ mixin ApiEvent {
 
   DioMetaData likeCommentDioMetaData(
       String id, String commentId, String type, bool like,
-      {String threadId}) {
+      {String? threadId}) {
     String typeKey = _type2key(type);
     var params = {'commentId': commentId, 'threadId': typeKey + id};
     if (type == 'event') {
@@ -400,7 +400,7 @@ mixin ApiEvent {
   /// threadId 可通过 /event，/user/event 接口获取
   Future<ServerStatusBean> likeComment(
       String id, String commentId, String type, bool like,
-      {String threadId}) {
+      {String? threadId}) {
     return Https.dioProxy
         .postUri(likeCommentDioMetaData(id, commentId, type, like,
             threadId: threadId))
@@ -410,7 +410,7 @@ mixin ApiEvent {
   }
 
   DioMetaData commentDioMetaData(String id, String type, String op,
-      {String commentId, String threadId, String content}) {
+      {String? commentId, String? threadId, String? content}) {
     String typeKey = _type2key(type);
     var params = {'threadId': typeKey + id};
     if (type == 'event') {
@@ -457,7 +457,7 @@ mixin ApiEvent {
   /// 如：/comment/like?type=6&cid=1419532712&threadId=A_EV_2_6559519868_32953014&t=0，
   /// threadId 可通过 /event，/user/event 接口获取
   Future<CommentWrap> comment(String id, String type, String op,
-      {String commentId, String threadId, String content}) {
+      {String? commentId, String? threadId, String? content}) {
     return Https.dioProxy
         .postUri(commentDioMetaData(id, type, op,
             commentId: commentId, threadId: threadId, content: content))
@@ -467,7 +467,7 @@ mixin ApiEvent {
   }
 
   DioMetaData likeResourceDioMetaData(String id, String type, bool like,
-      {String commentId, String threadId, String content}) {
+      {String? commentId, String? threadId, String? content}) {
     String typeKey = _type2key(type);
     var params = {'threadId': typeKey + id};
     if (type == 'event') {
@@ -488,7 +488,7 @@ mixin ApiEvent {
   /// 如：/comment/like?type=6&cid=1419532712&threadId=A_EV_2_6559519868_32953014&t=0，
   /// threadId 可通过 /event，/user/event 接口获取
   Future<ServerStatusBean> likeResource(String id, String type, bool like,
-      {String commentId, String threadId, String content}) {
+      {String? commentId, String? threadId, String? content}) {
     return Https.dioProxy
         .postUri(likeResourceDioMetaData(id, type, like,
             commentId: commentId, threadId: threadId, content: content))

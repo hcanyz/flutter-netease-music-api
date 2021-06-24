@@ -69,7 +69,7 @@ void main() async {
   });
 
   test('test_category_playlist', () async {
-    var result = await api.playListDetail(PLAYLIST_CATEGORY[0]['id']);
+    var result = await api.playListDetail(PLAYLIST_CATEGORY[0]['id']!);
     expect(result.code, RET_CODE_OK);
   });
 
@@ -152,7 +152,7 @@ void main() async {
 
   test('test_song_like_list', () async {
     var result = await api.likeSongList(
-        NeteaseMusicApi().usc?.accountInfo?.account?.id ?? defaultUserId);
+        NeteaseMusicApi().usc.accountInfo?.account.id ?? defaultUserId);
     expect(result.code, RET_CODE_OK);
   });
 
@@ -175,7 +175,7 @@ void main() async {
 
   test('test_cloud_user_song_match', () async {
     var result = await api.cloudUserSongMatch(
-        NeteaseMusicApi().usc?.accountInfo?.account?.id ?? defaultUserId,
+        NeteaseMusicApi().usc.accountInfo?.account.id ?? defaultUserId,
         '0',
         '0');
     expect(result.code, isNotNull);
