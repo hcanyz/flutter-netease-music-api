@@ -62,7 +62,7 @@ subscription.cancel();
 - [ ] 持续同步api...
 
 ### ~
-- json String to Bean ```flutter pub run build_runner build```
+- json String to Bean ```flutter pub run build_runner build``` ```flutter pub run build_runner watch```
 
 ### errorCode
 | code | desc                               |
@@ -89,11 +89,11 @@ subscription.cancel();
 ```text
 flutter doctor
 Doctor summary (to see all details, run flutter doctor -v):
-[√] Flutter (Channel master, 2.1.0-13.0.pre.294, on Microsoft Windows [Version 10.0.19042.867], locale zh-CN)
-[√] Android toolchain - develop for Android devices (Android SDK version 30.0.2)
+[√] Flutter (Channel master, 2.3.0-17.0.pre.420, on Microsoft Windows [Version 10.0.19042.1052], locale zh-CN)
+[√] Android toolchain - develop for Android devices (Android SDK version 30.0.3)
 [√] Chrome - develop for the web
-[√] Android Studio (version 4.1.0)
+[√] Android Studio (version 4.2.1)
 [√] IntelliJ IDEA Community Edition (version 2020.3)
-[√] VS Code, 64-bit edition (version 1.54.3)
-[√] Connected device (1 available)
+[√] VS Code, 64-bit edition (version 1.57.1)
+[√] Connected device (2 available)
 ```
