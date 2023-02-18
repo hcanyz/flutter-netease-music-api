@@ -5,7 +5,7 @@ author: hcanyz
 homepage: https://github.com/hcanyz/flutter-netease-music-api
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -18,9 +18,9 @@ dependencies:
   path_provider: ^2.0.2
 
   # http
-  dio: ^4.0.0
-  pretty_dio_logger: ^1.1.1
-  dio_cookie_manager: ^2.0.0
+  dio: ^5.0.0
+  pretty_dio_logger: ^1.3.1
+  dio_cookie_manager: ^2.1.0
 
   # encrypt
   encrypt: ^5.0.0

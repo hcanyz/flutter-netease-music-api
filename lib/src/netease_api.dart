@@ -82,18 +82,14 @@ class NeteaseMusicApi
                   handler.next(newResponse);
                   return;
                 }
-                dio.lock();
                 var refreshResult = await NeteaseMusicApi()
                     .loginRefresh(dio: _initDio(Dio(), debug, false));
-                dio.unlock();
                 if (refreshResult.code == RET_CODE_OK) {
                   var newResponse = await dio.fetch(requestOptions);
                   handler.next(newResponse);
                   return;
                 }
-              } catch (e) {} finally {
-                dio.unlock();
-              }
+              } catch (e) {}
               await NeteaseMusicApi().usc.onLogout();
             }
           }

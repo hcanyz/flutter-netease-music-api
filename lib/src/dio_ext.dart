@@ -8,8 +8,8 @@ class Https {
 
   static Map<String, String> optHeader = {};
 
-  static Dio get dio =>
-      _dio ??= Dio(BaseOptions(connectTimeout: 5000, headers: optHeader));
+  static Dio get dio => _dio ??= Dio(
+      BaseOptions(connectTimeout: Duration(seconds: 5), headers: optHeader));
 
   static DioProxy get dioProxy => _dioProxy ??= DioProxy();
 }
