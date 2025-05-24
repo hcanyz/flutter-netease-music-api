@@ -90,7 +90,7 @@ class RSAExt extends AbstractRSAExt implements Algorithm {
       : super(publicKey: publicKey, privateKey: privateKey);
 
   @override
-  Encrypted encrypt(Uint8List bytes, {IV? iv}) {
+  Encrypted encrypt(Uint8List bytes, {Uint8List? associatedData, IV? iv}) {
     if (publicKey == null) {
       throw StateError('Can\'t encrypt without a public key, null given.');
     }
@@ -103,7 +103,7 @@ class RSAExt extends AbstractRSAExt implements Algorithm {
   }
 
   @override
-  Uint8List decrypt(Encrypted encrypted, {IV? iv}) {
+  Uint8List decrypt(Encrypted encrypted, {Uint8List? associatedData, IV? iv}) {
     if (privateKey == null) {
       throw StateError('Can\'t decrypt without a private key, null given.');
     }
