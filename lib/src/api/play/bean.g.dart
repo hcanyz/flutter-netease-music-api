@@ -701,7 +701,7 @@ Play _$PlayFromJson(Map<String, dynamic> json) {
     ..userId = dynamicToString(json['userId'])
     ..name = json['name'] as String?
     ..description = json['description'] as String?
-    ..coverImgUrl = json['coverImgUrl'] as String?
+    ..coverImgUrl = json['picUrl'] as String?
     ..tag = json['tag'] as String?
     ..tags = (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList()
     ..copywriter = json['copywriter'] as String?

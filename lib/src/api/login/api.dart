@@ -6,11 +6,9 @@ import 'package:encrypt/encrypt.dart';
 import 'package:netease_music_api/netease_music_api.dart';
 import 'package:netease_music_api/src/api/bean.dart';
 import 'package:netease_music_api/src/dio_ext.dart';
-import 'package:netease_music_api/src/netease_bean.dart';
 import 'package:netease_music_api/src/netease_handler.dart';
 import 'package:pointycastle/digests/md5.dart';
 
-import 'bean.dart';
 
 mixin ApiLogin {
   DioMetaData loginProtectDioMetaData() {
