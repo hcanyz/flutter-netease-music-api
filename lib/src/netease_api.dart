@@ -9,7 +9,6 @@ import 'package:netease_music_api/netease_music_api.dart';
 import 'package:netease_music_api/src/api/bean.dart';
 import 'package:netease_music_api/src/api/dj/api.dart';
 import 'package:netease_music_api/src/api/event/api.dart';
-import 'package:netease_music_api/src/api/login/bean.dart';
 import 'package:netease_music_api/src/api/search/api.dart';
 import 'package:netease_music_api/src/api/uncategorized/api.dart';
 import 'package:netease_music_api/src/api/user/api.dart';
@@ -82,17 +81,17 @@ class NeteaseMusicApi
                   handler.next(newResponse);
                   return;
                 }
-                dio.lock();
+                // dio.lock();
                 var refreshResult = await NeteaseMusicApi()
                     .loginRefresh(dio: _initDio(Dio(), debug, false));
-                dio.unlock();
+                // dio.unlock();
                 if (refreshResult.code == RET_CODE_OK) {
                   var newResponse = await dio.fetch(requestOptions);
                   handler.next(newResponse);
                   return;
                 }
               } catch (e) {} finally {
-                dio.unlock();
+                // dio.unlock();
               }
               await NeteaseMusicApi().usc.onLogout();
             }

@@ -55,6 +55,7 @@ void main() async {
 
   test('test_recommend_everyday_playlist', () async {
     var result = await api.recommendPlaylist();
+    print(result);
     expect(result.code, RET_CODE_OK);
   });
 
